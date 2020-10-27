@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "jimla-client"
+    }
+  },
+  "defaultProject": "jimla-client",
+  "cli": {
+    "analytics": false
+  }
 }

@@ -1,0 +1,28 @@
+$grid-width: 1140px;
+$gutter-vertical: 8rem;
+$gutter-horizontal: 6rem;
+
+$color-primary: #1fbe62;
+$color-secondary: #178141;
+$color-tertiary: #42597b;
+$color-white: #fff;
+$color-black: #000;
+$color-grey-1: #333;
+$color-grey-2: #555;
+$color-grey-3: #777;
+
+$color-red: #bd0909;
+$color-yellow: #e1a223;
+
+$color-footer-primary: #2a2a2a;
+
+$footer-height: 35rem;
+$gutter-horizontal: 6rem;
+
+@mixin clearfix {
+  &::after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

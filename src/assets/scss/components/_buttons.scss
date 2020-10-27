@@ -1,0 +1,68 @@
+@import "../abstracts/variables";
+
+.th-btn {
+  color: $color-white;
+  font-weight: bold;
+  outline: none;
+  font-size: 1.5rem; //1.8rem originally
+  width: 12rem; // 15rem originally
+  height: 4rem; // 4rem originally
+  // padding: 1.4rem 3rem;
+  position: relative;
+  border-radius: 6px;
+  text-transform: uppercase;
+  transition: all 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 1px 6px 3px rgba(238, 238, 238, 0.5);
+  }
+
+  &::-moz-focus-inner {
+    border: 0;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &--primary {
+    background-color: $color-secondary; /* For browsers that do not support gradients */
+    background-image: linear-gradient(120deg, $color-primary, $color-secondary);
+    border: none;
+    color: $color-white;
+  }
+
+  &--secondary {
+    border: 1px solid #fff;
+    background-color: rgba(0, 0, 0, 0.103);
+  }
+
+  &--naive {
+    background-color: lighten($color: $color-secondary, $amount: 10%);
+    border: none;
+    color: $color-white;
+    appearance: none;
+  }
+}
+
+.btn-outline {
+  background-color: white;
+  border: 1px solid $color-primary;
+  border-radius: 3px;
+  color: $color-primary;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: $color-secondary;
+    color: white;
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}

@@ -1,0 +1,109 @@
+.header-section {
+  position: fixed;
+  top: 0;
+  display: flex;
+  height: 6.5rem; //same as the anonymous header's
+  align-items: center;
+  justify-content: space-between;
+  background-color: black;
+  // padding: 1rem;
+  // padding: 0 2rem;
+  width: 100%;
+  z-index: 9999;
+
+  &__logo {
+    position: absolute;
+    top: 0rem;
+    left: 8rem;
+    width: 8rem;
+    border-bottom-right-radius: 1.5rem;
+    border-bottom-left-radius: 1.5rem;
+    box-shadow: 0 2px 5px rgba(black, 0.8);
+
+    &:hover {
+      box-shadow: 0 2px 1.5rem rgba(black, 0.8);
+    }
+  }
+
+  &__btn {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    border: none;
+  }
+}
+
+.th-dropdown {
+  position: absolute;
+  color: $color-grey-1;
+  top: 6rem;
+  background-color: $color-white;
+  border-radius: 3px;
+  padding: 0.5rem 0rem;
+  z-index: 10000000;
+  box-shadow: 0 0.5rem 1rem rgba(black, 0.5);
+
+  &:active {
+    transform: scale(1.01);
+  }
+
+  &:hover,
+  &:focus {
+    display: block;
+  }
+
+  &--register {
+    right: 1rem;
+    display: none;
+  }
+
+  &--login {
+    right: 13rem;
+    display: none;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 16rem;
+    height: 5rem;
+    padding: 0rem;
+    background-color: transparent;
+    border: none;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    color: $color-grey-1;
+    font-weight: 600;
+
+    &:hover {
+      cursor: pointer;
+      text-decoration: none;
+      color: grey;
+    }
+
+    &:last-child {
+      border-top: 0.5px solid #777 !important;
+    }
+
+    &:visited {
+      text-decoration: none;
+    }
+  }
+}
+
+#th-login:focus + div,
+#th-register:focus + div {
+  display: block !important;
+}
+
+@media only screen and (min-width: 700px) {
+  // .header-section{
+
+  //     // &__logo {
+  //     //     left: 1rem;
+  //     //     transform: translateX(0%);
+  //     // }
+  // }
+}
