@@ -1,9 +1,11 @@
-@import 'assets/scss/base/reset';
-@import 'assets/scss/abstracts/variables';
-@import 'assets/scss/base/typography';
-@import 'assets/scss/components/buttons';
-@import 'assets/scss/components/inputs';
-@import 'assets/scss/layouts/grid';
-@import 'assets/scss/layouts/container';
-@import 'assets/scss/abstracts/animations';
-@import 'assets/scss/layouts/footer';
+@import "~ng-zorro-antd/ng-zorro-antd.min.css";
+
+@import "assets/scss/base/reset";
+@import "assets/scss/abstracts/variables";
+@import "assets/scss/base/typography";
+@import "assets/scss/components/buttons";
+@import "assets/scss/components/inputs";
+@import "assets/scss/layouts/grid";
+@import "assets/scss/layouts/container";
+@import "assets/scss/abstracts/animations";
+@import "assets/scss/layouts/footer";

@@ -1,3 +1,4 @@
+import { CreateOrderVoiceComponent } from './components/create-order-voice/create-order-voice.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -24,11 +25,14 @@ const routes: Routes = [
         path: 'register', 
         component: RegisterComponent 
       },
+      {
+        path: 'orders/create_order_voice',
+        component: CreateOrderVoiceComponent
+      },
       { 
         path: '**', 
         component: NotFoundComponent
       }
-
     ]
   }
 ];
