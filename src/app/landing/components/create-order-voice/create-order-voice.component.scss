@@ -72,6 +72,10 @@
   }
 }
 
+.center_text {
+  text-align: center;
+}
+
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
   background-color: lighten($color: #d98e46, $amount: 30);

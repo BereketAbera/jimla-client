@@ -78,16 +78,21 @@
                 Your browser does not support the audio element.
               </audio>
             </div>
-            <nz-divider nzDashed nzText="Products"></nz-divider>
+            <nz-divider nzDashed nzText="Ordered Products"></nz-divider>
           </div>
         </div>
       </div>
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
-            <nz-table [nzShowPagination]="false" #basicTable [nzData]="products">
+            <!-- <nz-table #rowSelectionTable [nzShowPagination]="false" #basicTable [nzData]="products">
               <thead>
                 <tr>
+                  <th
+                    [nzChecked]="checked"
+                    [nzIndeterminate]="indeterminate"
+                    (nzCheckedChange)="onAllChecked($event)"
+                  ></th>
                   <th>Code</th>
                   <th>Name</th>
                   <th>Quantity</th>
@@ -95,6 +100,11 @@
               </thead>
               <tbody>
                 <tr *ngFor="let data of basicTable.data">
+                  <td
+                    [nzChecked]="setOfCheckedId.has(data.id)"
+                    [nzDisabled]="data.disabled"
+                    (nzCheckedChange)="onItemChecked(data.id, $event)"
+                  ></td>
                   <td>{{ data.id }}</td>
                   <td>{{ data.name }}</td>
                   <td>
@@ -108,7 +118,106 @@
                   </td>
                 </tr>
               </tbody>
+            </nz-table> -->
+            <button class="fill_width center_text" nz-button nzType="primary" (click)="showModal()">
+              Add Product <i nz-icon nzType="plus-circle" class="margin_left"></i>
+            </button>
+            <nz-modal
+              [(nzVisible)]="isVisible"
+              [nzTitle]="modalTitle"
+              [nzContent]="modalContent"
+              [nzFooter]="modalFooter"
+              (nzOnCancel)="handleCancel()"
+              nzWidth="34rem"
+            >
+              <ng-template #modalTitle> Add Product Order </ng-template>
+
+              <ng-template #modalContent>
+                <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 8]">
+                  <div nz-col nzSpan="24" class="gutter-row">
+                    <div class="inner-box">
+                      <nz-select
+                        class="fill_width"
+                        nzShowSearch
+                        nzAllowClear
+                        nzPlaceHolder="Select Product"
+                        [(ngModel)]="selectedProduct"
+                      >
+                        <nz-option
+                          *ngFor="let product of products"
+                          nzCustomContent
+                          [nzLabel]="product.name"
+                          [nzValue]="product.name"
+                          ><i nz-icon nzType="borderless-table" class="margin_right"></i>
+                          {{ product.name }}</nz-option
+                        >
+                      </nz-select>
+                    </div>
+                  </div>
+                  <div *ngIf="selectedProduct" nz-col nzSpan="24" class="gutter-row">
+                    <div class="inner-box">
+                      <nz-input-number
+                        class="fill_width"
+                        [(ngModel)]="quantity"
+                        [nzMin]="1"
+                        [nzStep]="1"
+                        [nzPlaceHolder]="'Enter Amount'"
+                      ></nz-input-number>
+                    </div>
+                  </div>
+                </div>
+              </ng-template>
+
+              <ng-template #modalFooter>
+                <button nz-button nzType="default" (click)="handleCancel()">Cancle</button>
+                <button nz-button nzType="primary" (click)="handleAdd()">
+                  Add <i nz-icon nzType="plus-circle" class="margin_left"></i>
+                </button>
+              </ng-template>
+            </nz-modal>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box">
+            <nz-table [nzShowPagination]="false" [nzData]="selectedProducts">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Name</th>
+                  <th>Quantity</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of selectedProducts">
+                  <td>{{ data.id }}</td>
+                  <td>{{ data.name }}</td>
+                  <td>{{ data.quantity }}</td>
+                  <th style="text-align: center" style="text-align: center">
+                    <button
+                      (click)="editProduct(data)"
+                      nz-button
+                      nzType="text"
+                      style="color: #d98e46"
+                    >
+                      <i nz-icon nzType="edit"></i>
+                    </button>
+                  </th>
+                  <th style="text-align: center">
+                    <button
+                      (click)="deleteProduct(data)"
+                      nz-button
+                      nzType="text"
+                      style="color: #d98e46"
+                    >
+                      <i nz-icon nzType="delete"></i>
+                    </button>
+                  </th>
+                </tr>
+              </tbody>
             </nz-table>
+            <!-- <div *ngFor="let p of selectedProducts">{{ p.name + "" + p.quantity }}</div> -->
           </div>
         </div>
       </div>
@@ -159,7 +268,7 @@
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
-            <nz-table [nzShowPagination]="false" #basicTable2 [nzData]="selectedProducts">
+            <nz-table [nzShowPagination]="false">
               <thead>
                 <tr>
                   <th>Code</th>
@@ -168,7 +277,7 @@
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of basicTable2.data">
+                <tr *ngFor="let data of selectedProductsOrders">
                   <td>{{ data.id }}</td>
                   <td>{{ data.name }}</td>
                   <td>{{ "Quantity" }}</td>
@@ -178,9 +287,6 @@
           </div>
         </div>
       </div>
-      <!-- <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
-        <div nz-col nzSpan="24" class="gutter-row"><div class="inner-box">col-6</div></div>
-      </div> -->
     </div>
   </div>
 </div>

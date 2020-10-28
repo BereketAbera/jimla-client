@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -17,6 +18,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
+import { NzModalModule } from 'ng-zorro-antd/modal';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
   ],
   imports: [
     CommonModule,
+    FormsModule,
     LandingRoutingModule,
     NzButtonModule,
     NzGridModule,
@@ -38,7 +41,8 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
     NzIconModule,
     NzTypographyModule,
     NzTableModule,
-    NzInputNumberModule
+    NzInputNumberModule,
+    NzModalModule
   ]
 })
 export class LandingModule {}
