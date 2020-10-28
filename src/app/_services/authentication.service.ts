@@ -25,12 +25,14 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+    console.log(username,password)
+    return this.http.post<any>(`${environment.apiUrl}/login`, { username, password })
         .pipe(map(user => {
+          console.log(user)
             // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-            this.userSubject.next(user);
-            return user;
+            localStorage.setItem('user', JSON.stringify(user.data));
+            this.userSubject.next(user.data);
+            return user.data;
         }));
   }
 
@@ -40,4 +42,5 @@ export class AuthenticationService {
     this.userSubject.next(null);
     this.router.navigate(['/login']);
   }
+
 }

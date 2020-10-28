@@ -13,7 +13,7 @@ const routes: Routes = [
     component: LandingComponent,
     children: [
       { 
-        path: '',
+        path: 'home',
         component: HomeComponent,
         pathMatch: 'full'
       },
