@@ -12,26 +12,26 @@ export class AuthenticationService {
   private userSubject: BehaviorSubject<any>;
   public user: Observable<any>;
 
-  constructor(
-      private router: Router,
-      private http: HttpClient
-  ) {
-      this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
-      this.user = this.userSubject.asObservable();
+  constructor(private router: Router, private http: HttpClient) {
+    this.userSubject = new BehaviorSubject<any>(JSON.parse(localStorage.getItem('user')));
+    this.user = this.userSubject.asObservable();
   }
 
   public get userValue() {
-      return this.userSubject.value;
+    return this.userSubject.value;
   }
 
   login(username: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
-        .pipe(map(user => {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user));
-            this.userSubject.next(user);
-            return user;
-        }));
+    return this.http
+      .post<any>(`${environment.apiUrl}/users/authenticate`, { username, password })
+      .pipe(
+        map((user) => {
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('user', JSON.stringify(user));
+          this.userSubject.next(user);
+          return user;
+        })
+      );
   }
 
   logout() {
@@ -39,5 +39,13 @@ export class AuthenticationService {
     localStorage.removeItem('user');
     this.userSubject.next(null);
     this.router.navigate(['/login']);
+  }
+
+  routeToServerError() {
+    this.router.navigate(['/server_error']);
+  }
+
+  routeToNotFound() {
+    this.router.navigate(['/12341234123']);
   }
 }

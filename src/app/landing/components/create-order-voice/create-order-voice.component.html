@@ -5,76 +5,51 @@
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
     style="justify-content: space-between"
   >
-    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" class="gutter-row sub_container">
+    <div
+      id="process_orders"
+      nz-col
+      [nzXs]="24"
+      [nzSm]="24"
+      [nzMd]="12"
+      class="gutter-row sub_container"
+      style="position: relative"
+    >
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
-          <div class="inner-box"><div class="header__title">Select Order To Process</div></div>
+          <div class="inner-box"><div class="header__title">Process Order</div></div>
         </div>
       </div>
-      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
-          <div class="inner-box">
-            <nz-select
-              class="fill_width"
-              nzShowSearch
-              nzAllowClear
-              nzPlaceHolder="Select Order Group"
-              [(ngModel)]="selectedOrderGroup"
-            >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i>
-                9482793478</nz-option
-              >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i>
-                2349729347</nz-option
-              >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i> 2937842983
-              </nz-option>
-            </nz-select>
-          </div>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
-          <div class="inner-box">
-            <button class="fill_width" nz-button nzType="primary">Continue</button>
-          </div>
-        </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
-          <div class="inner-box">
-            <button class="fill_width" nz-button nzType="primary">Cancel</button>
-          </div>
-        </div>
-      </div>
+
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
+            <nz-divider nzDashed nzText="Retailer"></nz-divider>
             <div class="retailer">
-              <div class="retailer__created">
-                Ordered: <i nz-icon nzType="clock-circle" class="margin_right"></i
-                ><span nz-typography nzType="secondary">{{
-                  "2020-10-13T08:55:11.000Z" | date
-                }}</span>
+              <div>
+                <div class="retailer__name">{{ retailer.name }}</div>
               </div>
-              <div class="retailer__phonenumber">
-                From: <i nz-icon nzType="phone" class="margin_right"></i
-                ><span nz-typography nzType="secondary"> 275-984-9617</span>
+              <div class="retailer__sub">
+                <div class="retailer__created">
+                  Ordered: <i nz-icon nzType="clock-circle" class="margin_right"></i
+                  ><span nz-typography nzType="secondary">{{ orderGroup.createdAt | date }}</span>
+                </div>
+                <div class="retailer__phonenumber">
+                  Phone: <i nz-icon nzType="phone" class="margin_right"></i
+                  ><span nz-typography nzType="secondary"> {{ retailer.phone_number }}</span>
+                </div>
               </div>
             </div>
             <nz-divider nzDashed nzText="Merchant"></nz-divider>
             <div class="merchant">
-              <div class="merchant__name">Jacobson, Durgan and Zboncak</div>
+              <div class="merchant__name">{{ merchant.name }}</div>
               <div class="merchant__code">
-                Code: <span nz-typography nzType="secondary">63918</span>
+                Code: <span nz-typography nzType="secondary">{{ merchant.code }}</span>
               </div>
             </div>
             <nz-divider nzDashed nzText="Audio File"></nz-divider>
             <div class="audio">
               <audio controls class="audio__player">
-                <source
-                  src="https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
-                  type="audio/mpeg"
-                />
+                <source [src]="orderGroup.audioLink" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
             </div>
@@ -85,41 +60,13 @@
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
-            <!-- <nz-table #rowSelectionTable [nzShowPagination]="false" #basicTable [nzData]="products">
-              <thead>
-                <tr>
-                  <th
-                    [nzChecked]="checked"
-                    [nzIndeterminate]="indeterminate"
-                    (nzCheckedChange)="onAllChecked($event)"
-                  ></th>
-                  <th>Code</th>
-                  <th>Name</th>
-                  <th>Quantity</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let data of basicTable.data">
-                  <td
-                    [nzChecked]="setOfCheckedId.has(data.id)"
-                    [nzDisabled]="data.disabled"
-                    (nzCheckedChange)="onItemChecked(data.id, $event)"
-                  ></td>
-                  <td>{{ data.id }}</td>
-                  <td>{{ data.name }}</td>
-                  <td>
-                    <nz-input-number
-                      [(ngModel)]="quantity"
-                      [nzMin]="1"
-                      [nzMax]="10"
-                      [nzStep]="1"
-                      nzSize="small"
-                    ></nz-input-number>
-                  </td>
-                </tr>
-              </tbody>
-            </nz-table> -->
-            <button class="fill_width center_text" nz-button nzType="primary" (click)="showModal()">
+            <button
+              [disabled]="leftDisabled"
+              class="fill_width center_text"
+              nz-button
+              nzType="primary"
+              (click)="showModal()"
+            >
               Add Product <i nz-icon nzType="plus-circle" class="margin_left"></i>
             </button>
             <nz-modal
@@ -217,58 +164,80 @@
                 </tr>
               </tbody>
             </nz-table>
-            <!-- <div *ngFor="let p of selectedProducts">{{ p.name + "" + p.quantity }}</div> -->
           </div>
         </div>
       </div>
-    </div>
-    <!-- <div style="width: 0px; min-height: 100%; border-left: 2px solid #aaa;"></div> -->
-    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="12" class="gutter-row sub_container">
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
-        <div nz-col nzSpan="24" class="gutter-row">
-          <div class="inner-box"><div class="header__title">Products To Be Ordered</div></div>
-        </div>
-      </div>
-      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" class="gutter-row">
           <div class="inner-box">
-            <nz-select
+            <button
+              (click)="goBack()"
+              [disabled]="leftDisabled"
               class="fill_width"
-              nzShowSearch
-              nzAllowClear
-              nzPlaceHolder="Select Order Group"
-              [(ngModel)]="selectedOrderGroup"
-              disabled
+              nz-button
+              nzType="primary"
             >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i>
-                9482793478</nz-option
-              >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i>
-                2349729347</nz-option
-              >
-              <nz-option nzCustomContent nzLabel="2937842983" nzValue="2937842983"
-                ><i nz-icon nzType="borderless-table" class="margin_right"></i> 2937842983
-              </nz-option>
-            </nz-select>
+              Cancel
+            </button>
           </div>
         </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" class="gutter-row">
           <div class="inner-box">
-            <button class="fill_width" nz-button nzType="primary" disabled>Submit Order</button>
+            <button
+              [disabled]="leftDisabled"
+              (click)="continue()"
+              class="fill_width"
+              nz-button
+              nzType="primary"
+            >
+              Continue
+            </button>
           </div>
         </div>
-        <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="16" [nzLg]="8" class="gutter-row">
-          <div class="inner-box">
-            <button class="fill_width" nz-button nzType="primary" disabled>Back</button>
-          </div>
+      </div>
+      <div
+        *ngIf="leftDisabled"
+        style="
+          position: absolute;
+          top: 7rem;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          cursor: not-allowed;
+          background-color: rgb(170 170 170 / 18%);
+        "
+      ></div>
+    </div>
+
+    <!-- Right side start 
+    --
+    --
+    -->
+    <div
+      id="order_produts"
+      nz-col
+      [nzXs]="24"
+      [nzSm]="24"
+      [nzMd]="12"
+      class="gutter-row sub_container"
+      style="position: relative"
+    >
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box"><div class="header__title">Ordered Products</div></div>
         </div>
+      </div>
+      <nz-divider nzDashed nzText="Audio File"></nz-divider>
+      <div class="audio">
+        <audio controls class="audio__player">
+          <source [src]="orderGroup.audioLink" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </audio>
       </div>
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
-            <nz-table [nzShowPagination]="false">
+            <nz-table [nzShowPagination]="false" [nzData]="selectedProductsOrders">
               <thead>
                 <tr>
                   <th>Code</th>
@@ -280,13 +249,61 @@
                 <tr *ngFor="let data of selectedProductsOrders">
                   <td>{{ data.id }}</td>
                   <td>{{ data.name }}</td>
-                  <td>{{ "Quantity" }}</td>
+                  <td>{{ data.quantity }}</td>
                 </tr>
               </tbody>
             </nz-table>
           </div>
         </div>
       </div>
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" class="gutter-row">
+          <div class="inner-box">
+            <button
+              (click)="back()"
+              class="fill_width"
+              nz-button
+              nzType="primary"
+              [disabled]="!leftDisabled"
+            >
+              Back
+            </button>
+          </div>
+        </div>
+        <div nz-col [nzXs]="24" [nzSm]="12" [nzMd]="12" [nzLg]="12" class="gutter-row">
+          <div class="inner-box">
+            <button
+              (click)="submitOrder()"
+              class="fill_width"
+              nz-button
+              nzType="primary"
+              [disabled]="!leftDisabled"
+            >
+              Submit Order
+            </button>
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="!leftDisabled"
+        style="
+          position: absolute;
+          top: 7rem;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          cursor: not-allowed;
+          background-color: rgb(170 170 170 / 18%);
+        "
+      ></div>
     </div>
   </div>
 </div>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Seccesfully Created
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>

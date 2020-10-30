@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { OrderService } from '@app/_services/order/order.service';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Location, ViewportScroller } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-create-order-voice',
@@ -10,45 +14,32 @@ export class CreateOrderVoiceComponent implements OnInit {
   selectedProduct = null;
   quantity = null;
   isVisible = false;
+  leftDisabled = false;
 
-  // setOfCheckedId = new Set<number>();
-  // checked = false;
-  // loading = false;
-  // indeterminate = false;
-
-  products = [
-    {
-      id: 2,
-      name: 'Handmade Cotton Bacon',
-      MerchantId: 1
-    },
-    {
-      id: 18,
-      name: 'Small Metal Chips',
-      MerchantId: 1
-    },
-    {
-      id: 21,
-      name: 'Nigus',
-      MerchantId: 1
-    },
-    {
-      id: 22,
-      name: 'Nigus',
-      MerchantId: 1
-    }
-  ];
-  selectedProducts = [
-    {
-      id: 2,
-      name: 'Handmade Cotton Bacon',
-      quantity: 12
-    }
-  ];
+  products = [];
+  selectedProducts = [];
 
   selectedProductsOrders = [];
+  retailer = null;
+  merchant = null;
+  orderGroup = null;
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private orderService: OrderService,
+    private notificationService: NzNotificationService,
+    private router: Router,
+    private location: Location,
+    private viewportScroller: ViewportScroller
+  ) {
+    this.route.data.subscribe((res: { data: any }) => {
+      this.retailer = res.data.retailer;
+      this.merchant = res.data.merchant;
+      this.orderGroup = res.data.orderGroup;
+      this.products = res.data.products;
+    });
+  }
 
   ngOnInit(): void {}
 
@@ -61,10 +52,25 @@ export class CreateOrderVoiceComponent implements OnInit {
       }
     });
     if (product && this.quantity >= 1) {
-      this.selectedProducts.push({ ...product, quantity: this.quantity });
+      this.addToSelected({ ...product, quantity: this.quantity });
       this.selectedProduct = null;
       this.quantity = null;
       this.isVisible = false;
+    }
+  }
+
+  addToSelected(product) {
+    let exists = false;
+    this.selectedProducts = this.selectedProducts.map((p) => {
+      if (p.id == product.id) {
+        exists = true;
+        return { ...p, quantity: product.quantity };
+      }
+      return p;
+    });
+
+    if (!exists) {
+      this.selectedProducts.push(product);
     }
   }
 
@@ -77,39 +83,47 @@ export class CreateOrderVoiceComponent implements OnInit {
   }
 
   deleteProduct(product): void {
-    this.selectedProducts = this.selectedProducts.filter((p) => !p.id == product.id);
+    this.selectedProducts = this.selectedProducts.filter((p) => !(p.id == product.id));
   }
 
   editProduct(product): void {
-    console.log(product);
     this.quantity = product.quantity;
-    this.selectedProduct = product;
+    this.selectedProduct = product.name;
     this.showModal();
   }
-  // updateCheckedSet(id: number, checked: boolean): void {
-  //   if (checked) {
-  //     this.setOfCheckedId.add(id);
-  //   } else {
-  //     this.setOfCheckedId.delete(id);
-  //   }
-  // }
-  // refreshCheckedStatus(): void {
-  //   const listOfEnabledData = this.products.filter(({ disabled }) => !disabled);
-  //   this.checked = listOfEnabledData.every(({ id }) => this.setOfCheckedId.has(id));
-  //   this.indeterminate =
-  //     listOfEnabledData.some(({ id }) => this.setOfCheckedId.has(id)) && !this.checked;
-  // }
 
-  // onItemChecked(id: number, checked: boolean): void {
-  //   // console.log(id);
-  //   this.updateCheckedSet(id, checked);
-  //   this.refreshCheckedStatus();
-  // }
+  continue() {
+    if (this.selectedProducts.length <= 0) return;
+    this.leftDisabled = true;
+    this.selectedProductsOrders = this.selectedProducts;
+    console.log('scrolling to anchor');
+    this.viewportScroller.scrollToAnchor('order_produts');
+  }
 
-  // onAllChecked(checked: boolean): void {
-  //   this.products
-  //     .filter(({ disabled }) => !disabled)
-  //     .forEach(({ id }) => this.updateCheckedSet(id, checked));
-  //   this.refreshCheckedStatus();
-  // }
+  back() {
+    this.leftDisabled = false;
+    this.viewportScroller.scrollToAnchor('process_orders');
+  }
+
+  submitOrder() {
+    let orders = this.selectedProductsOrders.map((sp) => {
+      return { productId: sp.id, quantity: sp.quantity };
+    });
+    let orderData = {
+      order_group_id: this.orderGroup.id,
+      orders
+    };
+
+    this.orderService.createVoiceOrder(orderData).subscribe((res: any) => {
+      if (res && res.orders && res.orders.length > 0) {
+        // console.log(res);
+        this.notificationService.template(this.template, {});
+        this.goBack();
+      }
+    });
+  }
+
+  goBack() {
+    this.location.back();
+  }
 }

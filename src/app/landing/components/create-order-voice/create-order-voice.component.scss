@@ -1,6 +1,7 @@
 .main_container {
   // border: 1px solid #aaa;
   margin: 1rem;
+  overflow: hidden;
   //   display: flex;
   //   justify-content: center;
 }
@@ -47,20 +48,33 @@
 
 .retailer {
   display: flex;
-  align-items: center;
+  // align-items: center;
   justify-content: space-between;
   color: #d98e46;
+  flex-direction: column;
+
+  &__sub {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0rem;
+  }
+
+  &__name {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: capitalize;
+    color: #555;
+  }
 
   &__phonenumber {
     font-size: 1.8rem;
     font-weight: 400;
-    margin: 1rem;
   }
 
   &__created {
     font-size: 1.8rem;
     font-weight: 400;
-    margin: 1rem;
+    // margin: 1rem;
   }
 }
 

@@ -19,6 +19,11 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +33,9 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     RegisterComponent,
     NotFoundComponent,
     HeaderComponent,
-    CreateOrderVoiceComponent
+    CreateOrderVoiceComponent,
+    OrderGroupListComponent,
+    ServerErrorComponent
   ],
   imports: [
     CommonModule,
@@ -42,7 +49,10 @@ import { NzModalModule } from 'ng-zorro-antd/modal';
     NzTypographyModule,
     NzTableModule,
     NzInputNumberModule,
-    NzModalModule
+    NzModalModule,
+    NzNotificationModule,
+    NzPaginationModule,
+    NzResultModule
   ]
 })
 export class LandingModule {}
