@@ -1,4 +1,4 @@
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -24,6 +24,8 @@ import { OrderGroupListComponent } from './components/order-group-list/order-gro
 import { NzPaginationModule } from 'ng-zorro-antd/pagination';
 import { NzResultModule } from 'ng-zorro-antd/result';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
+import { NzInputModule } from 'ng-zorro-antd/input';
+import { NzFormModule } from 'ng-zorro-antd/form';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,7 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
     CommonModule,
     FormsModule,
     LandingRoutingModule,
+    ReactiveFormsModule,
     NzButtonModule,
     NzGridModule,
     NzDividerModule,
@@ -52,7 +55,9 @@ import { ServerErrorComponent } from './components/server-error/server-error.com
     NzModalModule,
     NzNotificationModule,
     NzPaginationModule,
-    NzResultModule
+    NzResultModule,
+    NzInputModule,
+    NzFormModule
   ]
 })
 export class LandingModule {}

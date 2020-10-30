@@ -8,6 +8,7 @@ export const environment = {
   // apiUrl: 'http://localhost:3000/api',
   // apiUrl: 'http://192.168.0.105:3000/api',
   apiUrl: 'http://192.168.0.105:3003'
+  // apiUrl: 'http://192.168.0.253:3001/api',
 };
 
 /*
