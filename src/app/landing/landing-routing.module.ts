@@ -1,3 +1,5 @@
+import { OrderListComponent } from './components/order-list/order-list.component';
+import { OrderListResolverService } from './../_resolvers/order/order-list-resolver.service';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
 import { OrderGroupListResolverService } from './../_resolvers/order/order-group-list-resolver.service';
 import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
@@ -42,6 +44,11 @@ const routes: Routes = [
         path: 'orders/order_groups',
         component: OrderGroupListComponent,
         resolve: { data: OrderGroupListResolverService }
+      },
+      {
+        path: 'orders/orders',
+        component: OrderListComponent,
+        resolve: { data: OrderListResolverService }
       },
       {
         path: '**',

@@ -26,6 +26,8 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     HeaderComponent,
     CreateOrderVoiceComponent,
     OrderGroupListComponent,
-    ServerErrorComponent
+    ServerErrorComponent,
+    OrderListComponent
   ],
   imports: [
     CommonModule,
@@ -57,7 +60,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzPaginationModule,
     NzResultModule,
     NzInputModule,
-    NzFormModule
+    NzFormModule,
+    NzDropDownModule
   ]
 })
 export class LandingModule {}

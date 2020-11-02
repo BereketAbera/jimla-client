@@ -24,6 +24,11 @@ export class OrderService {
     return this.http.get(`${orderUrl}/order_groups?${params}`);
   }
 
+  getOrders(query): Observable<any> {
+    let params = this.generateParams(query);
+    return this.http.get(`${orderUrl}/orders?${params}`);
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);
