@@ -1,21 +1,43 @@
 <landing-header></landing-header>
-<form nz-form [formGroup]="userForm" class="form" (ngSubmit)="submitForm()">
-  <nz-form-item class="form__item">
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName">First Name</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input formControlName="firstName" id="firstName" />
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item class="form__item">
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName">Last Name</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input formControlName="lastName" id="lastName" />
-    </nz-form-control>
-  </nz-form-item>
+<form *ngIf="!continued" nz-form [formGroup]="userForm" class="form" (ngSubmit)="submitForm()">
+  <span class="header">Create Account</span>
+  <div >
+    <nz-form-item  nzSpan="6" class="form__item">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="firstName">First Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <input
+          nzSize="large"
+          placeholder="Please enter your name"
+          nz-input
+          formControlName="firstName"
+          id="firstName"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item  nzSpan="6" class="form__item">
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="lastName">Last Name</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
+        <input
+          nz-input
+          nzSize="large"
+          placeholder="Please enter your last name"
+          formControlName="lastName"
+          id="lastName"
+        />
+      </nz-form-control>
+    </nz-form-item>
+  </div>
+
   <nz-form-item class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">Username</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input formControlName="username" id="username" />
+      <input
+        nz-input
+        nzSize="large"
+        placeholder="Please choose username"
+        formControlName="username"
+        id="username"
+      />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
@@ -32,27 +54,67 @@
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your phoneNumber!">
-      <input nz-input id="phoneNumber" formControlName="phoneNumber" />
+      <input
+        placeholder="+251901010101"
+        nzSize="large"
+        nz-input
+        id="phoneNumber"
+        formControlName="phoneNumber"
+      />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="email">E-mail</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="The input is not valid E-mail!">
-      <input nz-input type="email" formControlName="email" id="email" />
+      <input
+        placeholder="youremail@example.com"
+        nzSize="large"
+        nz-input
+        type="email"
+        formControlName="email"
+        id="email"
+      />
     </nz-form-control>
   </nz-form-item>
-  <nz-form-item class="form__item">
+  <nz-form-item [nzSuffix]="suffixTemplate" class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
-      <input nz-input type="password" id="password" formControlName="password" />
+    <nz-form-control
+      [nzSuffix]="suffixTemplate"
+      [nzSm]="14"
+      [nzXs]="24"
+      nzErrorTip="Please input your password!"
+    >
+      <input
+        placeholder="Please set your password"
+        nzSize="large"
+        nz-input
+        [type]="passwordVisible ? 'text' : 'password'"
+        id="password"
+        formControlName="password"
+      />
+      <ng-template #suffixTemplate>
+        <i
+          nz-icon
+          [nzType]="passwordVisible ? 'eye-invisible' : 'eye'"
+          (click)="passwordVisible = !passwordVisible"
+        ></i>
+      </ng-template>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="confirmPassword" nzRequired
+    <nz-form-label  [nzSm]="6" [nzXs]="24" nzFor="confirmPassword" nzRequired
       >Confirm Password</nz-form-label
     >
     <nz-form-control [nzSm]="14" [nzXs]="24" [nzErrorTip]="errorTpl">
-      <input nz-input type="password" formControlName="confirmPassword" id="confirmPassword" />
+      <input
+        placeholder="Confirm you password"
+        nzSize="large"
+        nz-input
+        type="password"
+        formControlName="confirmPassword"
+        id="confirmPassword"
+      />
+
       <ng-template #errorTpl let-control>
         <ng-container *ngIf="control.hasError('required')">
           Please confirm your password!
@@ -64,69 +126,79 @@
     </nz-form-control>
   </nz-form-item>
 
-  <nz-form-item nz-row class="register-area">
+  <nz-form-item  nzAlign="center" nz-row class="register-area">
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary">Continue</button>
+      <button nzSize="large" nz-button nzType="primary">Continue</button>
     </nz-form-control>
   </nz-form-item>
 </form>
 
-
-
 <form *ngIf="continued" nz-form [formGroup]="producerForm" class="form" (ngSubmit)="registerForm()">
+  <span class="header">Create Account</span>
   <nz-form-item class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="companyName" nzRequired>
       <span>
         Company Name
-        <i
-          nz-icon
-          nz-tooltip
-          nzTooltipTitle="What do you want other to call you"
-          nzType="question-circle"
-          nzTheme="outline"
-        ></i>
+       
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your companyName!">
-      <input nz-input id="companyName" formControlName="companyName" />
+      <input
+      nzSize="large"
+        placeholder="Please enter company name"
+        nz-input
+        id="companyName"
+        formControlName="companyName"
+      />
     </nz-form-control>
   </nz-form-item>
 
   <nz-form-item class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="tinNumber" nzRequired>tinNumber</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input tinNumber!">
-      <input nz-input id="tinNumber" formControlName="tinNumber" placeholder="tinNumber" />
+      <input  nzSize="large" nz-input id="tinNumber" formControlName="tinNumber" placeholder="tinNumber" />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="city" nzRequired>City</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input city!">
-      <input nz-input id="city" formControlName="city" placeholder="city" />
+      <input
+        placeholder="Please enter city"
+        nzSize="large"
+        nz-input
+        id="city"
+        formControlName="city"
+      />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="subCity" nzRequired>Sub City</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="subCity" >Sub City</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input subCity!">
-      <input nz-input id="subCity" formControlName="subCity" placeholder="subCity" />
+      <input
+        placeholder="Please enter subCity(region)"
+        nzSize="large"
+        nz-input
+        id="subCity"
+        formControlName="subCity"
+      />
     </nz-form-control>
   </nz-form-item>
   <nz-form-item class="form__item">
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="woreda" nzRequired>Woreda</nz-form-label>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="woreda" >Woreda</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input woreda!">
-      <input nz-input id="woreda" formControlName="woreda" placeholder="woreda" />
+      <input
+        placeholder="Please enter woreda"
+        nzSize="large"
+        nz-input
+        id="woreda"
+        formControlName="woreda"
+      />
     </nz-form-control>
   </nz-form-item>
- 
-  <!-- <nz-form-item class="form__item" nz-row class="register-area">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <label nz-checkbox formControlName="agree">
-        <span>I have read the <a>agreement</a></span>
-      </label>
-    </nz-form-control>
-  </nz-form-item> -->
+
   <nz-form-item nz-row class="register-area">
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary">Register</button>
+      <button nzSize="large" nz-button nzType="primary">Register</button>
     </nz-form-control>
   </nz-form-item>
 </form>

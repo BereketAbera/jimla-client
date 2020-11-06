@@ -1,2 +1,59 @@
 <landing-header></landing-header>
-<p>home works!</p>
+<!-- <p>home works!</p> -->
+
+<div>
+  <section class="search">
+    <nz-input-group
+      class="input"
+      nzSearch
+      nzSize="large"
+      [nzPrefix]="prefixTemplateUser"
+      [nzSuffix]="suffixButton"
+    >
+      <input type="text" nz-input placeholder="Search for product, merchant" />
+    </nz-input-group>
+    <ng-template #prefixTemplateUser>
+      <nz-select ngModel="Supplier">
+        <nz-option nzValue="Supplier"  nzLabel="Supplier"></nz-option>
+        <nz-option nzValue="Product" nzLabel="Product"></nz-option>
+      </nz-select>
+      <!-- <i nz-icon nzType="search"></i> -->
+    </ng-template>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
+    </ng-template>
+  </section>
+</div>
+<div class="main">
+  <div class="aside">Category
+
+    <h3 [ngStyle]="{ margin: '16px 0' }">Small Size</h3>
+    <nz-list nzBordered nzSize="small">
+      <nz-list-header>Header</nz-list-header>
+      <nz-list-item >item</nz-list-item>
+      <nz-list-footer>Footer</nz-list-footer>
+    </nz-list>
+
+</div>
+  <div class="content">
+    <div >
+        <nz-card style="width:300px;" [nzBordered]="false" nzTitle="Card title" >
+          <p>Card content</p>
+          <p>Card content</p>
+          <p>Card content</p>
+        </nz-card>
+      </div>
+     
+  
+
+      <div >
+        <nz-card style="width:300px;" [nzBordered]="false" nzTitle="Card title" >
+          <p>Card content</p>
+          <p>Card content</p>
+          <p>Card content</p>
+        </nz-card>
+      </div>
+     
+
+</div>
+</div>

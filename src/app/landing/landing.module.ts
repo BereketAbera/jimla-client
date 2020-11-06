@@ -21,6 +21,10 @@ import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
+import { NzCardModule } from 'ng-zorro-antd/card';
+import { NzListModule } from 'ng-zorro-antd/list';
+import { ShortProductComponent } from './components/short-product/short-product.component';
+
 @NgModule({
   declarations: [
     LandingComponent,
@@ -29,7 +33,8 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     RegisterComponent,
     NotFoundComponent,
     HeaderComponent,
-    CreateOrderVoiceComponent
+    CreateOrderVoiceComponent,
+    ShortProductComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +51,10 @@ import { NzFormModule } from 'ng-zorro-antd/form';
     NzInputNumberModule,
     NzModalModule,
     NzInputModule,
-    NzFormModule
+    NzFormModule,
+    NzCardModule,
+    NzListModule
+    
   ]
 })
 export class LandingModule {}

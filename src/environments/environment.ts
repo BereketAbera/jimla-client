@@ -7,7 +7,9 @@ export const environment = {
   //  apiUrl: 'http://192.168.0.253:3000/api',
   // apiUrl: 'http://localhost:3000/api',
   // apiUrl: 'http://192.168.0.105:3000/api',
-  apiUrl: 'http://192.168.0.253:3001/api',
+  orderUrl: 'http://192.168.0.10:8000/orders/api',
+  identityUrl: 'http://192.168.0.10:8000/identity2/api',
+  prodUrl: 'http://192.168.0.10:8000/product/api'
 };
 
 /*

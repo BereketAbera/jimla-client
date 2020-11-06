@@ -11,7 +11,8 @@ export class RegisterComponent implements OnInit {
   userForm: FormGroup;
   producerForm: FormGroup;
   continued: boolean;
-
+  passwordVisible = false;
+  password?: string;
   constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
     private router: Router, private userService: UserService) {
     this.userForm = this.formBuilder.group({
@@ -40,6 +41,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.continued = true;
+    // window.scroll();
   }
   getCaptcha($event) {}
 

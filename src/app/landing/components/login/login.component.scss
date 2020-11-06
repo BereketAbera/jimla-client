@@ -1,10 +1,16 @@
+.container{
+  background-color: rgb(255, 251, 246);
+  padding:4rem 0;
+}
 .login-form {
   max-width: 400px;
-  margin:4rem auto;
+  margin:8rem auto;
   border: 1px solid #eee;
-  box-shadow: 0 1px 3px #eee;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
   padding: 3rem;
   font-size: 18px;
+  background-color: white;
 }
 
 .header {
@@ -22,4 +28,29 @@
 
 .login-form-button {
   width: 100%;
+}
+
+.slogan{
+  display: flex;
+  flex-direction: column;
+  margin:8rem auto;
+  justify-content: center;
+  align-items: flex-start;
+  &__head{
+    // font-size: 3rem;
+    padding-left: -0.7px;
+    align-self: start;
+    cursor: pointer;
+  }
+  &__header{
+    align-self: start;
+    font-size: 4rem;
+    font-weight: 700;
+  }
+
+  &__subititle{
+    align-self: start;
+    font-size: 2rem;
+    color:#444
+  }
 }

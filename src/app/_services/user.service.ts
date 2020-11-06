@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UserService {
-  apiUrl = environment.apiUrl;
+  apiUrl = environment.identityUrl;
   constructor(private http: HttpClient) {}
 
   addProducer(user): Observable<any> {
