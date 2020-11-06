@@ -24,6 +24,10 @@ export class ErrorInterceptor implements HttpInterceptor {
             break;
           case 404:
             this.authenticationService.routeToNotFound();
+            break;
+          case 400:
+            this.authenticationService.routeToNotFound();
+            break;
           default:
             let x = '';
         }
