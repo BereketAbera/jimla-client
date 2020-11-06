@@ -19,11 +19,18 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputNumberModule } from 'ng-zorro-antd/input-number';
 import { NzModalModule } from 'ng-zorro-antd/modal';
+import { NzNotificationModule } from 'ng-zorro-antd/notification';
+import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
+import { NzPaginationModule } from 'ng-zorro-antd/pagination';
+import { NzResultModule } from 'ng-zorro-antd/result';
+import { ServerErrorComponent } from './components/server-error/server-error.component';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ShortProductComponent } from './components/short-product/short-product.component';
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { OrderListComponent } from './components/order-list/order-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +41,10 @@ import { ShortProductComponent } from './components/short-product/short-product.
     NotFoundComponent,
     HeaderComponent,
     CreateOrderVoiceComponent,
-    ShortProductComponent
+    ShortProductComponent,
+    OrderGroupListComponent,
+    ServerErrorComponent,
+    OrderListComponent
   ],
   imports: [
     CommonModule,
@@ -50,11 +60,14 @@ import { ShortProductComponent } from './components/short-product/short-product.
     NzTableModule,
     NzInputNumberModule,
     NzModalModule,
+    NzNotificationModule,
+    NzPaginationModule,
+    NzResultModule,
     NzInputModule,
     NzFormModule,
     NzCardModule,
-    NzListModule
-    
+    NzListModule,
+    NzDropDownModule
   ]
 })
 export class LandingModule {}

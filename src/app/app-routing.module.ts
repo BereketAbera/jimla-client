@@ -6,8 +6,8 @@ const routes: Routes = [
   {
     path: '',
     data: { preload: true },
-    loadChildren: () => import('./landing/landing.module').then(mod => mod.LandingModule)
-  },
+    loadChildren: () => import('./landing/landing.module').then((mod) => mod.LandingModule)
+  }
   // {
   //   path: 'applicant',
   //   canActivate: [AuthGuard],
@@ -21,7 +21,8 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       preloadingStrategy: CustomPreloadingService,
-      onSameUrlNavigation: 'reload'
+      onSameUrlNavigation: 'reload',
+      anchorScrolling: 'enabled'
     })
   ],
   exports: [RouterModule]
