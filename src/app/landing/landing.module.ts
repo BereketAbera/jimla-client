@@ -31,7 +31,9 @@ import { NzListModule } from 'ng-zorro-antd/list';
 import { ShortProductComponent } from './components/short-product/short-product.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { OrderListComponent } from './components/order-list/order-list.component';
-
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzBadgeModule } from 'ng-zorro-antd/badge';
+import { CompanyHomeComponent } from './components/company-home/company-home.component';
 @NgModule({
   declarations: [
     LandingComponent,
@@ -44,7 +46,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
     ShortProductComponent,
     OrderGroupListComponent,
     ServerErrorComponent,
-    OrderListComponent
+    OrderListComponent,
+    CompanyHomeComponent
   ],
   imports: [
     CommonModule,
@@ -67,6 +70,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
     NzFormModule,
     NzCardModule,
     NzListModule,
+    NzBadgeModule,
+    NzAvatarModule,
     NzDropDownModule
   ]
 })

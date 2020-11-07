@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
-const orderUrl = environment.orderApiUrl;
+const orderUrl = environment.orderUrl;
 
 @Injectable({
   providedIn: 'root'

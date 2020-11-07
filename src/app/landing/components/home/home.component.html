@@ -1,59 +1,119 @@
-<landing-header></landing-header>
-<!-- <p>home works!</p> -->
 
-<div>
-  <section class="search">
-    <nz-input-group
-      class="input"
-      nzSearch
-      nzSize="large"
-      [nzPrefix]="prefixTemplateUser"
-      [nzSuffix]="suffixButton"
-    >
-      <input type="text" nz-input placeholder="Search for product, merchant" />
-    </nz-input-group>
-    <ng-template #prefixTemplateUser>
-      <nz-select ngModel="Supplier">
-        <nz-option nzValue="Supplier"  nzLabel="Supplier"></nz-option>
-        <nz-option nzValue="Product" nzLabel="Product"></nz-option>
-      </nz-select>
-      <!-- <i nz-icon nzType="search"></i> -->
-    </ng-template>
-    <ng-template #suffixButton>
-      <button nz-button nzType="primary" nzSize="large" nzSearch>Search</button>
-    </ng-template>
-  </section>
-</div>
-<div class="main">
-  <div class="aside">Category
-
-    <h3 [ngStyle]="{ margin: '16px 0' }">Small Size</h3>
-    <nz-list nzBordered nzSize="small">
-      <nz-list-header>Header</nz-list-header>
-      <nz-list-item >item</nz-list-item>
-      <nz-list-footer>Footer</nz-list-footer>
-    </nz-list>
-
-</div>
-  <div class="content">
-    <div >
-        <nz-card style="width:300px;" [nzBordered]="false" nzTitle="Card title" >
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </nz-card>
-      </div>
-     
+<div class="header">
+  <nav class="navigation">
+    <!-- <span class="navigation__logo">JIMLA</span> -->
+    <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo">
+    <div class="navigation__actions">
+      <a  routerLink="/login" class="menus">Shipping</a>
+        <a  routerLink="/login" class="menus">ለጅምላ ነጋዴ</a>
+        <a nz-button  routerLink="/login" class="btn">ግባ</a>
+    </div>
+  </nav>
   
-
-      <div >
-        <nz-card style="width:300px;" [nzBordered]="false" nzTitle="Card title" >
-          <p>Card content</p>
-          <p>Card content</p>
-          <p>Card content</p>
-        </nz-card>
-      </div>
-     
-
+ 
 </div>
+
+<div class="main">
+  <div class="aside">
+    <h3 class="aside__header"> All Category</h3>
+    <ul nz-menu nzMode="inline" style="width: 240px;" nzTheme="ligth">
+      <li nz-submenu nzOpen nzTitle="Food and Beverage" nzIcon="plus">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Furniture" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Baby Supplies" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Vehicle and Accessiories" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu  nzTitle="Consumer Electornics" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Fashion and Beauty" nzIcon="setting">
+        <ul>
+          <li nz-menu-item>Option 9</li>
+          <li nz-menu-item>Option 10</li>
+          <li nz-menu-item>Option 11</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <div class="content">
+    <div class="search">
+      <nz-input-group
+        class="input"
+        nzSearch
+        nzSize="large"
+        [nzPrefix]="prefixTemplateUser"
+       
+      >
+        <input type="text" nz-input placeholder="Search for product, merchant" />
+      </nz-input-group>
+      <ng-template #prefixTemplateUser>
+        <nz-select ngModel="Supplier">
+          <nz-option nzValue="Supplier" nzLabel="Supplier"></nz-option>
+          <nz-option nzValue="Product" nzLabel="Product"></nz-option>
+        </nz-select>
+        <!-- <i nz-icon nzType="search"></i> -->
+      </ng-template>
+      <button nz-button nzType="secondary" nzSize="large" nzSearch>Search</button>
+    
+    </div>
+    <span class="content__header">
+      Category one
+    </span>
+    <div class="content__products" >  
+      <app-short-product class="product" *ngFor="let i of products" ></app-short-product>
+    </div>
+   
+    <app-company-home></app-company-home>
+  </div>
 </div>
