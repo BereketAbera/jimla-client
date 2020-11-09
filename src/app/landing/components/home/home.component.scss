@@ -1,83 +1,136 @@
+.search {
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
+  display: flex;
+  align-items: center;
+
+  background-color: #d98e46;
+  .input {
+    margin-left: 21%;
+    max-width: 600px;
+    align-self: left;
+  }
+}
 .main {
 
   display: flex;
   flex-direction: row;
-  // width: 100%;
-  margin-top: -8rem;
 
   .aside {
     background-color: white;
     border: 1px solid #eee;
     box-shadow: 0 1px 3px rgb(148, 148, 148);
     box-shadow: 0 2px 4px rgb(212, 212, 212);
-    margin: 1rem 2rem;
+    height: 100vh;
+    margin: 1rem;
     padding: 2rem;
-    // position: absolute;
-    top: 9rem;
-    left: 3rem;
+    position: absolute;
+    top: 7rem;
+    left: 0rem;
+    border-radius: 1rem;
+
+    &__title {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: #333;
+      cursor: pointer;
+    }
+
+    &__list-container {
+      list-style: none;
+      padding-left: 0.5rem;
+      color: #555;
+      cursor: pointer;
+    }
+
+    &__list-item {
+      font-size: 1.3rem;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 1rem 0rem;
+      line-height: 20px;
+
+      &:active,
+      &:hover {
+        margin-left: 0.8rem;
+      }
+    }
   }
 
   .content {
+    position: absolute;
     display: flex;
     flex-direction: column;
-    padding: 2rem;
-    width: 80%;
-    &__header{
-      font-size: 18px;
-      padding-bottom: 1.5rem;
-      border-bottom: 1px solid #ddd;
+    width: 76%;
+    min-height: 80%;
+    left: 22%;
+    box-shadow: 0 1px 3px rgb(148, 148, 148);
+    box-shadow: 0 2px 4px rgb(212, 212, 212);
+
+    &__header {
+      padding: 2rem;
+      margin-top: 1rem;
     }
-    &__products {
-      display: flex;
-      flex-direction: row;
-      flex-wrap: wrap;
-      .header {
-        color: #ddd;
-      }
-      .product {
-        padding: 1rem;
-       
-      }
+    &__header-text {
+      font-size: 1.8rem;
+      color: #333;
+      font-weight: 600;
     }
-    .search {
-      padding-bottom: 4rem;
+
+    .filters {
+      padding: 1rem 2rem;
       display: flex;
-      align-items: center;
-      .input {
-        max-width: 650px;
-        padding: 0.7rem;
-        margin-right: 1rem;
+
+      .filter {
+        display: flex;
+        align-items: center;
+        margin: 0rem;
+        margin-right: 1.5rem;
+
+        .filter__lebel {
+          font-size: 1.3rem;
+          font-weight: 600;
+          color: #555;
+          margin-right: 1rem;
+          text-transform: uppercase;
+        }
+
+        .filter__input {
+          color: #555;
+        }
       }
     }
   }
 }
 
-.header {
-  background-color: #d98e46;
-  height: 15rem;
-  .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5rem;
+.sort {
+  display: flex;
+  align-items: center;
+  margin: 0rem;
+  margin-right: 1.5rem;
 
-    &__logo {
-      width: 15rem;
-      cursor: pointer;
-    }
-    .menus {
-      padding: 0 2rem;
-      color: white;
-      font-size: 1.6rem;
-      font-weight: 700;
-    }
-    .btn {
-      padding: 0 2rem;
-      background-color: white;
-      color: #d98e46;
-      border: none;
-      border-radius: 5px;
-      box-shadow: 0px 1px 3px rgb(146, 119, 100);
+  .sort__lebel {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #555;
+    margin-right: 1rem;
+    text-transform: uppercase;
+  }
+
+  .sort__input {
+    color: #555;
+  }
+}
+
+.result {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+
+    &::after {
+      content: "";
+      flex: auto;
     }
   }
 }

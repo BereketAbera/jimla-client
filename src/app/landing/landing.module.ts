@@ -30,12 +30,16 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ShortProductComponent } from './components/short-product/short-product.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { CompanyHomeComponent } from './components/company-home/company-home.component';
 import { LandingHomeComponent } from './components/landing-home/landing-home.component';
 import { HomeSecondComponent } from './components/home-second/home-second.component';
+import { CompanySmallComponent } from './components/company-small/company-small.component';
+import { CompanyPageComponent } from './components/company-page/company-page.component';
+
 @NgModule({
   declarations: [
     LandingComponent,
@@ -51,7 +55,9 @@ import { HomeSecondComponent } from './components/home-second/home-second.compon
     OrderListComponent,
     CompanyHomeComponent,
     LandingHomeComponent,
-    HomeSecondComponent
+    HomeSecondComponent,
+    CompanySmallComponent,
+    CompanyPageComponent
   ],
   imports: [
     CommonModule,
@@ -76,7 +82,9 @@ import { HomeSecondComponent } from './components/home-second/home-second.compon
     NzListModule,
     NzBadgeModule,
     NzAvatarModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzDropDownModule,
+    NzDatePickerModule
   ]
 })
 export class LandingModule {}
