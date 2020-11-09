@@ -111,7 +111,7 @@
       Category one
     </span>
     <div class="content__products" >  
-      <app-short-product class="product" *ngFor="let i of products" ></app-short-product>
+      <app-short-product class="product" *ngFor="let i of products" [cardTitle]="i.name" ></app-short-product>
     </div>
    
     <app-company-home></app-company-home>

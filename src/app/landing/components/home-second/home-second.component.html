@@ -1,0 +1,120 @@
+
+<div class="header">
+    <nav class="navigation">
+      <!-- <span class="navigation__logo">JIMLA</span> -->
+      <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo">
+      <div class="navigation__actions">
+        <a  routerLink="/login" class="menus">Shipping</a>
+          <a  routerLink="/login" class="menus">ለጅምላ ነጋዴ</a>
+          <a nz-button  routerLink="/login" class="btn">ግባ</a>
+      </div>
+    </nav>
+    
+   
+  </div>
+  
+  <div class="main">
+    <div class="aside">
+      <h3 class="aside__header"> All Category</h3>
+      <ul nz-menu nzMode="inline" style="width: 240px;" nzTheme="ligth">
+        <li nz-submenu nzOpen nzTitle="Food and Beverage" nzIcon="plus">
+          <ul>
+            <li nz-menu-item>Option 5</li>
+            <li nz-menu-item>Option 6</li>
+            <li nz-submenu nzTitle="Submenu">
+              <ul>
+                <li nz-menu-item>Option 7</li>
+                <li nz-menu-item>Option 8</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu  nzTitle="Furniture" nzIcon="appstore">
+          <ul>
+            <li nz-menu-item>Option 5</li>
+            <li nz-menu-item>Option 6</li>
+            <li nz-submenu nzTitle="Submenu">
+              <ul>
+                <li nz-menu-item>Option 7</li>
+                <li nz-menu-item>Option 8</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu  nzTitle="Baby Supplies" nzIcon="appstore">
+          <ul>
+            <li nz-menu-item>Option 5</li>
+            <li nz-menu-item>Option 6</li>
+            <li nz-submenu nzTitle="Submenu">
+              <ul>
+                <li nz-menu-item>Option 7</li>
+                <li nz-menu-item>Option 8</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu  nzTitle="Vehicle and Accessiories" nzIcon="appstore">
+          <ul>
+            <li nz-menu-item>Option 5</li>
+            <li nz-menu-item>Option 6</li>
+            <li nz-submenu nzTitle="Submenu">
+              <ul>
+                <li nz-menu-item>Option 7</li>
+                <li nz-menu-item>Option 8</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu  nzTitle="Consumer Electornics" nzIcon="appstore">
+          <ul>
+            <li nz-menu-item>Option 5</li>
+            <li nz-menu-item>Option 6</li>
+            <li nz-submenu nzTitle="Submenu">
+              <ul>
+                <li nz-menu-item>Option 7</li>
+                <li nz-menu-item>Option 8</li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li nz-submenu nzTitle="Fashion and Beauty" nzIcon="setting">
+          <ul>
+            <li nz-menu-item>Option 9</li>
+            <li nz-menu-item>Option 10</li>
+            <li nz-menu-item>Option 11</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="content">
+      <div class="search">
+        <nz-input-group
+          class="input"
+          nzSearch
+          nzSize="large"
+          [nzPrefix]="prefixTemplateUser"
+         
+        >
+          <input type="text" nz-input placeholder="Search for product, merchant" />
+        </nz-input-group>
+        <ng-template #prefixTemplateUser>
+          <nz-select ngModel="Supplier">
+            <nz-option nzValue="Supplier" nzLabel="Supplier"></nz-option>
+            <nz-option nzValue="Product" nzLabel="Product"></nz-option>
+          </nz-select>
+          <!-- <i nz-icon nzType="search"></i> -->
+        </ng-template>
+        <button nz-button nzType="secondary" nzSize="large" nzSearch>Search</button>
+      
+      </div>
+      <span class="content__header">
+        Category one
+      </span>
+      <div class="content__products" >  
+        <app-short-product class="product" *ngFor="let i of products" [cardTitle]="i.name" ></app-short-product>
+      </div>
+     
+      <app-company-home></app-company-home>
+    </div>
+  </div>
+  

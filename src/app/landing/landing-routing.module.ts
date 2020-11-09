@@ -12,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './landing.component';
+import { LandingHomeComponent } from './components/landing-home/landing-home.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,7 @@ const routes: Routes = [
       },
       { 
         path: '**', 
-        component: LoginComponent
+        component: LandingHomeComponent
       },
       {
         path: 'orders/orders',

@@ -34,6 +34,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { CompanyHomeComponent } from './components/company-home/company-home.component';
+import { LandingHomeComponent } from './components/landing-home/landing-home.component';
+import { HomeSecondComponent } from './components/home-second/home-second.component';
 @NgModule({
   declarations: [
     LandingComponent,
@@ -47,7 +49,9 @@ import { CompanyHomeComponent } from './components/company-home/company-home.com
     OrderGroupListComponent,
     ServerErrorComponent,
     OrderListComponent,
-    CompanyHomeComponent
+    CompanyHomeComponent,
+    LandingHomeComponent,
+    HomeSecondComponent
   ],
   imports: [
     CommonModule,
