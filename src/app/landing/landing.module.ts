@@ -34,7 +34,6 @@ import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
-import { CompanyHomeComponent } from './components/company-home/company-home.component';
 import { LandingHomeComponent } from './components/landing-home/landing-home.component';
 import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { CompanySmallComponent } from './components/company-small/company-small.component';
@@ -53,7 +52,6 @@ import { CompanyPageComponent } from './components/company-page/company-page.com
     OrderGroupListComponent,
     ServerErrorComponent,
     OrderListComponent,
-    CompanyHomeComponent,
     LandingHomeComponent,
     HomeSecondComponent,
     CompanySmallComponent,
