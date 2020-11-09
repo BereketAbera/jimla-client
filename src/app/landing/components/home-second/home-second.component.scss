@@ -1,0 +1,83 @@
+.main {
+
+    display: flex;
+    flex-direction: row;
+    // width: 100%;
+    margin-top: -8rem;
+  
+    .aside {
+      background-color: white;
+      border: 1px solid #eee;
+      box-shadow: 0 1px 3px rgb(148, 148, 148);
+      box-shadow: 0 2px 4px rgb(212, 212, 212);
+      margin: 1rem 2rem;
+      padding: 2rem;
+      // position: absolute;
+      top: 9rem;
+      left: 3rem;
+    }
+  
+    .content {
+      display: flex;
+      flex-direction: column;
+      padding: 2rem;
+      width: 80%;
+      &__header{
+        font-size: 18px;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #ddd;
+      }
+      &__products {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        .header {
+          color: #ddd;
+        }
+        .product {
+          padding: 1rem;
+         
+        }
+      }
+      .search {
+        padding-bottom: 4rem;
+        display: flex;
+        align-items: center;
+        .input {
+          max-width: 650px;
+          padding: 0.7rem;
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+  
+  .header {
+    background-color: #d98e46;
+    height: 15rem;
+    .navigation {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 5rem;
+  
+      &__logo {
+        width: 15rem;
+        cursor: pointer;
+      }
+      .menus {
+        padding: 0 2rem;
+        color: white;
+        font-size: 1.6rem;
+        font-weight: 700;
+      }
+      .btn {
+        padding: 0 2rem;
+        background-color: white;
+        color: #d98e46;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 0px 1px 3px rgb(146, 119, 100);
+      }
+    }
+  }
