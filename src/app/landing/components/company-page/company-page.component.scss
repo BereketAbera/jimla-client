@@ -1,0 +1,84 @@
+.company_page {
+  .header {
+    min-height: 16rem;
+    padding: 2rem;
+    background-image: url("../../../../assets/img/company_background.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: #fff;
+
+    .name {
+      font-size: 4rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .description {
+      font-size: 2rem;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .address {
+      font-size: 1.8rem;
+      color: #fff;
+    }
+  }
+}
+
+.content {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 76%;
+  min-height: 80%;
+  left: 22%;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
+
+  &__header {
+    padding: 2rem;
+    margin-top: 1rem;
+  }
+  &__header-text {
+    font-size: 1.8rem;
+    color: #333;
+    font-weight: 600;
+  }
+
+  .filters {
+    padding: 1rem 2rem;
+    display: flex;
+
+    .filter {
+      display: flex;
+      align-items: center;
+      margin: 0rem;
+      margin-right: 1.5rem;
+
+      .filter__lebel {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: #555;
+        margin-right: 1rem;
+        text-transform: uppercase;
+      }
+
+      .filter__input {
+        color: #555;
+      }
+    }
+  }
+}
+
+.result {
+  &__container {
+    display: flex;
+    flex-wrap: wrap;
+    // justify-content: center;
+    &::after {
+      content: "";
+      flex: auto;
+    }
+  }
+}

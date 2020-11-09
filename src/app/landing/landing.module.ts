@@ -30,7 +30,10 @@ import { NzCardModule } from 'ng-zorro-antd/card';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { ShortProductComponent } from './components/short-product/short-product.component';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { OrderListComponent } from './components/order-list/order-list.component';
+import { CompanySmallComponent } from './components/company-small/company-small.component';
+import { CompanyPageComponent } from './components/company-page/company-page.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,9 @@ import { OrderListComponent } from './components/order-list/order-list.component
     ShortProductComponent,
     OrderGroupListComponent,
     ServerErrorComponent,
-    OrderListComponent
+    OrderListComponent,
+    CompanySmallComponent,
+    CompanyPageComponent
   ],
   imports: [
     CommonModule,
@@ -67,7 +72,8 @@ import { OrderListComponent } from './components/order-list/order-list.component
     NzFormModule,
     NzCardModule,
     NzListModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzDatePickerModule
   ]
 })
 export class LandingModule {}

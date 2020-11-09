@@ -1,3 +1,4 @@
+import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderListResolverService } from './../_resolvers/order/order-list-resolver.service';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
@@ -45,14 +46,14 @@ const routes: Routes = [
         component: OrderGroupListComponent,
         resolve: { data: OrderGroupListResolverService }
       },
-      { 
-        path: '**', 
-        component: LoginComponent
-      },
       {
         path: 'orders/orders',
         component: OrderListComponent,
         resolve: { data: OrderListResolverService }
+      },
+      {
+        path: 'company_page',
+        component: CompanyPageComponent
       },
       {
         path: '**',
