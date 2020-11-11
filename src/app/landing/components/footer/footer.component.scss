@@ -3,9 +3,7 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 4rem;
-  padding-top:12rem;
-  padding-bottom: 2rem;
+  padding:12rem 2rem 1.5rem;
   margin-top: 5rem;
   position: relative;
   color:#f3f7fa;
@@ -16,7 +14,7 @@ footer {
   }
   @media (min-width: 450px) {
     flex-wrap: wrap;
-    padding:12rem 2rem 0.5rem;
+    padding:12rem 6rem 1rem;
    }
 }
 h2 {
