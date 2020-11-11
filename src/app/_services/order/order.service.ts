@@ -29,6 +29,10 @@ export class OrderService {
     return this.http.get(`${orderUrl}/orders?${params}`);
   }
 
+  getMerchantCode(company_name): Observable<any> {
+    return this.http.get(`${orderUrl}/merchants/${company_name}`);
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

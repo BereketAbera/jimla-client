@@ -1,3 +1,5 @@
+import { CompanyProductResolverService } from './../_resolvers/product/company-product-resolver.service';
+import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderListResolverService } from './../_resolvers/order/order-list-resolver.service';
@@ -27,7 +29,7 @@ const routes: Routes = [
       },
       {
         path: 'hometwo',
-        component: HomeComponent,
+        component: HomeSecondComponent,
         pathMatch: 'full'
       },
       {
@@ -52,22 +54,23 @@ const routes: Routes = [
         component: OrderGroupListComponent,
         resolve: { data: OrderGroupListResolverService }
       },
-      { 
-        path: '**', 
-        component: LandingHomeComponent
-      },
+      // {
+      //   path: '**',
+      //   component: LandingHomeComponent
+      // },
       {
         path: 'orders/orders',
         component: OrderListComponent,
         resolve: { data: OrderListResolverService }
       },
       {
-        path: 'company_page',
-        component: CompanyPageComponent
+        path: 'company_page/:company_name',
+        component: CompanyPageComponent,
+        resolve: { data: CompanyProductResolverService }
       },
       {
         path: '**',
-        component: NotFoundComponent
+        component: LandingHomeComponent
       }
     ]
   }

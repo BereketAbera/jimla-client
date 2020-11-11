@@ -1,0 +1,31 @@
+<div class="productsmall">
+  <h3 class="name">{{ product?.name }}</h3>
+  <p class="description">{{ product?.description }}</p>
+  <div class="price">20 Birr</div>
+
+  <div class="order">
+    <button
+      nz-button
+      nzType="primary"
+      style="width: 100%"
+      nz-popover
+      nzPopoverTitle="Order Product"
+      [(nzPopoverVisible)]="visible"
+      nzPopoverTrigger="click"
+      [nzPopoverContent]="contentTemplate"
+    >
+      Order
+    </button>
+    <ng-template #contentTemplate>
+      <!-- <div style="width: 100%; display: flex; flex-direction: column"></div> -->
+      <nz-input-number
+        class="small_margin"
+        [(ngModel)]="amount"
+        [nzMin]="1"
+        [nzMax]="10"
+        [nzStep]="1"
+      ></nz-input-number>
+      <button (click)="close()" class="small_margin" nz-button nzType="primary">Add</button>
+    </ng-template>
+  </div>
+</div>

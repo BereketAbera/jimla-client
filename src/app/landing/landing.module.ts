@@ -38,6 +38,10 @@ import { LandingHomeComponent } from './components/landing-home/landing-home.com
 import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { CompanySmallComponent } from './components/company-small/company-small.component';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
+import { ProductSmallComponent } from './components/product-small/product-small.component';
+import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   declarations: [
@@ -55,7 +59,9 @@ import { CompanyPageComponent } from './components/company-page/company-page.com
     LandingHomeComponent,
     HomeSecondComponent,
     CompanySmallComponent,
-    CompanyPageComponent
+    CompanyPageComponent,
+    ProductSmallComponent,
+    ProductSmallImageComponent
   ],
   imports: [
     CommonModule,
@@ -82,7 +88,9 @@ import { CompanyPageComponent } from './components/company-page/company-page.com
     NzAvatarModule,
     NzDropDownModule,
     NzDropDownModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzPopoverModule,
+    NzEmptyModule
   ]
 })
 export class LandingModule {}

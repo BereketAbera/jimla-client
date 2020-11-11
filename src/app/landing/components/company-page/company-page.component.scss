@@ -1,49 +1,53 @@
 .company_page {
+  display: flex;
+  flex-direction: column;
   .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 16rem;
     padding: 2rem;
-    background-image: url("../../../../assets/img/company_background.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    color: #fff;
+    color: #333;
+    // background-image: url("../../../../assets/img/company_background.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // color: #fff;
 
     .name {
       font-size: 4rem;
       font-weight: 900;
-      color: #fff;
     }
 
     .description {
       font-size: 2rem;
       font-weight: 600;
-      color: #fff;
     }
 
     .address {
       font-size: 1.8rem;
-      color: #fff;
     }
   }
 }
 
 .content {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 76%;
   min-height: 80%;
-  left: 22%;
-  box-shadow: 0 1px 3px rgb(148, 148, 148);
-  box-shadow: 0 2px 4px rgb(212, 212, 212);
-
   &__header {
     padding: 2rem;
     margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
   }
   &__header-text {
     font-size: 1.8rem;
     color: #333;
     font-weight: 600;
+  }
+
+  &__cart {
+    font-size: 2rem;
   }
 
   .filters {
@@ -75,10 +79,30 @@
   &__container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 1rem 2rem;
     // justify-content: center;
-    &::after {
-      content: "";
-      flex: auto;
-    }
+    // &::after {
+    //   content: "";
+    //   flex: auto;
+    // }
   }
+}
+
+.search {
+  padding: 2rem;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
+  display: flex;
+  align-items: center;
+
+  background-color: #003241;
+  .input {
+    margin-left: 21%;
+    max-width: 600px;
+    align-self: left;
+  }
+}
+::ng-deep .ant-badge-count {
+  background-color: #003241;
 }
