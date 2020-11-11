@@ -67,20 +67,32 @@
   .search {
     display: flex;
     width: 100%;
-    box-shadow: 0px 1px 5px #185186;
+    box-shadow: 0px 2px 6px #0b467c;
 
     &__input{
       // font-size: 2rem;
-      border-radius: 1px;
+      border-radius: 2.5px;
+    }
+
+    &__input:hover {
+      border:none
+    }
+    &__input:focus {
+      border:none;
+      box-shadow: 0 1px 3px rgb(6, 53, 107);
     }
    
   }
+  
 }
 
 .img__container {
   display: none;
 }
 
+/**
+Wave Divider
+*/
 .custom-shape-divider-bottom-1604910778 {
   position: absolute;
   bottom: -0.5px;
@@ -254,7 +266,7 @@
     margin-left: 1rem;
     display: flex;
     justify-content: flex-end;
-
+    max-width: 500px;
     .img {
       width: 50rem;
     }
