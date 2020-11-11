@@ -38,6 +38,7 @@ import { LandingHomeComponent } from './components/landing-home/landing-home.com
 import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { CompanySmallComponent } from './components/company-small/company-small.component';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { CompanyPageComponent } from './components/company-page/company-page.com
     LandingHomeComponent,
     HomeSecondComponent,
     CompanySmallComponent,
-    CompanyPageComponent
+    CompanyPageComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,

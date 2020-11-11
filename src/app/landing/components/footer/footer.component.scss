@@ -1,0 +1,37 @@
+footer {
+  background-color: #03172b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem;
+  margin-top: 5rem;
+  color:#f3f7fa;
+ @media (min-width: 750px) {
+     flex-direction: row;
+  }
+}
+h2 {
+  color: #c7dbe9;
+  font-size: 2.3rem;
+  font-weight: 600;
+}
+ul {
+  list-style: none;
+  color: #e4f3ff;
+}
+
+li {
+  padding: 0.3rem 0.7rem;
+  font-size: 1.3rem;
+}
+
+li:hover {
+  font-size: 1.4rem;
+  color: white;
+  cursor: pointer;
+}
+
+.social {
+  display: flex;
+  color: #f3f7fa;
+}

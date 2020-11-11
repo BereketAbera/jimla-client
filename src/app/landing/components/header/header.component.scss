@@ -1,23 +1,26 @@
 .navigation {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 5rem;
-    box-shadow: 0 1px 3px rgb(148, 148, 148);
-    box-shadow: 0 2px 4px rgb(212, 212, 212);
-    // background-color: #d98e46;
-    &__logo {
-        width: 15rem;
-        cursor: pointer;
-    }
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
 
-    .btn {
-        padding:0 1rem;
-    }
+  @media (min-width: 800px) {
+    padding: 1rem 4rem; // Desktop view
+  }
+  // background-color: #d98e46;
+  &__logo {
+    width: 15rem;
+    cursor: pointer;
+  }
 
-    .search{
-        padding:2rem;
-        width: 600px;
-    }
+  .btn {
+    padding: 0 1rem;
+  }
+
+  .search {
+    padding: 2rem;
+    width: 600px;
+  }
 }
-
