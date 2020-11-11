@@ -9,9 +9,7 @@ const productUrl = environment.prodUrl;
   providedIn: 'root'
 })
 export class ProductService {
-
-  constructor(private http: HttpClient) { }
-
+  constructor(private http: HttpClient) {}
 
   getProduct(id): Observable<any> {
     return this.http.get(`${productUrl}/product/${id}`);
@@ -24,6 +22,4 @@ export class ProductService {
   getMerchantProduct(id): Observable<any> {
     return this.http.get(`${productUrl}/products/merchant/${id}`);
   }
-
-
 }

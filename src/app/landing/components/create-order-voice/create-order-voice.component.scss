@@ -7,7 +7,7 @@
 }
 
 .inner-box {
-  //   background: lighten(#d98e46, 35);
+  //   background: lighten( #003241, 35);
   padding: 8px 4px;
 }
 
@@ -31,7 +31,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #d98e46;
+  color: #003241;
 
   &__name {
     font-size: 2rem;
@@ -50,7 +50,7 @@
   display: flex;
   // align-items: center;
   justify-content: space-between;
-  color: #d98e46;
+  color: #003241;
   flex-direction: column;
 
   &__sub {
@@ -92,5 +92,5 @@
 
 audio::-webkit-media-controls-play-button,
 audio::-webkit-media-controls-panel {
-  background-color: lighten($color: #d98e46, $amount: 30);
+  background-color: lighten($color: #003241, $amount: 30);
 }

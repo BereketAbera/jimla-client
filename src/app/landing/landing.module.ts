@@ -39,6 +39,10 @@ import { HomeSecondComponent } from './components/home-second/home-second.compon
 import { CompanySmallComponent } from './components/company-small/company-small.component';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { ProductSmallComponent } from './components/product-small/product-small.component';
+import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
+import { NzPopoverModule } from 'ng-zorro-antd/popover';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ import { FooterComponent } from './components/footer/footer.component';
     HomeSecondComponent,
     CompanySmallComponent,
     CompanyPageComponent,
-    FooterComponent
+    FooterComponent,
+    ProductSmallComponent,
+    ProductSmallImageComponent
   ],
   imports: [
     CommonModule,
@@ -84,7 +90,9 @@ import { FooterComponent } from './components/footer/footer.component';
     NzAvatarModule,
     NzDropDownModule,
     NzDropDownModule,
-    NzDatePickerModule
+    NzDatePickerModule,
+    NzPopoverModule,
+    NzEmptyModule
   ]
 })
 export class LandingModule {}
