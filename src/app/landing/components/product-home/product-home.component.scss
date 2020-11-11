@@ -1,0 +1,38 @@
+.companysmall {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-width: 100%;
+  max-width: 100%;
+  margin: 2rem;
+  border: 1px solid #aaa;
+  padding: 2rem 1rem;
+  flex: 1;
+
+  .name {
+    font-weight: 600;
+    color: #555;
+    font-size: 1.5rem;
+  }
+
+  .image {
+    width: 100%;
+    min-height: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    margin: 0.5rem 0rem;
+    text-align: center;
+    color: #333;
+    font-weight: 200;
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: #003241;
+  }
+}

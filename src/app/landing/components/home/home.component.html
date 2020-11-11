@@ -39,22 +39,75 @@
 </div>
 <div class="main">
   <div class="aside">
-    <h3 class="aside__title">Category</h3>
-    <ul class="aside__list-container">
-      <li class="aside__list-item">Dairy, Eggs & Cheese</li>
-      <li class="aside__list-item">Milk</li>
-      <li class="aside__list-item">Pharmacy</li>
-      <li class="aside__list-item">Paper Products</li>
-      <li class="aside__list-item">Grains, Pasta & Sides</li>
-      <li class="aside__list-item">Flowers</li>
-      <li class="aside__list-item">Soup</li>
-    </ul>
-    <h3 class="aside__title">Location</h3>
-    <ul class="aside__list-container">
-      <li class="aside__list-item">Baby</li>
-      <li class="aside__list-item">Beer, Wine & Spirits</li>
-      <li class="aside__list-item">Bread & Bakery</li>
-      <li class="aside__list-item">Cookies, Snacks & Candy</li>
+    <h3 class="aside__header">All Category</h3>
+    <ul nz-menu nzMode="inline" style="width: 240px" nzTheme="ligth">
+      <li nz-submenu nzOpen nzTitle="Food and Beverage" nzIcon="plus">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Furniture" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Baby Supplies" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Vehicle and Accessiories" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Consumer Electornics" nzIcon="appstore">
+        <ul>
+          <li nz-menu-item>Option 5</li>
+          <li nz-menu-item>Option 6</li>
+          <li nz-submenu nzTitle="Submenu">
+            <ul>
+              <li nz-menu-item>Option 7</li>
+              <li nz-menu-item>Option 8</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzTitle="Fashion and Beauty" nzIcon="setting">
+        <ul>
+          <li nz-menu-item>Option 9</li>
+          <li nz-menu-item>Option 10</li>
+          <li nz-menu-item>Option 11</li>
+        </ul>
+      </li>
     </ul>
   </div>
   <div class="content">
@@ -99,11 +152,7 @@
     </div>
 
     <div class="result__container">
-      <app-company-small></app-company-small>
-      <app-company-small></app-company-small>
-      <app-company-small></app-company-small>
-      <app-company-small></app-company-small>
-      <app-company-small></app-company-small>
+      <app-product-home *ngFor="let product of products" [product]="product"></app-product-home>
     </div>
   </div>
 </div>

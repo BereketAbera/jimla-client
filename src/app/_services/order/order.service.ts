@@ -33,6 +33,10 @@ export class OrderService {
     return this.http.get(`${orderUrl}/merchants/${company_name}`);
   }
 
+  processCartOrders(orderData): Observable<any> {
+    return this.http.post(`${orderUrl}/orders_cart`, orderData);
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

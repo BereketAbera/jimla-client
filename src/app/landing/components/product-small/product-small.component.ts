@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-small',
@@ -10,14 +10,20 @@ export class ProductSmallComponent implements OnInit {
   amount = 1;
 
   @Input('product') product;
+  @Output('addProductToCart') addProductToCart: EventEmitter<any> = new EventEmitter();
 
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.product);
+    // console.log(this.product);
   }
 
   close() {
     this.visible = false;
+  }
+
+  add() {
+    this.addProductToCart.emit({ amount: this.amount, product: this.product });
+    this.close();
   }
 }

@@ -43,28 +43,35 @@
     <h5 class="description">
       Tin No: {{ merchant?.tinNumber }}, Phone No: {{ merchant?.phoneNumber }}
     </h5>
-    <h6 class="address">Illo necessitatibus quod doloremque tenetur!</h6>
+    <h6 class="address">
+      {{ merchant?.Address?.city }}, {{ merchant?.Address?.subCity }},
+      {{ merchant?.Address?.description }}
+    </h6>
   </div>
   <div>
     <div class="content">
       <div class="content__header">
         <h3 class="content__header-text">Products</h3>
         <div>
-          <nz-badge [nzCount]="0" [nzOffset]="[6, -2]" [nzShowZero]="true">
+          <nz-badge [nzCount]="cartProducts.length" [nzOffset]="[6, -2]" [nzShowZero]="true">
             <a class="content__cart" (click)="showModalTop()">Order Cart Items</a>
           </nz-badge>
         </div>
       </div>
 
       <div class="result__container">
-        <app-product-small
-          *ngFor="let p of products"
-          [product]="p"
-          style="width: 23%"
-        ></app-product-small>
-        <!-- <app-product-small-image style="width: 23%"></app-product-small-image>
-        <app-product-small style="width: 23%"></app-product-small>
-        <app-product-small-image style="width: 23%"></app-product-small-image> -->
+        <div *ngFor="let p of products; let i = index" style="width: 23%; margin: 1rem">
+          <app-product-small
+            (addProductToCart)="addProductToCart($event)"
+            *ngIf="i % 2 == 0"
+            [product]="p"
+          ></app-product-small>
+          <app-product-small-image
+            *ngIf="i % 2 == 1"
+            [product]="p"
+            (addProductToCart)="addProductToCart($event)"
+          ></app-product-small-image>
+        </div>
       </div>
     </div>
   </div>
@@ -76,10 +83,13 @@
   nzTitle="Pending Order Cart"
   nzOkText="Process"
   nxCancelText="Cancel"
-  (nzOnCancel)="handleCancelTop()"
-  (nzOnOk)="handleOkTop()"
+  (nzOnCancel)="close()"
+  (nzOnOk)="processOrder()"
 >
-  <p *ngFor="let cp of cartProducts">some content</p>
+  <div *ngFor="let cp of cartProducts" style="display: flex; justify-content: space-between">
+    <span style="font-size: 1.8rem; color: #555; font-weight: 600">{{ cp?.name }}</span
+    ><span style="font-size: 1.5rem; color: #555; font-weight: 600">Amount: {{ cp?.amount }}</span>
+  </div>
   <nz-empty
     nzNotFoundContent="No products. Add some to order."
     *ngIf="!cartProducts.length"

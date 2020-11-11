@@ -42,6 +42,7 @@ import { ProductSmallComponent } from './components/product-small/product-small.
 import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
 import { NzEmptyModule } from 'ng-zorro-antd/empty';
+import { ProductHomeComponent } from './components/product-home/product-home.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { NzEmptyModule } from 'ng-zorro-antd/empty';
     CompanySmallComponent,
     CompanyPageComponent,
     ProductSmallComponent,
-    ProductSmallImageComponent
+    ProductSmallImageComponent,
+    ProductHomeComponent
   ],
   imports: [
     CommonModule,
