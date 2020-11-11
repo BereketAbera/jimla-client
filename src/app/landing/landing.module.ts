@@ -38,6 +38,7 @@ import { LandingHomeComponent } from './components/landing-home/landing-home.com
 import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { CompanySmallComponent } from './components/company-small/company-small.component';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
+import { FooterComponent } from './components/footer/footer.component';
 import { ProductSmallComponent } from './components/product-small/product-small.component';
 import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
 import { NzPopoverModule } from 'ng-zorro-antd/popover';
@@ -61,6 +62,7 @@ import { ProductHomeComponent } from './components/product-home/product-home.com
     HomeSecondComponent,
     CompanySmallComponent,
     CompanyPageComponent,
+    FooterComponent,
     ProductSmallComponent,
     ProductSmallImageComponent,
     ProductHomeComponent

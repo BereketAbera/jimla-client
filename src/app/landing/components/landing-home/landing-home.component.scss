@@ -1,6 +1,51 @@
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
+  background: rgb(45, 129, 198);
+  background: linear-gradient(
+    90deg,
+    rgba(45, 129, 198, 1) 0%,
+    rgba(2, 67, 129, 1) 47%,
+    rgba(0, 20, 39, 1) 100%
+  );
+
+  @media (min-width: 800px) {
+    padding: 1rem 4rem; // Desktop view
+  }
+  // background-color: #d98e46;
+  &__logo {
+    width: 15rem;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 0 1rem;
+  }
+  .btn--jimla {
+    color: white;
+  }
+
+  .search {
+    padding: 2rem;
+    width: 600px;
+  }
+}
+
 .main {
   display: flex;
-  padding:2rem;
+  // padding: 2rem;
+  background: rgb(45, 129, 198);
+  background: linear-gradient(
+    90deg,
+    rgba(45, 129, 198, 1) 0%,
+    rgba(2, 67, 129, 1) 47%,
+    rgba(0, 20, 39, 1) 100%
+  );
+  position: relative;
 }
 
 .headline {
@@ -8,89 +53,231 @@
   justify-content: center;
   align-items: flex-start;
   flex-direction: column;
-  margin: 6rem;
-  height: 70vh;
-  // font-family: Ro;
+  height: 45rem;
+  margin: 1rem;
+
   .head {
+    color:white;
     font-size: 4.5rem;
     letter-spacing: 0.07rem;
-    font-family: 'Big Shoulders Stencil Text', cursive;
+    font-family: "Big Shoulders Stencil Text", cursive;
     font-weight: 700;
   }
 
   .search {
-    font-size: 2rem;
+    display: flex;
+    width: 100%;
+    box-shadow: 0px 2px 6px #0b467c;
+
+    &__input{
+      // font-size: 2rem;
+      border-radius: 2.5px;
+    }
+
+    &__input:hover {
+      border:none
+    }
+    &__input:focus {
+      border:none;
+      box-shadow: 0 1px 3px rgb(6, 53, 107);
+    }
+   
   }
+  
 }
 
 .img__container {
-  display: flex;
-  justify-content: center;
+  display: none;
+}
 
-  .img {
-    width: 50rem;
+/**
+Wave Divider
+*/
+.custom-shape-divider-bottom-1604910778 {
+  position: absolute;
+  bottom: -0.5px;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-bottom-1604910778 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 72px;
+}
+
+.custom-shape-divider-bottom-1604910778 .shape-fill {
+  fill: #f3f9fd;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1604910778 svg {
+    width: calc(100% + 1.3px);
+    height: 58px;
   }
 }
 
-
-.section-1{
-    background-image: url(../../../../assets/img/undraw_observations_mejb.svg);
+.section-1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0;
+  position: relative;
+  &__svg {
+    position: relative;
+    right: 0;
+    bottom: 0;
+  }
+  .companies{
     display: flex;
-    align-items: center;
-    &__img{
-        width: 100%;
-        // height: 50rem;
+    flex-wrap: wrap;
+
+    .logo{
+      margin:0.6rem;
+      width: 70px;
+      height: 70px;
+      font-size: 1.5rem;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
     }
+  }
+ 
 
-    .box{   
-        margin: 2rem;
-        padding: 3rem;
-        width: 60rem;
-        background: white;
-        box-shadow:1px, 4px, 8px, rgb(20, 1, 1);
-
-        &__header{
-            font-size: 3rem;
-            font-weight: 600;
-        }
-
-        p{
-            letter-spacing: 0.07rem;
-            color: #555555;
-
-        }
-    }
-
+ 
 }
-
-.section-2{
-  background-image: url(../../../../assets/img/connectors.svg);
+.headers{
+  margin: 5rem 1rem;
   display: flex;
   align-items: center;
-  
-  &__img{
-      width: 100%;
-      // height: 50rem;
+  flex-direction: column;
+  margin-bottom: 0rem;
+  .text{
+    font-size: 3.5rem;
+    font-weight: 600;
+    letter-spacing: 0.07;
+    
   }
 
-  .box{   
-      margin: 2rem;
-      padding: 3rem;
-      width: 60rem;
-      background: white;
-      box-shadow:1px, 4px, 8px, rgb(20, 1, 1);
-
-      &__header{
-          font-size: 3rem;
-          font-weight: 600;
-      }
-
-      p{
-          letter-spacing: 0.07rem;
-          color: #555555;
-
-      }
+  .subtitle{
+    font-size: 1.5rem;
+    // width: 80%;
+    max-width: 500px;
+    text-align: center;
   }
 
 }
 
+.background{
+  background: url(../../../../assets/img/connectors.svg);
+  background-repeat: no-repeat;
+  background-attachment: initial;
+  background-position: center;
+  width: 100%;
+  height: 25rem;
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  margin:0rem auto
+}
+
+.section-2 {
+  width: 100%;
+  object-fit: fill;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin: 4rem 0rem;
+  padding:2rem;
+  @media (min-width: 800px) {
+    flex-direction: row;
+  }
+  &__img {
+    display: none;
+    width: 100%;
+    // height: 50rem;
+  }
+
+ 
+
+  .box {
+    margin: 2.5rem;
+    padding: 1.5rem;
+    width: 100%;
+    background: white;
+    box-shadow: 0px 3px 10px #92a4ab;
+    border-radius: 15px;
+    &__header {
+      color:#001427;
+      text-align: center;
+      font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      
+      h3{
+        font-size: 2rem;
+        letter-spacing: 0.07;
+        color:#213649;
+      }
+
+      i{
+        font-size: 2rem;
+        text-align: center;
+        background-color: #a4b8c0;
+        border-radius: 50%;
+        padding:1.5rem;
+      }
+    }
+
+   
+
+    p {
+      letter-spacing: 0.07rem;
+      color: #555555;
+      text-align: center;
+    }
+  }
+}
+
+
+@media (min-width: 550px) {
+  .headline {
+    margin: 4rem;
+  }
+  .page-footer {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .page-footer ul {
+    margin-bottom: 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .headline {
+    margin: 2rem;
+  }
+  .img__container {
+    margin-left: 1rem;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 500px;
+    .img {
+      width: 50rem;
+    }
+  }
+}
+
+@media (min-width: 1000px) {
+  .headline {
+    margin: 5rem;
+  }
+  .img__container {
+    margin-left: 5rem;
+  }
+}

@@ -1,0 +1,82 @@
+footer {
+  background-color: #051c33;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 4rem;
+  padding-top:12rem;
+  margin-top: 5rem;
+  position: relative;
+  color:#f3f7fa;
+ @media (min-width: 750px) {
+ 
+   flex-direction: row;
+  
+    
+  }
+  @media (min-width: 450px) {
+    flex-wrap: wrap;
+    padding:12rem 0.5rem;
+   }
+}
+h2 {
+  color: #c6ddf5;
+  font-size: 2.3rem;
+  font-weight: 600;
+}
+ul {
+  list-style: none;
+  color: #c6ddf5;
+}
+
+li {
+  padding: 0.3rem 0.7rem;
+  font-size: 1.3rem;
+}
+
+li:hover {
+  font-size: 1.4rem;
+  color: white;
+  cursor: pointer;
+}
+
+.social {
+  display: flex;
+  color: #c6ddf5;
+  padding-right: 2rem;
+  align-items: center;
+  i{
+    padding:0 1rem;
+    font-size: 1.3rem;
+  }
+}
+.small__footer{
+  padding:1rem 4rem;
+  background-color: #041a30;
+  color:#c6ddf5;
+  display: flex;
+  justify-content: space-between;
+  box-shadow: inset 0px 1.5px 1.5px #082644;
+}
+
+.custom-shape-divider-top-1605097594 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1605097594 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+  transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1605097594 .shape-fill {
+  fill: #f3f7fa;
+}
+

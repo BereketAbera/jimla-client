@@ -1,52 +1,140 @@
-<landing-header></landing-header>
+<!-- <landing-header class="container" ></landing-header> -->
+<nav class="navigation">
+  <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
+
+  <div class="navigation__actions">
+    <a routerLink="/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
+    <a nz-button nzType="info" routerLink="/login" class="btn">ግባ</a>
+  </div>
+</nav>
 <section class="main">
   <div class="headline">
     <span class="head">Discover Supplier in Addis</span>
-    <nz-input-group nzSize="large" class="search" nzSearch [nzAddOnAfter]="suffixIconButton">
-      <input nzSize="large" type="text" nz-input placeholder="Search for Product, Merchants..." />
-    </nz-input-group>
-    <ng-template #suffixIconButton>
-      <button nz-button nzType="primary" nzSearch><i nz-icon nzType="search"></i></button>
-    </ng-template>
+    <div class="search">
+      <nz-input-group  nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input [formControl]="searchField" class="search__input" type="text" nz-input placeholder="Search for product,merchant" />
+      </nz-input-group>
+      <ng-template #suffixButton>
+        <button nz-button nzType="primary" (click)="onSumbit()" nzSize="large" nzSearch>Search</button>
+      </ng-template>
+
+      <!-- <button nz-button nzSize="large" nzType="primary" nzSearch>
+        <i nz-icon nzType="search"></i>
+      </button> -->
+    </div>
   </div>
   <div class="img__container">
     <img src="../../../../assets/img/undraw_Marketing_re_7f1g.svg" class="img" alt="" srcset="" />
   </div>
-</section>
-
-
-<section class="section-1">
-
-  <div class="section-1__img">
-    
-    <!-- <img src="../../../../assets/img/undraw_observations_mejb.svg" class="img" alt="" srcset="" /> -->
-  </div>
-
-  <div class="box"  >
-      <h3 class="box__header">Service</h3>
-      <p>
-          Luerem ibsum about the service about the service of jimla
-          Luerem ibsum about the servicabout the service e of jimla
-          Luerem ibsum about the servicabout the service e of jimla
-          Luerem ibsum about the service of jimla
-      </p>
+  <div class="custom-shape-divider-bottom-1604910778">
+    <svg
+      data-name="Layer 1"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 1200 120"
+      preserveAspectRatio="none"
+    >
+      <path
+        d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+        class="shape-fill"
+      ></path>
+    </svg>
   </div>
 </section>
+
+<div class="headers">
+  <h3 class="text">Seeing is Believing</h3>
+  <p class="subtitle">
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+    labore et dolore magna aliqua. Ut enim ad minim veniam,
+  </p>
+</div>
+<section class="background"></section>
 
 <section class="section-2">
+  <div class="box">
+    <div class="box__header">
+      <i nz-icon nzType="phone" nzTheme="fill"></i>
+      <h3>Service</h3>
+    </div>
 
-  <div class="section-2__img">
-    
-    <!-- <img src="../../../../assets/img/undraw_observations_mejb.svg" class="img" alt="" srcset="" /> -->
+    <p>
+      Luerem ibsum about the service about the service of jimla Luerem ibsum about the servicabout
+    </p>
+  </div>
+  <div class="box">
+    <div class="box__header">
+      <i nz-icon nzType="phone" nzTheme="fill"></i>
+      <h3>IVR Calls</h3>
+    </div>
+    <p>
+      Luerem ibsum about the service about the service of jimla Luerem ibsum about the servicabout
+      the
+    </p>
   </div>
 
-  <div class="box"  >
-      <h3 class="box__header">Service</h3>
-      <p>
-          Luerem ibsum about the service about the service of jimla
-          Luerem ibsum about the servicabout the service e of jimla
-          Luerem ibsum about the servicabout the service e of jimla
-          Luerem ibsum about the service of jimla
-      </p>
+  <div class="box">
+    <div class="box__header">
+      <i nz-icon nzType="mobile" nzTheme="fill"></i>
+      <h3>Essay Access</h3>
+    </div>
+    <p>
+      Luerem ibsum about the service about the service of jimla Luerem ibsum about the servicabout
+      the
+    </p>
   </div>
 </section>
+
+<section class="section-1">
+  <div class="headers">
+    <h3 class="text">Popular Compaines</h3>
+  </div>
+
+  <div class="companies">
+    <nz-avatar
+      class="logo"
+      nzGap="6"
+      nzText="Yes"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(80, 104, 131)"
+    ></nz-avatar>
+
+    <nz-avatar
+      class="logo"
+      nzGap="4"
+      nzText="COMP"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(57, 96, 99)"
+    ></nz-avatar>
+
+    <nz-avatar
+      class="logo"
+      nzGap="4"
+      nzText="PONER"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(89, 54, 153)"
+    ></nz-avatar>
+    <nz-avatar
+      class="logo"
+      nzGap="4"
+      nzText="DOIUS"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(78, 110, 105)"
+    ></nz-avatar>
+    <nz-avatar
+      class="logo"
+      nzGap="4"
+      nzText="TILTek"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(122, 115, 134)"
+    ></nz-avatar>
+    <nz-avatar
+      class="logo"
+      nzGap="4"
+      nzText="DOIUS"
+      nzSize="large"
+      style="vertical-align: middle; background-color: rgb(78, 110, 105)"
+    ></nz-avatar>
+  </div>
+</section>
+
+<app-footer ></app-footer>
