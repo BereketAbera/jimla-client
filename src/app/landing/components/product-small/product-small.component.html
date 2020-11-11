@@ -17,15 +17,13 @@
       Order
     </button>
     <ng-template #contentTemplate>
-      <!-- <div style="width: 100%; display: flex; flex-direction: column"></div> -->
       <nz-input-number
         class="small_margin"
         [(ngModel)]="amount"
         [nzMin]="1"
-        [nzMax]="10"
         [nzStep]="1"
       ></nz-input-number>
-      <button (click)="close()" class="small_margin" nz-button nzType="primary">Add</button>
+      <button (click)="add()" class="small_margin" nz-button nzType="primary">Add</button>
     </ng-template>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-product-small-image',
@@ -6,10 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-small-image.component.scss']
 })
 export class ProductSmallImageComponent implements OnInit {
+  visible = false;
+  amount = 1;
 
-  constructor() { }
+  @Input('product') product;
+  @Output('addProductToCart') addProductToCart: EventEmitter<any> = new EventEmitter();
+
+  constructor() {}
 
   ngOnInit(): void {
+    // console.log(this.product);
   }
 
+  close() {
+    this.visible = false;
+  }
+
+  add() {
+    this.addProductToCart.emit({ amount: this.amount, product: this.product });
+    this.close();
+  }
 }

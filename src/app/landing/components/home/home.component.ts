@@ -17,12 +17,20 @@ export class HomeComponent implements OnInit {
     { value: 'tilahun', text: 'Tilahun' }
   ];
   searchPlaceHolder = 'Search supplier code, name, product';
+  products = [];
 
   nzFilterOption = () => true;
 
-  constructor() {}
+  constructor(private productService: ProductService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.productService.getProducts().subscribe(
+      (data) => {
+        this.products = data.rows;
+      },
+      (error) => {}
+    );
+  }
 
   search(event) {
     this.listOfOption = this.dataFromServer.filter((d) => d.value.includes(event.toLowerCase()));

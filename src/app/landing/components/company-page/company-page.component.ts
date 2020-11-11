@@ -1,3 +1,4 @@
+import { OrderService } from './../../../_services/order/order.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -24,15 +25,15 @@ export class CompanyPageComponent implements OnInit {
   cartProducts = [];
   nzFilterOption = () => true;
 
-  constructor(private route: ActivatedRoute) {}
+  constructor(private route: ActivatedRoute, private orderService: OrderService) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((data: { data: { products: any; merchant: any; merchantCode } }) => {
-      console.log(data);
+      // console.log(data);
       this.merchant = data.data.merchant;
       this.products = data.data.products.rows;
       this.merchantCode = data.data.merchantCode;
-      console.log(this.merchantCode);
+      // console.log(this.merchantCode);
     });
   }
 
@@ -47,12 +48,43 @@ export class CompanyPageComponent implements OnInit {
     this.isVisibleTop = true;
   }
 
-  handleOkTop(): void {
-    console.log('点击了确定');
+  close(): void {
     this.isVisibleTop = false;
   }
 
-  handleCancelTop(): void {
-    this.isVisibleTop = false;
+  addProductToCart(event) {
+    if (event.amount && event.product) {
+      let tempProduct = { ...event.product, amount: event.amount };
+
+      let index = -1;
+      this.cartProducts = this.cartProducts.map((p, i) => {
+        if (p.id == tempProduct.id) {
+          index = i;
+          return tempProduct;
+        }
+        return p;
+      });
+
+      if (index == -1) {
+        this.cartProducts.push(tempProduct);
+      }
+    }
+  }
+
+  processOrder() {
+    if (this.cartProducts.length) {
+      let orderData = {
+        MerchantId: this.merchant.id,
+        orders: this.cartProducts.map((cp) => {
+          return { productId: cp.id, quantity: cp.amount };
+        })
+      };
+
+      this.orderService.processCartOrders(orderData).subscribe((res) => {
+        if (res) {
+          this.close();
+        }
+      });
+    }
   }
 }

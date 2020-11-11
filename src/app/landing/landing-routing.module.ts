@@ -54,10 +54,6 @@ const routes: Routes = [
         component: OrderGroupListComponent,
         resolve: { data: OrderGroupListResolverService }
       },
-      // {
-      //   path: '**',
-      //   component: LandingHomeComponent
-      // },
       {
         path: 'orders/orders',
         component: OrderListComponent,
