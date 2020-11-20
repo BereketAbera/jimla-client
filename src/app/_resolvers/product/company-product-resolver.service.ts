@@ -1,3 +1,4 @@
+import { AggregatorService } from './../../_services/aggregator.service';
 import { OrderService } from '@app/_services/order/order.service';
 import { IdentityService } from './../../_services/identity/identity.service';
 import { ProductService } from './../../_services/product/product.service';
@@ -10,22 +11,14 @@ import { mergeMap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CompanyProductResolverService {
-  constructor(
-    private productService: ProductService,
-    private identityService: IdentityService,
-    private orderService: OrderService
-  ) {}
+  constructor(private aggregatorService: AggregatorService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let company_name = route.paramMap.get('company_name');
-    return forkJoin(
-      this.productService.getMerchantProduct(company_name),
-      this.identityService.getMerchant(company_name),
-      this.orderService.getMerchantCode(company_name)
-    ).pipe(
+    return this.aggregatorService.getCompanyPageData(company_name).pipe(
       mergeMap((data: any) => {
         if (data) {
-          return of({ products: data[0], merchant: data[1], merchantCode: data[2].merchantCode });
+          return of(data);
         } else {
           return EMPTY;
         }

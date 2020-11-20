@@ -28,11 +28,11 @@ export class CompanyPageComponent implements OnInit {
   constructor(private route: ActivatedRoute, private orderService: OrderService) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((data: { data: { products: any; merchant: any; merchantCode } }) => {
-      // console.log(data);
-      this.merchant = data.data.merchant;
-      this.products = data.data.products.rows;
-      this.merchantCode = data.data.merchantCode;
+    this.route.data.subscribe((data: { data: { product: any; merchant: any; merchantCode } }) => {
+      console.log(data);
+      this.merchant = data.data.merchant || {};
+      this.products = data.data.product.rows || [];
+      this.merchantCode = data.data.merchantCode || {};
       // console.log(this.merchantCode);
     });
   }
