@@ -1,20 +1,19 @@
-<!-- <landing-header></landing-header> -->
+<landing-header></landing-header>
 <div nz-row class="container"  >
   <div class="slogan" nz-col nzSpan="12">
-    <img class="slogan__head" src="assets/img/jimla.png" routerLink="/home" alt="" >
     <span class="slogan__header">Purchase anything you need</span>
     <span class="slogan__subititle">Make your day easy with jemla</span>
   </div>
-  <form nz-col  nzSpan="12" nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
-    <span nzSpan="12" class="header">Log in into your account</span>
-    <nz-form-item>
+  <form  nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+    <span class="header">Log in into your account</span>
+    <nz-form-item class="login-form__item">
       <nz-form-control nzErrorTip="Please input your username or phonenumber!">
         <nz-input-group nzPrefixIcon="user">
           <input  nzSize="large" type="text" nz-input formControlName="username" placeholder="Phonenumber/Username" />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+    <nz-form-item class="login-form__item">
       <nz-form-control nzErrorTip="Please input your Password!">
         <nz-input-group nzPrefixIcon="lock">
           <input  nzSize="large" type="password" nz-input formControlName="password" placeholder="Password" />
