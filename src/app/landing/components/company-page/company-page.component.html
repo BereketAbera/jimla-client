@@ -95,3 +95,11 @@
     *ngIf="!cartProducts.length"
   ></nz-empty>
 </nz-modal>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Created
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>

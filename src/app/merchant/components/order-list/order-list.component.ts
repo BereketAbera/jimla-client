@@ -1,14 +1,14 @@
-import { OrderService } from '@app/_services/order/order.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { OrderService } from '@app/_services/order/order.service';
 
 @Component({
-  selector: 'app-order-group-list',
-  templateUrl: './order-group-list.component.html',
-  styleUrls: ['./order-group-list.component.scss']
+  selector: 'app-merchant-order-list',
+  templateUrl: './order-list.component.html',
+  styleUrls: ['./order-list.component.scss']
 })
-export class OrderGroupListComponent implements OnInit {
-  order_groups = [];
+export class OrderListComponent implements OnInit {
+  orders = [];
   count = 0;
   page = 0;
   pageSize = 0;
@@ -22,26 +22,27 @@ export class OrderGroupListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
-      this.order_groups = res.data.rows;
+      // console.log(res);
+      this.orders = res.data.rows;
       this.count = res.data.count;
     });
     this.route.queryParams.subscribe((res) => {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
       if (!this.firstReload) {
-        this.getOrderGroups();
+        this.getOrders();
       } else {
         this.firstReload = false;
       }
     });
   }
 
-  getOrderGroups() {
+  getOrders() {
     this.orderSrevice
-      .getOrderGroups({ page: this.page, pageSize: this.pageSize })
-      .subscribe((res: { order_groups: any }) => {
-        this.order_groups = res.order_groups.rows;
-        this.count = res.order_groups.count;
+      .getMerchantOrders({ page: this.page, pageSize: this.pageSize })
+      .subscribe((res: { orders: any }) => {
+        this.orders = res.orders.rows;
+        this.count = res.orders.count;
       });
   }
 

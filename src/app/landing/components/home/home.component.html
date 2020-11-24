@@ -2,7 +2,7 @@
 <!-- <p>home works!</p> -->
 <div>
   <section class="search">
-    <nz-input-group
+    <!-- <nz-input-group
       class="input"
       nzSearch
       [nzSize]="20"
@@ -24,6 +24,14 @@
         <nz-option *ngFor="let o of listOfOption" [nzLabel]="o.text" [nzValue]="o.value">
         </nz-option>
       </nz-select>
+    </nz-input-group> -->
+    <nz-input-group
+      class="input"
+      [nzSize]="20"
+      [nzPrefix]="prefixTemplateUser"
+      [nzSuffix]="suffixButton"
+    >
+      <input nz-input placeHolder="Search supplier code, name, product" [(ngModel)]="value" />
     </nz-input-group>
     <ng-template #prefixTemplateUser>
       <nz-select ngModel="Supplier">
@@ -33,27 +41,20 @@
       <!-- <i nz-icon nzType="search"></i> -->
     </ng-template>
     <ng-template #suffixButton>
-      <button nz-button nzType="primary" nzSearch>Search</button>
+      <button (click)="search()" nz-button nzType="primary" nzSearch>Search</button>
     </ng-template>
   </section>
 </div>
 <div class="main">
   <div class="aside">
     <h3 class="aside__header">All Category</h3>
-    <ul nz-menu nzMode="inline" style="width: 240px" nzTheme="ligth">
-      <li nz-submenu nzOpen nzTitle="Food and Beverage" nzIcon="plus">
+    <ul nz-menu nzMode="inline" style="width: 100%; border-right: none">
+      <li nz-submenu nzOpen nzTitle="Categories" nzIcon="plus">
         <ul>
-          <li nz-menu-item>Option 5</li>
-          <li nz-menu-item>Option 6</li>
-          <li nz-submenu nzTitle="Submenu">
-            <ul>
-              <li nz-menu-item>Option 7</li>
-              <li nz-menu-item>Option 8</li>
-            </ul>
-          </li>
+          <li *ngFor="let category of categories" nz-menu-item>{{ category.name }}</li>
         </ul>
       </li>
-      <li nz-submenu nzTitle="Furniture" nzIcon="appstore">
+      <!-- <li nz-submenu nzTitle="Furniture" nzIcon="appstore">
         <ul>
           <li nz-menu-item>Option 5</li>
           <li nz-menu-item>Option 6</li>
@@ -107,15 +108,15 @@
           <li nz-menu-item>Option 10</li>
           <li nz-menu-item>Option 11</li>
         </ul>
-      </li>
+      </li> -->
     </ul>
   </div>
   <div class="content">
     <div class="content__header">
       <h3 class="content__header-text">All Categories / Company Name</h3>
     </div>
-    <div style="display: flex; justify-content: space-between; align-items: center">
-      <div class="filters">
+    <div style="display: flex; justify-content: flex-end; align-items: center">
+      <!-- <div class="filters">
         <div class="filter">
           <span class="filter__lebel">Size:</span
           ><span
@@ -136,15 +137,15 @@
             </nz-select>
           </span>
         </div>
-      </div>
+      </div> -->
       <div class="sort">
         <div class="sort">
           <span class="sort__lebel">Sort By:</span>
           <span class="sort__input">
-            <nz-select nzSize="small" ngModel="sort type 1">
-              <nz-option nzValue="sort type 1" nzLabel="sort type 1"></nz-option>
-              <nz-option nzValue="sort type 2" nzLabel="sort type 2"></nz-option>
-              <nz-option nzValue="sort type 3" nzLabel="sort type 3"></nz-option>
+            <nz-select nzSize="small" ngModel="created_at">
+              <nz-option nzValue="created_at" nzLabel="Created Date"></nz-option>
+              <nz-option nzValue="name" nzLabel="Product Name"></nz-option>
+              <nz-option nzValue="company_name" nzLabel="Company Name"></nz-option>
             </nz-select>
           </span>
         </div>
@@ -153,6 +154,9 @@
 
     <div class="result__container">
       <app-product-home *ngFor="let product of products" [product]="product"></app-product-home>
+      <div style="width: 100%; display: flex; justify-content: center">
+        <nz-empty *ngIf="products.length == 0" nzNotFoundContent="No results found."></nz-empty>
+      </div>
     </div>
   </div>
 </div>

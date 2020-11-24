@@ -22,22 +22,39 @@ export class AuthenticationService {
   }
 
   login(username: string, password: string) {
-    console.log(username,password)
-    return this.http.post<any>(`${environment.identityUrl}/login`, { username, password })
-        .pipe(map(user => {
-          console.log(user)
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-            localStorage.setItem('user', JSON.stringify(user.data));
-            this.userSubject.next(user.data);
-            return user.data;
-        }));
+    console.log(username, password);
+    return this.http
+      .post<any>(`${environment.identityUrl}/login`, { username, password })
+      .pipe(
+        map((user) => {
+          // console.log(user);
+          // store user details and jwt token in local storage to keep user logged in between page refreshes
+          localStorage.setItem('user', JSON.stringify(user.data));
+          this.userSubject.next(user.data);
+          this.getUserUrl();
+          return user.data;
+        })
+      );
+  }
+
+  getUserUrl() {
+    let role =
+      this.userValue.role == 'PRODUCER'
+        ? 'merchant'
+        : this.userValue.role == 'CONSUMER'
+        ? 'retailer'
+        : 'landing';
+
+    // console.log('--------', role, '---------------');
+    this.router.navigate([`/${role}`]);
   }
 
   logout() {
     // remove user from local storage to log user out
     localStorage.removeItem('user');
     this.userSubject.next(null);
-    this.router.navigate(['/login']);
+
+    this.router.navigate(['/landing/login']);
   }
 
   routeToServerError() {

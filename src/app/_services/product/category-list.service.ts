@@ -9,10 +9,13 @@ const productUrl = environment.prodUrl;
   providedIn: 'root'
 })
 export class CategoryListService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getCategories(id): Observable<any> {
+  getCategory(id): Observable<any> {
     return this.http.get(`${productUrl}/category/${id}`);
+  }
+
+  getCategories(): Observable<any> {
+    return this.http.get(`${productUrl}/products/categories`);
   }
 }

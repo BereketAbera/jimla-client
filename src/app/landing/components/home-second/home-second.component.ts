@@ -11,13 +11,12 @@ export class HomeSecondComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(
+    this.productService.getProducts({}).subscribe(
       (data) => {
-        console.log(data)
+        console.log(data);
         this.products = data.rows;
       },
       (error) => {}
     );
   }
-
 }

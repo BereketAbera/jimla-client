@@ -1,0 +1,204 @@
+<div>
+  <form
+    nz-form
+    [nzLayout]="'vertical'"
+    [formGroup]="productForm"
+    action="POST"
+    class="product__form"
+  >
+    <div *ngIf="error" style="text-align: center; margin-bottom: 1rem">
+      <nz-space nzDiration="vertical">
+        <nz-space-item>
+          <span nz-typography nzType="danger">{{ error }}</span>
+        </nz-space-item>
+      </nz-space>
+    </div>
+
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="name">Product Name</nz-form-label>
+      <nz-form-control
+        [nzValidateStatus]="
+          productForm.controls['name'].invalid && productForm.controls['name'].touched
+            ? 'error'
+            : ''
+        "
+        nzErrorTip="Product name is required"
+        class="product__input"
+      >
+        <input
+          type="text"
+          nz-input
+          formControlName="name"
+          name="name"
+          placeholder="Product Name*"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="description">Description</nz-form-label>
+      <nz-form-control
+        nzErrorTip="Product description is required"
+        [nzValidateStatus]="
+          productForm.controls['description'].invalid && productForm.controls['description'].touched
+            ? 'error'
+            : ''
+        "
+        class="product__input"
+      >
+        <input
+          type="text"
+          nz-input
+          formControlName="description"
+          placeholder="Description*"
+          name="description"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="5">Category</nz-form-label>
+      <nz-form-control
+        [nzSpan]="24"
+        nzValidateStatus="productForm.controls['categoryId'].invalid && productForm.controls['categoryId'].touched
+        ? 'error'
+        : ''"
+        nzHasFeedback
+      >
+        <nz-select
+          (ngModelChange)="categoryChanged($event)"
+          name="category"
+          formControlName="categoryId"
+          [nzPlaceHolder]="'Select Category'"
+        >
+          <!-- <nz-option nzValue="0" nzLabel="Select Category"></nz-option> -->
+          <nz-option
+            *ngFor="let category of categories"
+            [nzValue]="category.id"
+            [nzLabel]="category.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="5">Sub Category</nz-form-label>
+      <nz-form-control
+        [nzSpan]="24"
+        nzValidateStatus="productForm.controls['subCategoryId'].invalid && productForm.controls['subCategoryId'].touched
+          ? 'error'
+          : ''"
+        nzHasFeedback
+      >
+        <nz-select
+          name="subCategory"
+          formControlName="subCategoryId"
+          [nzPlaceHolder]="'Select Sub Category'"
+          [nzDropdownRender]="renderTemplate"
+        >
+          <!-- <nz-option nzValue="0" nzLabel="Select Category"></nz-option> -->
+          <nz-option
+            *ngFor="let subCategory of subCategories"
+            [nzValue]="subCategory.id"
+            [nzLabel]="subCategory.name"
+          ></nz-option>
+        </nz-select>
+        <ng-template #renderTemplate>
+          <nz-divider></nz-divider>
+          <div class="container">
+            <input type="text" nz-input #inputElement placeholder="Add Sub Category" />
+            <a class="add-item" (click)="addSubCategory(inputElement)"
+              ><i nz-icon nzType="plus"></i> Add</a
+            >
+          </div>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="unitPrice">Unit Price</nz-form-label>
+      <nz-form-control
+        nzErrorTip="Unit price must be greater than 0"
+        [nzValidateStatus]="
+          productForm.controls['unitPrice'].invalid && productForm.controls['unitPrice'].touched
+            ? 'error'
+            : ''
+        "
+        class="product__input"
+      >
+        <nz-input-group nzAddOnBefore="Birr" nzAddOnAfter=".00">
+          <input
+            type="number"
+            nz-input
+            formControlName="unitPrice"
+            placeholder="Unit Price*"
+            name="unitPrice"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="quantityPerUnit"
+        >Quantity Per Unit</nz-form-label
+      >
+      <nz-form-control
+        nzErrorTip="Quantity Per Unit must be greater than 0"
+        [nzValidateStatus]="
+          productForm.controls['quantityPerUnit'].invalid &&
+          productForm.controls['quantityPerUnit'].touched
+            ? 'error'
+            : ''
+        "
+        class="product__input"
+      >
+        <input
+          type="number"
+          nz-input
+          formControlName="quantityPerUnit"
+          placeholder="Quantity Per Unit*"
+          name="quantityPerUnit"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="unitInStock">Unit In Stock</nz-form-label>
+      <nz-form-control
+        nzErrorTip="Unit In Stock must be greater than 0"
+        [nzValidateStatus]="
+          productForm.controls['unitInStock'].invalid && productForm.controls['unitInStock'].touched
+            ? 'error'
+            : ''
+        "
+        class="product__input"
+      >
+        <nz-input-group>
+          <input
+            type="number"
+            nz-input
+            formControlName="unitInStock"
+            placeholder="Unit Price*"
+            name="unitInStock"
+          />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="24" nzFor="tax">Tax</nz-form-label>
+      <nz-form-control nzAddOnBefore="Tax" nzAddOnAfter="%" class="product__input">
+        <nz-input-group nzAddOnBefore="Tax" nzAddOnAfter="%">
+          <input
+            type="number"
+            nz-input
+            formControlName="tax"
+            placeholder="Product Tax"
+            name="tax"
+            [min]="1"
+            [max]="100"
+        /></nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
+  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="addProductSubmit()">
+    Add
+  </button>
+</div>

@@ -11,15 +11,46 @@ const productUrl = environment.prodUrl;
 export class ProductService {
   constructor(private http: HttpClient) {}
 
+  addProduct(merchantId, product) {
+    return this.http.post(`${productUrl}/product`, { ...product, merchantId });
+  }
+
   getProduct(id): Observable<any> {
     return this.http.get(`${productUrl}/product/${id}`);
   }
 
-  getProducts(): Observable<any> {
-    return this.http.get(`${productUrl}/products`);
+  getProducts(obj): Observable<any> {
+    let queryParams = this.generateParams(obj);
+    return this.http.get(`${productUrl}/products/search?${queryParams}`);
   }
 
-  getMerchantProduct(id): Observable<any> {
-    return this.http.get(`${productUrl}/products/merchant/${id}`);
+  getCategorySubCategories(id): Observable<any> {
+    return this.http.get(`${productUrl}/products/categories/${id}/sub_categories`);
+  }
+
+  addCategorySubCategory(name, categoryId): Observable<any> {
+    return this.http.post(`${productUrl}/products/categories/${categoryId}/sub_categories`, {
+      name
+    });
+  }
+  getMerchantProduct(id, obj): Observable<any> {
+    let queryParams = this.generateParams(obj);
+    return this.http.get(`${productUrl}/products/merchant/${id}?${queryParams}`);
+  }
+
+  generateParams(params) {
+    let url = '';
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if ((key == 'status' && params[key] == '0') || params[key] == '1') {
+        url = url + `${key}=${params[key]}&`;
+        return;
+      }
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }

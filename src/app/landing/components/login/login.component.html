@@ -1,28 +1,40 @@
 <landing-header></landing-header>
-<div nz-row class="container"  >
+<div nz-row class="container">
   <div class="slogan" nz-col nzSpan="12">
     <span class="slogan__header">Purchase anything you need</span>
-    <span class="slogan__subititle">Make your day easy with jemla</span>
+    <span class="slogan__subititle">Make your day easy with jimla</span>
   </div>
-  <form  nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
     <span class="header">Log in into your account</span>
     <nz-form-item class="login-form__item">
       <nz-form-control nzErrorTip="Please input your username or phonenumber!">
         <nz-input-group nzPrefixIcon="user">
-          <input  nzSize="large" type="text" nz-input formControlName="username" placeholder="Phonenumber/Username" />
+          <input
+            nzSize="large"
+            type="text"
+            nz-input
+            formControlName="username"
+            placeholder="Phonenumber/Username"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item class="login-form__item">
       <nz-form-control nzErrorTip="Please input your Password!">
         <nz-input-group nzPrefixIcon="lock">
-          <input  nzSize="large" type="password" nz-input formControlName="password" placeholder="Password" />
+          <input
+            nzSize="large"
+            type="password"
+            nz-input
+            formControlName="password"
+            placeholder="Password"
+          />
         </nz-input-group>
       </nz-form-control>
     </nz-form-item>
     <div nz-row class="login-form-margin">
       <div nz-col [nzSpan]="12">
-        <label nz-checkbox >
+        <label nz-checkbox>
           <span>Remember me</span>
         </label>
       </div>
@@ -30,9 +42,9 @@
         <a class="login-form-forgot">Forgot password</a>
       </div>
     </div>
-    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Log in</button>
-    Or <a routerLink="/register"> register now! </a>
+    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">
+      Log in
+    </button>
+    Or <a routerLink="/landing/register"> register now! </a>
   </form>
-
 </div>
-

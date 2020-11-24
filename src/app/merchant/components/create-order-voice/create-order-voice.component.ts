@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
-  selector: 'app-create-order-voice',
+  selector: 'app-merchant-create-order-voice',
   templateUrl: './create-order-voice.component.html',
   styleUrls: ['./create-order-voice.component.scss']
 })
@@ -44,6 +44,7 @@ export class CreateOrderVoiceComponent implements OnInit {
   ngOnInit(): void {}
 
   handleAdd(): void {
+    console.log(this.selectedProduct);
     if (!this.selectedProduct) return;
     let product;
     this.products.map((p) => {
@@ -116,7 +117,6 @@ export class CreateOrderVoiceComponent implements OnInit {
 
     this.orderService.createVoiceOrder(orderData).subscribe((res: any) => {
       if (res && res.orders && res.orders.length > 0) {
-        // console.log(res);
         this.notificationService.template(this.template, {});
         this.goBack();
       }

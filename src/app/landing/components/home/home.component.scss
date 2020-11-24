@@ -7,7 +7,7 @@
 
   background-color: #001427;
   .input {
-    margin-left: 21%;
+    margin: 0 auto;
     max-width: 600px;
     align-self: left;
   }
@@ -24,11 +24,12 @@
     box-shadow: 0 2px 4px rgb(212, 212, 212);
     height: 100vh;
     margin: 1rem;
-    padding: 2rem;
+    padding: 2rem 0rem;
     position: absolute;
     top: 7rem;
     left: 0rem;
     border-radius: 1rem;
+    display: none;
 
     &__header {
       font-size: 1.8rem;
@@ -62,9 +63,9 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    width: 76%;
+    width: 100%;
     min-height: 80%;
-    left: 22%;
+    left: 0;
     box-shadow: 0 1px 3px rgb(148, 148, 148);
     box-shadow: 0 2px 4px rgb(212, 212, 212);
 
@@ -131,6 +132,28 @@
     &::after {
       content: "";
       flex: auto;
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .main {
+    .aside {
+      width: 20%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .content {
+      width: 78%;
+      left: 22%;
+    }
+  }
+
+  .search {
+    .input {
+      margin-left: 22%;
     }
   }
 }

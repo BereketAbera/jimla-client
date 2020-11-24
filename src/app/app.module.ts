@@ -1,3 +1,6 @@
+import { SharedModule } from './shared/shared.module';
+import { NzSpaceModule } from 'ng-zorro-antd/space';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +11,6 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { APP_BASE_HREF, registerLocaleData } from '@angular/common';
 import { CustomPreloadingService } from './_services/custom-preloading.service';
-import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NZ_I18N } from 'ng-zorro-antd/i18n';
 import { en_US } from 'ng-zorro-antd/i18n';
@@ -17,23 +19,15 @@ import en from '@angular/common/locales/en';
 registerLocaleData(en);
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    HttpClientModule,
-    BrowserAnimationsModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, BrowserAnimationsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: APP_BASE_HREF, useValue: '/' },
     CustomPreloadingService,
-    { provide: NZ_I18N, useValue: en_US },
+    { provide: NZ_I18N, useValue: en_US }
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

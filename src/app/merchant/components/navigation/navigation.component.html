@@ -1,0 +1,108 @@
+<nav class="navigation">
+  <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
+
+  <div class="navigation__actions">
+    <a (click)="logout()" nz-button nzType="primary" class="btn"
+      >ውጣ<i nz-icon nzType="logout" nzTheme="outline"></i
+    ></a>
+  </div>
+</nav>
+<div class="wrapper" [class.wrapper-collapse]="isCollapsed">
+  <button
+    nz-button
+    nzType="primary"
+    (click)="toggleCollapsed()"
+    class="wrapper__button"
+    [class.wrapper__button-open]="!isCollapsed"
+  >
+    <i
+      nz-icon
+      [nzType]="isCollapsed ? 'double-right' : 'double-left'"
+      class="wrapper__button-icon"
+    ></i>
+  </button>
+  <ul nz-menu nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+    <li
+      style="
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding-bottom: 1rem;
+        margin-bottom: 2rem;
+        border-bottom: 1px solid #aaa;
+      "
+    >
+      <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
+    </li>
+    <li
+      [routerLink]="['/merchant']"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      nzTooltipPlacement="right"
+      routerLinkActive
+      nzIcon="dashboard"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="dashboard"></i>
+      <span>Dashboard</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/merchant/orders']"
+      nzIcon="insert-row-right"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="insert-row-right"></i>
+      <span>Active Orders</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/merchant/order_groups']"
+      nzIcon="user"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="ordered-list"></i>
+      <span>Voice Orders</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/merchant/products']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="shop" nzTheme="outline"></i>
+      <span>Products</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/merchant/profile']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="user" nzTheme="outline"></i>
+      <span>Profile</span>
+    </li>
+  </ul>
+</div>

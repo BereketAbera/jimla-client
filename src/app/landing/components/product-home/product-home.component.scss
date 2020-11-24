@@ -1,12 +1,11 @@
-.companysmall {
+.product {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-width: 100%;
-  max-width: 100%;
   margin: 2rem;
-  border: 1px solid #aaa;
+  // border: 1px solid #aaa;
+  box-shadow: 1px 1px 7px 1px #aaa;
   padding: 2rem 1rem;
   flex: 1;
 
@@ -17,7 +16,7 @@
   }
 
   .image {
-    width: 100%;
+    width: 200px;
     min-height: 150px;
     margin-bottom: 1rem;
   }

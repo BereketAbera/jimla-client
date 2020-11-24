@@ -1,5 +1,12 @@
-<landing-header></landing-header>
-<div class="main_container">
+<merchant-navigation></merchant-navigation>
+<div class="main_container main_content_container">
+  <div class="header_container">
+    <h2 class="main_content_title">Products</h2>
+    <button (click)="addProduct()" nz-button nzType="primary" nzShape="round">
+      Add New
+      <i nz-icon nzType="plus"></i>
+    </button>
+  </div>
   <div
     nz-row
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
@@ -9,43 +16,50 @@
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
         <div nz-col nzSpan="24" class="gutter-row">
           <div class="inner-box">
-            <nz-table [nzShowPagination]="false" [nzData]="orders">
+            <nz-table [nzShowPagination]="false" [nzData]="products">
               <thead>
                 <tr>
                   <th>Product Name</th>
-                  <th>Quanity</th>
-                  <th>Retailer Name</th>
-                  <th>Merchant Name</th>
-                  <th>Code</th>
+                  <th>Net Price</th>
+                  <th>Unit In Stock</th>
+                  <th>Unit In Order</th>
+                  <th>Unit Sold</th>
+                  <th>Category</th>
+                  <th>Description</th>
                   <th>Status</th>
                   <th>Created</th>
-                  <th>Action</th>
                 </tr>
               </thead>
               <tbody>
-                <tr *ngFor="let data of orders">
+                <tr *ngFor="let product of products">
                   <td>
-                    <span style="font-weight: bold; color: #555">{{ data.product.name }}</span>
+                    <span style="font-weight: bold; color: #555">{{ product.name }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.quantity }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.netPrice }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.retailer.name }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.unitInStock }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.merchant.name }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.unitInOrder }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.merchant.code }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.unitSold }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.status }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.category?.name }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
+                    <span nz-typography nzType="secondary">{{ product?.description }}</span>
                   </td>
-                  <th>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.status }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.createdAt | date }}</span>
+                  </td>
+                  <!-- <th>
                     <button nz-button nz-dropdown [nzDropdownMenu]="actions">
                       Actions
                       <i nz-icon nzType="down"></i>
@@ -57,7 +71,7 @@
                         <li class="list_style" nz-menu-item>Delete</li>
                       </ul>
                     </nz-dropdown-menu>
-                  </th>
+                  </th> -->
                 </tr>
               </tbody>
             </nz-table>

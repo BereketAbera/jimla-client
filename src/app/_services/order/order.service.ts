@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../authentication.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -9,7 +10,7 @@ const orderUrl = environment.orderUrl;
   providedIn: 'root'
 })
 export class OrderService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
   getOrderData(id): Observable<any> {
     return this.http.get(`${orderUrl}/order_data/${id}`);
@@ -24,9 +25,24 @@ export class OrderService {
     return this.http.get(`${orderUrl}/order_groups?${params}`);
   }
 
+  // getMerchantOrderGroups(query): Observable<any> {
+  //   let params = this.generateParams(query);
+  //   return this.http.get(
+  //     `${orderUrl}/merchants/${this.authenticationService.userValue.id}/order_groups?${params}`
+  //   );
+  // }
+
   getOrders(query): Observable<any> {
     let params = this.generateParams(query);
     return this.http.get(`${orderUrl}/orders?${params}`);
+  }
+
+  getMerchantOrders(query): Observable<any> {
+    console.log(this.authenticationService.userValue);
+    let params = this.generateParams(query);
+    return this.http.get(
+      `${orderUrl}/merchants/${this.authenticationService.userValue.id}/orders?${params}`
+    );
   }
 
   getMerchantCode(company_name): Observable<any> {

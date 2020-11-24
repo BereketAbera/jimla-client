@@ -1,6 +1,8 @@
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { OrderService } from './../../../_services/order/order.service';
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-company-page',
@@ -24,8 +26,14 @@ export class CompanyPageComponent implements OnInit {
   isVisibleTop = false;
   cartProducts = [];
   nzFilterOption = () => true;
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
-  constructor(private route: ActivatedRoute, private orderService: OrderService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private orderService: OrderService,
+    private notificationService: NzNotificationService,
+    private location: Location
+  ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((data: { data: { product: any; merchant: any; merchantCode } }) => {
@@ -82,9 +90,15 @@ export class CompanyPageComponent implements OnInit {
 
       this.orderService.processCartOrders(orderData).subscribe((res) => {
         if (res) {
+          this.notificationService.template(this.template, {});
+          this.goBack();
           this.close();
         }
       });
     }
+  }
+
+  goBack() {
+    this.location.back();
   }
 }

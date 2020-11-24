@@ -3,19 +3,27 @@
   <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
 
   <div class="navigation__actions">
-    <a routerLink="/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
-    <a nz-button nzType="info" routerLink="/login" class="btn">ግባ</a>
+    <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
+    <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a>
   </div>
 </nav>
 <section class="main">
   <div class="headline">
     <span class="head">Discover Supplier in Addis</span>
     <div class="search">
-      <nz-input-group  nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
-        <input [formControl]="searchField" class="search__input" type="text" nz-input placeholder="Search for product,merchant" />
+      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+        <input
+          [formControl]="searchField"
+          class="search__input"
+          type="text"
+          nz-input
+          placeholder="Search for product,merchant"
+        />
       </nz-input-group>
       <ng-template #suffixButton>
-        <button nz-button nzType="primary" (click)="onSumbit()" nzSize="large" nzSearch>Search</button>
+        <button nz-button nzType="primary" (click)="onSumbit()" nzSize="large" nzSearch>
+          Search
+        </button>
       </ng-template>
 
       <!-- <button nz-button nzSize="large" nzType="primary" nzSearch>
@@ -137,4 +145,4 @@
   </div>
 </section>
 
-<app-footer ></app-footer>
+<app-footer></app-footer>

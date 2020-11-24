@@ -11,7 +11,7 @@ import { ProducerService } from '@app/_services/identity/producer.service';
 export class LandingHomeComponent implements OnInit {
   searchField: FormControl;
 
-  constructor(private router:Router, private producerService: ProducerService) {}
+  constructor(private router: Router, private producerService: ProducerService) {}
 
   ngOnInit(): void {
     this.searchField = new FormControl();
@@ -26,17 +26,8 @@ export class LandingHomeComponent implements OnInit {
       return;
     }
 
-    /**
-     * Search for Product
-     */
-    this.producerService.searchProducer(this.searchField.value).subscribe(
-      (data) => {
-        console.log(data);
-        this.router.navigate(['/home']);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    this.router.navigate(['/landing/home'], {
+      queryParams: { q: this.searchField.value, type: 'product' }
+    });
   }
 }

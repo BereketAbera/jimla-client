@@ -13,7 +13,7 @@ export class OrderListResolverService {
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let page = route.queryParamMap.get('page') || 0;
     let pageSize = route.queryParamMap.get('pageSize') || 5;
-    return this.orderService.getOrders({ page, pageSize }).pipe(
+    return this.orderService.getMerchantOrders({ page, pageSize }).pipe(
       mergeMap((data: { orders: any }) => {
         if (data.orders) {
           return of(data.orders);

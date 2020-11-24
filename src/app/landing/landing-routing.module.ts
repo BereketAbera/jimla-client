@@ -1,13 +1,6 @@
-import { CompanyProductResolverService } from './../_resolvers/product/company-product-resolver.service';
+import { HomeResolverService } from './../_resolvers/product/home-resolver.service';
 import { HomeSecondComponent } from './components/home-second/home-second.component';
-import { CompanyPageComponent } from './components/company-page/company-page.component';
-import { OrderListComponent } from './components/order-list/order-list.component';
-import { OrderListResolverService } from './../_resolvers/order/order-list-resolver.service';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
-import { OrderGroupListResolverService } from './../_resolvers/order/order-group-list-resolver.service';
-import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
-import { GetOrderResolverService } from './../_resolvers/order/get-order-resolver.service';
-import { CreateOrderVoiceComponent } from './components/create-order-voice/create-order-voice.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
@@ -16,6 +9,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './landing.component';
 import { LandingHomeComponent } from './components/landing-home/landing-home.component';
+import { AuthGuard } from '@app/_helpers/auth.guard';
 
 const routes: Routes = [
   {
@@ -25,6 +19,7 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeComponent,
+        resolve: { data: HomeResolverService },
         pathMatch: 'full'
       },
       {
@@ -34,36 +29,19 @@ const routes: Routes = [
       },
       {
         path: 'login',
+        canActivate: [AuthGuard],
         component: LoginComponent
       },
       {
         path: 'register',
+        // canActivate: [AuthGuard],
         component: RegisterComponent
       },
       {
         path: 'server_error',
         component: ServerErrorComponent
       },
-      {
-        path: 'orders/create_order_voice/:id',
-        component: CreateOrderVoiceComponent,
-        resolve: { data: GetOrderResolverService }
-      },
-      {
-        path: 'orders/order_groups',
-        component: OrderGroupListComponent,
-        resolve: { data: OrderGroupListResolverService }
-      },
-      {
-        path: 'orders/orders',
-        component: OrderListComponent,
-        resolve: { data: OrderListResolverService }
-      },
-      {
-        path: 'company_page/:company_name',
-        component: CompanyPageComponent,
-        resolve: { data: CompanyProductResolverService }
-      },
+
       {
         path: '**',
         component: LandingHomeComponent

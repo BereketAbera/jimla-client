@@ -1,0 +1,108 @@
+<retailer-navigation></retailer-navigation>
+<div class="main_content_container">
+  <section class="search">
+    <nz-input-group
+      class="input"
+      nzSearch
+      [nzSize]="20"
+      [nzPrefix]="prefixTemplateUser"
+      [nzSuffix]="suffixButton"
+    >
+      <nz-select
+        style="flex: 1"
+        nzShowSearch
+        nzServerSearch
+        nzBorderless
+        nzAllowClear
+        [nzPlaceHolder]="searchPlaceHolder"
+        [(ngModel)]="selectedValue"
+        [nzShowArrow]="false"
+        [nzFilterOption]="nzFilterOption"
+        (nzOnSearch)="search($event)"
+      >
+        <nz-option *ngFor="let o of listOfOption" [nzLabel]="o.text" [nzValue]="o.value">
+        </nz-option>
+      </nz-select>
+    </nz-input-group>
+    <ng-template #prefixTemplateUser>
+      <nz-select ngModel="Supplier">
+        <nz-option nzValue="Supplier" nzLabel="Supplier"></nz-option>
+        <nz-option nzValue="Product" nzLabel="Product"></nz-option>
+      </nz-select>
+      <!-- <i nz-icon nzType="search"></i> -->
+    </ng-template>
+    <ng-template #suffixButton>
+      <button nz-button nzType="primary" nzSearch>Search</button>
+    </ng-template>
+  </section>
+</div>
+<div class="company_page">
+  <div class="header">
+    <h2 class="name">{{ merchant?.name }} : {{ merchantCode?.code }}</h2>
+    <div style="width: 20rem; height: 0.5rem; margin-top: -1.5rem; background-color: #003241"></div>
+    <h5 class="description">
+      Tin No: {{ merchant?.tinNumber }}, Phone No: {{ merchant?.phoneNumber }}
+    </h5>
+    <h6 class="address">
+      {{ merchant?.Address?.city }}, {{ merchant?.Address?.subCity }},
+      {{ merchant?.Address?.description }}
+    </h6>
+  </div>
+  <div>
+    <div class="content">
+      <div class="content__header">
+        <h3 class="content__header-text">Products</h3>
+        <div>
+          <nz-badge [nzCount]="cartProducts.length" [nzOffset]="[6, -2]" [nzShowZero]="true">
+            <a class="content__cart" (click)="showModalTop()">Order Cart Items</a>
+          </nz-badge>
+        </div>
+      </div>
+
+      <div class="result__container">
+        <!-- <div *ngFor="let p of products; let i = index">
+          {{ p.name }}
+        </div> -->
+        <div *ngFor="let p of products; let i = index" style="width: 23%; margin: 1rem">
+          <app-product-small
+            (addProductToCart)="addProductToCart($event)"
+            *ngIf="i % 2 == 0"
+            [product]="p"
+          ></app-product-small>
+          <app-product-small-image
+            *ngIf="i % 2 == 1"
+            [product]="p"
+            (addProductToCart)="addProductToCart($event)"
+          ></app-product-small-image>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<nz-modal
+  [nzStyle]="{ top: '20px' }"
+  [(nzVisible)]="isVisibleTop"
+  nzTitle="Pending Order Cart"
+  nzOkText="Process"
+  nxCancelText="Cancel"
+  (nzOnCancel)="close()"
+  (nzOnOk)="processOrder()"
+>
+  <div *ngFor="let cp of cartProducts" style="display: flex; justify-content: space-between">
+    <span style="font-size: 1.8rem; color: #555; font-weight: 600">{{ cp?.name }}</span
+    ><span style="font-size: 1.5rem; color: #555; font-weight: 600">Amount: {{ cp?.amount }}</span>
+  </div>
+  <nz-empty
+    nzNotFoundContent="No products. Add some to order."
+    *ngIf="!cartProducts.length"
+  ></nz-empty>
+</nz-modal>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Created
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>
