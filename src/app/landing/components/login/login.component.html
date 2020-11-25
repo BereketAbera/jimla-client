@@ -6,6 +6,19 @@
   </div>
   <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
     <span class="header">Log in into your account</span>
+    <span
+      *ngIf="error"
+      style="
+        color: red;
+        font-size: 1.5rem;
+        padding: 1rem;
+        margin: 1rem 0rem;
+        display: flex;
+        justify-content: center;
+      "
+    >
+      {{ error }}
+    </span>
     <nz-form-item class="login-form__item">
       <nz-form-control nzErrorTip="Please input your username or phonenumber!">
         <nz-input-group nzPrefixIcon="user">

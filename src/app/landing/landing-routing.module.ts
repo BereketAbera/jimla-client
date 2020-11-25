@@ -10,6 +10,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LandingComponent } from './landing.component';
 import { LandingHomeComponent } from './components/landing-home/landing-home.component';
 import { AuthGuard } from '@app/_helpers/auth.guard';
+import { CompanyPageComponent } from './components/company-page/company-page.component';
+import { CompanyProductResolverService } from '@app/_resolvers/product/company-product-resolver.service';
 
 const routes: Routes = [
   {
@@ -40,6 +42,12 @@ const routes: Routes = [
       {
         path: 'server_error',
         component: ServerErrorComponent
+      },
+
+      {
+        path: 'company_page/:company_name',
+        component: CompanyPageComponent,
+        resolve: { data: CompanyProductResolverService }
       },
 
       {

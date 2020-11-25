@@ -38,7 +38,7 @@ export class OrderGroupListComponent implements OnInit {
 
   getOrderGroups() {
     this.orderSrevice
-      .getOrderGroups({ page: this.page, pageSize: this.pageSize })
+      .getMerchantOrderGroups({ page: this.page, pageSize: this.pageSize })
       .subscribe((res: { order_groups: any }) => {
         this.order_groups = res.order_groups.rows;
         this.count = res.order_groups.count;

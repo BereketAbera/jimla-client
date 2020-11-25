@@ -36,6 +36,7 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
 import { ProductSmallComponent } from './components/product-small/product-small.component';
+import { ProcessOrderComponent } from './components/process-order/process-order.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { ProductSmallComponent } from './components/product-small/product-small.
     OrderHistoryComponent,
     ProfileComponent,
     ProductSmallComponent,
-    ProductSmallImageComponent
+    ProductSmallImageComponent,
+    ProcessOrderComponent
   ],
   imports: [
     CommonModule,

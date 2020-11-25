@@ -1,3 +1,4 @@
+import { ProfileComponent } from './../retailer/components/profile/profile.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MerchantComponent } from './merchant.component';
 import { NgModule } from '@angular/core';
@@ -39,6 +40,10 @@ const routes: Routes = [
         path: 'products',
         component: ProductsComponent,
         resolve: { data: CompanyProductsResolverService }
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent
       }
     ]
   }

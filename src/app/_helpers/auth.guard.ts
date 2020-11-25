@@ -20,6 +20,8 @@ export class AuthGuard implements CanActivate {
       if (route.url[0].path.includes('login') || route.url[0].path.includes('register')) {
         if (user.role == 'PRODUCER') {
           this.router.navigate(['/merchant']);
+        } else if (user.role == 'CONSUMER') {
+          this.router.navigate(['/retailer']);
         } else {
           this.router.navigate(['/landing']);
         }

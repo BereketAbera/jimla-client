@@ -1,6 +1,5 @@
 .search {
   padding: 2rem;
-  box-shadow: 0 1px 3px rgb(148, 148, 148);
   box-shadow: 0 2px 4px rgb(212, 212, 212);
   display: flex;
   align-items: center;
@@ -20,7 +19,6 @@
     background-color: white;
     border: 1px solid #eee;
     width: 20%;
-    box-shadow: 0 1px 3px rgb(148, 148, 148);
     box-shadow: 0 2px 4px rgb(212, 212, 212);
     height: 100vh;
     margin: 1rem;
@@ -66,8 +64,7 @@
     width: 100%;
     min-height: 80%;
     left: 0;
-    box-shadow: 0 1px 3px rgb(148, 148, 148);
-    box-shadow: 0 2px 4px rgb(212, 212, 212);
+    // box-shadow: 0 2px 4px rgb(212, 212, 212);
 
     &__header {
       padding: 2rem;
@@ -129,6 +126,10 @@
     display: flex;
     flex-wrap: wrap;
 
+    &__product {
+      width: 100%;
+    }
+
     &::after {
       content: "";
       flex: auto;
@@ -136,7 +137,27 @@
   }
 }
 
-@media (min-width: 900px) {
+@media screen and (min-width: 450px) {
+  .result {
+    &__container {
+      &__product {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .result {
+    &__container {
+      &__product {
+        width: 33%;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
   .main {
     .aside {
       width: 20%;
@@ -154,6 +175,14 @@
   .search {
     .input {
       margin-left: 22%;
+    }
+  }
+
+  .result {
+    &__container {
+      &__product {
+        width: 25%;
+      }
     }
   }
 }

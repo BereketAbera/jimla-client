@@ -1,0 +1,24 @@
+.main_container {
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.small_side_margin {
+  margin: 0rem 1rem;
+}
+
+.card {
+  &__footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 4rem;
+  }
+
+  &__order {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    // border-bottom: 1px solid #aaa;
+    margin: 0.5rem 0rem;
+  }
+}

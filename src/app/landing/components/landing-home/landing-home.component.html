@@ -1,17 +1,56 @@
 <!-- <landing-header class="container" ></landing-header> -->
 <nav class="navigation">
-  <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
+  <div routerLink="/landing" style="display: flex; align-items: center; cursor: pointer">
+    <img src="assets/img/logo_white.png" alt="" class="navigation__logo" />
+    <span style="font-size: 4rem; text-transform: uppercase; color: #fff; margin-left: 1rem"
+      >Jimla</span
+    >
+  </div>
 
   <div class="navigation__actions">
-    <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
-    <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a>
+    <!-- <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
+    <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a> -->
+
+    <a *ngIf="!authenticationService.userValue" routerLink="/landing/login" class="btn btn--jimla"
+      >ለጅምላ ነጋዴ</a
+    >
+    <a
+      *ngIf="!authenticationService.userValue"
+      routerLink="/landing/register"
+      nz-button
+      nzType="info"
+      class="btn small_side_margin"
+      >ተመዝገብ</a
+    >
+    <a
+      *ngIf="!authenticationService.userValue"
+      routerLink="/landing/login"
+      nz-button
+      nzType="info"
+      class="btn small_side_margin"
+      >ግባ</a
+    >
+
+    <a
+      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'PRODUCER'"
+      routerLink="/merchant"
+      class="btn btn--jimla"
+      >Home</a
+    >
+
+    <a
+      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'"
+      routerLink="/retailer"
+      class="btn btn--jimla"
+      >Home</a
+    >
   </div>
 </nav>
 <section class="main">
   <div class="headline">
     <span class="head">Discover Supplier in Addis</span>
     <div class="search">
-      <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
+      <!-- <nz-input-group nzSearch nzSize="large" [nzAddOnAfter]="suffixButton">
         <input
           [formControl]="searchField"
           class="search__input"
@@ -19,9 +58,19 @@
           nz-input
           placeholder="Search for product,merchant"
         />
+      </nz-input-group> -->
+
+      <nz-input-group class="input" [nzSize]="20" [nzSuffix]="suffixButton">
+        <input
+          [formControl]="searchField"
+          style="font-size: 1.6rem"
+          nz-input
+          placeHolder="Search supplier code, name, product"
+          [(ngModel)]="q"
+        />
       </nz-input-group>
       <ng-template #suffixButton>
-        <button nz-button nzType="primary" (click)="onSumbit()" nzSize="large" nzSearch>
+        <button nz-button nzType="primary" (click)="onSubmit()" nzSize="large" nzSearch>
           Search
         </button>
       </ng-template>

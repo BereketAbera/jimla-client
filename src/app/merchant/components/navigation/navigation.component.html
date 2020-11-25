@@ -1,6 +1,11 @@
 <nav class="navigation">
-  <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
-
+  <!-- <img src="assets/img/logo.png" routerLink="/landing" alt="" class="navigation__logo" /> -->
+  <div routerLink="/landing" style="display: flex; align-items: center; cursor: pointer">
+    <img src="assets/img/logo.png" alt="" class="navigation__logo" />
+    <span style="font-size: 4rem; text-transform: uppercase; color: #083443; margin-left: 1rem"
+      >Jimla</span
+    >
+  </div>
   <div class="navigation__actions">
     <a (click)="logout()" nz-button nzType="primary" class="btn"
       >ውጣ<i nz-icon nzType="logout" nzTheme="outline"></i
@@ -27,12 +32,12 @@
         width: 100%;
         display: flex;
         justify-content: center;
-        padding-bottom: 1rem;
+        padding-bottom: 0.5rem;
         margin-bottom: 2rem;
         border-bottom: 1px solid #aaa;
       "
     >
-      <img src="assets/img/jimla.png" routerLink="/home" alt="" class="navigation__logo" />
+      <img src="assets/img/logo.png" routerLink="/landing" alt="" class="navigation__logo" />
     </li>
     <li
       [routerLink]="['/merchant']"

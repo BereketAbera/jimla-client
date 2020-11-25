@@ -25,6 +25,13 @@ export class OrderService {
     return this.http.get(`${orderUrl}/order_groups?${params}`);
   }
 
+  getMerchantOrderGroups(query): Observable<any> {
+    let params = this.generateParams(query);
+    return this.http.get(
+      `${orderUrl}/merchants/${this.authenticationService.userValue.id}/order_groups?${params}`
+    );
+  }
+
   // getMerchantOrderGroups(query): Observable<any> {
   //   let params = this.generateParams(query);
   //   return this.http.get(
@@ -42,6 +49,14 @@ export class OrderService {
     let params = this.generateParams(query);
     return this.http.get(
       `${orderUrl}/merchants/${this.authenticationService.userValue.id}/orders?${params}`
+    );
+  }
+
+  getRetailerOrders(query): Observable<any> {
+    console.log(this.authenticationService.userValue);
+    let params = this.generateParams(query);
+    return this.http.get(
+      `${orderUrl}/retailers/${this.authenticationService.userValue.id}/orders?${params}`
     );
   }
 

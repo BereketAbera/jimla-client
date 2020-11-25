@@ -7,6 +7,8 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class ProductHomeComponent implements OnInit {
   @Input() product;
+  @Input() q;
+  @Input() type;
   constructor() {}
 
   ngOnInit(): void {}

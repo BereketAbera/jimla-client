@@ -72,8 +72,4 @@ export class OrderListComponent implements OnInit {
       queryParamsHandling: 'merge'
     });
   }
-
-  process(order_group) {
-    this.router.navigate([`/orders/create_order_voice/${order_group.id}`]);
-  }
 }

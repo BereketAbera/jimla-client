@@ -1,0 +1,57 @@
+<retailer-navigation></retailer-navigation>
+<div class="main_container main_content_container">
+  <h2 class="main_content_title">Process Order</h2>
+  <div style="display: flex; justify-content: center">
+    <nz-card
+      style="width: 50%; max-width: 600px; overflow: hidden"
+      nzTitle="Pending Orders In Cart"
+    >
+      <!-- <p *ngFor="let product of cartProducts">Card content</p> -->
+      <div class="card__content">
+        <div
+          style="
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin: 1rem 0rem;
+          "
+          *ngFor="let product of cartProducts"
+        >
+          <div class="card__order">
+            <span style="font-size: 1.8rem; color: #555; font-weight: 600">{{ product?.name }}</span
+            ><span style="font-size: 1.5rem; color: #555; font-weight: 600"
+              >Amount: {{ product?.amount }}</span
+            >
+          </div>
+          <span
+            style="width: 120%; height: 0.1rem; background-color: #0c404d; align-self: center"
+          ></span>
+        </div>
+      </div>
+
+      <div class="card__footer">
+        <button (click)="clearCart()" nz-button nzType="default" class="small_side_margin">
+          Clear Cart
+        </button>
+        <button
+          (click)="processOrder()"
+          nz-button
+          nzType="primary"
+          class="small_side_margin"
+          style="margin-right: 0rem"
+        >
+          Process
+        </button>
+      </div>
+    </nz-card>
+  </div>
+</div>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Created
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>

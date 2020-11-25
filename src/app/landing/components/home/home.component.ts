@@ -15,8 +15,11 @@ export class HomeComponent implements OnInit {
   searchPlaceHolder = 'Search supplier code, name, product';
   products = [];
   categories = [];
-  value = '';
+  // value = '';
   firstReload = true;
+
+  type = 'product';
+  q = '';
 
   nzFilterOption = () => true;
 
@@ -29,11 +32,12 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.route.data.subscribe((res) => {
       this.products = res.data[0].rows;
-      this.categories = res.data[1];
+      this.categories = res.data[1].slice(0, 8);
     });
 
     this.route.queryParams.subscribe((res) => {
-      // this.value = res['q'] || '';
+      this.type = res.type || 'product';
+      this.q = res.q || '';
       if (!this.firstReload) {
         this.getProducts();
       } else {
@@ -43,15 +47,15 @@ export class HomeComponent implements OnInit {
   }
 
   getProducts() {
-    this.productService.getProducts({ q: this.value }).subscribe((res) => {
+    this.productService.getProducts({ q: this.q }).subscribe((res) => {
       this.products = res.rows;
     });
   }
 
   search() {
-    if (!this.value) return;
+    if (!this.q) return;
 
-    this.setUrlValues({ q: this.value });
+    this.setUrlValues({ q: this.q });
   }
 
   setUrlValues(sObj) {

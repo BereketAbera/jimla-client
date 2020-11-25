@@ -21,17 +21,25 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
-  login(username: string, password: string) {
-    console.log(username, password);
+  login(username: string, password: string, returnUrl: string = '') {
+    // console.log(username, password);
     return this.http
       .post<any>(`${environment.identityUrl}/login`, { username, password })
       .pipe(
         map((user) => {
           // console.log(user);
-          // store user details and jwt token in local storage to keep user logged in between page refreshes
-          localStorage.setItem('user', JSON.stringify(user.data));
-          this.userSubject.next(user.data);
-          this.getUserUrl();
+          if (user && user.data && user.data.id) {
+            // console.log(user);
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+            localStorage.setItem('user', JSON.stringify(user.data));
+            this.userSubject.next(user.data);
+            if (returnUrl) {
+              this.router.navigate([returnUrl]);
+            } else {
+              this.getUserUrl();
+            }
+          }
+
           return user.data;
         })
       );

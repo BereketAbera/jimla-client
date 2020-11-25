@@ -1,3 +1,5 @@
+import { RetailerOrderListResolverService } from './../_resolvers/order/retailer-order-list-resolver.service';
+import { ProcessOrderComponent } from './components/process-order/process-order.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ActiveOrdersComponent } from './components/active-orders/active-orders.component';
@@ -15,17 +17,17 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent,
-        resolve: { data: CompanyProductResolverService }
+        component: DashboardComponent
+        // resolve: { data: CompanyProductResolverService }
       },
       {
         path: 'company_page/:company_name',
-        component: CompanyPageComponent,
-        resolve: { data: CompanyProductResolverService }
+        component: CompanyPageComponent
       },
       {
         path: 'orders',
-        component: ActiveOrdersComponent
+        component: ActiveOrdersComponent,
+        resolve: { data: RetailerOrderListResolverService }
       },
       {
         path: 'history',
@@ -34,6 +36,10 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent
+      },
+      {
+        path: 'process_order',
+        component: ProcessOrderComponent
       }
     ]
   }

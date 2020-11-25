@@ -9,10 +9,8 @@
     min-height: 16rem;
     padding: 2rem;
     color: #333;
-    // background-image: url("../../../../assets/img/company_background.jpg");
-    // background-repeat: no-repeat;
-    // background-size: cover;
-    // color: #fff;
+
+    text-align: center;
 
     .name {
       font-size: 4rem;
@@ -79,13 +77,16 @@
   &__container {
     display: flex;
     flex-wrap: wrap;
-    // justify-content: space-between;
     margin: 1rem 2rem;
     justify-content: center;
-    // &::after {
-    //   content: "";
-    //   flex: auto;
-    // }
+    flex-direction: column;
+    align-items: center;
+
+    &__product {
+      width: 100%;
+      margin: 1rem 0rem;
+      overflow: hidden;
+    }
   }
 }
 
@@ -98,11 +99,40 @@
 
   background-color: #001427;
   .input {
-    margin-left: 21%;
+    margin: 0 auto;
     max-width: 600px;
     align-self: left;
   }
 }
 ::ng-deep .ant-badge-count {
   background-color: #001427;
+}
+
+@media screen and (min-width: 600px) {
+  .result {
+    &__container {
+      flex-direction: row;
+
+      &__product {
+        width: 46%;
+        margin: 1rem;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .result {
+    &__container {
+      &__product {
+        width: 23%;
+      }
+    }
+  }
+
+  // .search {
+  //   .input {
+  //     margin-left: 21%;
+  //   }
+  // }
 }

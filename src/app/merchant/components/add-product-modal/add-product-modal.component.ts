@@ -15,8 +15,6 @@ export class AddProductModalComponent implements OnInit {
   loading = false;
   categories = [];
   subCategories = [];
-  // @Input('userId') userId;
-  // @Input('prevUpgraded') prevUpgraded;
 
   productForm: FormGroup;
 
@@ -51,6 +49,7 @@ export class AddProductModalComponent implements OnInit {
 
   addProductSubmit(): void {
     if (this.productForm.invalid) {
+      this.productForm.markAllAsTouched();
       this.error = 'Some filed are not valid';
     } else {
       this.loading = true;
@@ -77,7 +76,7 @@ export class AddProductModalComponent implements OnInit {
   }
 
   addSubCategory(event) {
-    console.log(event.value);
+    // console.log(event.value);
     this.productService
       .addCategorySubCategory(event.value, this.productForm.controls['categoryId'].value)
       .subscribe((res) => {

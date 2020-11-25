@@ -44,8 +44,16 @@ export class ProductsComponent implements OnInit {
     });
 
     this.productClose.subscribe((res) => {
-      if (res && res.success && res.userId) {
-        console.log(res);
+      if (res && res.success && res.product) {
+        // console.log(res);
+        this.firstReload = true;
+        this.router.navigate([], {
+          relativeTo: this.route,
+          queryParams: { page: 0 },
+          queryParamsHandling: 'merge'
+        });
+        this.getProducts();
+        this.firstReload = false;
         // this.changeType(res.userId, 'PAID');
       }
     });
@@ -93,7 +101,6 @@ export class ProductsComponent implements OnInit {
   addProduct() {
     this.modal.create({
       nzTitle: 'Add Product',
-      // nzComponentParams: { userId: 1, prevUpgraded: false },
       nzContent: AddProductModalComponent,
       nzAfterClose: this.productClose
     });

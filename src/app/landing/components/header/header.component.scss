@@ -7,11 +7,11 @@
   box-shadow: 0 2px 4px rgb(212, 212, 212);
 
   @media (min-width: 800px) {
-    padding: 1rem 4rem; // Desktop view
+    padding: 0.1rem 2rem; // Desktop view
   }
   // background-color: #d98e46;
   &__logo {
-    width: 15rem;
+    height: 5rem;
     cursor: pointer;
   }
 

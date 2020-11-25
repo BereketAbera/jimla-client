@@ -1,7 +1,7 @@
 <landing-header></landing-header>
 <div>
   <section class="search">
-    <nz-input-group
+    <!-- <nz-input-group
       class="input"
       nzSearch
       [nzSize]="20"
@@ -23,14 +23,15 @@
         <nz-option *ngFor="let o of listOfOption" [nzLabel]="o.text" [nzValue]="o.value">
         </nz-option>
       </nz-select>
+    </nz-input-group> -->
+    <nz-input-group class="input" [nzSize]="20" [nzSuffix]="suffixButton">
+      <input nz-input placeHolder="Search supplier code, name, product" [(ngModel)]="q" />
     </nz-input-group>
-    <ng-template #prefixTemplateUser>
-      <nz-select ngModel="Supplier">
-        <nz-option nzValue="Supplier" nzLabel="Supplier"></nz-option>
-        <nz-option nzValue="Product" nzLabel="Product"></nz-option>
+    <!-- <ng-template #prefixTemplateUser>
+      <nz-select ngModel="product">
+        <nz-option nzValue="product" nzLabel="Product"></nz-option>
       </nz-select>
-      <!-- <i nz-icon nzType="search"></i> -->
-    </ng-template>
+    </ng-template> -->
     <ng-template #suffixButton>
       <button nz-button nzType="primary" nzSearch>Search</button>
     </ng-template>
@@ -53,14 +54,26 @@
       <div class="content__header">
         <h3 class="content__header-text">Products</h3>
         <div>
-          <nz-badge [nzCount]="cartProducts.length" [nzOffset]="[6, -2]" [nzShowZero]="true">
+          <nz-badge
+            [nzCount]="cartProducts.length"
+            nz-popover
+            [nzPopoverContent]="contentTemplate"
+            [nzPopoverVisible]="orderAdded"
+            [nzPopoverTrigger]="null"
+            [nzOffset]="[6, -2]"
+            [nzShowZero]="true"
+          >
             <a class="content__cart" (click)="showModalTop()">Order Cart Items</a>
           </nz-badge>
+          <ng-template #contentTemplate
+            ><i nz-icon nzType="check" style="margin-right: 1rem; color: green"></i
+            ><span style="color: green">{{ popOverMessage }}</span></ng-template
+          >
         </div>
       </div>
 
       <div class="result__container">
-        <div *ngFor="let p of products; let i = index" style="width: 23%; margin: 1rem">
+        <div *ngFor="let p of products; let i = index" class="result__container__product">
           <app-product-small
             (addProductToCart)="addProductToCart($event)"
             *ngIf="i % 2 == 0"
@@ -82,8 +95,8 @@
   [(nzVisible)]="isVisibleTop"
   nzTitle="Pending Order Cart"
   nzOkText="Process"
-  nxCancelText="Cancel"
-  (nzOnCancel)="close()"
+  nzCancelText="Clear Cart"
+  (nzOnCancel)="clearCart()"
   (nzOnOk)="processOrder()"
 >
   <div *ngFor="let cp of cartProducts" style="display: flex; justify-content: space-between">

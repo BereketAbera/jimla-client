@@ -1,3 +1,4 @@
+import { AuthenticationService } from '@app/_services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,8 +11,12 @@ import { ProducerService } from '@app/_services/identity/producer.service';
 })
 export class LandingHomeComponent implements OnInit {
   searchField: FormControl;
-
-  constructor(private router: Router, private producerService: ProducerService) {}
+  q = '';
+  constructor(
+    private router: Router,
+    private producerService: ProducerService,
+    public authenticationService: AuthenticationService
+  ) {}
 
   ngOnInit(): void {
     this.searchField = new FormControl();
@@ -21,7 +26,7 @@ export class LandingHomeComponent implements OnInit {
     });
   }
 
-  onSumbit() {
+  onSubmit() {
     if (!this.searchField.value) {
       return;
     }

@@ -10,6 +10,8 @@ import { AuthenticationService } from '@app/_services/authentication.service';
 })
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  returnUrl = '';
+  error = '';
 
   constructor(
     private fb: FormBuilder,
@@ -18,6 +20,10 @@ export class LoginComponent implements OnInit {
     private authService: AuthenticationService
   ) {}
   ngOnInit(): void {
+    this.route.queryParamMap.subscribe((res) => {
+      this.returnUrl = res.get('returnUrl');
+    });
+
     this.loginForm = this.fb.group({
       username: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -31,12 +37,14 @@ export class LoginComponent implements OnInit {
     }
     const { username, password } = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe(
+    this.authService.login(username, password, this.returnUrl).subscribe(
       (data) => {
-        console.log(data);
-        // this.router.navigate(['/home']);
+        this.error = data;
+        // console.log(data);
       },
-      (error) => console.log(error)
+      (error) => {
+        this.error = error;
+      }
     );
   }
 }
