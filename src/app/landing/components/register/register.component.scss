@@ -1,25 +1,45 @@
 .form {
-  display: flex;
-  flex-direction: column;
-  font-size: 16px;
-//   border: 1px solid #eee;
-//   box-shadow: 0 1px 3px #eee;
-  margin: 2rem auto;
-  padding: 4rem 0;
-  // width: 65%;
-  color: #666;
-  .header{
-    font-size: 25px;
-    text-align: center;
-    color: #4e4b4b;
-    padding: 1rem;
-  }
-
-  i {
-    cursor: pointer;
+  &__container {
+    width: 95%;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
 
-[nz-form] {
-  max-width: 600px;
+.side {
+  display: none;
+  overflow: hidden;
+  position: relative;
+}
+
+.register {
+  &__form {
+    width: 100%;
+  }
+
+  &__input-wrapper {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__input {
+    width: 100%;
+    // color: #169dce;
+  }
+}
+
+@media screen and (min-width: 600px) {
+  .form {
+    &__container {
+      width: 60%;
+    }
+  }
+}
+
+@media screen and (min-width: 700px) {
+  .side {
+    display: flex;
+  }
 }

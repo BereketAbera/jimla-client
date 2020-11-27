@@ -1,3 +1,4 @@
+import { BroadcastErrorService } from './../_services/broadcast-error.service';
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -8,7 +9,10 @@ import { ThrowStmt } from '@angular/compiler';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private broadCastErrorService: BroadcastErrorService
+  ) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request).pipe(
@@ -28,12 +32,13 @@ export class ErrorInterceptor implements HttpInterceptor {
           case 400:
             this.authenticationService.routeToNotFound();
             break;
+          case 422:
+            this.broadCastErrorService.error.next(err);
+            break;
           default:
-            let x = '';
+            const error = err.error.message || err.statusText;
+            return throwError(error);
         }
-
-        const error = err.error.message || err.statusText;
-        return throwError(error);
       })
     );
   }

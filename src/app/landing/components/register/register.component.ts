@@ -1,3 +1,4 @@
+import { BroadcastErrorService } from './../../../_services/broadcast-error.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -8,53 +9,68 @@ import { UserService } from '@app/_services/user.service';
   styleUrls: ['./register.component.scss']
 })
 export class RegisterComponent implements OnInit {
-  userForm: FormGroup;
   producerForm: FormGroup;
+  // producerForm: FormGroup;
   continued: boolean;
   passwordVisible = false;
   password?: string;
-  constructor(private formBuilder: FormBuilder, private route: ActivatedRoute,
-    private router: Router, private userService: UserService) {
-    this.userForm = this.formBuilder.group({
+  confirmPasswordErrorText = 'Confirm password is required';
+  error = '';
+  submitted = false;
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService,
+    private broadcastErrorService: BroadcastErrorService
+  ) {
+    this.producerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       username: ['', Validators.required],
       email: ['', Validators.email],
       password: ['', Validators.required],
-      confirmPassword: ['', Validators.required]
-    });
-
-    this.producerForm = this.formBuilder.group({
+      confirmPassword: ['', Validators.required],
       companyName: ['', Validators.required],
       tinNumber: ['', Validators.required],
-      city: ['', Validators.required],
-      subCity: [''],
-      woreda: ['']
+      city: ['Addis Ababa', Validators.required],
+      subCity: ['Arada'],
+      woreda: [''],
+      description: [''],
+      lat: [8.9],
+      long: [38.7]
     });
   }
 
-  ngOnInit(): void {}
-
-  submitForm() {
-    if (!this.userForm.valid) {
-      return;
-    }
-    this.continued = true;
-    // window.scroll();
+  ngOnInit(): void {
+    this.broadcastErrorService.error.subscribe((res) => {
+      console.log(res);
+    });
   }
+
+  // submitForm() {
+  //   if (!this.producerForm.valid) {
+  //     return;
+  //   }
+  //   this.continued = true;
+  // }
   getCaptcha($event) {}
 
   registerForm() {
-    let { companyName, city, subCity, woreda, tinNumber } = this.producerForm.value;
-    this.userService
-      .addProducer({ ...this.userForm.value, companyName, city, subCity, woreda, tinNumber })
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.router.navigate(['/login']);
-        },
-        (error) => console.log(error)
-      );
+    if (this.producerForm.invalid) {
+      this.producerForm.markAllAsTouched();
+      return;
+    } else {
+    }
+    this.submitted = true;
+    this.userService.addProducer(this.producerForm.value).subscribe(
+      (data) => {
+        // console.log(data);
+        this.router.navigate(['/landing/login']);
+      },
+      (error) => console.log(error)
+    );
   }
 }

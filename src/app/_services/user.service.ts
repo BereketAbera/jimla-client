@@ -11,6 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   addProducer(user): Observable<any> {
-    return this.http.post(`${this.apiUrl}/producer/singup`, user);
+    console.log(user);
+    return this.http.post(`${this.apiUrl}/producer/signup`, user);
   }
 }
