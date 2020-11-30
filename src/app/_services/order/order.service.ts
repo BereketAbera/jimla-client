@@ -63,6 +63,14 @@ export class OrderService {
     return this.http.post(`${orderUrl}/orders_cart`, orderData);
   }
 
+  updateOrderStatus(id, order): Observable<any> {
+    return this.http.put(`${orderUrl}/orders/${id}`, order);
+  }
+
+  updateOrderGroupStatus(id, order_group): Observable<any> {
+    return this.http.put(`${orderUrl}/order_groups/${id}`, order_group);
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

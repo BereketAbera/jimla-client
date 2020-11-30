@@ -1,8 +1,9 @@
 import { OrderDetailModalComponent } from './../order-detail-modal/order-detail-modal.component';
 import { OrderService } from '@app/_services/order/order.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-merchant-order-group-list',
@@ -16,12 +17,14 @@ export class OrderGroupListComponent implements OnInit {
   pageSize = 0;
   firstReload = true;
   detailClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -89,5 +92,16 @@ export class OrderGroupListComponent implements OnInit {
       nzContent: OrderDetailModalComponent,
       nzAfterClose: this.detailClose
     });
+  }
+
+  changeStatus(event, status) {
+    this.orderService.updateOrderGroupStatus(event.id, { status }).subscribe((res) => {
+      // console.log(res);
+      if (res.orderGroup) {
+        this.notificationService.template(this.template, {});
+        this.getOrderGroups();
+      }
+    });
+    // console.log(event);
   }
 }

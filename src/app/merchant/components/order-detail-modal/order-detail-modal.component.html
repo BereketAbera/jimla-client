@@ -13,6 +13,12 @@
     >
   </div>
   <span>{{ retailer?.address_desc }}</span>
+  <span
+    style="padding: 0.3rem 2rem; border: 1px solid #aaa; border-radius: 0.5rem"
+    [style.borderColor]="data.status == 'PENDING' ? '#073241' : 'green'"
+    [style.color]="data.status == 'PENDING' ? '#073241' : 'green'"
+    >{{ data.status }}</span
+  >
   <div
     *ngFor="let order of orders"
     style="

@@ -1,8 +1,9 @@
 import { SingleOrderDetailModalComponent } from './../single-order-detail-modal/single-order-detail-modal.component';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { OrderService } from '@app/_services/order/order.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-merchant-order-list',
@@ -16,12 +17,14 @@ export class OrderListComponent implements OnInit {
   pageSize = 0;
   firstReload = true;
   detailClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -86,5 +89,15 @@ export class OrderListComponent implements OnInit {
       nzContent: SingleOrderDetailModalComponent,
       nzAfterClose: this.detailClose
     });
+  }
+
+  processOrder(event) {
+    this.orderService.updateOrderStatus(event.id, { status: 'DELIVERED' }).subscribe((res) => {
+      if (res.order) {
+        this.notificationService.template(this.template, {});
+        this.getOrders();
+      }
+    });
+    // console.log(event);
   }
 }

@@ -1,3 +1,5 @@
+import { GetConsumerAddressResolverService } from './../_resolvers/location/get-consumer-address-resolver.service';
+import { LocationsComponent } from './components/locations/locations.component';
 import { RetailerOrderListResolverService } from './../_resolvers/order/retailer-order-list-resolver.service';
 import { ProcessOrderComponent } from './components/process-order/process-order.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -32,6 +34,11 @@ const routes: Routes = [
       {
         path: 'history',
         component: OrderHistoryComponent
+      },
+      {
+        path: 'location',
+        component: LocationsComponent,
+        resolve: { data: GetConsumerAddressResolverService }
       },
       {
         path: 'profile',
