@@ -11,5 +11,11 @@ export class ProductHomeComponent implements OnInit {
   @Input() type;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.product);
+  }
+
+  formatCompanyName() {
+    return this.product.merchant.name.toLowerCase().replace(/ /g, '_');
+  }
 }

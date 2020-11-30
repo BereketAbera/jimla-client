@@ -53,9 +53,10 @@
                     </button>
                     <nz-dropdown-menu #actions="nzDropdownMenu">
                       <ul nz-menu>
+                        <li (click)="showDetail(data)" class="list_style" nz-menu-item>Detail</li>
                         <li class="list_style" nz-menu-item>Process</li>
-                        <li class="list_style" nz-menu-item>Failed</li>
-                        <li class="list_style" nz-menu-item>Delete</li>
+                        <!-- <li class="list_style" nz-menu-item>Failed</li> -->
+                        <!-- <li class="list_style" nz-menu-item>Delete</li> -->
                       </ul>
                     </nz-dropdown-menu>
                   </th>

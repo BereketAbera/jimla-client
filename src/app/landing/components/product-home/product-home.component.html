@@ -4,11 +4,7 @@
   <div class="description">
     {{ product.description }}
   </div>
-  <div
-    [routerLink]="'/landing/company_page/' + product.merchantId"
-    [queryParams]="{ q: q, type: type }"
-    class="button"
-  >
+  <div [routerLink]="'/landing/company_page/' + formatCompanyName()" class="button">
     <button nz-button nzType="primary">Company Page</button>
   </div>
 </div>

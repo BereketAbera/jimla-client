@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { SingleOrderDetailModalComponent } from './../single-order-detail-modal/single-order-detail-modal.component';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { OrderService } from '@app/_services/order/order.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-merchant-order-list',
@@ -13,11 +15,13 @@ export class OrderListComponent implements OnInit {
   page = 0;
   pageSize = 0;
   firstReload = true;
+  detailClose: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderSrevice: OrderService
+    private orderService: OrderService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +39,12 @@ export class OrderListComponent implements OnInit {
         this.firstReload = false;
       }
     });
+
+    this.detailClose.subscribe((res) => {});
   }
 
   getOrders() {
-    this.orderSrevice
+    this.orderService
       .getMerchantOrders({ page: this.page, pageSize: this.pageSize })
       .subscribe((res: { orders: any }) => {
         this.orders = res.orders.rows;
@@ -70,6 +76,15 @@ export class OrderListComponent implements OnInit {
       relativeTo: this.route,
       queryParams: queryParams,
       queryParamsHandling: 'merge'
+    });
+  }
+
+  showDetail(event) {
+    this.modal.create({
+      nzComponentParams: { data: event },
+      nzTitle: 'Order Detail',
+      nzContent: SingleOrderDetailModalComponent,
+      nzAfterClose: this.detailClose
     });
   }
 }

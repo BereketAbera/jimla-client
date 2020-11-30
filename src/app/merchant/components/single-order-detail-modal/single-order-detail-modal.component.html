@@ -1,0 +1,28 @@
+<div class="container">
+  <h2 class="header">{{ data?.product?.name }}</h2>
+  <h3>{{ data?.retailer?.name }}: {{ data?.retailer?.phone_number }}</h3>
+  <div class="">
+    Location:
+    <a
+      style="font-size: 1.8rem"
+      target="_blank"
+      [href]="
+        'https://www.google.com/maps/search/?api=1&query=' +
+        data?.retailer?.lat +
+        ',' +
+        data?.retailer?.long
+      "
+      >Open Location On map</a
+    >
+  </div>
+  <span>Address: {{ data?.retailer?.address_desc }}</span>
+  <div>
+    <span style="font-size: 2.2rem; font-weight: 900; color: #073241">
+      Quantity: {{ data?.quantity }}
+    </span>
+  </div>
+</div>
+
+<div *nzModalFooter>
+  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="destroyModal()">Ok</button>
+</div>

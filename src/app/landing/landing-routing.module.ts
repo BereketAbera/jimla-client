@@ -1,3 +1,4 @@
+import { RetailerRegisterComponent } from './components/retailer-register/retailer-register.component';
 import { HomeResolverService } from './../_resolvers/product/home-resolver.service';
 import { HomeSecondComponent } from './components/home-second/home-second.component';
 import { ServerErrorComponent } from './components/server-error/server-error.component';
@@ -38,6 +39,11 @@ const routes: Routes = [
         path: 'register',
         // canActivate: [AuthGuard],
         component: RegisterComponent
+      },
+      {
+        path: 'retailer_register',
+        // canActivate: [AuthGuard],
+        component: RetailerRegisterComponent
       },
       {
         path: 'server_error',

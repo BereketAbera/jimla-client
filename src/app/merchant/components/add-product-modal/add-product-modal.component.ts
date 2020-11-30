@@ -55,7 +55,7 @@ export class AddProductModalComponent implements OnInit {
       this.loading = true;
       this.error = '';
       this.productService
-        .addProduct(this.authenticationService.userValue.id, this.productForm.value)
+        .addProduct(this.authenticationService.userValue.producerId, this.productForm.value)
         .subscribe((res) => {
           this.loading = false;
           this.addSuccess(res);

@@ -5,15 +5,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class BroadcastErrorService {
-  public error: BehaviorSubject<any>;
+  public error: BehaviorSubject<any> = new BehaviorSubject<any>(false);
 
   constructor() {}
-
-  // broadCastError(err) {
-  //   this.error.next(err);
-  // }
-
-  // get errorValue() {
-  //   return this.error;
-  // }
 }

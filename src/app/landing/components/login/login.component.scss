@@ -1,33 +1,32 @@
-.container{
+.container {
   // background-color: rgb(255, 251, 246);
-  padding:4rem 1rem;
+  padding: 4rem 1rem;
   display: flex;
   justify-content: center;
+  overflow: hidden;
 }
 .login-form {
-  min-width: 330px;
+  min-width: 300px;
+  width: 100%;
   max-width: 450px;
-  margin:2rem auto;
+  margin: 2rem auto;
   border: 1px solid #eee;
   box-shadow: 0 1px 3px rgb(196, 180, 180);
   box-shadow: 0 2px 4px rgb(212, 212, 212);
   padding: 2.5rem;
   font-size: 18px;
   background-color: white;
-  &__item{
-    margin-top:1rem;
+  &__item {
+    margin-top: 1rem;
   }
   @media (min-width: 850px) {
-    margin:8rem auto;
-  
+    margin: 8rem auto;
   }
 }
 
-
-
 .header {
-    text-align: center;
-    margin:2rem 0;
+  text-align: center;
+  margin: 2rem 0;
 }
 
 .login-form-margin {
@@ -42,46 +41,41 @@
   width: 100%;
 }
 
-.slogan{
-  display: flex;
+.slogan {
+  display: none;
   flex-direction: column;
-  margin:2rem auto;
+  margin: 2rem auto;
   justify-content: center;
   align-items: center;
-  &__head{
+  &__head {
     // font-size: 3rem;
     cursor: pointer;
-    
   }
-  &__header{
-    display: none;
+  &__header {
+    display: flex;
     // font-size: 3rem;
     font-family: "Big Shoulders Stencil Text", cursive;
-    
   }
 
-  &__subititle{
+  &__subititle {
     display: none;
-    
   }
 }
 @media (min-width: 850px) {
-
-  .slogan{
+  .slogan {
+    display: flex;
     align-items: flex-start;
-    &__header{
+    &__header {
       display: flex;
       align-self: start;
       font-size: 4.5rem;
       font-weight: 800;
     }
-    &__subititle{
+    &__subititle {
       display: flex;
       align-self: start;
       font-size: 2rem;
       font-weight: 500;
     }
   }
- 
-
 }

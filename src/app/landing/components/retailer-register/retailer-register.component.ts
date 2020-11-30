@@ -1,16 +1,17 @@
-import { BroadcastErrorService } from './../../../_services/broadcast-error.service';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { UserService } from '@app/_services/user.service';
 import { ViewportScroller } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BroadcastErrorService } from '@app/_services/broadcast-error.service';
+import { UserService } from '@app/_services/user.service';
+
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-retailer-register',
+  templateUrl: './retailer-register.component.html',
+  styleUrls: ['./retailer-register.component.scss']
 })
-export class RegisterComponent implements OnInit {
-  producerForm: FormGroup;
+export class RetailerRegisterComponent implements OnInit {
+  consumerForm: FormGroup;
   continued: boolean;
   passwordVisible = false;
   password?: string;
@@ -26,7 +27,7 @@ export class RegisterComponent implements OnInit {
     private broadcastErrorService: BroadcastErrorService,
     private viewportScroller: ViewportScroller
   ) {
-    this.producerForm = this.formBuilder.group({
+    this.consumerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       phoneNumber: ['', Validators.required],
@@ -63,20 +64,21 @@ export class RegisterComponent implements OnInit {
   }
 
   get controls() {
-    return this.producerForm.controls;
+    return this.consumerForm.controls;
   }
 
   registerForm() {
     this.error = '';
-    if (this.producerForm.invalid) {
-      this.producerForm.markAllAsTouched();
+    if (this.consumerForm.invalid) {
+      this.consumerForm.markAllAsTouched();
       return;
     } else {
-      console.log('hello');
+      // console.log('hello');
       if (this.controls['password'].value != this.controls['confirmPassword'].value) {
+        // console.log('hello again');
         this.confirmPasswordErrorText = 'Your passwords do not match';
         this.controls['confirmPassword'].setErrors({ incorrect: true });
-        this.producerForm.markAllAsTouched();
+        this.consumerForm.markAllAsTouched();
         return;
       }
 
@@ -87,7 +89,7 @@ export class RegisterComponent implements OnInit {
       }
     }
     this.submitted = true;
-    this.userService.addProducer(this.producerForm.value).subscribe(
+    this.userService.addConsumer(this.consumerForm.value).subscribe(
       (data) => {
         this.submitted = false;
         this.router.navigate(['/landing/login']);

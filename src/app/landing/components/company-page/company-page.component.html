@@ -1,46 +1,18 @@
 <landing-header></landing-header>
-<div>
+<!-- <div>
   <section class="search">
-    <!-- <nz-input-group
-      class="input"
-      nzSearch
-      [nzSize]="20"
-      [nzPrefix]="prefixTemplateUser"
-      [nzSuffix]="suffixButton"
-    >
-      <nz-select
-        style="flex: 1"
-        nzShowSearch
-        nzServerSearch
-        nzBorderless
-        nzAllowClear
-        [nzPlaceHolder]="searchPlaceHolder"
-        [(ngModel)]="selectedValue"
-        [nzShowArrow]="false"
-        [nzFilterOption]="nzFilterOption"
-        (nzOnSearch)="search($event)"
-      >
-        <nz-option *ngFor="let o of listOfOption" [nzLabel]="o.text" [nzValue]="o.value">
-        </nz-option>
-      </nz-select>
-    </nz-input-group> -->
     <nz-input-group class="input" [nzSize]="20" [nzSuffix]="suffixButton">
       <input nz-input placeHolder="Search supplier code, name, product" [(ngModel)]="q" />
     </nz-input-group>
-    <!-- <ng-template #prefixTemplateUser>
-      <nz-select ngModel="product">
-        <nz-option nzValue="product" nzLabel="Product"></nz-option>
-      </nz-select>
-    </ng-template> -->
     <ng-template #suffixButton>
       <button nz-button nzType="primary" nzSearch>Search</button>
     </ng-template>
   </section>
-</div>
+</div> -->
 <div class="company_page">
-  <div class="header">
+  <div class="header search">
     <h2 class="name">{{ merchant?.name }} : {{ merchantCode?.code }}</h2>
-    <div style="width: 20rem; height: 0.5rem; margin-top: -1.5rem; background-color: #003241"></div>
+    <div style="width: 20rem; height: 0.5rem; margin-top: -1.5rem; background-color: #fff"></div>
     <h5 class="description">
       Tin No: {{ merchant?.tinNumber }}, Phone No: {{ merchant?.phoneNumber }}
     </h5>

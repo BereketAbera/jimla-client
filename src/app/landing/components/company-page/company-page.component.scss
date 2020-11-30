@@ -8,22 +8,25 @@
     align-items: center;
     min-height: 16rem;
     padding: 2rem;
-    color: #333;
+    color: #fff;
 
     text-align: center;
 
     .name {
       font-size: 4rem;
       font-weight: 900;
+      color: #fff;
     }
 
     .description {
       font-size: 2rem;
       font-weight: 600;
+      color: #fff;
     }
 
     .address {
       font-size: 1.8rem;
+      color: #fff;
     }
   }
 }

@@ -15,6 +15,7 @@ export class CompanyProductResolverService {
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let company_name = route.paramMap.get('company_name');
+    company_name = company_name.replace(/_/g, ' ');
     return this.aggregatorService.getCompanyPageData(company_name).pipe(
       mergeMap((data: any) => {
         if (data) {

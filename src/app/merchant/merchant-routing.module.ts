@@ -1,4 +1,3 @@
-import { ProfileComponent } from './../retailer/components/profile/profile.component';
 import { ProductsComponent } from './components/products/products.component';
 import { MerchantComponent } from './merchant.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +9,7 @@ import { GetOrderResolverService } from '@app/_resolvers/order/get-order-resolve
 import { OrderGroupListResolverService } from '@app/_resolvers/order/order-group-list-resolver.service';
 import { OrderListResolverService } from '@app/_resolvers/order/order-list-resolver.service';
 import { CompanyProductsResolverService } from '@app/_resolvers/product/company-products-resolver.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 const routes: Routes = [
   {

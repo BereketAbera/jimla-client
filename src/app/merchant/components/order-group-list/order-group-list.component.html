@@ -1,6 +1,6 @@
 <merchant-navigation></merchant-navigation>
 <div class="main_container main_content_container">
-  <h2 class="main_content_title">Voice Orders</h2>
+  <h2 class="main_content_title">All Grouped Orders</h2>
   <div
     nz-row
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
@@ -17,7 +17,7 @@
                   <th>Phone Number</th>
                   <th>Status</th>
                   <th>Created</th>
-                  <th>Action</th>
+                  <th>More</th>
                 </tr>
               </thead>
               <tbody>
@@ -38,15 +38,35 @@
                   <td>
                     <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
                   </td>
-                  <th>
+                  <!-- <th>
                     <button
-                      (click)="process(data)"
-                      [disabled]="data.status != 'PENDING'"
+                      
+                      [disabled]=""
                       nz-button
                       nzType="dashed"
                     >
                       Process
                     </button>
+                  </th> -->
+                  <th>
+                    <button nz-button nz-dropdown [nzDropdownMenu]="actions">
+                      More
+                      <i nz-icon nzType="down"></i>
+                    </button>
+                    <nz-dropdown-menu #actions="nzDropdownMenu">
+                      <ul nz-menu>
+                        <li (click)="showDetail(data)" class="list_style" nz-menu-item>Detail</li>
+                        <li
+                          (click)="process(data)"
+                          *ngIf="data.status == 'PENDING'"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Process
+                        </li>
+                        <!-- <li class="list_style" nz-menu-item>Delete</li> -->
+                      </ul>
+                    </nz-dropdown-menu>
                   </th>
                 </tr>
               </tbody>

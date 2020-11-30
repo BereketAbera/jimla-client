@@ -1,6 +1,8 @@
+import { OrderDetailModalComponent } from './../order-detail-modal/order-detail-modal.component';
 import { OrderService } from '@app/_services/order/order.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
+import { NzModalService } from 'ng-zorro-antd/modal';
 
 @Component({
   selector: 'app-merchant-order-group-list',
@@ -13,11 +15,13 @@ export class OrderGroupListComponent implements OnInit {
   page = 0;
   pageSize = 0;
   firstReload = true;
+  detailClose: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderSrevice: OrderService
+    private orderService: OrderService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit(): void {
@@ -34,10 +38,12 @@ export class OrderGroupListComponent implements OnInit {
         this.firstReload = false;
       }
     });
+
+    this.detailClose.subscribe((res) => {});
   }
 
   getOrderGroups() {
-    this.orderSrevice
+    this.orderService
       .getMerchantOrderGroups({ page: this.page, pageSize: this.pageSize })
       .subscribe((res: { order_groups: any }) => {
         this.order_groups = res.order_groups.rows;
@@ -74,5 +80,14 @@ export class OrderGroupListComponent implements OnInit {
 
   process(order_group) {
     this.router.navigate([`/merchant/order_groups/create_order_voice/${order_group.id}`]);
+  }
+
+  showDetail(event) {
+    this.modal.create({
+      nzComponentParams: { data: event },
+      nzTitle: 'Order Group Detail',
+      nzContent: OrderDetailModalComponent,
+      nzAfterClose: this.detailClose
+    });
   }
 }
