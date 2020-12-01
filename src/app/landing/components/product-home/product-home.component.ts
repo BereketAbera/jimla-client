@@ -12,7 +12,7 @@ export class ProductHomeComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.product);
+    // console.log(this.product);
   }
 
   formatCompanyName() {

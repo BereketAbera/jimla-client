@@ -10,7 +10,7 @@
       <input nz-input placeHolder="Search supplier code, name, product" [(ngModel)]="q" />
     </nz-input-group>
     <ng-template #prefixTemplateUser>
-      <nz-select [ngModel]="type">
+      <nz-select [(ngModel)]="type">
         <nz-option nzValue="supplier" nzLabel="Supplier"></nz-option>
         <nz-option nzValue="product" nzLabel="Product"></nz-option>
       </nz-select>
@@ -32,7 +32,11 @@
         nzIcon="plus"
       >
         <ul>
-          <li *ngFor="let sub_category of category.sub_categories" nz-menu-item>
+          <li
+            (click)="subCategoryChanged(sub_category)"
+            *ngFor="let sub_category of category.sub_categories"
+            nz-menu-item
+          >
             {{ sub_category.name }}
           </li>
         </ul>
@@ -48,10 +52,24 @@
         <div class="sort">
           <span class="sort__lebel">Sort By:</span>
           <span class="sort__input">
-            <nz-select nzSize="small" ngModel="created_at">
-              <nz-option nzValue="created_at" nzLabel="Created Date"></nz-option>
+            <nz-select
+              (ngModelChange)="sortChanged($event, 'name')"
+              nzSize="small"
+              [(ngModel)]="sort_by"
+            >
+              <nz-option nzValue="createdAt" nzLabel="Created Date"></nz-option>
               <nz-option nzValue="name" nzLabel="Product Name"></nz-option>
-              <nz-option nzValue="company_name" nzLabel="Company Name"></nz-option>
+              <!-- <nz-option nzValue="company_name" nzLabel="Company Name"></nz-option> -->
+            </nz-select>
+          </span>
+          <span class="sort__input">
+            <nz-select
+              (ngModelChange)="sortChanged($event, 'direction')"
+              nzSize="small"
+              [(ngModel)]="direction"
+            >
+              <nz-option nzValue="ASC" nzLabel="ASC"></nz-option>
+              <nz-option nzValue="DESC" nzLabel="DESC"></nz-option>
             </nz-select>
           </span>
         </div>
