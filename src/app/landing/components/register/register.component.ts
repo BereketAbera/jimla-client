@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
+import { ViewportScroller } from '@angular/common';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -10,7 +11,6 @@ import { UserService } from '@app/_services/user.service';
 })
 export class RegisterComponent implements OnInit {
   producerForm: FormGroup;
-  // producerForm: FormGroup;
   continued: boolean;
   passwordVisible = false;
   password?: string;
@@ -23,7 +23,8 @@ export class RegisterComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private broadcastErrorService: BroadcastErrorService
+    private broadcastErrorService: BroadcastErrorService,
+    private viewportScroller: ViewportScroller
   ) {
     this.producerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -34,10 +35,10 @@ export class RegisterComponent implements OnInit {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       companyName: ['', Validators.required],
-      tinNumber: ['', Validators.required],
+      tinNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       city: ['Addis Ababa', Validators.required],
       subCity: ['Arada'],
-      woreda: [''],
+      woreda: ['woreda'],
       description: [''],
       lat: [8.9],
       long: [38.7]
@@ -46,28 +47,49 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.broadcastErrorService.error.subscribe((res) => {
-      console.log(res);
+      if (res) {
+        let errStr = '';
+        if (typeof res.error.data === 'object') {
+          let values = Object.values(res.error.data);
+          values.map((value) => {
+            errStr += `${value},`;
+          });
+          this.viewportScroller.scrollToAnchor('form_title');
+        }
+        this.error = errStr ? 'Validation Error: ' + errStr : '';
+        this.submitted = false;
+      }
     });
   }
 
-  // submitForm() {
-  //   if (!this.producerForm.valid) {
-  //     return;
-  //   }
-  //   this.continued = true;
-  // }
-  getCaptcha($event) {}
+  get controls() {
+    return this.producerForm.controls;
+  }
 
   registerForm() {
+    this.error = '';
     if (this.producerForm.invalid) {
       this.producerForm.markAllAsTouched();
       return;
     } else {
+      console.log('hello');
+      if (this.controls['password'].value != this.controls['confirmPassword'].value) {
+        this.confirmPasswordErrorText = 'Your passwords do not match';
+        this.controls['confirmPassword'].setErrors({ incorrect: true });
+        this.producerForm.markAllAsTouched();
+        return;
+      }
+
+      if (isNaN(this.controls['tinNumber'].value)) {
+        // console.log('value is not a number');
+        this.controls['tinNumber'].setErrors({ incorrect: true });
+        return;
+      }
     }
     this.submitted = true;
     this.userService.addProducer(this.producerForm.value).subscribe(
       (data) => {
-        // console.log(data);
+        this.submitted = false;
         this.router.navigate(['/landing/login']);
       },
       (error) => console.log(error)

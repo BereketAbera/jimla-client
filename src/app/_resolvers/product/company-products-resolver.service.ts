@@ -19,7 +19,7 @@ export class CompanyProductsResolverService {
     let page = route.queryParamMap.get('page') || 0;
     let pageSize = route.queryParamMap.get('pageSize') || 5;
     return this.productService
-      .getMerchantProduct(this.authenticationService.userValue.id, { page, pageSize })
+      .getMerchantProduct(this.authenticationService.userValue.producerId, { page, pageSize })
       .pipe(
         mergeMap((data: any) => {
           if (data) {

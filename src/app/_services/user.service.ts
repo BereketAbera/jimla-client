@@ -11,7 +11,7 @@ export class UserService {
   constructor(private http: HttpClient) {}
 
   addProducer(user): Observable<any> {
-    console.log(user);
+    // console.log(user);
     return this.http.post(`${this.apiUrl}/auth/producer/signup`, user);
   }
 
@@ -33,5 +33,9 @@ export class UserService {
 
   updateConsumer(body):Observable<any>{
     return this.http.put(`${this.apiUrl}/consumer`,body)
+  }
+
+  addConsumer(user): Observable<any> {
+    return this.http.post(`${this.apiUrl}/consumer/signup`, user);
   }
 }

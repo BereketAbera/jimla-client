@@ -1,6 +1,6 @@
 <merchant-navigation></merchant-navigation>
 <div class="main_container main_content_container">
-  <h2 class="main_content_title">Voice Orders</h2>
+  <h2 class="main_content_title">All Grouped Orders</h2>
   <div
     nz-row
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
@@ -14,10 +14,11 @@
               <thead>
                 <tr>
                   <th>Code</th>
+                  <th>Type</th>
                   <th>Phone Number</th>
                   <th>Status</th>
                   <th>Created</th>
-                  <th>Action</th>
+                  <th>More</th>
                 </tr>
               </thead>
               <tbody>
@@ -25,6 +26,11 @@
                   <td>
                     <span style="font-size: 1.8rem; font-weight: bold; color: #555">{{
                       data.code
+                    }}</span>
+                  </td>
+                  <td>
+                    <span style="font-size: 1.8rem; font-weight: 200">{{
+                      data.audioLink ? "VOICE" : "CART"
                     }}</span>
                   </td>
                   <td>
@@ -38,15 +44,44 @@
                   <td>
                     <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
                   </td>
-                  <th>
+                  <!-- <th>
                     <button
-                      (click)="process(data)"
-                      [disabled]="data.status != 'PENDING'"
+                      
+                      [disabled]=""
                       nz-button
                       nzType="dashed"
                     >
                       Process
                     </button>
+                  </th> -->
+                  <th>
+                    <button nz-button nz-dropdown [nzDropdownMenu]="actions">
+                      More
+                      <i nz-icon nzType="down"></i>
+                    </button>
+                    <nz-dropdown-menu #actions="nzDropdownMenu">
+                      <ul nz-menu>
+                        <li (click)="showDetail(data)" class="list_style" nz-menu-item>Detail</li>
+                        <li
+                          (click)="process(data)"
+                          *ngIf="data.status != 'DELIVERED' && data.audioLink"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Process
+                        </li>
+
+                        <li
+                          *ngIf="data.status != 'DELIVERED'"
+                          (click)="changeStatus(data, 'DELIVERED')"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Delivered
+                        </li>
+                        <!-- <li class="list_style" nz-menu-item>Delete</li> -->
+                      </ul>
+                    </nz-dropdown-menu>
                   </th>
                 </tr>
               </tbody>
@@ -74,3 +109,10 @@
     </div>
   </div>
 </div>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Updated
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+</ng-template>

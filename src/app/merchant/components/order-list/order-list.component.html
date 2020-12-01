@@ -41,7 +41,17 @@
                     <span nz-typography nzType="secondary">{{ data.merchant.code }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.status }}</span>
+                    <span
+                      nz-typography
+                      [style.color]="
+                        data.status == 'DELIVERED'
+                          ? 'gray'
+                          : data.status == 'PENDING'
+                          ? '#073241'
+                          : 'green'
+                      "
+                      >{{ data.status }}</span
+                    >
                   </td>
                   <td>
                     <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
@@ -53,9 +63,17 @@
                     </button>
                     <nz-dropdown-menu #actions="nzDropdownMenu">
                       <ul nz-menu>
-                        <li class="list_style" nz-menu-item>Process</li>
-                        <li class="list_style" nz-menu-item>Failed</li>
-                        <li class="list_style" nz-menu-item>Delete</li>
+                        <li (click)="showDetail(data)" class="list_style" nz-menu-item>Detail</li>
+                        <li
+                          *ngIf="data.status != 'DELIVERED'"
+                          (click)="processOrder(data)"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Process
+                        </li>
+                        <!-- <li class="list_style" nz-menu-item>Failed</li> -->
+                        <!-- <li class="list_style" nz-menu-item>Delete</li> -->
                       </ul>
                     </nz-dropdown-menu>
                   </th>
@@ -85,3 +103,11 @@
     </div>
   </div>
 </div>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Updated
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>

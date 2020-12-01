@@ -1,0 +1,43 @@
+<div class="container">
+  <h2 class="header">{{ retailer?.name }}</h2>
+  <span>{{ retailer?.phone_number }}</span>
+  <div class="">
+    Location:
+    <a
+      style="font-size: 1.8rem"
+      target="_blank"
+      [href]="
+        'https://www.google.com/maps/search/?api=1&query=' + retailer?.lat + ',' + retailer?.long
+      "
+      >Open Location On map</a
+    >
+  </div>
+  <span>{{ retailer?.address_desc }}</span>
+  <span
+    style="padding: 0.3rem 2rem; border: 1px solid #aaa; border-radius: 0.5rem"
+    [style.borderColor]="data.status == 'PENDING' ? '#073241' : 'green'"
+    [style.color]="data.status == 'PENDING' ? '#073241' : 'green'"
+    >{{ data.status }}</span
+  >
+  <div
+    *ngFor="let order of orders"
+    style="
+      display: flex;
+      justify-content: space-between;
+      width: 80%;
+      border: 1px solid #aaa;
+      border-radius: 5rem;
+      padding: 0.5rem 2rem;
+      margin: 0.5rem 0rem;
+      align-items: center;
+    "
+  >
+    <span>{{ order?.product?.name }}</span>
+    <span style="font-size: 1.8rem; font-weight: 900; color: #073241">{{ order?.quantity }}</span>
+  </div>
+</div>
+
+<div *nzModalFooter>
+  <!-- <button nz-button nzType="default" (click)="destroyModal()">Cancel</button> -->
+  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="destroyModal()">Ok</button>
+</div>

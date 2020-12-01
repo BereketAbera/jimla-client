@@ -61,7 +61,7 @@ export class ProductsComponent implements OnInit {
 
   getProducts() {
     this.productService
-      .getMerchantProduct(this.authenticationService.userValue.id, {
+      .getMerchantProduct(this.authenticationService.userValue.producerId, {
         page: this.page,
         pageSize: this.pageSize
       })

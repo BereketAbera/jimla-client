@@ -1,0 +1,55 @@
+<retailer-navigation></retailer-navigation>
+
+<div class="main_container main_content_container">
+  <h2 class="main_content_title">Locations</h2>
+  <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]" style="padding: 1rem">
+    <div
+      nz-col
+      [nzXs]="24"
+      [nzSm]="12"
+      [nzMd]="6"
+      [nzLg]="5"
+      style="
+        height: 18rem;
+        background-color: #073241;
+        margin: 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 2rem;
+        color: #fff;
+        font-weight: 900;
+        font-size: 2rem;
+        text-align: center;
+      "
+      *ngFor="let location of locations"
+    >
+      <span>{{ location?.phoneNumber }}</span
+      ><span>{{ location?.description }}</span>
+    </div>
+    <div
+      (click)="addLocation()"
+      nz-col
+      [nzXs]="24"
+      [nzSm]="12"
+      [nzMd]="6"
+      [nzLg]="5"
+      style="
+        height: 18rem;
+        border: 1px solid #aaa;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 1rem;
+        cursor: pointer;
+        color: #aaa;
+        border-radius: 2rem;
+      "
+    >
+      <i nz-icon nzType="plus" nzTheme="outline" style="font-size: 8rem; color: #aaa"></i>
+      <span>Add Other Location</span>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,14 @@
   <!-- <img src="assets/img/logo.png" routerLink="/landing" alt="" class="navigation__logo" /> -->
   <div routerLink="/landing" style="display: flex; align-items: center; cursor: pointer">
     <img src="assets/img/logo.png" alt="" class="navigation__logo" />
-    <span style="font-size: 4rem; text-transform: uppercase; color: #083443; margin-left: 1rem"
+    <span
+      style="
+        font-family: 'Big Shoulders Stencil Text', cursive;
+        font-size: 4rem;
+        text-transform: uppercase;
+        color: #083443;
+        margin-left: 1rem;
+      "
       >Jimla</span
     >
   </div>
@@ -25,6 +32,16 @@
       nzType="primary"
       class="btn small_side_margin"
       >ተመዝገብ</a
+    >
+
+    <a
+      *ngIf="!authenticationService.userValue"
+      routerLink="/landing/retailer_register"
+      nz-button
+      nzType="primary"
+      class="btn small_side_margin"
+    >
+      ለገዢ ተመዝገብ</a
     >
 
     <a

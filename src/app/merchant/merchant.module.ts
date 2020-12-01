@@ -35,6 +35,9 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ProductsComponent } from './components/products/products.component';
 import { AddProductModalComponent } from './components/add-product-modal/add-product-modal.component';
+import { ProfileComponent } from './components/profile/profile.component';
+import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
+import { SingleOrderDetailModalComponent } from './components/single-order-detail-modal/single-order-detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,10 @@ import { AddProductModalComponent } from './components/add-product-modal/add-pro
     OrderListComponent,
     NavigationComponent,
     ProductsComponent,
-    AddProductModalComponent
+    AddProductModalComponent,
+    ProfileComponent,
+    OrderDetailModalComponent,
+    SingleOrderDetailModalComponent
   ],
   imports: [
     CommonModule,

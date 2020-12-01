@@ -3,25 +3,23 @@
   <div class="side">
     <img src="assets/img/wave.svg" style="position: absolute; top: -8rem" alt="" />
     <div style="margin-top: 35vh; margin-left: 12rem">
-      <div
-        routerLink="/landing"
-        style="
-          display: flex;
-          align-items: center;
-          cursor: pointer;
-          flex-direction: column;
-          justify-content: center;
-        "
-      >
+      <div routerLink="/landing" class="side__logo">
         <img src="assets/img/logo.png" style="width: 18rem" alt="" />
-        <span style="font-size: 4rem; text-transform: uppercase; color: #083443; margin-left: 1rem"
+        <span
+          style="
+            font-family: 'Big Shoulders Stencil Text', cursive;
+            font-size: 4rem;
+            text-transform: uppercase;
+            color: #083443;
+            /* margin-left: 1rem; */
+          "
           >Jimla</span
         >
       </div>
     </div>
   </div>
   <div class="form__container">
-    <h2 style="font-size: 2.5rem">Merchant Sign Up</h2>
+    <h2 style="font-size: 2.5rem" id="form_title">Merchant Sign Up</h2>
     <form
       nz-form
       [nzLayout]="'vertical'"
@@ -41,10 +39,7 @@
         <nz-form-control
           nzErrorTip="Company name is required"
           [nzValidateStatus]="
-            producerForm.controls['companyName'].invalid &&
-            producerForm.controls['companyName'].touched
-              ? 'error'
-              : ''
+            controls['companyName'].invalid && controls['companyName'].touched ? 'error' : ''
           "
           class="register__input"
         >
@@ -62,10 +57,7 @@
           <nz-form-label nzRequired [nzSpan]="24" nzFor="firstName">First Name</nz-form-label>
           <nz-form-control
             [nzValidateStatus]="
-              producerForm.controls['firstName'].invalid &&
-              producerForm.controls['firstName'].touched
-                ? 'error'
-                : ''
+              controls['firstName'].invalid && controls['firstName'].touched ? 'error' : ''
             "
             nzErrorTip="First name is required"
             class="register__input"
@@ -84,9 +76,7 @@
           <nz-form-control
             nzErrorTip="Last name is required"
             [nzValidateStatus]="
-              producerForm.controls['lastName'].invalid && producerForm.controls['lastName'].touched
-                ? 'error'
-                : ''
+              controls['lastName'].invalid && controls['lastName'].touched ? 'error' : ''
             "
             class="register__input"
           >
@@ -105,9 +95,7 @@
         <nz-form-control
           nzErrorTip="Username is required"
           [nzValidateStatus]="
-            producerForm.controls['username'].invalid && producerForm.controls['username'].touched
-              ? 'error'
-              : ''
+            controls['username'].invalid && controls['username'].touched ? 'error' : ''
           "
           class="register__input"
         >
@@ -124,11 +112,7 @@
         <nz-form-label nzRequired [nzSpan]="24" nzFor="email">Email</nz-form-label>
         <nz-form-control
           nzErrorTip="Please enter a valid email"
-          [nzValidateStatus]="
-            producerForm.controls['email'].invalid && producerForm.controls['email'].touched
-              ? 'error'
-              : ''
-          "
+          [nzValidateStatus]="controls['email'].invalid && controls['email'].touched ? 'error' : ''"
           class="register__input"
         >
           <nz-input-group>
@@ -142,10 +126,7 @@
           <nz-form-control
             nzErrorTip="Phone number is required"
             [nzValidateStatus]="
-              producerForm.controls['phoneNumber'].invalid &&
-              producerForm.controls['phoneNumber'].touched
-                ? 'error'
-                : ''
+              controls['phoneNumber'].invalid && controls['phoneNumber'].touched ? 'error' : ''
             "
             class="register__input"
           >
@@ -163,12 +144,9 @@
         <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
           <nz-form-label nzRequired [nzSpan]="12" nzFor="tinNumber">Tin Number</nz-form-label>
           <nz-form-control
-            nzErrorTip="Tin number is required"
+            nzErrorTip="Tin number should be a number and 10 characters long"
             [nzValidateStatus]="
-              producerForm.controls['tinNumber'].invalid &&
-              producerForm.controls['tinNumber'].touched
-                ? 'error'
-                : ''
+              controls['tinNumber'].invalid && controls['tinNumber'].touched ? 'error' : ''
             "
             class="register__input"
           >
@@ -190,10 +168,7 @@
         >
         <nz-form-control
           [nzValidateStatus]="
-            producerForm.controls['description'].invalid &&
-            producerForm.controls['description'].touched
-              ? 'error'
-              : ''
+            controls['description'].invalid && controls['description'].touched ? 'error' : ''
           "
           nzErrorTip="Product name is required"
           class="register__input"
@@ -211,11 +186,7 @@
         <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
           <nz-form-label nzRequired [nzSpan]="24" nzFor="city">City</nz-form-label>
           <nz-form-control
-            [nzValidateStatus]="
-              producerForm.controls['city'].invalid && producerForm.controls['city'].touched
-                ? 'error'
-                : ''
-            "
+            [nzValidateStatus]="controls['city'].invalid && controls['city'].touched ? 'error' : ''"
             nzErrorTip="Product name is required"
             class="register__input"
           >
@@ -227,9 +198,7 @@
           <nz-form-control
             nzErrorTip="Product subCity is required"
             [nzValidateStatus]="
-              producerForm.controls['subCity'].invalid && producerForm.controls['subCity'].touched
-                ? 'error'
-                : ''
+              controls['subCity'].invalid && controls['subCity'].touched ? 'error' : ''
             "
             class="register__input"
           >

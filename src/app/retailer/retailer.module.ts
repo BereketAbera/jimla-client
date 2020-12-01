@@ -1,4 +1,3 @@
-import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -35,27 +34,27 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ActiveOrdersComponent } from './components/active-orders/active-orders.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
-import { ProductSmallComponent } from './components/product-small/product-small.component';
 import { ProcessOrderComponent } from './components/process-order/process-order.component';
 import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
 import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
+import { LocationsComponent } from './components/locations/locations.component';
+import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 
 @NgModule({
   declarations: [
     RetailerComponent,
     NavigationComponent,
-    CompanyPageComponent,
     NavigationComponent,
     DashboardComponent,
     ActiveOrdersComponent,
     OrderHistoryComponent,
     ProfileComponent,
-    ProductSmallComponent,
-    ProductSmallImageComponent,
     ProcessOrderComponent,
     ProfileCompanyComponent,
-    ProfilePersonalComponent
+    ProfilePersonalComponent,
+    ProcessOrderComponent,
+    LocationsComponent,
+    AddLocationModalComponent
   ],
   imports: [
     CommonModule,

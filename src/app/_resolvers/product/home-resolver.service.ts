@@ -15,7 +15,13 @@ export class HomeResolverService {
   ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    let params = { q: route.queryParamMap.get('q') || '' };
+    let params = {
+      q: route.queryParamMap.get('q') || '',
+      type: route.queryParamMap.get('type') || 'product',
+      subCategoryId: route.queryParamMap.get('subCat') || null,
+      sort_by: route.queryParamMap.get('sort_by') || 'createdAt',
+      direction: route.queryParamMap.get('direction') || 'DESC'
+    };
     return forkJoin(
       this.productService.getProducts(params),
       this.categoryListService.getCategories()

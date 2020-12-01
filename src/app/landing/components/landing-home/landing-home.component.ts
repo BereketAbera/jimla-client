@@ -27,9 +27,9 @@ export class LandingHomeComponent implements OnInit {
   }
 
   onSubmit() {
-    if (!this.searchField.value) {
-      return;
-    }
+    // if (!this.searchField.value) {
+    //   return;
+    // }
 
     this.router.navigate(['/landing/home'], {
       queryParams: { q: this.searchField.value, type: 'product' }
