@@ -1,0 +1,28 @@
+.profile {
+  display: flex;
+  margin: 3rem;
+
+  &-nav {
+    margin: 1rem;
+
+    .navigation {
+      border-radius: 2rem;
+      box-shadow: 1px 1px 2px rgb(230, 235, 236);
+      font-size: 1.8rem;
+      li {
+        font-size: 1.5rem;
+      }
+    }
+  }
+
+  &-content {
+    background-color: white;
+    margin: 1rem;
+    border-radius: 2rem;
+    width: 100%;
+    padding: 3rem;
+    box-shadow: 1px 3px 6px rgb(229, 233, 235);
+  }
+
+  
+}

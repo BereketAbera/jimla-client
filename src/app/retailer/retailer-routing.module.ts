@@ -9,6 +9,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { CompanyProductResolverService } from '@app/_resolvers/product/company-product-resolver.service';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
+import { UserResolverService } from '@app/_resolvers/identity/user-resolver.service';
+import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
+import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
 
 const routes: Routes = [
   {
@@ -35,7 +38,20 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+       
+        children: [
+          {
+            path: '',
+            component: ProfilePersonalComponent,
+            resolve: { data: UserResolverService },
+          },
+          {
+            path: 'company',
+            component: ProfileCompanyComponent,
+            resolve: { data: UserResolverService },
+          }
+        ]
       },
       {
         path: 'process_order',

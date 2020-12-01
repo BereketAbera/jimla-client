@@ -37,6 +37,8 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ProductSmallImageComponent } from './components/product-small-image/product-small-image.component';
 import { ProductSmallComponent } from './components/product-small/product-small.component';
 import { ProcessOrderComponent } from './components/process-order/process-order.component';
+import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
+import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +52,9 @@ import { ProcessOrderComponent } from './components/process-order/process-order.
     ProfileComponent,
     ProductSmallComponent,
     ProductSmallImageComponent,
-    ProcessOrderComponent
+    ProcessOrderComponent,
+    ProfileCompanyComponent,
+    ProfilePersonalComponent
   ],
   imports: [
     CommonModule,

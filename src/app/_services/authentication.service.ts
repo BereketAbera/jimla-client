@@ -24,7 +24,7 @@ export class AuthenticationService {
   login(username: string, password: string, returnUrl: string = '') {
     // console.log(username, password);
     return this.http
-      .post<any>(`${environment.identityUrl}/login`, { username, password })
+      .post<any>(`${environment.identityUrl}/auth/login`, { username, password })
       .pipe(
         map((user) => {
           // console.log(user);

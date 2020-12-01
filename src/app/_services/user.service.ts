@@ -12,6 +12,14 @@ export class UserService {
 
   addProducer(user): Observable<any> {
     console.log(user);
-    return this.http.post(`${this.apiUrl}/producer/signup`, user);
+    return this.http.post(`${this.apiUrl}/auth/producer/signup`, user);
+  }
+
+  getUserById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/auth/user/${id}`)
+  }
+
+  updateUser(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/auth/user`,body)
   }
 }
