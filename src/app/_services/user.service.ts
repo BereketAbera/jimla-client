@@ -19,7 +19,19 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/auth/user/${id}`)
   }
 
+  getConsumerById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/consumer/${id}`)
+  }
+
+  getAddressByConsId(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/consumer/${id}/addresses`)
+  }
+
   updateUser(body):Observable<any>{
     return this.http.put(`${this.apiUrl}/auth/user`,body)
+  }
+
+  updateConsumer(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/consumer`,body)
   }
 }

@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { RetailerRoutingModule } from './retailer-routing.module';
 import { RetailerComponent } from './retailer.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -85,7 +86,8 @@ import { ProfilePersonalComponent } from './components/profile-personal/profile-
     NzPopoverModule,
     NzEmptyModule,
     NzLayoutModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzMessageModule
   ]
 })
 export class RetailerModule {}

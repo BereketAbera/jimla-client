@@ -1,7 +1,7 @@
 .profile {
   display: flex;
-  margin: 3rem;
-
+  flex-direction: column;
+  margin:0.5rem;
   &-nav {
     margin: 1rem;
 
@@ -20,9 +20,17 @@
     margin: 1rem;
     border-radius: 2rem;
     width: 100%;
-    padding: 3rem;
-    box-shadow: 1px 3px 6px rgb(229, 233, 235);
+    box-shadow: 1px 3px 4px rgb(229, 233, 235);
   }
+}
 
-  
+@media (min-width: 750px) {
+  .profile {
+    flex-direction: row;
+    margin: 4rem;
+
+    &-content{
+      padding:3rem;
+    }
+  }
 }

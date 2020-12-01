@@ -12,6 +12,8 @@ import { OrderHistoryComponent } from './components/order-history/order-history.
 import { UserResolverService } from '@app/_resolvers/identity/user-resolver.service';
 import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
 import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
+import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resolver.service';
+import { AddressResolverService } from '@app/_resolvers/identity/address-resolver.service';
 
 const routes: Routes = [
   {
@@ -49,7 +51,7 @@ const routes: Routes = [
           {
             path: 'company',
             component: ProfileCompanyComponent,
-            resolve: { data: UserResolverService },
+            resolve: { data: ConsumerResolverService },
           }
         ]
       },

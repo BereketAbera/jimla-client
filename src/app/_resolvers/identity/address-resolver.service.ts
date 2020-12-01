@@ -2,28 +2,31 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { UserService } from '@app/_services/user.service';
-import { logging } from 'protractor';
 import { Observable, of, EMPTY } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserResolverService {
+export class AddressResolverService {
+
+ 
   constructor(private userService: UserService, private authService: AuthenticationService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let id;
     let currentUser = this.authService.userValue;
+    let token = JSON.parse(localStorage.getItem('user'));
+    console.log(token, 'Token');
     if (currentUser) {
-      id = currentUser.id;
+      id = currentUser.consumerId;
     } else {
       let token = JSON.parse(localStorage.getItem('user'));
       console.log(token, 'Token');
-      id=token.id;
+      id=token.consumerId;
     }
 
-    return this.userService.getUserById(id).pipe(
+    return this.userService.getAddressByConsId(id).pipe(
       mergeMap((data) => {
         if (data) {
           return of(data);
