@@ -1,24 +1,37 @@
 .container {
   &-logo {
-    margin-bottom: 8rem;
+    margin-bottom: 10rem;
     border-top-right-radius: 2rem;
     border-top-left-radius: 2rem;
     background-color: rgb(208, 219, 226);
     width: 100%;
     padding: 1rem;
     position: relative;
-    min-height: 90px;
+    min-height: 110px;
     .avatar {
       position: absolute;
-      bottom: -5rem;
+      bottom: -9rem;
       margin: 0rem 2rem;
       display: flex;
       align-items: flex-end;
+
+      &-action{
+        .actions{
+          display: flex;
+          justify-content: space-between;
+          margin:1rem 0;
+         a{
+          color:#1c69a8;
+         }
+        }
+      }
       .name {
-        margin: 1rem 2rem;
+        margin: 3rem 2rem;
         font-size: 2.3rem;
-        color: #344757;
+        color: #142630;
         font-weight: 600;
+
+       
       }
       // left: 1rem;
     }

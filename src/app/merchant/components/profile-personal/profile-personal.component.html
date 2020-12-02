@@ -1,7 +1,13 @@
 <div class="container">
   <div class="container-logo">
     <div class="avatar">
-      <nz-avatar [nzShape]="'square'" [nzSize]="100" nzIcon="user"></nz-avatar>
+      <div class="avatar-action">
+        <nz-avatar [nzShape]="'square'" [nzSize]="110" nzIcon="user"></nz-avatar>
+         <div class="actions">
+          <a href="">Change</a>
+          <a href="">Delete</a>
+         </div>
+      </div>
       <div class="name">
         {{ user.firstName }} <span> {{ user.lastName }}</span>
       </div>
