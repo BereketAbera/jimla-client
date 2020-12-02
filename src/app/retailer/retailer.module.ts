@@ -28,6 +28,7 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -88,6 +89,7 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
     NzEmptyModule,
     NzLayoutModule,
     NzSpaceModule,
+    NzSpinModule,
     NzMessageModule
   ]
 })
