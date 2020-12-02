@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-profile-personal',
@@ -22,7 +23,7 @@ export class ProfilePersonalComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
-    private router: Router,
+    private message: NzMessageService,
     private userService: UserService
   ) {}
 
@@ -38,11 +39,7 @@ export class ProfilePersonalComponent implements OnInit {
 
   editModeOpen(value) {
     this.editMode = true;
-    (this.firstName = false),
-      (this.phoneNumber = false),
-      (this.lastName = false),
-      (this.email = false),
-      (this.username = false);
+    this.resetField();
 
     switch (value) {
       case 'firstName':
@@ -88,11 +85,14 @@ export class ProfilePersonalComponent implements OnInit {
 
     this.userService.updateUser(this.userForm.value).subscribe(
       (data) => {
-        // console.log(data);
+        this.createMessage('success','Succesfully Updated');
         this.user = data;
+        this.resetField();
       },
       (error) => {
-        console.log(error);
+        this.createMessage('error',error.error?.message || "Failed to change");
+        // this.resetField();
+         // console.log(error);
       }
     );
   }
@@ -100,5 +100,17 @@ export class ProfilePersonalComponent implements OnInit {
   onCancel(){
     this.editMode = false;
     this.firstName=false,this.lastName=false,this.email=false, this.phoneNumber=false, this.username=false;
+  }
+
+  createMessage(type: string,data): void {
+    this.message.create(type, data);
+  }
+
+  resetField() {
+    this.phoneNumber = false;
+    this.firstName = false;
+    this.lastName = false;
+    this.username = false;
+    this.email = false;
   }
 }

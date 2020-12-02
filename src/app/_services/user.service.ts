@@ -19,6 +19,10 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/auth/user/${id}`)
   }
 
+  changePassword(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/auth/user/password`,body)
+  }
+
   getConsumerById(id):Observable<any>{
     return this.http.get(`${this.apiUrl}/consumer/${id}`)
   }

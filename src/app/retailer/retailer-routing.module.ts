@@ -14,6 +14,7 @@ import { ProfileCompanyComponent } from './components/profile-company/profile-co
 import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
 import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resolver.service';
 import { AddressResolverService } from '@app/_resolvers/identity/address-resolver.service';
+import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 
 const routes: Routes = [
   {
@@ -52,6 +53,11 @@ const routes: Routes = [
           {
             path: 'company',
             component: ProfileCompanyComponent,
+            resolve: { data: ConsumerResolverService },
+          },
+          {
+            path: 'password',
+            component: ProfilePasswordComponent,
             resolve: { data: ConsumerResolverService },
           }
         ]
