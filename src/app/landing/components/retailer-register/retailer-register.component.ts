@@ -92,6 +92,8 @@ export class RetailerRegisterComponent implements OnInit {
     this.userService.addConsumer(this.consumerForm.value).subscribe(
       (data) => {
         this.submitted = false;
+        this.error = '';
+        this.broadcastErrorService.error.next(false);
         this.router.navigate(['/landing/login']);
       },
       (error) => console.log(error)

@@ -1,16 +1,16 @@
-import { OrderDetailModalComponent } from './../order-detail-modal/order-detail-modal.component';
-import { OrderService } from '@app/_services/order/order.service';
-import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { OrderService } from '@app/_services/order/order.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { OrderDetailModalComponent } from '../order-detail-modal/order-detail-modal.component';
 
 @Component({
-  selector: 'app-merchant-order-group-list',
-  templateUrl: './order-group-list.component.html',
-  styleUrls: ['./order-group-list.component.scss']
+  selector: 'app-voice-order-list',
+  templateUrl: './voice-order-list.component.html',
+  styleUrls: ['./voice-order-list.component.scss']
 })
-export class OrderGroupListComponent implements OnInit {
+export class VoiceOrderListComponent implements OnInit {
   order_groups = [];
   count = 0;
   page = 0;
@@ -29,6 +29,7 @@ export class OrderGroupListComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
+      // console.log(res);
       this.order_groups = res.data.rows;
       this.count = res.data.count;
     });
@@ -82,7 +83,7 @@ export class OrderGroupListComponent implements OnInit {
   }
 
   process(order_group) {
-    this.router.navigate([`/merchant/order_groups/create_order_voice/${order_group.id}`]);
+    this.router.navigate([`/merchant/pending_orders/create_order_voice/${order_group.id}`]);
   }
 
   showDetail(event) {

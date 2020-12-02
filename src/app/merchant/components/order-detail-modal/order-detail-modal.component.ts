@@ -1,6 +1,7 @@
 import { OrderService } from './../../../_services/order/order.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-order-detail-modal',
@@ -11,11 +12,16 @@ export class OrderDetailModalComponent implements OnInit {
   @Input('data') data;
   orders = [];
   retailer: any;
+  processTypes = [
+    { name: 'AVAILABLE', id: 'AVAILABLE' },
+    { name: 'NOT_AVAILABLE', id: 'NOT_AVAILABLE' }
+  ];
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
   constructor(
     private modal: NzModalRef,
-    private modalService: NzModalService,
-    private orderService: OrderService
+    private orderService: OrderService,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -27,5 +33,13 @@ export class OrderDetailModalComponent implements OnInit {
 
   destroyModal(): void {
     this.modal.destroy('success');
+  }
+
+  statusChanged(event, order) {
+    this.orderService.updateOrderStatus(order.id, { status: event }).subscribe((res) => {
+      if (res.order) {
+        this.notificationService.template(this.template, {});
+      }
+    });
   }
 }

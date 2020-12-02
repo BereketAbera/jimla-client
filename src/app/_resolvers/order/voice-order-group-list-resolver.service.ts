@@ -7,13 +7,13 @@ import { mergeMap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class OrderGroupListResolverService {
+export class VoiceOrderGroupListResolverService {
   constructor(private orderService: OrderService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let page = route.queryParamMap.get('page') || 0;
     let pageSize = route.queryParamMap.get('pageSize') || 5;
-    return this.orderService.getMerchantOrderGroups({ page, pageSize, type: 'ACTIVE' }).pipe(
+    return this.orderService.getMerchantOrderGroups({ page, pageSize }).pipe(
       mergeMap((data: { order_groups: any }) => {
         if (data.order_groups) {
           return of(data.order_groups);

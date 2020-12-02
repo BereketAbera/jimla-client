@@ -1,0 +1,127 @@
+<merchant-navigation></merchant-navigation>
+<div class="main_container main_content_container">
+  <h2 class="main_content_title">All Active Orders</h2>
+  <div
+    nz-row
+    [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
+    style="justify-content: space-between"
+  >
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" class="gutter-row sub_container">
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box">
+            <nz-table [nzShowPagination]="false" [nzData]="order_groups">
+              <thead>
+                <tr>
+                  <th>Code</th>
+                  <th>Type</th>
+                  <th>Phone Number</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Updated</th>
+                  <th>More</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of order_groups">
+                  <td>
+                    <span style="font-size: 1.8rem; font-weight: bold; color: #555">{{
+                      data.code
+                    }}</span>
+                  </td>
+                  <td>
+                    <span style="font-size: 1.8rem; font-weight: 200">{{
+                      data.audioLink ? "VOICE" : "CART"
+                    }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.phone_number }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography [nzType]="data.status == 'ACTIVE' ? 'warning' : 'danger'">{{
+                      data.status
+                    }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.updatedAt | date }}</span>
+                  </td>
+                  <th>
+                    <button nz-button nz-dropdown [nzDropdownMenu]="actions">
+                      More
+                      <i nz-icon nzType="down"></i>
+                    </button>
+                    <nz-dropdown-menu #actions="nzDropdownMenu">
+                      <ul nz-menu>
+                        <li (click)="showDetail(data)" class="list_style" nz-menu-item>Detail</li>
+                        <!-- <li
+                          (click)="process(data)"
+                          *ngIf="data.status != 'DELIVERED' && data.audioLink"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Process
+                        </li> -->
+
+                        <li
+                          *ngIf="data.status != 'DELIVERED'"
+                          (click)="changeStatus(data, 'DELIVERED')"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Deliver
+                        </li>
+                        <li
+                          *ngIf="data.status != 'DISCARDED'"
+                          (click)="changeStatus(data, 'DISCARDED')"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Discard
+                        </li>
+                        <li
+                          *ngIf="data.status != 'ON_THE_ROAD'"
+                          (click)="changeStatus(data, 'ON_THE_ROAD')"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          On The Road
+                        </li>
+                      </ul>
+                    </nz-dropdown-menu>
+                  </th>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
+          <div class="inner-box">
+            <nz-pagination
+              [nzTotal]="count"
+              [nzSize]="'small'"
+              [nzShowTotal]="totalTemplate"
+              (nzPageIndexChange)="pageChanged($event)"
+              (nzPageSizeChange)="pageSizeChanged($event)"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="page + 1"
+              nzShowSizeChanger
+              nzShowQuickJumper
+              [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+            ></nz-pagination>
+            <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Order Successfully Updated
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+</ng-template>

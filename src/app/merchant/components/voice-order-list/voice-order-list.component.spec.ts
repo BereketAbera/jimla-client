@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { OrderGroupListComponent } from './order-group-list.component';
+import { VoiceOrderListComponent } from './voice-order-list.component';
 
-describe('OrderGroupListComponent', () => {
-  let component: OrderGroupListComponent;
-  let fixture: ComponentFixture<OrderGroupListComponent>;
+describe('VoiceOrderListComponent', () => {
+  let component: VoiceOrderListComponent;
+  let fixture: ComponentFixture<VoiceOrderListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ OrderGroupListComponent ]
+      declarations: [ VoiceOrderListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(OrderGroupListComponent);
+    fixture = TestBed.createComponent(VoiceOrderListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
