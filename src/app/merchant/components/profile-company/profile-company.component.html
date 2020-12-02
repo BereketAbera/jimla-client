@@ -1,0 +1,98 @@
+<div class="container">
+  <div class="container-logo">
+    <div class="avatar">
+      <div class="name">
+        {{ consumer.name }}
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-section">
+      <span class="title">Company Name</span>
+      <span *ngIf="!name" class="value">{{ consumer.name }}</span>
+      <div class="form-container" *ngIf="editMode && name">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="companyForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <span>Your company name is the same as your shop Name : </span>
+            <!-- <nz-form-label nzFor="name">Company Name</nz-form-label> -->
+            <input class="form__input" formControlName="name" nz-input placeholder="Company Name" />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!name" (click)="editModeOpen('name')">Edit</a>
+    </div>
+    <div class="content-section">
+      <span class="title">Tin Number</span>
+      <span *ngIf="!tinNumber" class="value">{{ consumer.tinNumber }}</span>
+      <div class="form-container" *ngIf="editMode && tinNumber">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="companyForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="tinNumber">Tin Number</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="tinNumber"
+              nz-input
+              placeholder="Tin Number"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!tinNumber" (click)="editModeOpen('tinNumber')">Edit</a>
+    </div>
+
+    <div class="content-section">
+      <span class="title">Phone Number</span>
+      <span *ngIf="!phoneNumber" class="value">{{ consumer.phoneNumber }}</span>
+      <div class="form-container" *ngIf="editMode && phoneNumber">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="companyForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="phoneNumber">Phone Number</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="phoneNumber"
+              nz-input
+              placeholder="09*******"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!phoneNumber" (click)="editModeOpen('phoneNumber')">Edit</a>
+    </div>
+  </div>
+</div>

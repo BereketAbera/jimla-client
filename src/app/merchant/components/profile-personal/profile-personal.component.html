@@ -1,0 +1,157 @@
+<div class="container">
+  <div class="container-logo">
+    <div class="avatar">
+      <nz-avatar [nzShape]="'square'" [nzSize]="100" nzIcon="user"></nz-avatar>
+      <div class="name">
+        {{ user.firstName }} <span> {{ user.lastName }}</span>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="content-section">
+      <span class="title">First Name</span>
+      <span *ngIf="!firstName" class="value">{{ user.firstName }}</span>
+      <div class="form-container" *ngIf="editMode && firstName">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="userForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="firstName">First Name</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="firstName"
+              nz-input
+              placeholder="borderless"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!firstName" (click)="editModeOpen('firstName')">Edit</a>
+    </div>
+    <div class="content-section">
+      <span  class="title">Last Name</span>
+      <span *ngIf="!lastName" class="value">{{ user.lastName }}</span>
+      <div class="form-container" *ngIf="editMode && lastName">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="userForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="lastName">Last Name</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="lastName"
+              nz-input
+              placeholder="borderless"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!lastName" (click)="editModeOpen('lastName')">Edit</a>
+    </div>
+    <div class="content-section">
+      <span  class="title">Email</span>
+      <span *ngIf="!email" class="value">{{ user.email }}</span>
+      <div class="form-container" *ngIf="editMode && email">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="userForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="email">Email</nz-form-label>
+            <input class="form__input" formControlName="email" nz-input placeholder="borderless" />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!email" (click)="editModeOpen('email')">Edit</a>
+    </div>
+    <div class="content-section">
+      <span class="title">Username</span>
+      <span  *ngIf="!username"  class="value">{{ user.username }}</span>
+      <div class="form-container" *ngIf="editMode && username">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="userForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="username">Phone Number</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="username"
+              nz-input
+              placeholder="borderless"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!username" (click)="editModeOpen('username')">Edit</a>
+    </div>
+    <div class="content-section">
+      <span class="title">Phone Number</span>
+      <span *ngIf="!phoneNumber" class="value">{{ user.phoneNumber }}</span>
+      <div class="form-container" *ngIf="editMode && phoneNumber">
+        <form
+          action=""
+          method="post"
+          class="form"
+          [formGroup]="userForm"
+          #formDirective="ngForm"
+          (ngSubmit)="onSubmit(formDirective)"
+        >
+          <nz-form-item>
+            <nz-form-label nzFor="phoneNumber">Phone Number</nz-form-label>
+            <input
+              class="form__input"
+              formControlName="phoneNumber"
+              nz-input
+              placeholder="borderless"
+            />
+          </nz-form-item>
+
+          <div class="form__action">
+            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="primary">Save</button>
+          </div>
+        </form>
+      </div>
+      <a *ngIf="!phoneNumber" (click)="editModeOpen('phoneNumber')">Edit</a>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,37 @@
+.profile {
+    display: flex;
+    flex-direction: column;
+    margin:0.5rem;
+    &-nav {
+      margin: 1rem;
+  
+      .navigation {
+        border-radius: 2rem;
+        box-shadow: 1px 1px 2px rgb(230, 235, 236);
+        font-size: 1.8rem;
+        li {
+          font-size: 1.5rem;
+        }
+      }
+    }
+  
+    &-content {
+      background-color: white;
+      margin: 1rem;
+      border-radius: 2rem;
+      width: 100%;
+      box-shadow: 1px 3px 4px rgb(229, 233, 235);
+    }
+  }
+  
+  @media (min-width: 750px) {
+    .profile {
+      flex-direction: row;
+      margin: 4rem;
+  
+      &-content{
+        padding:3rem;
+      }
+    }
+  }
+  

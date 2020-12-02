@@ -27,6 +27,10 @@ export class UserService {
     return this.http.get(`${this.apiUrl}/consumer/${id}`)
   }
 
+  getProducerById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/producer/id/${id}`)
+  }
+
   getAddressByConsId(id):Observable<any>{
     return this.http.get(`${this.apiUrl}/consumer/${id}/addresses`)
   }

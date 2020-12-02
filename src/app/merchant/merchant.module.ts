@@ -38,6 +38,10 @@ import { AddProductModalComponent } from './components/add-product-modal/add-pro
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
 import { SingleOrderDetailModalComponent } from './components/single-order-detail-modal/single-order-detail-modal.component';
+import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
+import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
+import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,10 @@ import { SingleOrderDetailModalComponent } from './components/single-order-detai
     AddProductModalComponent,
     ProfileComponent,
     OrderDetailModalComponent,
-    SingleOrderDetailModalComponent
+    SingleOrderDetailModalComponent,
+    ProfileCompanyComponent,
+    ProfilePasswordComponent,
+    ProfilePersonalComponent
   ],
   imports: [
     CommonModule,
@@ -81,7 +88,9 @@ import { SingleOrderDetailModalComponent } from './components/single-order-detai
     NzPopoverModule,
     NzEmptyModule,
     NzLayoutModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzMessageModule
+
   ]
 })
 export class MerchantModule {}

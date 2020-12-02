@@ -10,6 +10,12 @@ import { OrderGroupListResolverService } from '@app/_resolvers/order/order-group
 import { OrderListResolverService } from '@app/_resolvers/order/order-list-resolver.service';
 import { CompanyProductsResolverService } from '@app/_resolvers/product/company-products-resolver.service';
 import { ProfileComponent } from './components/profile/profile.component';
+import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
+import { UserResolverService } from '@app/_resolvers/identity/user-resolver.service';
+import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
+import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
+import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resolver.service';
+import { ProducerResolverService } from '@app/_resolvers/identity/producer-resolver.service';
 
 const routes: Routes = [
   {
@@ -43,8 +49,25 @@ const routes: Routes = [
       },
       {
         path: 'profile',
-        component: ProfileComponent
-      }
+        component: ProfileComponent,
+       
+        children: [
+          {
+            path: '',
+            component: ProfilePersonalComponent,
+            resolve: { data: UserResolverService },
+          },
+          {
+            path: 'company',
+            component: ProfileCompanyComponent,
+            resolve: { data: ProducerResolverService },
+          },
+          {
+            path: 'password',
+            component: ProfilePasswordComponent,
+          }
+        ]
+      },
     ]
   }
 ];
