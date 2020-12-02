@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import { RetailerRoutingModule } from './retailer-routing.module';
 import { RetailerComponent } from './retailer.component';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCardModule } from 'ng-zorro-antd/card';
@@ -27,6 +28,7 @@ import { NzResultModule } from 'ng-zorro-antd/result';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -34,8 +36,11 @@ import { ActiveOrdersComponent } from './components/active-orders/active-orders.
 import { OrderHistoryComponent } from './components/order-history/order-history.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ProcessOrderComponent } from './components/process-order/process-order.component';
+import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
+import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
 import { LocationsComponent } from './components/locations/locations.component';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
+import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 
 @NgModule({
   declarations: [
@@ -47,8 +52,12 @@ import { AddLocationModalComponent } from './components/add-location-modal/add-l
     OrderHistoryComponent,
     ProfileComponent,
     ProcessOrderComponent,
+    ProfileCompanyComponent,
+    ProfilePersonalComponent,
+    ProcessOrderComponent,
     LocationsComponent,
-    AddLocationModalComponent
+    AddLocationModalComponent,
+    ProfilePasswordComponent
   ],
   imports: [
     CommonModule,
@@ -79,7 +88,9 @@ import { AddLocationModalComponent } from './components/add-location-modal/add-l
     NzPopoverModule,
     NzEmptyModule,
     NzLayoutModule,
-    NzSpaceModule
+    NzSpaceModule,
+    NzSpinModule,
+    NzMessageModule
   ]
 })
 export class RetailerModule {}

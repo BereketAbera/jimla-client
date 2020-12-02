@@ -12,7 +12,35 @@ export class UserService {
 
   addProducer(user): Observable<any> {
     // console.log(user);
-    return this.http.post(`${this.apiUrl}/producer/signup`, user);
+    return this.http.post(`${this.apiUrl}/auth/producer/signup`, user);
+  }
+
+  getUserById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/auth/user/${id}`)
+  }
+
+  changePassword(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/auth/user/password`,body)
+  }
+
+  getConsumerById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/consumer/${id}`)
+  }
+
+  getProducerById(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/producer/id/${id}`)
+  }
+
+  getAddressByConsId(id):Observable<any>{
+    return this.http.get(`${this.apiUrl}/consumer/${id}/addresses`)
+  }
+
+  updateUser(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/auth/user`,body)
+  }
+
+  updateConsumer(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/consumer`,body)
   }
 
   addConsumer(user): Observable<any> {

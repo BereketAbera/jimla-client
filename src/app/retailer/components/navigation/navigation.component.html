@@ -14,9 +14,22 @@
     >
   </div>
   <div class="navigation__actions">
-    <a (click)="logout()" nz-button nzType="primary" class="btn"
-      >ውጣ<i nz-icon nzType="logout" nzTheme="outline"></i
-    ></a>
+    <nz-avatar [nzSize]="45" (click)="profileOpen()" nzIcon="user"></nz-avatar>
+
+    <ul class="profile" *ngIf="profile" nz-menu  >
+      <li routerLink="/retailer/profile" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <i nz-icon nzType="user" ></i>
+        <span>Profile</span>
+      </li>
+      <li class="item" routerLink="/retailer/profile/company" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <i nz-icon nzType="setting" nzTheme="fill"></i>
+        <span>Settings</span>
+      </li>
+      <li (click)="logout()" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+        <i nz-icon nzType="logout"></i>
+        <span>ውጣ</span>
+      </li>
+    </ul>
   </div>
 </nav>
 <div class="wrapper" [class.wrapper-collapse]="isCollapsed">

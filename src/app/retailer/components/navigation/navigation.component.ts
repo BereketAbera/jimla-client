@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   isCollapsed = true;
-
+  profile = false;
   constructor(private authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {}
@@ -19,6 +19,10 @@ export class NavigationComponent implements OnInit {
 
   collapse(): void {
     this.isCollapsed = true;
+  }
+
+  profileOpen():void{
+    this.profile = !this.profile;
   }
 
   logout() {
