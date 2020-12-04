@@ -12,6 +12,8 @@ import { ProducerService } from '@app/_services/identity/producer.service';
 export class LandingHomeComponent implements OnInit {
   searchField: FormControl;
   q = '';
+  open = false;
+
   constructor(
     private router: Router,
     private producerService: ProducerService,
@@ -34,5 +36,9 @@ export class LandingHomeComponent implements OnInit {
     this.router.navigate(['/landing/home'], {
       queryParams: { q: this.searchField.value, type: 'product' }
     });
+  }
+
+  mobileDropdownOpen() {
+    this.open = !this.open;
   }
 }

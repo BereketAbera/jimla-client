@@ -14,6 +14,75 @@
     >
   </div>
 
+  <div class="navigation__actions--mobile">
+    <button
+      nz-button
+      [nzSize]="45"
+      (click)="mobileDropdownOpen()"
+      class="btn btn--jimla"
+      style="color: #333"
+    >
+      ምረጥ <i nz-icon nzType="caret-down" nzTheme="outline"></i>
+    </button>
+
+    <ul class="profile" *ngIf="open" nz-menu>
+      <a
+        style="width: 90%; align-self: center"
+        (click)="mobileDropdownOpen()"
+        *ngIf="!authenticationService.userValue"
+        routerLink="/landing/login"
+        nz-button
+        nzType="primary"
+        class="btn small_side_margin-vr"
+        >ለጅምላ ነጋዴ ግባ</a
+      >
+      <a
+        style="width: 90%; align-self: center"
+        (click)="mobileDropdownOpen()"
+        *ngIf="!authenticationService.userValue"
+        routerLink="/landing/register"
+        nz-button
+        nzType="primary"
+        class="btn small_side_margin-vr"
+        >ለጅምላ ነጋዴ ተመዝገብ</a
+      >
+
+      <a
+        style="width: 90%; align-self: center"
+        (click)="mobileDropdownOpen()"
+        *ngIf="!authenticationService.userValue"
+        routerLink="/landing/retailer_register"
+        nz-button
+        nzType="primary"
+        class="btn small_side_margin-vr"
+      >
+        ለገዢ ተመዝገብ</a
+      >
+
+      <a
+        style="width: 90%; align-self: center"
+        (click)="mobileDropdownOpen()"
+        *ngIf="
+          authenticationService.userValue && authenticationService.userValue.role == 'PRODUCER'
+        "
+        routerLink="/merchant"
+        class="btn btn--jimla"
+        >Home</a
+      >
+
+      <a
+        style="width: 90%; align-self: center"
+        (click)="mobileDropdownOpen()"
+        *ngIf="
+          authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'
+        "
+        routerLink="/retailer"
+        class="btn btn--jimla"
+        >Home</a
+      >
+    </ul>
+  </div>
+
   <div class="navigation__actions">
     <!-- <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
     <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a> -->
