@@ -47,6 +47,7 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 @NgModule({
   declarations: [
     MerchantComponent,
@@ -98,7 +99,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzSpaceModule,
     NzMessageModule,
     NzSpinModule,
-    NzProgressModule
+    NzProgressModule,
+    NzCalendarModule
   ]
 })
 export class MerchantModule {}

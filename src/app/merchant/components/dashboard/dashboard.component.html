@@ -94,19 +94,7 @@
                             product?.createdAt | date
                           }}</span>
                         </td>
-                        <!-- <th>
-                        <button nz-button nz-dropdown [nzDropdownMenu]="actions">
-                          Actions
-                          <i nz-icon nzType="down"></i>
-                        </button>
-                        <nz-dropdown-menu #actions="nzDropdownMenu">
-                          <ul nz-menu>
-                            <li class="list_style" nz-menu-item>Process</li>
-                            <li class="list_style" nz-menu-item>Failed</li>
-                            <li class="list_style" nz-menu-item>Delete</li>
-                          </ul>
-                        </nz-dropdown-menu>
-                      </th> -->
+                        
                       </tr>
                     </tbody>
                   </nz-table>
@@ -114,18 +102,7 @@
               </div>
               <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
                 <div class="inner-box">
-                  <!-- <nz-pagination
-                    [nzTotal]="count"
-                    [nzSize]="'small'"
-                    [nzShowTotal]="totalTemplate"
-                    (nzPageIndexChange)="pageChanged($event)"
-                    (nzPageSizeChange)="pageSizeChanged($event)"
-                    [nzPageSize]="pageSize"
-                    [nzPageIndex]="page + 1"
-                    nzShowSizeChanger
-                    nzShowQuickJumper
-                    [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
-                  ></nz-pagination> -->
+                
                 </div>
               </div>
             </div>
@@ -136,7 +113,12 @@
 
     <div class="right-content">
       <h2>Weekly Order Statics</h2>
-      <canvas class="dashboard__chart" #lineChart>{{ chart }}</canvas>
+      <!-- <canvas class="dashboard__chart" #lineChart>{{ chart }}</canvas> -->
+
+      <div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
+        <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)" (nzPanelChange)="onPanelChange($event)"></nz-calendar>
+      </div>
+
     </div>
   </div>
 </div>
