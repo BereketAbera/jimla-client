@@ -14,4 +14,6 @@ export class ProducerService {
   searchProducer(name): Observable<any> {
     return this.http.get(`${identity}/search/producer?name=${name}`);
   }
+
+  
 }

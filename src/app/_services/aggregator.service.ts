@@ -13,4 +13,8 @@ export class AggregatorService {
   getCompanyPageData(company_name) {
     return this.http.get(`${aggregateUrl}/get_company_data/${company_name}`);
   }
+
+  getProducerDashboard(id){
+    return this.http.get(`${aggregateUrl}/producer/dashboard/${id}`)
+  }
 }

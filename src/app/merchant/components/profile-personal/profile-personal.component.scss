@@ -40,11 +40,12 @@
   .content {
     display: flex;
     flex-direction: column;
+    margin: 2rem;
 
     &-section {
       display: flex;
       justify-content: space-between;
-      padding: 1.5rem;
+      padding:1.5rem 1rem;
       border-bottom: 1px solid rgb(221, 227, 236);
       align-items: baseline;
 
@@ -52,7 +53,7 @@
         font-size: 1.8rem;
         color: #2e4150;
         font-weight: 500;
-        width: 130px;
+        width: 15rem;
         // margin-right: 3rem;
       }
       a {

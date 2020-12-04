@@ -7,10 +7,10 @@
     width: 100%;
     padding: 1rem;
     position: relative;
-    min-height: 90px;
+    min-height: 100px;
     .avatar {
       position: absolute;
-      bottom: -5rem;
+      bottom: -8rem;
       margin: 0rem 2rem;
       display: flex;
       align-items: flex-end;
@@ -27,11 +27,12 @@
   .content {
     display: flex;
     flex-direction: column;
+    margin: 2rem;
 
     &-section {
       display: flex;
       justify-content: space-between;
-      padding: 1.5rem;
+      padding: 1.5rem 1rem;
       border-bottom: 1px solid rgb(221, 227, 236);
       align-items: baseline;
 
@@ -39,7 +40,7 @@
         font-size: 1.8rem;
         color: #2e4150;
         font-weight: 500;
-        width: 130px;
+        width: 120px;
         // margin-right: 3rem;
       }
       a {

@@ -43,7 +43,8 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
 import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
 import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
-
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 @NgModule({
   declarations: [
     MerchantComponent,
@@ -58,7 +59,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     SingleOrderDetailModalComponent,
     ProfileCompanyComponent,
     ProfilePasswordComponent,
-    ProfilePersonalComponent
+    ProfilePersonalComponent,
+    DashboardComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +93,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
     NzLayoutModule,
     NzSpaceModule,
     NzMessageModule,
-    NzSpinModule
+    NzSpinModule,
+    NzProgressModule
   ]
 })
 export class MerchantModule {}

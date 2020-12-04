@@ -1,0 +1,67 @@
+.dashboard {
+  margin: 2rem;
+}
+.box-container {
+  display: flex;
+  justify-content: space-between;
+  .box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    background-color: white;
+    width: 25rem;
+    border-radius: 20px;
+    box-shadow: 1px 3px 12px rgb(188, 206, 218);
+  }
+  .box-2 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    background-color: rgb(16, 36, 48);
+    width: 25rem;
+    border-radius: 20px;
+    box-shadow: 1px 3px 12px rgb(188, 206, 218);
+    color: white;
+
+    h3 {
+      color: white;
+      letter-spacing: 0.07;
+    }
+  }
+}
+.icon {
+  background-color: rgb(188, 222, 241);
+  border-radius: 50%;
+  padding: 1rem;
+  color: #133b45;
+  text-align: center;
+  font-size: 2rem;
+}
+.number {
+  font-size: 3.5rem;
+}
+.content {
+  display: flex;
+  margin-top: 4rem;
+}
+
+.left-content {
+  width: 70%;
+  // background-color: white;
+  // box-shadow: 1px 3px 12px rgb(188, 206, 218);
+  margin: 2rem;
+}
+
+.right-content {
+  width: 30%;
+  // background-color: white;
+  // box-shadow: 1px 2px 8px rgb(188, 206, 218);
+  height: 50px;
+  margin: 2rem;
+}

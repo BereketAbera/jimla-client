@@ -12,7 +12,7 @@ export class UserService {
 
   addProducer(user): Observable<any> {
     // console.log(user);
-    return this.http.post(`${this.apiUrl}/auth/producer/signup`, user);
+    return this.http.post(`${this.apiUrl}/producer/signup`, user);
   }
 
   getUserById(id):Observable<any>{
