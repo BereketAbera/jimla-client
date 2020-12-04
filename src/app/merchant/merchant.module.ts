@@ -5,8 +5,8 @@ import { CommonModule } from '@angular/common';
 import { MerchantRoutingModule } from './merchant-routing.module';
 import { MerchantComponent } from './merchant.component';
 import { CreateOrderVoiceComponent } from './components/create-order-voice/create-order-voice.component';
-import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
-import { OrderListComponent } from './components/order-list/order-list.component';
+// import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
+// import { OrderListComponent } from './components/order-list/order-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -38,6 +38,8 @@ import { AddProductModalComponent } from './components/add-product-modal/add-pro
 import { ProfileComponent } from './components/profile/profile.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
 import { SingleOrderDetailModalComponent } from './components/single-order-detail-modal/single-order-detail-modal.component';
+import { ActiveOrderListComponent } from './components/active-order-list/active-order-list.component';
+import { VoiceOrderListComponent } from './components/voice-order-list/voice-order-list.component';
 import { ProfileCompanyComponent } from './components/profile-company/profile-company.component';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 import { ProfilePersonalComponent } from './components/profile-personal/profile-personal.component';
@@ -49,14 +51,16 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
   declarations: [
     MerchantComponent,
     CreateOrderVoiceComponent,
-    OrderGroupListComponent,
-    OrderListComponent,
+    // OrderGroupListComponent,
+    // OrderListComponent,
     NavigationComponent,
     ProductsComponent,
     AddProductModalComponent,
     ProfileComponent,
     OrderDetailModalComponent,
     SingleOrderDetailModalComponent,
+    ActiveOrderListComponent,
+    VoiceOrderListComponent,
     ProfileCompanyComponent,
     ProfilePasswordComponent,
     ProfilePersonalComponent,

@@ -97,7 +97,7 @@ export class CreateOrderVoiceComponent implements OnInit {
     if (this.selectedProducts.length <= 0) return;
     this.leftDisabled = true;
     this.selectedProductsOrders = this.selectedProducts;
-    console.log('scrolling to anchor');
+    // console.log('scrolling to anchor');
     this.viewportScroller.scrollToAnchor('order_produts');
   }
 
@@ -114,6 +114,8 @@ export class CreateOrderVoiceComponent implements OnInit {
       order_group_id: this.orderGroup.id,
       orders
     };
+    console.log(orderData);
+    // return;
 
     this.orderService.createVoiceOrder(orderData).subscribe((res: any) => {
       if (res && res.orders && res.orders.length > 0) {

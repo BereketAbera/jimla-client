@@ -92,12 +92,12 @@
       nz-tooltip
       routerLinkActive
       nzTooltipPlacement="right"
-      [routerLink]="['/merchant/orders']"
+      [routerLink]="['/merchant/pending_orders']"
       nzIcon="insert-row-right"
       (click)="collapse()"
     >
       <i nz-icon nzType="insert-row-right"></i>
-      <span>Active Orders</span>
+      <span>Pending Voice Orders</span>
     </li>
     <li
       [routerLinkActiveOptions]="{ exact: false }"
@@ -106,12 +106,12 @@
       nz-tooltip
       routerLinkActive
       nzTooltipPlacement="right"
-      [routerLink]="['/merchant/order_groups']"
+      [routerLink]="['/merchant/active_orders']"
       nzIcon="user"
       (click)="collapse()"
     >
       <i nz-icon nzType="ordered-list"></i>
-      <span>Voice Orders</span>
+      <span>Active Orders</span>
     </li>
     <li
       [routerLinkActiveOptions]="{ exact: false }"

@@ -43,6 +43,7 @@ import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { RetailerRegisterComponent } from './components/retailer-register/retailer-register.component';
+import { CompanyHomeComponent } from './components/company-home/company-home.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { RetailerRegisterComponent } from './components/retailer-register/retail
     ProductSmallComponent,
     ProductSmallImageComponent,
     ProductHomeComponent,
-    RetailerRegisterComponent
+    RetailerRegisterComponent,
+    CompanyHomeComponent
   ],
   imports: [
     CommonModule,

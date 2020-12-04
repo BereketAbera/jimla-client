@@ -1,0 +1,35 @@
+<div class="container">
+  <h2 class="header">{{ merchant?.name }}</h2>
+  <span style="font-size: 2rem; font-weight: 900">{{ merchant?.code }}</span>
+  <span style="margin: 1rem 0rem">Ordered: {{ data?.createdAt | date: "medium" }}</span>
+  <span
+    style="padding: 0.3rem 2rem; border: 1px solid #aaa; border-radius: 0.5rem"
+    [style.borderColor]="data.status == 'PENDING' ? '#073241' : 'green'"
+    [style.color]="data.status == 'PENDING' ? '#073241' : 'green'"
+    >{{ data.status }}</span
+  >
+  <div
+    *ngFor="let order of orders; let i = index"
+    style="
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      border-bottom: 1px solid #aaa;
+      border-top: 1px solid #aaa;
+      /* border-radius: 5rem; */
+      padding: 0.5rem 2rem;
+      margin: 0.5rem 0rem;
+      align-items: center;
+    "
+  >
+    <span style="flex: 3">{{ order?.product?.name }}</span>
+    <span style="font-size: 1.8rem; font-weight: 900; color: #073241; flex: 3; text-align: center">
+      {{ order?.quantity }}
+    </span>
+    <span>{{ orders[i].status }}</span>
+  </div>
+</div>
+
+<div *nzModalFooter>
+  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="destroyModal()">Ok</button>
+</div>

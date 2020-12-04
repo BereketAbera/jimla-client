@@ -11,8 +11,25 @@ const identity = environment.identityUrl;
 export class ProducerService {
   constructor(private http: HttpClient) {}
 
-  searchProducer(name): Observable<any> {
-    return this.http.get(`${identity}/search/producer?name=${name}`);
+  searchProducer(obj): Observable<any> {
+    let queryParams = this.generateParams(obj);
+    return this.http.get(`${identity}/search/producer?${queryParams}`);
+  }
+
+  generateParams(params) {
+    let url = '';
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if ((key == 'status' && params[key] == '0') || params[key] == '1') {
+        url = url + `${key}=${params[key]}&`;
+        return;
+      }
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 
   

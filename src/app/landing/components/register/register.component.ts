@@ -72,7 +72,7 @@ export class RegisterComponent implements OnInit {
       this.producerForm.markAllAsTouched();
       return;
     } else {
-      console.log('hello');
+      // console.log('hello');
       if (this.controls['password'].value != this.controls['confirmPassword'].value) {
         this.confirmPasswordErrorText = 'Your passwords do not match';
         this.controls['confirmPassword'].setErrors({ incorrect: true });
@@ -90,6 +90,8 @@ export class RegisterComponent implements OnInit {
     this.userService.addProducer(this.producerForm.value).subscribe(
       (data) => {
         this.submitted = false;
+        this.error = '';
+        this.broadcastErrorService.error.next(false);
         this.router.navigate(['/landing/login']);
       },
       (error) => console.log(error)

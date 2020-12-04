@@ -16,7 +16,7 @@
     <h5 class="description">
       Tin No: {{ merchant?.tinNumber }}, Phone No: {{ merchant?.phoneNumber }}
     </h5>
-    <h6 class="address">
+    <h6 *ngIf="merchant?.Address?.city" class="address">
       {{ merchant?.Address?.city }}, {{ merchant?.Address?.subCity }},
       {{ merchant?.Address?.description }}
     </h6>
@@ -44,7 +44,7 @@
         </div>
       </div>
 
-      <div class="result__container">
+      <div *ngIf="products.length > 0" class="result__container">
         <div *ngFor="let p of products; let i = index" class="result__container__product">
           <app-product-small
             (addProductToCart)="addProductToCart($event)"
@@ -58,6 +58,9 @@
           ></app-product-small-image>
         </div>
       </div>
+      <div *ngIf="products.length == 0" class="result__container">
+        <span>No Products For This Merchant Yet.</span>
+      </div>
     </div>
   </div>
 </div>
@@ -67,10 +70,19 @@
   [(nzVisible)]="isVisibleTop"
   nzTitle="Pending Order Cart"
   nzOkText="Process"
-  nzCancelText="Clear Cart"
-  (nzOnCancel)="clearCart()"
+  [nzCancelText]="null"
   (nzOnOk)="processOrder()"
+  (nzOnCancel)="close()"
 >
+  <button
+    *ngIf="cartProducts.length > 0"
+    nz-button
+    nzSize="small"
+    (click)="clearCart()"
+    style="position: absolute; right: 5rem; top: 1.8rem"
+  >
+    Clear Cart <i nz-icon nzType="clear" nzTheme="outline"></i>
+  </button>
   <div *ngFor="let cp of cartProducts" style="display: flex; justify-content: space-between">
     <span style="font-size: 1.8rem; color: #555; font-weight: 600">{{ cp?.name }}</span
     ><span style="font-size: 1.5rem; color: #555; font-weight: 600">Amount: {{ cp?.amount }}</span>

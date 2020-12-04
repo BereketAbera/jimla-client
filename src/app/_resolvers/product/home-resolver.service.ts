@@ -1,3 +1,4 @@
+import { ProducerService } from '@app/_services/identity/producer.service';
 import { CategoryListService } from './../../_services/product/category-list.service';
 import { ProductService } from './../../_services/product/product.service';
 import { Injectable } from '@angular/core';
@@ -11,6 +12,7 @@ import { mergeMap } from 'rxjs/operators';
 export class HomeResolverService {
   constructor(
     private productService: ProductService,
+    private producerService: ProducerService,
     private categoryListService: CategoryListService
   ) {}
 
@@ -22,18 +24,34 @@ export class HomeResolverService {
       sort_by: route.queryParamMap.get('sort_by') || 'createdAt',
       direction: route.queryParamMap.get('direction') || 'DESC'
     };
-    return forkJoin(
-      this.productService.getProducts(params),
-      this.categoryListService.getCategories()
-    ).pipe(
-      mergeMap((data: any) => {
-        if (data) {
-          // console.log(data);
-          return of(data);
-        } else {
-          return EMPTY;
-        }
-      })
-    );
+    if (params.type == 'product') {
+      return forkJoin(
+        this.productService.getProducts(params),
+        this.categoryListService.getCategories()
+      ).pipe(
+        mergeMap((data: any) => {
+          if (data) {
+            // console.log(data);
+            return of(data);
+          } else {
+            return EMPTY;
+          }
+        })
+      );
+    } else {
+      return forkJoin(
+        this.producerService.searchProducer(params),
+        this.categoryListService.getCategories()
+      ).pipe(
+        mergeMap((data: any) => {
+          if (data) {
+            // console.log(data);
+            return of(data);
+          } else {
+            return EMPTY;
+          }
+        })
+      );
+    }
   }
 }

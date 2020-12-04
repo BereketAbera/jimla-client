@@ -1,6 +1,6 @@
 <merchant-navigation></merchant-navigation>
 <div class="main_container main_content_container">
-  <h2 class="main_content_title">All Grouped Orders</h2>
+  <h2 class="main_content_title">Pending Voice Orders</h2>
   <div
     nz-row
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
@@ -17,7 +17,7 @@
                   <th>Type</th>
                   <th>Phone Number</th>
                   <th>Status</th>
-                  <th>Created</th>
+                  <th>Updated</th>
                   <th>More</th>
                 </tr>
               </thead>
@@ -42,19 +42,12 @@
                     }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
+                    <span nz-typography nzType="secondary">{{ data.updatedAt | date }}</span>
                   </td>
-                  <!-- <th>
-                    <button
-                      
-                      [disabled]=""
-                      nz-button
-                      nzType="dashed"
-                    >
-                      Process
-                    </button>
-                  </th> -->
                   <th>
+                    <button (click)="process(data)" nz-button nzType="dashed">Process</button>
+                  </th>
+                  <!-- <th>
                     <button nz-button nz-dropdown [nzDropdownMenu]="actions">
                       More
                       <i nz-icon nzType="down"></i>
@@ -79,10 +72,9 @@
                         >
                           Delivered
                         </li>
-                        <!-- <li class="list_style" nz-menu-item>Delete</li> -->
                       </ul>
                     </nz-dropdown-menu>
-                  </th>
+                  </th> -->
                 </tr>
               </tbody>
             </nz-table>

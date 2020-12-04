@@ -11,12 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class OrderDetailModalComponent implements OnInit {
   @Input('data') data;
   orders = [];
-  retailer: any;
-  processTypes = [
-    { name: 'AVAILABLE', id: 'AVAILABLE' },
-    { name: 'NOT_AVAILABLE', id: 'NOT_AVAILABLE' }
-  ];
-  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
+  merchant: any;
 
   constructor(
     private modal: NzModalRef,
@@ -26,20 +21,13 @@ export class OrderDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.getOrderGroupOrders(this.data.id).subscribe((res) => {
+      console.log(res);
       this.orders = res.orders;
-      this.retailer = this.orders.length ? (this.retailer = this.orders[0].retailer) : {};
+      this.merchant = this.orders.length ? (this.merchant = this.orders[0].merchant) : {};
     });
   }
 
   destroyModal(): void {
     this.modal.destroy('success');
-  }
-
-  statusChanged(event, order) {
-    this.orderService.updateOrderStatus(order.id, { status: event }).subscribe((res) => {
-      if (res.order) {
-        this.notificationService.template(this.template, {});
-      }
-    });
   }
 }

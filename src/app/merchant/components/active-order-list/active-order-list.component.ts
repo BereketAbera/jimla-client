@@ -2,14 +2,15 @@ import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angula
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { OrderService } from '@app/_services/order/order.service';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { OrderDetailModalComponent } from '../order-detail-modal/order-detail-modal.component';
 
 @Component({
-  selector: 'app-active-orders',
-  templateUrl: './active-orders.component.html',
-  styleUrls: ['./active-orders.component.scss']
+  selector: 'app-active-order-list',
+  templateUrl: './active-order-list.component.html',
+  styleUrls: ['./active-order-list.component.scss']
 })
-export class ActiveOrdersComponent implements OnInit {
+export class ActiveOrderListComponent implements OnInit {
   order_groups = [];
   count = 0;
   page = 0;
@@ -22,12 +23,12 @@ export class ActiveOrdersComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
-      // console.log(res);
       this.order_groups = res.data.rows;
       this.count = res.data.count;
     });
@@ -35,16 +36,18 @@ export class ActiveOrdersComponent implements OnInit {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
       if (!this.firstReload) {
-        this.getOrders();
+        this.getOrderGroups();
       } else {
         this.firstReload = false;
       }
     });
+
+    this.detailClose.subscribe((res) => {});
   }
 
-  getOrders() {
+  getOrderGroups() {
     this.orderService
-      .getRetailerOrderGroups({ page: this.page, pageSize: this.pageSize })
+      .getMerchantOrderGroups({ page: this.page, pageSize: this.pageSize, type: 'ACTIVE' })
       .subscribe((res: { order_groups: any }) => {
         this.order_groups = res.order_groups.rows;
         this.count = res.order_groups.count;
@@ -61,15 +64,6 @@ export class ActiveOrdersComponent implements OnInit {
     }, 1);
   }
 
-  showDetail(event) {
-    this.modal.create({
-      nzComponentParams: { data: event },
-      nzTitle: 'Order Group Detail',
-      nzContent: OrderDetailModalComponent,
-      nzAfterClose: this.detailClose
-    });
-  }
-
   setUrlValues(sObj) {
     let keys = Object.keys(sObj);
     let pObj = {};
@@ -84,6 +78,28 @@ export class ActiveOrdersComponent implements OnInit {
       relativeTo: this.route,
       queryParams: queryParams,
       queryParamsHandling: 'merge'
+    });
+  }
+
+  process(order_group) {
+    this.router.navigate([`/merchant/pending_orders/create_order_voice/${order_group.id}`]);
+  }
+
+  showDetail(event) {
+    this.modal.create({
+      nzComponentParams: { data: event },
+      nzTitle: 'Order Group Detail',
+      nzContent: OrderDetailModalComponent,
+      nzAfterClose: this.detailClose
+    });
+  }
+
+  changeStatus(event, status) {
+    this.orderService.updateOrderGroupStatus(event.id, { status }).subscribe((res) => {
+      if (res.orderGroup) {
+        this.notificationService.template(this.template, {});
+        this.getOrderGroups();
+      }
     });
   }
 }

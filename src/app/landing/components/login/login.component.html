@@ -4,7 +4,13 @@
     <span class="slogan__header">Purchase anything you need</span>
     <span class="slogan__subititle">Make your day easy with jimla</span>
   </div>
-  <form nz-form [formGroup]="loginForm" class="login-form" (ngSubmit)="submitForm()">
+  <form
+    nz-form
+    [formGroup]="loginForm"
+    class="login-form"
+    id="form_title"
+    (ngSubmit)="submitForm()"
+  >
     <span class="header">Log in into your account</span>
     <span
       *ngIf="error"
