@@ -41,6 +41,7 @@ import { ProfilePersonalComponent } from './components/profile-personal/profile-
 import { LocationsComponent } from './components/locations/locations.component';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
+import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
     ProcessOrderComponent,
     LocationsComponent,
     AddLocationModalComponent,
-    ProfilePasswordComponent
+    ProfilePasswordComponent,
+    OrderDetailModalComponent
   ],
   imports: [
     CommonModule,

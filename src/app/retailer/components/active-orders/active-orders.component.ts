@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { OrderService } from '@app/_services/order/order.service';
+import { NzModalService } from 'ng-zorro-antd/modal';
+import { OrderDetailModalComponent } from '../order-detail-modal/order-detail-modal.component';
 
 @Component({
   selector: 'app-active-orders',
@@ -8,22 +10,25 @@ import { OrderService } from '@app/_services/order/order.service';
   styleUrls: ['./active-orders.component.scss']
 })
 export class ActiveOrdersComponent implements OnInit {
-  orders = [];
+  order_groups = [];
   count = 0;
   page = 0;
   pageSize = 0;
   firstReload = true;
+  detailClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private orderSrevice: OrderService
+    private orderService: OrderService,
+    private modal: NzModalService
   ) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
       // console.log(res);
-      this.orders = res.data.rows;
+      this.order_groups = res.data.rows;
       this.count = res.data.count;
     });
     this.route.queryParams.subscribe((res) => {
@@ -38,11 +43,11 @@ export class ActiveOrdersComponent implements OnInit {
   }
 
   getOrders() {
-    this.orderSrevice
-      .getRetailerOrders({ page: this.page, pageSize: this.pageSize })
-      .subscribe((res: { orders: any }) => {
-        this.orders = res.orders.rows;
-        this.count = res.orders.count;
+    this.orderService
+      .getRetailerOrderGroups({ page: this.page, pageSize: this.pageSize })
+      .subscribe((res: { order_groups: any }) => {
+        this.order_groups = res.order_groups.rows;
+        this.count = res.order_groups.count;
       });
   }
 
@@ -54,6 +59,15 @@ export class ActiveOrdersComponent implements OnInit {
     setTimeout(() => {
       this.setUrlValues({ pageSize: event });
     }, 1);
+  }
+
+  showDetail(event) {
+    this.modal.create({
+      nzComponentParams: { data: event },
+      nzTitle: 'Order Group Detail',
+      nzContent: OrderDetailModalComponent,
+      nzAfterClose: this.detailClose
+    });
   }
 
   setUrlValues(sObj) {

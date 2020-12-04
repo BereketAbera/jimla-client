@@ -13,10 +13,11 @@ export class RetailerOrderListResolverService {
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let page = route.queryParamMap.get('page') || 0;
     let pageSize = route.queryParamMap.get('pageSize') || 5;
-    return this.orderService.getRetailerOrders({ page, pageSize }).pipe(
-      mergeMap((data: { orders: any }) => {
-        if (data.orders) {
-          return of(data.orders);
+    return this.orderService.getRetailerOrderGroups({ page, pageSize }).pipe(
+      mergeMap((data: { order_groups: any }) => {
+        // console.log(data);
+        if (data.order_groups) {
+          return of(data.order_groups);
         } else {
           return EMPTY;
         }

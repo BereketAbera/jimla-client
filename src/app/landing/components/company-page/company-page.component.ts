@@ -23,7 +23,7 @@ export class CompanyPageComponent implements OnInit {
   ];
   searchPlaceHolder = 'Search supplier code, name, product';
   merchant;
-  products;
+  products = [];
   merchantCode;
 
   isVisibleTop = false;

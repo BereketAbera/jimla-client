@@ -1,8 +1,9 @@
-<div class="product">
+<div class="company">
   <img src="https://picsum.photos/200/150" alt="pr_image" class="image" />
-  <h4 class="name">{{ product?.name }}<br />{{ product?.merchant?.name }}</h4>
+  <h4 class="name">{{ company?.name }}<br />{{ company?.code }}</h4>
   <div class="description">
-    {{ product.description }}
+    Tin Number: {{ company?.tinNumber }} <br />
+    Phone Number {{ company?.phoneNumber }}
   </div>
   <div [routerLink]="'/landing/company_page/' + formatCompanyName()" class="button">
     <button nz-button nzType="primary">Merchant Page</button>

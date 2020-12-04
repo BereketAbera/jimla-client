@@ -1,0 +1,39 @@
+.company {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem;
+  // border: 1px solid #aaa;
+  box-shadow: 1px 1px 7px 1px #aaa;
+  padding: 2rem 1rem;
+  flex: 1;
+  height: 90%;
+
+  .name {
+    font-weight: 600;
+    color: #555;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  .image {
+    width: 100%;
+    min-height: 150px;
+    margin-bottom: 1rem;
+  }
+
+  .description {
+    margin: 0.5rem 0rem;
+    text-align: center;
+    color: #333;
+    font-weight: 200;
+    font-size: 1.5rem;
+  }
+
+  .price {
+    font-size: 2.8rem;
+    font-weight: 300;
+    color: #001427;
+  }
+}

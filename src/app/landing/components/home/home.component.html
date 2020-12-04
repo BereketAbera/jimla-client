@@ -10,7 +10,7 @@
       <input nz-input placeHolder="Search supplier code, name, product" [(ngModel)]="q" />
     </nz-input-group>
     <ng-template #prefixTemplateUser>
-      <nz-select [(ngModel)]="type">
+      <nz-select (ngModelChange)="typeChanged($event)" [(ngModel)]="type">
         <nz-option nzValue="supplier" nzLabel="Supplier"></nz-option>
         <nz-option nzValue="product" nzLabel="Product"></nz-option>
       </nz-select>
@@ -45,7 +45,9 @@
   </div>
   <div class="content">
     <div class="content__header">
-      <h3 class="content__header-text">All Categories / Company Name</h3>
+      <h3 class="content__header-text">
+        All Categories / {{ type == "product" ? "Products" : "Merchants" }}
+      </h3>
     </div>
     <div style="display: flex; justify-content: flex-end; align-items: center">
       <div class="sort">
@@ -58,7 +60,16 @@
               [(ngModel)]="sort_by"
             >
               <nz-option nzValue="createdAt" nzLabel="Created Date"></nz-option>
-              <nz-option nzValue="name" nzLabel="Product Name"></nz-option>
+              <nz-option
+                *ngIf="type == 'product'"
+                nzValue="name"
+                nzLabel="Product Name"
+              ></nz-option>
+              <nz-option
+                *ngIf="type == 'supplier'"
+                nzValue="name"
+                nzLabel="Company Name"
+              ></nz-option>
               <!-- <nz-option nzValue="company_name" nzLabel="Company Name"></nz-option> -->
             </nz-select>
           </span>
@@ -76,7 +87,7 @@
       </div>
     </div>
 
-    <div class="result__container">
+    <div *ngIf="type == 'product'" class="result__container">
       <app-product-home
         *ngFor="let product of products"
         [product]="product"
@@ -84,8 +95,20 @@
         [type]="type"
         class="result__container__product"
       ></app-product-home>
+
       <div style="width: 100%; display: flex; justify-content: center">
         <nz-empty *ngIf="products.length == 0" nzNotFoundContent="No results found."></nz-empty>
+      </div>
+    </div>
+    <div *ngIf="type == 'supplier'" class="result__container">
+      <app-company-home
+        class="result__container__product"
+        [company]="merchant"
+        *ngFor="let merchant of merchants"
+      >
+      </app-company-home>
+      <div style="width: 100%; display: flex; justify-content: center">
+        <nz-empty *ngIf="merchants.length == 0" nzNotFoundContent="No results found."></nz-empty>
       </div>
     </div>
   </div>

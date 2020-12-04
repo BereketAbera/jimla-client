@@ -7,9 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  open = false;
   constructor(public authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.authenticationService.userValue;
+  }
+
+  mobileDropdownOpen() {
+    this.open = !this.open;
   }
 }

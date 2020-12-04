@@ -48,10 +48,10 @@ export class OrderService {
     );
   }
 
-  getRetailerOrders(query): Observable<any> {
+  getRetailerOrderGroups(query): Observable<any> {
     let params = this.generateParams(query);
     return this.http.get(
-      `${orderUrl}/retailers/${this.authenticationService.userValue.consumerId}/orders?${params}`
+      `${orderUrl}/retailers/${this.authenticationService.userValue.consumerId}/order_groups?${params}`
     );
   }
 
