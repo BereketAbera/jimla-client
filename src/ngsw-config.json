@@ -20,11 +20,40 @@
   ],
   "dataGroups": [
     {
-      "name": "jimla-api",
-      "urls": ["/order/api", "/product/api"],
+      "name": "jimla-api-5",
+      "urls": [
+        "/aggregator/api/get_company_data/**",
+        "/product/api/products/search",
+        "/identity/api/search/producer",
+        "/identity/api/consumer/**",
+        "/identity/api/auth/user/**"
+      ],
       "cacheConfig": {
         "strategy": "performance",
-        "maxAge": "1h",
+        "maxAge": "5m",
+        "maxSize": 100
+      }
+    },
+    {
+      "name": "jimla-api-1d",
+      "urls": [
+        "/product/api/products/categories/**/sub_categories",
+        "/product/api/products/categories",
+        "/product/api/products/sub_categories"
+      ],
+      "cacheConfig": {
+        "strategy": "performance",
+        "maxAge": "1d",
+        "maxSize": 100
+      }
+    },
+    {
+      "name": "jimla-api-timeout",
+      "urls": ["**"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "timeout": "5s",
+        "maxAge": "1d",
         "maxSize": 100
       }
     }

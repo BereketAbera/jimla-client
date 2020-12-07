@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { SwUpdate } from '@angular/service-worker';
+import { ConnectionService } from 'ng-connection-service';
 
 @Component({
   selector: 'app-root',
@@ -7,16 +8,22 @@ import { SwUpdate } from '@angular/service-worker';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private swUpdate: SwUpdate) {}
+  title = 'Jimla';
+  online;
+
+  constructor(private swUpdate: SwUpdate, private connectionService: ConnectionService) {}
 
   ngOnInit() {
     this.swUpdate.available.subscribe(() => {
-      console.log('----------------------new version available-------------------------------');
       if (confirm('New Version Available. Load new Version?')) {
         window.location.reload();
       }
     });
-  }
 
-  title = 'jimla-client';
+    this.connectionService.monitor().subscribe((res) => {
+      if (res) {
+        window.location.reload();
+      }
+    });
+  }
 }
