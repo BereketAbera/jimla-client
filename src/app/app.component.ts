@@ -22,7 +22,7 @@ export class AppComponent {
 
     this.connectionService.monitor().subscribe((res) => {
       if (res) {
-        window.location.reload();
+        window.location.href = '/';
       }
     });
   }
