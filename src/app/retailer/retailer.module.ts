@@ -42,6 +42,7 @@ import { LocationsComponent } from './components/locations/locations.component';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
   declarations: [
@@ -92,7 +93,8 @@ import { OrderDetailModalComponent } from './components/order-detail-modal/order
     NzLayoutModule,
     NzSpaceModule,
     NzSpinModule,
-    NzMessageModule
+    NzMessageModule,
+    NzCollapseModule
   ]
 })
 export class RetailerModule {}

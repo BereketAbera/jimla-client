@@ -16,12 +16,18 @@
   <div class="navigation__actions">
     <nz-avatar [nzSize]="45" (click)="profileOpen()" nzIcon="user"></nz-avatar>
 
-    <ul class="profile" *ngIf="profile" nz-menu  >
+    <ul class="profile" *ngIf="profile" nz-menu>
       <li routerLink="/retailer/profile" nz-menu-item nz-tooltip nzTooltipPlacement="right">
-        <i nz-icon nzType="user" ></i>
+        <i nz-icon nzType="user"></i>
         <span>Profile</span>
       </li>
-      <li class="item" routerLink="/retailer/profile/company" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+      <li
+        class="item"
+        routerLink="/retailer/profile/company"
+        nz-menu-item
+        nz-tooltip
+        nzTooltipPlacement="right"
+      >
         <i nz-icon nzType="setting" nzTheme="fill"></i>
         <span>Settings</span>
       </li>
