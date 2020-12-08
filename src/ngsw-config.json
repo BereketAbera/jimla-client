@@ -46,16 +46,6 @@
         "maxAge": "1d",
         "maxSize": 100
       }
-    },
-    {
-      "name": "jimla-api-timeout",
-      "urls": ["**"],
-      "cacheConfig": {
-        "strategy": "freshness",
-        "timeout": "5s",
-        "maxAge": "1d",
-        "maxSize": 100
-      }
     }
   ]
 }
