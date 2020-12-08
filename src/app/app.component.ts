@@ -21,9 +21,7 @@ export class AppComponent {
   ngOnInit() {
     this.swUpdate.available.subscribe(() => {
       if (confirm('New Version Available. Load new Version?')) {
-        console.log('hello');
-        this.router.navigateByUrl('https://jimla.netlify.app');
-        // window.location.href = 'https://jimla.netlify.app';
+        window.location.reload();
       }
     });
 
