@@ -3,18 +3,23 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadFile } from 'ng-zorro-antd/upload';
+import { Observable, Observer } from 'rxjs';
+
 @Component({
   selector: 'app-profile-company',
   templateUrl: './profile-company.component.html',
   styleUrls: ['./profile-company.component.scss']
 })
 export class ProfileCompanyComponent implements OnInit {
-  consumer;
+  producer;
   companyForm: FormGroup;
   editMode: boolean;
   name: boolean;
   phoneNumber: boolean;
   tinNumber: boolean;
+  loading = false;
+  avatarUrl?: string="";
 
   constructor(
     private message: NzMessageService,
@@ -25,13 +30,14 @@ export class ProfileCompanyComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
-      console.log(res);
-
-      this.consumer = res.data;
+      this.producer = res.data;
       // this.count = res.data.count;
     });
   }
-
+  uploadsImg(){
+    console.log("here");
+    
+  }
   editModeOpen(value) {
     this.editMode = true;
     this.resetField();
@@ -39,19 +45,19 @@ export class ProfileCompanyComponent implements OnInit {
     switch (value) {
       case 'name':
         this.companyForm = this.formBuilder.group({
-          name: [this.consumer.name, Validators.required]
+          name: [this.producer.name, Validators.required]
         });
         this.name = true;
         break;
       case 'tinNumber':
         this.companyForm = this.formBuilder.group({
-          tinNumber: [this.consumer.tinNumber, Validators.required]
+          tinNumber: [this.producer.tinNumber, Validators.required]
         });
         this.tinNumber = true;
         break;
       case 'phoneNumber':
         this.companyForm = this.formBuilder.group({
-          phoneNumber: [this.consumer.phoneNumber, Validators.required]
+          phoneNumber: [this.producer.phoneNumber, Validators.required]
         });
         this.phoneNumber = true;
         break;
@@ -76,17 +82,15 @@ export class ProfileCompanyComponent implements OnInit {
       return;
     }
 
-    this.userService.updateConsumer({ ...this.companyForm.value, id: this.consumer.id }).subscribe(
+    this.userService.updateProducer({ ...this.companyForm.value, id: this.producer.id }).subscribe(
       (data) => {
-        console.log(data);
         this.createMessage('success','Succesfully Updated');
-        this.consumer = data;
+        this.producer = data;
         this.editMode = false;
         this.resetField();
       },
       (error) => {
         this.createMessage('error',error.error?.message || "Failed to change");
-        console.log(error);
       }
     );
   }
@@ -95,4 +99,6 @@ export class ProfileCompanyComponent implements OnInit {
     this.editMode = false;
     (this.name = false), (this.tinNumber = false), (this.phoneNumber = false);
   }
+
+
 }

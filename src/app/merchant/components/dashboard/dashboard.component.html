@@ -4,7 +4,7 @@
     <div class="box">
       <div>
         <!-- <i nz-icon nzType="plus-circle" nzTheme="outline"></i> -->
-        <span  class="number">{{ report?.product }}</span>
+        <span class="number">{{ report?.product }}</span>
         <h3>Product</h3>
       </div>
       <nz-progress
@@ -39,12 +39,12 @@
       ></nz-progress>
     </div>
     <div class="box-2">
-        <div>
-          <span class="number">{{ report?.activeOrder.order }}</span>
-          <h3>Active Orders</h3>
-        </div>
-        <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+      <div>
+        <span class="number">{{ report?.activeOrder.order }}</span>
+        <h3>Active Orders</h3>
       </div>
+      <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    </div>
   </div>
 
   <div class="content">
@@ -75,7 +75,6 @@
                         <td>
                           <span style="font-weight: bold; color: #555">{{ product.name }}</span>
                         </td>
-                       
 
                         <td>
                           <span nz-typography nzType="secondary">{{ product?.unitSold }}</span>
@@ -94,16 +93,13 @@
                             product?.createdAt | date
                           }}</span>
                         </td>
-                        
                       </tr>
                     </tbody>
                   </nz-table>
                 </div>
               </div>
               <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
-                <div class="inner-box">
-                
-                </div>
+                <div class="inner-box"></div>
               </div>
             </div>
           </div>
@@ -113,12 +109,17 @@
 
     <div class="right-content">
       <h2>Weekly Order Statics</h2>
-      <!-- <canvas class="dashboard__chart" #lineChart>{{ chart }}</canvas> -->
-
-      <div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
-        <nz-calendar [nzFullscreen]="false" (nzSelectChange)="onValueChange($event)" (nzPanelChange)="onPanelChange($event)"></nz-calendar>
+      <div class="chart">
+        <canvas #lineChart>{{ chart }}</canvas>
       </div>
 
+      <div [ngStyle]="{ width: '38rem', border: '1px solid #d9d9d9', borderRadius: '15px' }">
+        <nz-calendar
+          [nzFullscreen]="false"
+          (nzSelectChange)="onValueChange($event)"
+          (nzPanelChange)="onPanelChange($event)"
+        ></nz-calendar>
+      </div>
     </div>
   </div>
 </div>

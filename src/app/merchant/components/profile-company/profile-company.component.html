@@ -1,15 +1,24 @@
 <div class="container">
   <div class="container-logo">
     <div class="avatar">
+      <div class="avatar-action">
+        <nz-avatar  [nzShape]="'square'" [nzSize]="110" nzIcon="user"></nz-avatar>
+         <div class="actions">
+          <a routerLink="../upload">Change</a>
+          <a href="">Delete</a>
+         </div>
+      </div>
+    
+
       <div class="name">
-        {{ consumer.name }}
+        {{ producer.name }}
       </div>
     </div>
   </div>
   <div class="content">
     <div class="content-section">
       <span class="title">Company Name</span>
-      <span *ngIf="!name" class="value">{{ consumer.name }}</span>
+      <span *ngIf="!name" class="value">{{ producer.name }}</span>
       <div class="form-container" *ngIf="editMode && name">
         <form
           action=""
@@ -35,7 +44,7 @@
     </div>
     <div class="content-section">
       <span class="title">Tin Number</span>
-      <span *ngIf="!tinNumber" class="value">{{ consumer.tinNumber }}</span>
+      <span *ngIf="!tinNumber" class="value">{{ producer.tinNumber }}</span>
       <div class="form-container" *ngIf="editMode && tinNumber">
         <form
           action=""
@@ -66,7 +75,7 @@
 
     <div class="content-section">
       <span class="title">Phone Number</span>
-      <span *ngIf="!phoneNumber" class="value">{{ consumer.phoneNumber }}</span>
+      <span *ngIf="!phoneNumber" class="value">{{ producer.phoneNumber }}</span>
       <div class="form-container" *ngIf="editMode && phoneNumber">
         <form
           action=""

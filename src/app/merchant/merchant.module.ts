@@ -48,6 +48,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { UploadImgComponent } from './components/upload-img/upload-img.component';
 @NgModule({
   declarations: [
     MerchantComponent,
@@ -65,7 +67,8 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
     ProfileCompanyComponent,
     ProfilePasswordComponent,
     ProfilePersonalComponent,
-    DashboardComponent
+    DashboardComponent,
+    UploadImgComponent
   ],
   imports: [
     CommonModule,
@@ -100,7 +103,8 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
     NzMessageModule,
     NzSpinModule,
     NzProgressModule,
-    NzCalendarModule
+    NzCalendarModule,
+    NzUploadModule
   ]
 })
 export class MerchantModule {}

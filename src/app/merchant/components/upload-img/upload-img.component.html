@@ -1,0 +1,28 @@
+<h2>Upload Company Photo</h2>
+<div class="img-upload">
+  <nz-upload
+    class="avatar-uploader"
+    nzName="avatar"
+    [nzAction]="env"
+    nzListType="picture-card"
+    [nzShowUploadList]="false"
+    [nzBeforeUpload]="beforeUpload"
+    (nzChange)="handleChange($event)"
+  >
+    <ng-container *ngIf="!avatarUrl">
+      <i class="upload-icon" nz-icon [nzType]="loading ? 'loading' : 'plus'"></i>
+      <div class="ant-upload-text">Upload</div>
+    </ng-container>
+   
+
+    <img *ngIf="avatarUrl" [src]="avatarUrl" style="width: 100%" />
+  </nz-upload>
+
+  <div class="detail">
+  <h3> Click the button  to upload</h3> 
+  <span>Upload jpg,png format, no larger than 2MB.</span>
+  <span>Image should describe company information</span>
+  </div>
+
+  
+</div>

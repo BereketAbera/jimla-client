@@ -68,6 +68,6 @@ export class AuthenticationService {
   }
 
   routeToNotFound() {
-    this.router.navigate(['/12341234123']);
+    this.router.navigate(['/landing/server_error']);
   }
 }

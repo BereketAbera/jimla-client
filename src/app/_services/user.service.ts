@@ -26,9 +26,9 @@ export class UserService {
   getConsumerById(id):Observable<any>{
     return this.http.get(`${this.apiUrl}/consumer/${id}`)
   }
-
+ 
   getProducerById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/producer/id/${id}`)
+    return this.http.get(`${this.apiUrl}/producers/${id}`)
   }
 
   getAddressByConsId(id):Observable<any>{
@@ -41,6 +41,10 @@ export class UserService {
 
   updateConsumer(body):Observable<any>{
     return this.http.put(`${this.apiUrl}/consumer`,body)
+  }
+
+  updateProducer(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/producer`,body)
   }
 
   addConsumer(user): Observable<any> {

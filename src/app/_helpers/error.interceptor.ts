@@ -29,9 +29,9 @@ export class ErrorInterceptor implements HttpInterceptor {
           case 404:
             this.authenticationService.routeToNotFound();
             break;
-          case 400:
-            this.authenticationService.routeToNotFound();
-            break;
+          // case 400:
+          //   this.authenticationService.routeToNotFound();
+          //   break;
           case 422:
             this.broadCastErrorService.error.next(err);
             break;

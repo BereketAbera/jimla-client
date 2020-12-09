@@ -24,7 +24,7 @@ export class ProducerResolverService {
       id=token.producerId;
     }
 
-    return this.userService.getConsumerById(id).pipe(
+    return this.userService.getProducerById(id).pipe(
       mergeMap((data) => {
         if (data) {
           return of(data);
