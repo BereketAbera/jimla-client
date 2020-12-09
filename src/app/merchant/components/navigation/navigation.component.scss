@@ -98,18 +98,16 @@ button {
   }
 }
 .profile {
-  position: absolute;
-  margin: 2rem;
-  padding: 0.5rem;
-  top: 50px;
-  right: 1rem;
-  width: 20rem;
-  max-width: 40rem;
   border-radius: 10px;
-  box-shadow: 1px 3px 8px rgb(214, 220, 224);
+  border:none;
   font-size: 1.6rem;
   z-index: 100;
   .item {
     border-bottom: 1px solid #ddd;
   }
 }
+
+::ng-deep .ant-popover-inner{
+  border-radius: 1rem;
+}
+
