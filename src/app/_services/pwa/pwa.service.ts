@@ -15,7 +15,7 @@ export class PwaService {
 
   constructor(private modalService: NzModalService, private platform: Platform) {
     this.modalClose.subscribe((res) => {
-      this.modalActive = false;
+      // this.modalActive = false;
     });
   }
 
