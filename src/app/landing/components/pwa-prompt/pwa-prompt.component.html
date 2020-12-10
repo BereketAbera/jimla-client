@@ -1,17 +1,18 @@
 <div
   *ngIf="mobileType == 'android'"
-  style="display: flex; justify-content: space-between; max-width: 600px"
+  style="display: flex; justify-content: space-between; max-width: 600px; align-items: center"
 >
   <button
     nz-button
     nzType="link"
     (click)="installPwa()"
-    style="padding: 0.5rem 2rem; color: #073241; font-size: 1.8rem"
+    style="color: #073241; font-size: 1.8rem; margin-top: -0.9rem"
   >
-    Add To Home Screen
+    <img src="assets/icons/icon-72x72.png" style="height: 3rem; margin-right: 1rem" alt="" /> Add
+    Jimla To Home Screen
   </button>
   <button nz-button nzType="text" (click)="destroyModal()">
-    <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+    <i style="font-size: 2rem" nz-icon nzType="close-circle" nzTheme="outline"></i>
   </button>
 </div>
 

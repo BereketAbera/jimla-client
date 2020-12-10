@@ -37,7 +37,6 @@ export class PwaService {
           nzClosable: false,
           nzFooter: null,
           nzMaskClosable: false,
-          nzStyle: { bottom: 0 },
           nzContent: PwaPromptComponent,
           nzComponentParams: { mobileType, promptEvent: this.promptEvent }
         })
