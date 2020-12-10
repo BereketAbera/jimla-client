@@ -4,25 +4,14 @@
   <h2 class="main_content_title">Locations</h2>
   <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]" style="padding: 1rem">
     <div
+    (click)="editLocation(location)"
       nz-col
       [nzXs]="24"
       [nzSm]="12"
       [nzMd]="6"
       [nzLg]="5"
-      style="
-        height: 18rem;
-        background-color: #073241;
-        margin: 1rem;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        border-radius: 2rem;
-        color: #fff;
-        font-weight: 900;
-        font-size: 2rem;
-        text-align: center;
-      "
+      class="location"
+      
       *ngFor="let location of locations"
     >
       <span>{{ location?.phoneNumber }}</span

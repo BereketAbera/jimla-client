@@ -24,4 +24,8 @@ export class LocationService {
       location
     );
   }
+
+  editConsumerLocation(location,id) {
+    return this.http.put(`${identityUrl}/consumer/addresses/${id}`, location);
+  }
 }

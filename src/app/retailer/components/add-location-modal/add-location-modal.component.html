@@ -1,5 +1,5 @@
 <div class="form__container">
-  <h2 style="font-size: 2.5rem" id="form_title">Add Location</h2>
+  <!-- <h2 style="font-size: 2.5rem" id="form_title">Add Location</h2> -->
   <form
     nz-form
     [nzLayout]="'vertical'"
@@ -37,7 +37,7 @@
         [nzValidateStatus]="
           controls['description'].invalid && controls['description'].touched ? 'error' : ''
         "
-        nzErrorTip="Product name is required"
+        nzErrorTip="Address Description is required"
         class="register__input"
       >
         <input
@@ -83,5 +83,7 @@
 </div>
 <div *nzModalFooter>
   <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
-  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="addLocation()">Add</button>
+  <button *ngIf="!editMode" nz-button nzType="primary" [nzLoading]="submitted" (click)="addLocation()">Add</button>
+  <button *ngIf="editMode" nz-button nzType="primary" [nzLoading]="submitted" (click)="editLocation()">Save Changes</button>
+
 </div>

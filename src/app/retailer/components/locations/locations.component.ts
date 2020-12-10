@@ -35,7 +35,18 @@ export class LocationsComponent implements OnInit {
     this.modal.create({
       nzTitle: 'Add Location',
       nzContent: AddLocationModalComponent,
-      nzAfterClose: this.locationClose
+      nzAfterClose: this.locationClose,
+    });
+  }
+
+  editLocation(location){
+    console.log(location);
+    
+    this.modal.create({
+      nzTitle: 'Edit Location',
+      nzContent: AddLocationModalComponent,
+      nzAfterClose: this.locationClose,
+      nzComponentParams:location
     });
   }
 }
