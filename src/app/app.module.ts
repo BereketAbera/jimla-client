@@ -22,7 +22,7 @@ import { PwaService } from './_services/pwa/pwa.service';
 // import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 
-// const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
+const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 registerLocaleData(en);
 
@@ -44,7 +44,7 @@ registerLocaleData(en);
     { provide: APP_BASE_HREF, useValue: '/' },
     CustomPreloadingService,
     { provide: NZ_I18N, useValue: en_US }
-    // { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true }
+    { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true }
     // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
