@@ -1,0 +1,14 @@
+<button
+  *ngIf="mobileType == 'android'"
+  nz-button
+  nzType="link"
+  [nzLoading]="submitted"
+  (click)="installPwa()"
+  style="padding: 0.5rem 2rem"
+>
+  Add To Home Screen
+</button>
+
+<div *ngIf="mobileType == 'ios'">
+  To install this web app on your device tap the Menu button and then 'Add to Home screen' button
+</div>

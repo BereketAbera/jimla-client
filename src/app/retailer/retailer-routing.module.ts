@@ -23,8 +23,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
-        // resolve: { data: CompanyProductResolverService }
+        component: ActiveOrdersComponent,
+        resolve: { data: RetailerOrderListResolverService }
       },
       {
         path: 'orders',
@@ -43,22 +43,22 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-       
+
         children: [
           {
             path: '',
             component: ProfilePersonalComponent,
-            resolve: { data: UserResolverService },
+            resolve: { data: UserResolverService }
           },
           {
             path: 'company',
             component: ProfileCompanyComponent,
-            resolve: { data: ConsumerResolverService },
+            resolve: { data: ConsumerResolverService }
           },
           {
             path: 'password',
             component: ProfilePasswordComponent,
-            resolve: { data: ConsumerResolverService },
+            resolve: { data: ConsumerResolverService }
           }
         ]
       },

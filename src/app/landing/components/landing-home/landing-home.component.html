@@ -34,7 +34,7 @@
         nz-button
         nzType="primary"
         class="btn small_side_margin-vr"
-        >ለጅምላ ነጋዴ ግባ</a
+        >ግባ</a
       >
       <a
         style="width: 90%; align-self: center"
@@ -56,17 +56,6 @@
       >
         ለገዢ ተመዝገብ</a
       >
-
-      <!-- <a
-        style="width: 90%; align-self: center"
-        (click)="mobileDropdownOpen()"
-        *ngIf="
-          authenticationService.userValue && authenticationService.userValue.role == 'PRODUCER'
-        "
-        routerLink="/merchant"
-        class="btn btn--jimla"
-        >Home</a
-      > -->
     </ul>
     <a
       style="width: 90%; align-self: center"
@@ -79,9 +68,6 @@
   </div>
 
   <div class="navigation__actions">
-    <!-- <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
-    <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a> -->
-
     <a *ngIf="!authenticationService.userValue" routerLink="/landing/login" class="btn btn--jimla"
       >ለጅምላ ነጋዴ</a
     >

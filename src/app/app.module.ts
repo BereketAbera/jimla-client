@@ -2,7 +2,7 @@ import { SharedModule } from './shared/shared.module';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +18,11 @@ import en from '@angular/common/locales/en';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ConnectionServiceModule } from 'ng-connection-service';
+import { PwaService } from './_services/pwa/pwa.service';
 // import { LocationStrategy, HashLocationStrategy } from '@angular/common';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+
+const initializer = (pwaService: PwaService) => () => pwaService.initPwaPrompt();
 
 registerLocaleData(en);
 
@@ -30,14 +34,17 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    ConnectionServiceModule
+    ConnectionServiceModule,
+    NzModalModule
   ],
+
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: APP_BASE_HREF, useValue: '/' },
     CustomPreloadingService,
     { provide: NZ_I18N, useValue: en_US }
+    { provide: APP_INITIALIZER, useFactory: initializer, deps: [PwaService], multi: true }
     // { provide: LocationStrategy, useClass: HashLocationStrategy }
   ],
   bootstrap: [AppComponent]
