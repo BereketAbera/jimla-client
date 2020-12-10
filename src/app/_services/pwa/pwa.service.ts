@@ -34,6 +34,10 @@ export class PwaService {
       .pipe(take(1))
       .subscribe(() =>
         this.modalService.create({
+          nzClosable: false,
+          nzFooter: null,
+          nzMaskClosable: false,
+          nzStyle: { bottom: 0 },
           nzContent: PwaPromptComponent,
           nzComponentParams: { mobileType, promptEvent: this.promptEvent }
         })
