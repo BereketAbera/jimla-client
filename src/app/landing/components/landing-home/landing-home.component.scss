@@ -43,6 +43,16 @@
     padding: 2rem;
     width: 600px;
   }
+
+  &__actions {
+    align-items: center;
+    display: none;
+  }
+
+  &__actions--mobile {
+    position: relative;
+    display: flex;
+  }
 }
 
 .main {
@@ -92,6 +102,27 @@
       box-shadow: 0 1px 3px rgb(6, 53, 107);
     }
   }
+}
+
+.profile {
+  position: absolute;
+  // margin: 2rem;
+  padding: 0.5rem;
+  top: 3.5rem;
+  right: -1rem;
+  width: 20rem;
+  max-width: 40rem;
+  border-radius: 10px;
+  box-shadow: 1px 3px 8px rgb(214, 220, 224);
+  font-size: 1.6rem;
+  z-index: 100;
+  .item {
+    border-bottom: 1px solid #ddd;
+  }
+}
+
+.small_side_margin-vr {
+  margin: 0.5rem 1rem;
 }
 
 .img__container {
@@ -255,6 +286,16 @@ Wave Divider
   .page-footer ul {
     margin-bottom: 0;
   }
+
+  .navigation {
+    &__actions {
+      display: flex;
+    }
+
+    &__actions--mobile {
+      display: none;
+    }
+  }
 }
 
 @media (min-width: 800px) {
@@ -280,3 +321,15 @@ Wave Divider
     margin-left: 5rem;
   }
 }
+
+// @media screen and (min-width: 600px) {
+//   .navigation {
+//     &__actions {
+//       display: flex;
+//     }
+
+//     &__actions--mobile {
+//       display: none;
+//     }
+//   }
+// }

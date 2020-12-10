@@ -40,12 +40,22 @@ export class RegisterComponent implements OnInit {
       subCity: ['Arada'],
       woreda: ['woreda'],
       description: [''],
-      lat: [8.9],
-      long: [38.7]
+      lat: [null, Validators.required],
+      long: [null, Validators.required]
     });
   }
 
   ngOnInit(): void {
+    if (navigator.geolocation) {
+      // console.log('getting current location');
+      navigator.geolocation.getCurrentPosition((position) => {
+        // console.log(position);
+        this.controls['lat'].setValue(position.coords.longitude);
+        this.controls['long'].setValue(position.coords.latitude);
+      });
+    } else {
+      console.log('No support for geolocation');
+    }
     this.broadcastErrorService.error.subscribe((res) => {
       if (res) {
         let errStr = '';

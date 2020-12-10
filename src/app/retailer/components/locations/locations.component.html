@@ -10,8 +10,7 @@
       [nzSm]="12"
       [nzMd]="6"
       [nzLg]="5"
-      class="location"
-      
+      class="location__container"
       *ngFor="let location of locations"
     >
       <span>{{ location?.phoneNumber }}</span
@@ -24,18 +23,7 @@
       [nzSm]="12"
       [nzMd]="6"
       [nzLg]="5"
-      style="
-        height: 18rem;
-        border: 1px solid #aaa;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        margin: 1rem;
-        cursor: pointer;
-        color: #aaa;
-        border-radius: 2rem;
-      "
+      class="location__item"
     >
       <i nz-icon nzType="plus" nzTheme="outline" style="font-size: 8rem; color: #aaa"></i>
       <span>Add Other Location</span>
