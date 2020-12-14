@@ -1,2 +1,48 @@
 <retailer-navigation></retailer-navigation>
-<p>dashboard works!</p>
+<div class="dashboard">
+  <div class="box-container">
+    <div class="box">
+      <div>
+        <span class="number">{{ orderReport.allOrders }}</span>
+        <h3>All Orders</h3>
+      </div>
+      <nz-progress
+        nz-tooltip
+        [nzWidth]="50"
+        nzTitle="3 done / 3 in progress / 4 to do"
+        nzType="circle"
+        [nzPercent]="60"
+        [nzSuccessPercent]="30"
+      ></nz-progress>
+    </div>
+    <div class="box-2">
+      <div>
+        <span class="number">{{ orderReport.activeOrders }}</span>
+        <h3>Active Orders</h3>
+      </div>
+      <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    </div>
+    <div class="box">
+      <div>
+        <!-- <i nz-icon nzType="phone" nzTheme="outline"></i> -->
+        <span class="number">{{ orderReport.deliveredOrders }}</span>
+        <h3>Delivered Orders</h3>
+      </div>
+      <nz-progress
+        nz-tooltip
+        [nzWidth]="50"
+        nzTitle="3 done / 3 in progress / 4 to do"
+        nzType="circle"
+        [nzPercent]="60"
+        [nzSuccessPercent]="30"
+      ></nz-progress>
+    </div>
+    <div class="box-2">
+      <div>
+        <span class="number">{{ orderReport.discardedOrders }}</span>
+        <h3>Discarded Orders</h3>
+      </div>
+      <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    </div>
+  </div>
+</div>

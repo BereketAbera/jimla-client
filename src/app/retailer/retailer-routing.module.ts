@@ -1,3 +1,4 @@
+import { RetailerDashboardResolverService } from './../_resolvers/retailer-dashboard-resolver.service';
 import { GetConsumerAddressResolverService } from './../_resolvers/location/get-consumer-address-resolver.service';
 import { LocationsComponent } from './components/locations/locations.component';
 import { RetailerOrderListResolverService } from './../_resolvers/order/retailer-order-list-resolver.service';
@@ -23,8 +24,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: ActiveOrdersComponent,
-        resolve: { data: RetailerOrderListResolverService }
+        component: DashboardComponent,
+        resolve: { data: RetailerDashboardResolverService }
       },
       {
         path: 'orders',
