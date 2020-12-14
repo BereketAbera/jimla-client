@@ -24,8 +24,13 @@ export class UsersComponent implements OnInit {
     private route: ActivatedRoute,
     private userSerive: UserService
   ) {
-    this.route.data.subscribe((res: { data: any }) => {
-      this.address = res;
+    this.route.data.subscribe((res) => {
+      
+      this.address = {data:res.data};
+      console.log(this.address);
+      
+      this.users = res.resData.rows;
+      this.count = res.resData.count;
       // this.count = res.data.count;
     });
   }
@@ -35,7 +40,7 @@ export class UsersComponent implements OnInit {
       this.getUsers();
     });
     this.route.queryParams.subscribe((res) => {
-      this.page = parseInt(res['page']) || 1;
+      this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
       if (!this.firstReload) {
         this.getUsers();
@@ -53,7 +58,7 @@ export class UsersComponent implements OnInit {
       nzComponentParams: this.address
     });
   }
-  
+
   getUsers() {
     this.userSerive
       .getConsumerUser({ page: this.page, pageSize: this.pageSize })
@@ -64,7 +69,7 @@ export class UsersComponent implements OnInit {
   }
 
   pageChanged(event) {
-    this.setUrlValues({ page: event  });
+    this.setUrlValues({ page: event - 1  });
   }
 
   pageSizeChanged(event) {

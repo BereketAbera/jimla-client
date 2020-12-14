@@ -16,6 +16,7 @@ import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resol
 import { AddressResolverService } from '@app/_resolvers/identity/address-resolver.service';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 import { UsersComponent } from './components/users/users.component';
+import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-resolver.service';
 
 const routes: Routes = [
   {
@@ -68,9 +69,9 @@ const routes: Routes = [
         component: ProcessOrderComponent
       },
       {
-        path: 'user',
+        path: 'users',
         component: UsersComponent,
-        resolve: { data: GetConsumerAddressResolverService }
+        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
       }
     ]
   }

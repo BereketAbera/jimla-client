@@ -20,7 +20,6 @@ export class ProducerResolverService {
       id = currentUser.producerId;
     } else {
       let token = JSON.parse(localStorage.getItem('user'));
-      console.log(token, 'Token');
       id=token.producerId;
     }
 

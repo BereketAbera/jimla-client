@@ -33,7 +33,7 @@
                     }}</span>
                   </td>
                   <td>
-                    <span nz-typography nzType="secondary">{{ data.lastName }}</span>
+                    <span  style="font-size: 1.8rem; font-weight: bold; color: #555" nz-typography nzType="secondary">{{ data.lastName }}</span>
                   </td>
                   <td>
                     <span nz-typography nzType="secondary">{{ data.phoneNumber }}</span>
@@ -47,7 +47,17 @@
                   </td>
 
                   <td>
-                    <button (click)="showDetail(data)" nz-button>Detail</button>
+                    <a nz-dropdown [nzDropdownMenu]="menu">
+                     Action
+                      <i nz-icon nzType="down"></i>
+                    </a>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                      <ul nz-menu nzSelectable>
+                        <li nz-menu-item>Manage Privilages</li>
+                        <li nz-menu-item>Deactivate</li>
+                        <li nz-menu-item>Other</li>
+                      </ul>
+                    </nz-dropdown-menu>
                   </td>
                 </tr>
               </tbody>
@@ -57,18 +67,18 @@
         <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
           <div class="inner-box">
             <nz-pagination
-          [nzTotal]="count"
-          [nzSize]="'small'"
-          [nzShowTotal]="totalTemplate"
-          (nzPageIndexChange)="pageChanged($event)"
-          (nzPageSizeChange)="pageSizeChanged($event)"
-          [nzPageSize]="pageSize"
-          [nzPageIndex]="page + 1"
-          nzShowSizeChanger
-          nzShowQuickJumper
-          [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
-        ></nz-pagination>
-        <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
+              [nzTotal]="count"
+              [nzSize]="'small'"
+              [nzShowTotal]="totalTemplate"
+              (nzPageIndexChange)="pageChanged($event)"
+              (nzPageSizeChange)="pageSizeChanged($event)"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="page +1"
+              nzShowSizeChanger
+              nzShowQuickJumper
+              [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+            ></nz-pagination>
+            <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
           </div>
         </div>
       </div>

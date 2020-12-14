@@ -4,10 +4,11 @@
   margin-top: -66px;
   position: fixed;
   z-index: 200;
-
+  box-shadow: 3px 0px 10px #c2d1da;
   &__logo {
     height: 40px;
   }
+
 
   &__logo-container {
     top: -2px;
