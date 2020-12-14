@@ -50,4 +50,26 @@ export class UserService {
   addConsumer(user): Observable<any> {
     return this.http.post(`${this.apiUrl}/consumer/signup`, user);
   }
+  addConsumerUser(user): Observable<any> {
+    return this.http.post(`${this.apiUrl}/consumer/user`, user);
+  }
+  getConsumerUser(data): Observable<any> {
+    let params = this.generateParams(data)
+    return this.http.get(`${this.apiUrl}/consumers/user?${params}`);
+  }
+  generateParams(params) {
+    let url = '';
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if ((key == 'status' && params[key] == '0') || params[key] == '1') {
+        url = url + `${key}=${params[key]}&`;
+        return;
+      }
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
+  }
 }

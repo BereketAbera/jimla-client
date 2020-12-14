@@ -1,0 +1,77 @@
+<retailer-navigation></retailer-navigation>
+<div class="main-container">
+  <div class="button">
+    <button style="float: right" nz-button nzType="primary" (click)="addUser()">Add User</button>
+  </div>
+
+  <div
+    nz-row
+    [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
+    style="justify-content: space-between"
+  >
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" class="gutter-row sub_container">
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box">
+            <nz-table #basicTable [nzShowPagination]="false" [nzData]="users">
+              <thead>
+                <tr>
+                  <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Phone Number</th>
+                  <th>Username</th>
+                  <th>Created</th>
+                  <th>More</th>
+                  <!-- <th>Action</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                  <td>
+                    <span style="font-size: 1.8rem; font-weight: bold; color: #555">{{
+                      data.firstName
+                    }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.lastName }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.phoneNumber }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.username }}</span>
+                  </td>
+
+                  <td>
+                    <span nz-typography nzType="secondary">{{ data.createdAt | date }}</span>
+                  </td>
+
+                  <td>
+                    <button (click)="showDetail(data)" nz-button>Detail</button>
+                  </td>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
+          <div class="inner-box">
+            <nz-pagination
+          [nzTotal]="count"
+          [nzSize]="'small'"
+          [nzShowTotal]="totalTemplate"
+          (nzPageIndexChange)="pageChanged($event)"
+          (nzPageSizeChange)="pageSizeChanged($event)"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="page + 1"
+          nzShowSizeChanger
+          nzShowQuickJumper
+          [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+        ></nz-pagination>
+        <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

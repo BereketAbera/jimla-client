@@ -46,7 +46,7 @@ export class AddLocationModalComponent implements OnInit {
       long: [this.location?this.location.long:38.7]
     });
    
-    console.log(this.editMode);
+    // console.log(this.editMode);
     // console.log(this.modalService);
   }
 

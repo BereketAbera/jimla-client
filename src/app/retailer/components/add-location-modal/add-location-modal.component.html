@@ -54,7 +54,7 @@
         <nz-form-label nzRequired [nzSpan]="24" nzFor="city">City</nz-form-label>
         <nz-form-control
           [nzValidateStatus]="controls['city'].invalid && controls['city'].touched ? 'error' : ''"
-          nzErrorTip="Product name is required"
+          nzErrorTip="City is required"
           class="register__input"
         >
           <input type="text" nz-input formControlName="city" name="city" placeholder="City" />
@@ -63,7 +63,7 @@
       <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
         <nz-form-label nzRequired [nzSpan]="24" nzFor="subCity">Sub city</nz-form-label>
         <nz-form-control
-          nzErrorTip="Product subCity is required"
+          nzErrorTip="subCity is required"
           [nzValidateStatus]="
             controls['subCity'].invalid && controls['subCity'].touched ? 'error' : ''
           "
