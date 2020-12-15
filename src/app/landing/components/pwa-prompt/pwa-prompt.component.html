@@ -1,0 +1,34 @@
+<div
+  *ngIf="mobileType == 'android'"
+  style="display: flex; justify-content: space-between; max-width: 600px; align-items: center"
+>
+  <button
+    nz-button
+    nzType="link"
+    (click)="installPwa()"
+    style="color: #073241; font-size: 1.8rem; margin-top: -0.9rem"
+  >
+    <img src="assets/icons/icon-72x72.png" style="height: 3rem; margin-right: 1rem" alt="" /> Add
+    Jimla To Home Screen
+  </button>
+  <button nz-button nzType="text" (click)="destroyModal()">
+    <i style="font-size: 2rem" nz-icon nzType="close-circle" nzTheme="outline"></i>
+  </button>
+</div>
+
+<div
+  *ngIf="mobileType == 'ios'"
+  style="display: flex; justify-content: space-between; max-width: 600px"
+>
+  <img
+    src="assets/icons/icon-72x72.png"
+    style="display: flex; justify-content: space-between; max-width: 600px; align-items: center"
+    alt=""
+  />
+  <div>
+    To install this web app on your device tap the Menu button and then 'Add to Home screen' button
+  </div>
+  <button nz-button nzType="text" (click)="destroyModal()">
+    <i nz-icon nzType="close-circle" nzTheme="outline"></i>
+  </button>
+</div>

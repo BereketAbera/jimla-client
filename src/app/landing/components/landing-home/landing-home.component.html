@@ -21,6 +21,7 @@
       (click)="mobileDropdownOpen()"
       class="btn btn--jimla"
       style="color: #333"
+      *ngIf="!authenticationService.userValue"
     >
       ምረጥ <i nz-icon nzType="caret-down" nzTheme="outline"></i>
     </button>
@@ -29,17 +30,15 @@
       <a
         style="width: 90%; align-self: center"
         (click)="mobileDropdownOpen()"
-        *ngIf="!authenticationService.userValue"
         routerLink="/landing/login"
         nz-button
         nzType="primary"
         class="btn small_side_margin-vr"
-        >ለጅምላ ነጋዴ ግባ</a
+        >ግባ</a
       >
       <a
         style="width: 90%; align-self: center"
         (click)="mobileDropdownOpen()"
-        *ngIf="!authenticationService.userValue"
         routerLink="/landing/register"
         nz-button
         nzType="primary"
@@ -50,7 +49,6 @@
       <a
         style="width: 90%; align-self: center"
         (click)="mobileDropdownOpen()"
-        *ngIf="!authenticationService.userValue"
         routerLink="/landing/retailer_register"
         nz-button
         nzType="primary"
@@ -58,35 +56,18 @@
       >
         ለገዢ ተመዝገብ</a
       >
-
-      <a
-        style="width: 90%; align-self: center"
-        (click)="mobileDropdownOpen()"
-        *ngIf="
-          authenticationService.userValue && authenticationService.userValue.role == 'PRODUCER'
-        "
-        routerLink="/merchant"
-        class="btn btn--jimla"
-        >Home</a
-      >
-
-      <a
-        style="width: 90%; align-self: center"
-        (click)="mobileDropdownOpen()"
-        *ngIf="
-          authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'
-        "
-        routerLink="/retailer"
-        class="btn btn--jimla"
-        >Home</a
-      >
     </ul>
+    <a
+      style="width: 90%; align-self: center"
+      (click)="mobileDropdownOpen()"
+      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'"
+      routerLink="/retailer"
+      class="btn btn--jimla"
+      >Home</a
+    >
   </div>
 
   <div class="navigation__actions">
-    <!-- <a routerLink="/landing/login" class="btn btn--jimla">ለጅምላ ነጋዴ</a>
-    <a routerLink="/landing/login" nz-button nzType="info" class="btn">ግባ</a> -->
-
     <a *ngIf="!authenticationService.userValue" routerLink="/landing/login" class="btn btn--jimla"
       >ለጅምላ ነጋዴ</a
     >

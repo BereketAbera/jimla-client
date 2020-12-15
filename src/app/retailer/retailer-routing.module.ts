@@ -1,3 +1,4 @@
+import { RetailerDashboardResolverService } from './../_resolvers/retailer-dashboard-resolver.service';
 import { GetConsumerAddressResolverService } from './../_resolvers/location/get-consumer-address-resolver.service';
 import { LocationsComponent } from './components/locations/locations.component';
 import { RetailerOrderListResolverService } from './../_resolvers/order/retailer-order-list-resolver.service';
@@ -25,8 +26,8 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        component: DashboardComponent
-        // resolve: { data: CompanyProductResolverService }
+        component: DashboardComponent,
+        resolve: { data: RetailerDashboardResolverService }
       },
       {
         path: 'orders',
@@ -45,22 +46,22 @@ const routes: Routes = [
       {
         path: 'profile',
         component: ProfileComponent,
-       
+
         children: [
           {
             path: '',
             component: ProfilePersonalComponent,
-            resolve: { data: UserResolverService },
+            resolve: { data: UserResolverService }
           },
           {
             path: 'company',
             component: ProfileCompanyComponent,
-            resolve: { data: ConsumerResolverService },
+            resolve: { data: ConsumerResolverService }
           },
           {
             path: 'password',
             component: ProfilePasswordComponent,
-            resolve: { data: ConsumerResolverService },
+            resolve: { data: ConsumerResolverService }
           }
         ]
       },

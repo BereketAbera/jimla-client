@@ -5,6 +5,7 @@
     nz-row
     [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
     style="justify-content: space-between"
+    class="orders__desktop"
   >
     <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" class="gutter-row sub_container">
       <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
@@ -57,7 +58,7 @@
             </nz-table>
           </div>
         </div>
-        <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
+        <!-- <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
           <div class="inner-box">
             <nz-pagination
               [nzTotal]="count"
@@ -73,7 +74,59 @@
             ></nz-pagination>
             <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
           </div>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <div class="orders__mobile">
+    <nz-collapse>
+      <nz-collapse-panel
+        *ngFor="let data of order_groups; let i = index"
+        [nzHeader]="data.code"
+        [nzActive]="i == 0"
+        nzExtra="Updated: {{ data.updatedAt | date: 'medium' }}"
+      >
+        <div style="display: flex; justify-content: space-between; margin: 0.5rem 0rem">
+          <span>Type: {{ data.type }}</span>
+          <span>Created: {{ data.createdAt | date: "medium" }}</span>
         </div>
+        <div style="display: flex; justify-content: space-between; margin: 0.5rem 0rem">
+          <span
+            style="padding: 0.3rem 2rem; border: 1px solid #aaa; border-radius: 0.5rem"
+            [style.borderColor]="
+              data.status == 'ACTIVE' ? 'green' : data.status == 'DELIVERED' ? '#073241' : '#888'
+            "
+            [style.color]="
+              data.status == 'ACTIVE' ? 'green' : data.status == 'DELIVERED' ? '#073241' : '#888'
+            "
+            >{{ data.status }}</span
+          >
+          <button (click)="showDetail(data)" nzType="primary" nz-button>Detail</button>
+        </div>
+      </nz-collapse-panel>
+    </nz-collapse>
+  </div>
+  <div
+    nz-row
+    [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
+    style="justify-content: space-between"
+  >
+    <div nz-col nzSpan="24" class="gutter-row" style="text-align: right; margin-top: 1rem">
+      <div class="inner-box">
+        <nz-pagination
+          [nzTotal]="count"
+          [nzSize]="'small'"
+          [nzShowTotal]="totalTemplate"
+          (nzPageIndexChange)="pageChanged($event)"
+          (nzPageSizeChange)="pageSizeChanged($event)"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="page + 1"
+          nzShowSizeChanger
+          nzShowQuickJumper
+          [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+        ></nz-pagination>
+        <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
       </div>
     </div>
   </div>

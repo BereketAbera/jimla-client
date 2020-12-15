@@ -35,6 +35,9 @@ export class CompanyPageComponent implements OnInit {
   q = '';
   type = 'product';
   firstReload = true;
+  cartMerchantId = '';
+  cartMerchantName = '';
+  processing = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -61,9 +64,12 @@ export class CompanyPageComponent implements OnInit {
       this.merchant = data.data.merchant || {};
       this.products = data.data.product.rows || [];
       this.merchantCode = data.data.merchantCode || {};
+      console.log(this.merchant);
     });
 
     this.cartProducts = JSON.parse(localStorage.getItem('order_cart'))?.orders || [];
+    this.cartMerchantId = JSON.parse(localStorage.getItem('order_cart'))?.MerchantId || '';
+    this.cartMerchantName = JSON.parse(localStorage.getItem('order_cart'))?.MerchantName || '';
   }
 
   getProducts() {
@@ -86,6 +92,8 @@ export class CompanyPageComponent implements OnInit {
   clearCart(): void {
     localStorage.removeItem('order_cart');
     this.cartProducts = [];
+    this.cartMerchantId = '';
+    this.cartMerchantName = '';
     this.isVisibleTop = false;
   }
 
@@ -95,6 +103,9 @@ export class CompanyPageComponent implements OnInit {
 
   addProductToCart(event) {
     if (event.amount && event.product) {
+      if (this.merchant.id != this.cartMerchantId) {
+        this.clearCart();
+      }
       let tempProduct = { id: event.product.id, name: event.product.name, amount: event.amount };
 
       let index = -1;
@@ -120,15 +131,28 @@ export class CompanyPageComponent implements OnInit {
         }, 2500);
       }
 
+      console.log({
+        orders: this.cartProducts,
+        MerchantId: this.merchant.id,
+        MerchantName: this.merchant.name
+      });
+
+      this.cartMerchantId = this.merchant.id;
+      this.cartMerchantName = this.merchant.name;
       localStorage.setItem(
         'order_cart',
-        JSON.stringify({ orders: this.cartProducts, MerchantId: this.merchant.id })
+        JSON.stringify({
+          orders: this.cartProducts,
+          MerchantId: this.merchant.id,
+          MerchantName: this.merchant.name
+        })
       );
     }
   }
 
   processOrder() {
-    if (this.cartProducts.length) {
+    if (this.cartProducts.length && !this.processing) {
+      this.processing = true;
       if (
         !this.authenticationService.userValue ||
         this.authenticationService.userValue.role != 'CONSUMER'
@@ -142,7 +166,7 @@ export class CompanyPageComponent implements OnInit {
       } else {
         // console.log('processing order');
         let orderData = {
-          MerchantId: this.merchant.id,
+          MerchantId: this.cartMerchantId,
           orders: this.cartProducts.map((cp) => {
             return { productId: cp.id, quantity: cp.amount };
           })
@@ -154,7 +178,9 @@ export class CompanyPageComponent implements OnInit {
             localStorage.removeItem('order_cart');
             this.goBack();
             this.close();
+            this.processing = false;
           }
+          this.processing = false;
         });
       }
     }

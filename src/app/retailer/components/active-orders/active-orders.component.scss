@@ -7,3 +7,22 @@
   width: 100%;
   text-align: center;
 }
+
+.orders__desktop {
+  display: none;
+}
+
+.orders__mobile {
+  display: flex;
+  flex-direction: column;
+}
+
+@media (min-width: 600px) {
+  .orders__desktop {
+    display: flex;
+  }
+
+  .orders__mobile {
+    display: none;
+  }
+}

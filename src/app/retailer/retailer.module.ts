@@ -45,6 +45,7 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
+import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 
 @NgModule({
   declarations: [
@@ -98,7 +99,8 @@ import { AddUserModalComponent } from './components/add-user-modal/add-user-moda
     NzSpaceModule,
     NzSpinModule,
     NzMessageModule,
-    NzTagModule
+    NzTagModule,
+    NzCollapseModule
   ]
 })
 export class RetailerModule {}

@@ -3,6 +3,7 @@ import { AddLocationModalComponent } from './../add-location-modal/add-location-
 import { ActivatedRoute } from '@angular/router';
 import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { PwaPromptComponent } from '@app/landing/components/pwa-prompt/pwa-prompt.component';
 
 @Component({
   selector: 'app-locations',
@@ -46,5 +47,14 @@ export class LocationsComponent implements OnInit {
       nzAfterClose: this.locationClose,
       nzComponentParams:location
     });
+
+    // this.modal.create({
+    //   nzClosable: false,
+    //   nzFooter: null,
+    //   nzMaskClosable: false,
+    //   nzStyle: { bottom: 0 },
+    //   nzContent: PwaPromptComponent,
+    //   nzComponentParams: { mobileType: 'android', promptEvent: {} }
+    // });
   }
 }

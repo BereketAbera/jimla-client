@@ -18,11 +18,11 @@
 
   &__button {
     border-radius: unset;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
+    border-top-right-radius: 3rem;
+    border-bottom-right-radius: 3rem;
     padding: 0.1rem;
     padding-right: 0.5rem;
-    height: 5rem;
+    height: 8rem;
     width: auto;
     position: absolute;
     right: -22px;
@@ -34,7 +34,7 @@
   }
 
   &__button-icon {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
   }
 }
 
@@ -112,3 +112,18 @@ button {
   border-radius: 1rem;
 }
 
+@media (min-width: 600px) {
+  .wrapper {
+    &__button {
+      border-top-right-radius: 2rem;
+      border-bottom-right-radius: 2rem;
+      padding: 0.1rem;
+      padding-right: 0.5rem;
+      height: 5rem;
+    }
+
+    &__button-icon {
+      font-size: 1.5rem;
+    }
+  }
+}
