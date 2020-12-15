@@ -20,7 +20,7 @@ export class LocationsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.data.subscribe((res) => {
+    this.route.data.subscribe((res) => {      
       this.locations = res.data;
     });
 
@@ -39,9 +39,7 @@ export class LocationsComponent implements OnInit {
     });
   }
 
-  editLocation(location){
-    console.log(location);
-    
+  editLocation(location){    
     this.modal.create({
       nzTitle: 'Edit Location',
       nzContent: AddLocationModalComponent,

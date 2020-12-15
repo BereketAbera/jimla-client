@@ -29,6 +29,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -96,7 +97,8 @@ import { AddUserModalComponent } from './components/add-user-modal/add-user-moda
     NzLayoutModule,
     NzSpaceModule,
     NzSpinModule,
-    NzMessageModule
+    NzMessageModule,
+    NzTagModule
   ]
 })
 export class RetailerModule {}

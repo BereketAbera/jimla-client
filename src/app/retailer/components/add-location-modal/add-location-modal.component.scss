@@ -31,3 +31,33 @@ nz-divider {
     // color: #169dce;
   }
 }
+
+.dynamic-delete-button {
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  font-size: 24px;
+  color: #999;
+  transition: all 0.3s;
+}
+
+.dynamic-delete-button:hover {
+  color: #777;
+}
+
+.passenger-input {
+  width: 60%;
+  margin-right: 8px;
+}
+.add-phone{
+  position: absolute;
+  top:1rem;
+  right:0;
+  margin:2rem;
+}
+.tag{
+  padding:1rem 0rem;
+}
+.phone-tag{
+  margin:0.5rem;
+}

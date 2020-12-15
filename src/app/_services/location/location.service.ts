@@ -28,4 +28,8 @@ export class LocationService {
   editConsumerLocation(location,id) {
     return this.http.put(`${identityUrl}/consumer/addresses/${id}`, location);
   }
+
+  deletePhone(id){
+    return this.http.delete(`${identityUrl}/consumer/addresses/phone/${id}`)
+  }
 }
