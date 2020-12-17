@@ -13,6 +13,7 @@
       class="location__container"
       *ngFor="let location of locations"
     >
+     <i nz-icon class="icon" nzType="environment" nzTheme="outline"></i>
       <span>{{ location?.phoneNumber }}</span
       ><span>{{ location?.description }}</span>
     </div>

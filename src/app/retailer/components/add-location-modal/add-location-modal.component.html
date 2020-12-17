@@ -28,7 +28,7 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item> -->
-      <div class="tag">
+      <div *ngIf="editMode" class="tag">
         <h3>Phone Numbers</h3>
         <nz-tag class="phone-tag" *ngFor="let tag of location.phones; let i = index" nzMode="closeable" (nzOnClose)="handleClose(tag)">
           {{ tag.phoneNumber }}

@@ -18,6 +18,7 @@ import { AddressResolverService } from '@app/_resolvers/identity/address-resolve
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 import { UsersComponent } from './components/users/users.component';
 import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-resolver.service';
+import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 
 const routes: Routes = [
   {
@@ -43,6 +44,7 @@ const routes: Routes = [
         component: LocationsComponent,
         resolve: { data: GetConsumerAddressResolverService }
       },
+    
       {
         path: 'profile',
         component: ProfileComponent,

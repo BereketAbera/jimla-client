@@ -3,7 +3,7 @@
   <div class="box-container">
     <div class="box">
       <div>
-        <span class="number">{{ orderReport.allOrders }}</span>
+        <span class="number">{{ orderReport?.allOrders }}</span>
         <h3>All Orders</h3>
       </div>
       <nz-progress
@@ -17,7 +17,7 @@
     </div>
     <div class="box-2">
       <div>
-        <span class="number">{{ orderReport.activeOrders }}</span>
+        <span class="number">{{ orderReport?.activeOrders }}</span>
         <h3>Active Orders</h3>
       </div>
       <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
@@ -25,7 +25,7 @@
     <div class="box">
       <div>
         <!-- <i nz-icon nzType="phone" nzTheme="outline"></i> -->
-        <span class="number">{{ orderReport.deliveredOrders }}</span>
+        <span class="number">{{ orderReport?.deliveredOrders }}</span>
         <h3>Delivered Orders</h3>
       </div>
       <nz-progress
@@ -39,7 +39,7 @@
     </div>
     <div class="box-2">
       <div>
-        <span class="number">{{ orderReport.discardedOrders }}</span>
+        <span class="number">{{ orderReport?.discardedOrders }}</span>
         <h3>Discarded Orders</h3>
       </div>
       <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>

@@ -11,12 +11,12 @@ import { AddUserModalComponent } from '../add-user-modal/add-user-modal.componen
 })
 export class UsersComponent implements OnInit {
   userClose: EventEmitter<any> = new EventEmitter();
-  page: any=0;
-  pageSize: any=5;
+  page: any = 0;
+  pageSize: any = 5;
   users: any = [];
   count: any = 0;
   address;
-  firstReload=true;
+  firstReload = true;
 
   constructor(
     private modal: NzModalService,
@@ -25,8 +25,7 @@ export class UsersComponent implements OnInit {
     private userSerive: UserService
   ) {
     this.route.data.subscribe((res) => {
-      
-      this.address = {data:res.data};      
+      this.address = { data: res.data };
       this.users = res.resData.rows;
       this.count = res.resData.count;
       // this.count = res.data.count;
@@ -67,7 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   pageChanged(event) {
-    this.setUrlValues({ page: event - 1  });
+    this.setUrlValues({ page: event - 1 });
   }
 
   pageSizeChanged(event) {
@@ -85,11 +84,24 @@ export class UsersComponent implements OnInit {
     const queryParams: Params = {
       ...pObj
     };
-    
+
     this.router.navigate([], {
       relativeTo: this.route,
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     });
+  }
+
+  deactivateUser() {
+    this.userSerive.updateUser({ status: 2 }).subscribe(
+      (data) => {},
+      (error) => {}
+    );
+  }
+
+  editUser(){
+    this.userSerive.updateUser({}).subscribe(data=>{
+      
+    })
   }
 }

@@ -46,6 +46,7 @@ import { OrderDetailModalComponent } from './components/order-detail-modal/order
 import { UsersComponent } from './components/users/users.component';
 import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
 
 @NgModule({
   declarations: [
@@ -100,7 +101,8 @@ import { NzCollapseModule } from 'ng-zorro-antd/collapse';
     NzSpinModule,
     NzMessageModule,
     NzTagModule,
-    NzCollapseModule
+    NzCollapseModule,
+    NzProgressModule
   ]
 })
 export class RetailerModule {}

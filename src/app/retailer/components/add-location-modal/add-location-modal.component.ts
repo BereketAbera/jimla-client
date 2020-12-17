@@ -43,9 +43,10 @@ export class AddLocationModalComponent implements OnInit {
       lat: [this.location ? this.location.lat : 8.9],
       long: [this.location ? this.location.long : 38.7]
     });
-    // this.addField();
-    // console.log(this.editMode);
-    // console.log(this.modalService);
+    if(!this.editMode){
+      this.addField();
+    }
+    
   }
 
   get controls() {
@@ -79,6 +80,9 @@ export class AddLocationModalComponent implements OnInit {
           this.loading = false;
           this.addSuccess(res);
           this.createMessage('success', 'Successfully Created');
+        },error=>{
+          console.log(error);
+          this.createMessage("error","PhoneNumber already exists. Failed to Create")
         });
     }
   }
@@ -103,6 +107,8 @@ export class AddLocationModalComponent implements OnInit {
           this.loading = false;
           this.addSuccess(res);
           this.createMessage('success', 'Successfully Editted');
+        },error=>{
+          this.createMessage("error","PhoneNumber already exists. Failed to Edit")
         });
     }
   }
@@ -141,7 +147,6 @@ export class AddLocationModalComponent implements OnInit {
   }
 
   handleClose(phone) {
-
     this.locationService.deletePhone(phone.phoneNumber).subscribe(
       (data) => {
         this.createMessage("success","Delete Successfully")
