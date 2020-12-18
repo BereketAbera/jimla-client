@@ -47,6 +47,7 @@ import { UsersComponent } from './components/users/users.component';
 import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     ProfilePasswordComponent,
     OrderDetailModalComponent,
     UsersComponent,
-    AddUserModalComponent
+    AddUserModalComponent,
+    ManageUserComponent
   ],
   imports: [
     CommonModule,

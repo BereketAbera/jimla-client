@@ -39,6 +39,11 @@ export class UserService {
     return this.http.put(`${this.apiUrl}/auth/user`,body)
   }
 
+
+  deleteUser(body):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/consumer/user/${body.id}`,body)
+  }
+
   updateConsumer(body):Observable<any>{
     return this.http.put(`${this.apiUrl}/consumer`,body)
   }

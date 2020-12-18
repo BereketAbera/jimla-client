@@ -8,3 +8,44 @@
 .button {
   padding: 1rem;
 }
+
+.pagination{
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.users{
+  display: flex;
+  margin:1rem;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  // width: 100%;
+  justify-content: center;
+  .user{
+    background-color: white;
+    padding:2rem;
+    margin:1rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 2px 5px rgb(223, 228, 231);
+    width: 100%;
+    max-width: 28rem;
+    position: relative;
+    .name{
+      padding-left:1rem;
+
+      span{
+        display: block;
+        color:#003241;
+      }
+    }
+
+    .action{
+      position: absolute;
+      top:1rem;
+      right: 1rem;
+    }
+  }
+}

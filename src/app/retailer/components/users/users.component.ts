@@ -91,17 +91,34 @@ export class UsersComponent implements OnInit {
       queryParamsHandling: 'merge'
     });
   }
-
-  deactivateUser() {
-    this.userSerive.updateUser({ status: 2 }).subscribe(
-      (data) => {},
+  createConfirmDelete(data){
+    this.modal.confirm({
+      nzTitle: `<b>Do you Want to delete these user?</b>`,
+      nzContent: '<p>This action cannot be undo.</p>',
+      nzOnOk: () => this.deleteUser(data),
+      nzOkType: 'danger',
+      nzOnCancel: () => console.log('Cancel')
+    });
+  }
+  deactivateUser(data) {
+    this.userSerive.updateUser({ status: "SUSPENDED",id:data.id }).subscribe(
+      (data) => {
+        this.getUsers()
+      },
+      (error) => {}
+    );
+  }
+  deleteUser(data) {
+    this.userSerive.deleteUser({ status: "DELETED",id:data.id }).subscribe(
+      (data) => {
+        console.log(data);
+        this.getUsers()
+      },
       (error) => {}
     );
   }
 
   editUser(){
-    this.userSerive.updateUser({}).subscribe(data=>{
-      
-    })
+   this.router.navigate(['edit'],{relativeTo:this.route})
   }
 }

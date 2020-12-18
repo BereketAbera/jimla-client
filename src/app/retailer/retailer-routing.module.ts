@@ -19,6 +19,7 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
 import { UsersComponent } from './components/users/users.component';
 import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-resolver.service';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 const routes: Routes = [
   {
@@ -74,6 +75,11 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
+        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
+      },
+      {
+        path: 'users/edit',
+        component: ManageUserComponent,
         resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
       }
     ]
