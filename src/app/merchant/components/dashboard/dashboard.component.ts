@@ -3,7 +3,7 @@ import { AggregatorService } from '@app/_services/aggregator.service';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { ProducerService } from '@app/_services/identity/producer.service';
 import { ProductService } from '@app/_services/product/product.service';
-import { Chart } from "chart.js";
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,10 +11,10 @@ import { Chart } from "chart.js";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  @ViewChild("lineChart", { static: true }) private chartRef;
-  products: any=[];
+  @ViewChild('lineChart', { static: true }) private chartRef;
+  products: any = [];
   count: any;
-  report
+  report;
   lables: string[];
   chart;
   constructor(
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getDashboard();
-    this.drawRevenuChart()
+    this.drawRevenuChart();
   }
 
   getDashboard() {
@@ -34,12 +34,10 @@ export class DashboardComponent implements OnInit {
       .getProducerDashboard(this.authenticationService.userValue.producerId)
       .subscribe(
         (data) => {
-          console.log(data);
-          this.report= data;
+          this.report = data;
         },
         (error) => {
           console.log(error);
-          
         }
       );
   }
@@ -51,39 +49,39 @@ export class DashboardComponent implements OnInit {
       })
       .subscribe((res) => {
         // console.log(res);
-        
+
         this.products = res.rows;
         this.count = res.count;
       });
   }
 
   drawRevenuChart() {
-    this.lables=['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-    this.chart = new Chart(this.chartRef.nativeElement, {
-      type: "line",
-      data: {
-        labels: this.lables,
-        datasets: [
-          {
-            label: "Order",
-            data: this.report?.order,
-            backgroundColor: ["rgba(255, 99, 132, 0.2)"],
-            borderColor: ["rgba(255, 255, 255)"],
-            borderWidth: 0.5,
-          },
-        ],
-      },
-      options: {
-        scales: {
-          yAxes: [
+    (this.lables = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']),
+      (this.chart = new Chart(this.chartRef.nativeElement, {
+        type: 'line',
+        data: {
+          labels: this.lables,
+          datasets: [
             {
-              ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
+              label: 'Order',
+              data: this.report?.order,
+              backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+              borderColor: ['rgba(255, 255, 255)'],
+              borderWidth: 0.5
+            }
+          ]
         },
-      },
-    });
+        options: {
+          scales: {
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: true
+                }
+              }
+            ]
+          }
+        }
+      }));
   }
 }

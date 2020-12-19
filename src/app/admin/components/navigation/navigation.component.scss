@@ -1,0 +1,114 @@
+.wrapper {
+  // width: 80px;
+  height: 100vh;
+  margin-top: -66px;
+  position: fixed;
+  z-index: 200;
+
+  &__logo {
+    height: 40px;
+  }
+
+  &__logo-container {
+    top: -2px;
+    left: 75px;
+    position: absolute;
+  }
+
+  &__button {
+    border-radius: unset;
+    border-top-right-radius: 2rem;
+    border-bottom-right-radius: 2rem;
+    padding: 0.1rem;
+    padding-right: 0.5rem;
+    height: 5rem;
+    width: auto;
+    position: absolute;
+    right: -22px;
+    top: 40%;
+  }
+
+  &__button-open {
+    right: -23px;
+  }
+
+  &__button-icon {
+    font-size: 1.5rem;
+  }
+}
+
+.wrapper-collapse {
+  width: auto;
+}
+
+.ant-menu-root.ant-menu-inline,
+.ant-menu-inline-collapsed {
+  height: 100vh;
+}
+
+li {
+  &:focus {
+    border: none;
+    outline: none;
+  }
+}
+
+button {
+  margin-bottom: 8px;
+}
+
+::ng-deep .ant-menu-inline {
+  width: 240px;
+}
+
+::ng-deep .ant-menu-inline-collapsed {
+  width: 0px;
+  overflow: hidden;
+}
+
+::ng-deep .ant-menu {
+  margin-top: 0.5rem;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  box-shadow: 0 1px 3px rgb(148, 148, 148);
+  box-shadow: 0 2px 4px rgb(212, 212, 212);
+
+  @media (min-width: 800px) {
+    padding: 0.1rem 2rem; // Desktop view
+  }
+  // background-color: #d98e46;
+  &__logo {
+    height: 5rem;
+    cursor: pointer;
+  }
+
+  .btn {
+    padding: 0 1rem;
+  }
+
+  .search {
+    padding: 2rem;
+    width: 600px;
+  }
+}
+.profile {
+  position: absolute;
+  margin: 2rem;
+  padding: 0.5rem;
+  top: 50px;
+  right: 1rem;
+  width: 20rem;
+  max-width: 40rem;
+  border-radius: 10px;
+  box-shadow: 1px 3px 8px rgb(214, 220, 224);
+  font-size: 1.6rem;
+  z-index: 100;
+  .item {
+    border-bottom: 1px solid #ddd;
+  }
+}

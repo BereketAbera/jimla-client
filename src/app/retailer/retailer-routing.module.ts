@@ -17,6 +17,8 @@ import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resol
 import { AddressResolverService } from '@app/_resolvers/identity/address-resolver.service';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 
+
+
 const routes: Routes = [
   {
     path: '',

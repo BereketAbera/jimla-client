@@ -1,18 +1,18 @@
 <div class="container">
-  <h2 class="header">{{ retailer?.name }}</h2>
-  <span>{{ retailer?.phone_number }}</span>
+  <h2 class="header">{{ address?.company_name }}</h2>
+  <!-- <span>{{ address?.phone_number }}</span> -->
   <div class="">
     Location:
     <a
       style="font-size: 1.8rem"
       target="_blank"
       [href]="
-        'https://www.google.com/maps/search/?api=1&query=' + retailer?.lat + ',' + retailer?.long
+        'https://www.google.com/maps/search/?api=1&query=' + address?.lat + ',' + address?.long
       "
       >Open Location On map</a
     >
   </div>
-  <span>{{ retailer?.address_desc }}</span>
+  <span>{{ address?.address_desc }}</span>
   <span style="margin: 1rem 0rem">Ordered: {{ data?.createdAt | date: "medium" }}</span>
   <span
     style="padding: 0.3rem 2rem; border: 1px solid #aaa; border-radius: 0.5rem"

@@ -5,8 +5,6 @@ import { CommonModule } from '@angular/common';
 import { MerchantRoutingModule } from './merchant-routing.module';
 import { MerchantComponent } from './merchant.component';
 import { CreateOrderVoiceComponent } from './components/create-order-voice/create-order-voice.component';
-// import { OrderGroupListComponent } from './components/order-group-list/order-group-list.component';
-// import { OrderListComponent } from './components/order-list/order-list.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
@@ -47,12 +45,11 @@ import { NzMessageModule } from 'ng-zorro-antd/message';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 @NgModule({
   declarations: [
     MerchantComponent,
     CreateOrderVoiceComponent,
-    // OrderGroupListComponent,
-    // OrderListComponent,
     NavigationComponent,
     ProductsComponent,
     AddProductModalComponent,
@@ -64,7 +61,8 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     ProfileCompanyComponent,
     ProfilePasswordComponent,
     ProfilePersonalComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditProductModalComponent
   ],
   imports: [
     CommonModule,
@@ -89,7 +87,6 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzListModule,
     NzBadgeModule,
     NzAvatarModule,
-    NzDropDownModule,
     NzDropDownModule,
     NzDatePickerModule,
     NzPopoverModule,

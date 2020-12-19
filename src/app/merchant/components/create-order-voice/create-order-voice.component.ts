@@ -20,7 +20,7 @@ export class CreateOrderVoiceComponent implements OnInit {
   selectedProducts = [];
 
   selectedProductsOrders = [];
-  retailer = null;
+  address = null;
   merchant = null;
   orderGroup = null;
   @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
@@ -34,7 +34,7 @@ export class CreateOrderVoiceComponent implements OnInit {
     private viewportScroller: ViewportScroller
   ) {
     this.route.data.subscribe((res: { data: any }) => {
-      this.retailer = res.data.retailer;
+      this.address = res.data.address;
       this.merchant = res.data.merchant;
       this.orderGroup = res.data.orderGroup;
       this.products = res.data.products;
@@ -114,7 +114,7 @@ export class CreateOrderVoiceComponent implements OnInit {
       order_group_id: this.orderGroup.id,
       orders
     };
-    console.log(orderData);
+    // console.log(orderData);
     // return;
 
     this.orderService.createVoiceOrder(orderData).subscribe((res: any) => {

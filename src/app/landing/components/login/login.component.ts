@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit {
       (data) => {
         this.error = '';
         this.broadCastErrorService.error.next(false);
-        console.log(data);
+        // console.log(data);
       }
       // (error) => {
       //   this.error = error;

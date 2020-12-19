@@ -11,7 +11,7 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
 export class OrderDetailModalComponent implements OnInit {
   @Input('data') data;
   orders = [];
-  retailer: any;
+  address: any;
   processTypes = [
     { name: 'AVAILABLE', id: 'AVAILABLE' },
     { name: 'NOT_AVAILABLE', id: 'NOT_AVAILABLE' }
@@ -26,8 +26,9 @@ export class OrderDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.getOrderGroupOrders(this.data.id).subscribe((res) => {
-      this.orders = res.orders;
-      this.retailer = this.orders.length ? (this.retailer = this.orders[0].retailer) : {};
+      this.orders = res.orders.orders;
+      this.address = res.orders.address;
+      // console.log(res, this.orders, this.address);
     });
   }
 

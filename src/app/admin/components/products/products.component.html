@@ -1,0 +1,144 @@
+<admin-navigation></admin-navigation>
+<div class="main_container main_content_container">
+  <div class="header_container">
+    <h2 class="main_content_title">Products</h2>
+    <button (click)="filter()" nz-button nzType="primary" nzShape="round">
+      FILTER
+      <i nz-icon nzType="filter" nzTheme="outline"></i>
+    </button>
+  </div>
+  <div class="header__filter" [class.header__filter--active]="filterActive">
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Upload Date</h3>
+      <nz-divider></nz-divider>
+      <nz-range-picker [(ngModel)]="date" (ngModelChange)="onDateChange($event)"></nz-range-picker>
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Company Name</h3>
+      <nz-divider></nz-divider>
+      <input nz-input placeholder="Company name" [(ngModel)]="company" />
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Category</h3>
+      <nz-divider></nz-divider>
+      <nz-select style="min-width: 20rem" [(ngModel)]="category">
+        <nz-option nzValue="" nzLabel="All"></nz-option>
+        <nz-option
+          *ngFor="let category of categories"
+          [nzValue]="category.id + ''"
+          [nzLabel]="category.name"
+        ></nz-option>
+        <!-- <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+        <nz-option nzValue="disabled" nzLabel="Disabled"></nz-option> -->
+      </nz-select>
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Status</h3>
+      <nz-divider></nz-divider>
+      <nz-select style="min-width: 10rem" [(ngModel)]="status">
+        <nz-option nzValue="" nzLabel="All"></nz-option>
+        <nz-option nzValue="PENDING" nzLabel="Pending"></nz-option>
+        <nz-option nzValue="ACTIVE" nzLabel="Active"></nz-option>
+        <nz-option nzValue="DISABLED" nzLabel="Disabled"></nz-option>
+      </nz-select>
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Apply Filter</h3>
+      <nz-divider></nz-divider>
+      <button (click)="applyFilter()" nz-button nzType="primary" nzShape="round">
+        APPLY FILTER
+        <i nz-icon nzType="filter" nzTheme="outline"></i>
+      </button>
+    </div>
+  </div>
+  <div
+    nz-row
+    [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
+    style="justify-content: space-between"
+  >
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" class="gutter-row sub_container">
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box">
+            <nz-table [nzShowPagination]="false" [nzData]="products">
+              <thead>
+                <tr>
+                  <th>Product Name</th>
+                  <!-- <th>Net Price</th> -->
+                  <th>Unit In Stock</th>
+                  <th>Unit In Order</th>
+                  <th>Unit Sold</th>
+                  <th>Category</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let product of products">
+                  <td>
+                    <span style="font-weight: bold; color: #555">{{ product.name }}</span>
+                  </td>
+                  <!-- <td>
+                    <span nz-typography nzType="secondary">{{ product?.netPrice }}</span>
+                  </td> -->
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.unitInStock }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.unitInOrder }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.unitSold }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.category?.name }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.description }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.status }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ product?.createdAt | date }}</span>
+                  </td>
+                  <!-- <th>
+                      <button nz-button nz-dropdown [nzDropdownMenu]="actions">
+                        Actions
+                        <i nz-icon nzType="down"></i>
+                      </button>
+                      <nz-dropdown-menu #actions="nzDropdownMenu">
+                        <ul nz-menu>
+                          <li class="list_style" nz-menu-item>Process</li>
+                          <li class="list_style" nz-menu-item>Failed</li>
+                          <li class="list_style" nz-menu-item>Delete</li>
+                        </ul>
+                      </nz-dropdown-menu>
+                    </th> -->
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
+          <div class="inner-box">
+            <nz-pagination
+              [nzTotal]="count"
+              [nzSize]="'small'"
+              [nzShowTotal]="totalTemplate"
+              (nzPageIndexChange)="pageChanged($event)"
+              (nzPageSizeChange)="pageSizeChanged($event)"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="page + 1"
+              nzShowSizeChanger
+              nzShowQuickJumper
+              [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+            ></nz-pagination>
+            <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

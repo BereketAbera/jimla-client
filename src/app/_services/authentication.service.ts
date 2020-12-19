@@ -64,10 +64,10 @@ export class AuthenticationService {
   }
 
   routeToServerError() {
-    this.router.navigate(['/server_error']);
+    this.router.navigate(['/landing/server_error']);
   }
 
   routeToNotFound() {
-    this.router.navigate(['/12341234123']);
+    this.router.navigate(['/landing/not_found']);
   }
 }

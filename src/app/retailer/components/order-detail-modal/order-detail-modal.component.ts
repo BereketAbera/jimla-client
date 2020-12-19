@@ -21,8 +21,7 @@ export class OrderDetailModalComponent implements OnInit {
 
   ngOnInit(): void {
     this.orderService.getOrderGroupOrders(this.data.id).subscribe((res) => {
-      console.log(res);
-      this.orders = res.orders;
+      this.orders = res.orders.orders;
       this.merchant = this.orders.length ? (this.merchant = this.orders[0].merchant) : {};
     });
   }

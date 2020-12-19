@@ -1,0 +1,106 @@
+<admin-navigation></admin-navigation>
+<div class="main_container main_content_container">
+  <div class="header_container">
+    <h2 class="main_content_title">Merchants</h2>
+    <!-- <button (click)="addProduct()" nz-button nzType="primary" nzShape="round">
+        Add New
+        <i nz-icon nzType="plus"></i>
+      </button> -->
+  </div>
+  <div
+    nz-row
+    [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]"
+    style="justify-content: space-between"
+  >
+    <div nz-col [nzXs]="24" [nzSm]="24" [nzMd]="24" class="gutter-row sub_container">
+      <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]">
+        <div nz-col nzSpan="24" class="gutter-row">
+          <div class="inner-box">
+            <nz-table [nzShowPagination]="false" [nzData]="merchants">
+              <thead>
+                <tr>
+                  <th>Company Name</th>
+                  <th>Code</th>
+                  <th>TIN Number</th>
+                  <th>Phone Number</th>
+                  <th>Verified</th>
+                  <th>Status</th>
+                  <th>Created</th>
+                  <th>Options</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let merchant of merchants">
+                  <td>
+                    <span style="font-weight: bold; color: #555">{{ merchant.name }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.Code?.code }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.tinNumber }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.phoneNumber }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">
+                      <label nz-checkbox [ngModel]="merchant?.verified" [nzDisabled]="true"></label
+                    ></span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.status }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.createdAt | date }}</span>
+                  </td>
+                  <th>
+                    <button nz-button nz-dropdown [nzDropdownMenu]="actions">
+                      Options
+                      <i nz-icon nzType="down"></i>
+                    </button>
+                    <nz-dropdown-menu #actions="nzDropdownMenu">
+                      <ul nz-menu>
+                        <li
+                          class="list_style"
+                          (click)="getMerchantProducts(merchant.name)"
+                          nz-menu-item
+                        >
+                          Products
+                        </li>
+                        <li class="list_style" (click)="showAddresses(merchant)" nz-menu-item>
+                          Addresses
+                        </li>
+                        <li class="list_style" nz-menu-item>Orders</li>
+                        <li class="list_style" (click)="updateMerchant(merchant)" nz-menu-item>
+                          {{ merchant.verified ? "Refute" : "Verify" }}
+                        </li>
+                      </ul>
+                    </nz-dropdown-menu>
+                  </th>
+                </tr>
+              </tbody>
+            </nz-table>
+          </div>
+        </div>
+        <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
+          <div class="inner-box">
+            <nz-pagination
+              [nzTotal]="count"
+              [nzSize]="'small'"
+              [nzShowTotal]="totalTemplate"
+              (nzPageIndexChange)="pageChanged($event)"
+              (nzPageSizeChange)="pageSizeChanged($event)"
+              [nzPageSize]="pageSize"
+              [nzPageIndex]="page + 1"
+              nzShowSizeChanger
+              nzShowQuickJumper
+              [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+            ></nz-pagination>
+            <ng-template #totalTemplate let-total>Total {{ count }} items</ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

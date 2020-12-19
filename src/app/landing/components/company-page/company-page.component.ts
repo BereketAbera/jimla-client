@@ -64,7 +64,7 @@ export class CompanyPageComponent implements OnInit {
       this.merchant = data.data.merchant || {};
       this.products = data.data.product.rows || [];
       this.merchantCode = data.data.merchantCode || {};
-      console.log(this.merchant);
+      // console.log(this.merchant);
     });
 
     this.cartProducts = JSON.parse(localStorage.getItem('order_cart'))?.orders || [];
@@ -131,11 +131,11 @@ export class CompanyPageComponent implements OnInit {
         }, 2500);
       }
 
-      console.log({
-        orders: this.cartProducts,
-        MerchantId: this.merchant.id,
-        MerchantName: this.merchant.name
-      });
+      // console.log({
+      //   orders: this.cartProducts,
+      //   MerchantId: this.merchant.id,
+      //   MerchantName: this.merchant.name
+      // });
 
       this.cartMerchantId = this.merchant.id;
       this.cartMerchantName = this.merchant.name;

@@ -22,6 +22,12 @@ const routes: Routes = [
     data: { roles: ['CONSUMER'] },
     loadChildren: () => import('./retailer/retailer.module').then((mod) => mod.RetailerModule)
   },
+  {
+    path: 'jm-admin',
+    canActivate: [AuthGuard],
+    data: { roles: ['ADMIN'] },
+    loadChildren: () => import('./admin/admin.module').then((mod) => mod.AdminModule)
+  },
   { path: '**', redirectTo: 'landing', pathMatch: 'full' }
 ];
 
