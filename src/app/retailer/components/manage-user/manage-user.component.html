@@ -1,0 +1,192 @@
+<retailer-navigation></retailer-navigation>
+<div class="content">
+    <h1 style="text-align:center">User Management | Edit</h1>
+  <!-- <aside>
+    <ul>
+      <li>Change PhoneNumber</li>
+      <li>Manage Privilidege</li>
+    </ul>
+  </aside> -->
+  <div class="box-container">
+    <div class="box">
+        <b><h3>Basic Info</h3></b>
+        <span>Basic info, such as user name and address
+        </span>
+        <form nz-form [nzLayout]="'horizontal'" [formGroup]="userForm" action="POST" class="register__form">
+           
+              <nz-form-item  [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="firstName">First Name</nz-form-label>
+                <nz-form-control
+                  [nzValidateStatus]="
+                    controls['firstName'].invalid && controls['firstName'].touched ? 'error' : ''
+                  "
+                  nzErrorTip="First Name is required"
+                  class=" "
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder="FirstName"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item class="" nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="lastName">lastName</nz-form-label>
+                <nz-form-control
+                  [nzValidateStatus]="
+                    controls['lastName'].invalid && controls['lastName'].touched ? 'error' : ''
+                  "
+                  nzErrorTip="Last Name is required"
+                  class=""
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="lastName"
+                    name="lastName"
+                    placeholder="lastName"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+         
+        
+         
+              <nz-form-item class=" " nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="username">Username</nz-form-label>
+                <nz-form-control
+                  nzErrorTip="Username is required"
+                  [nzValidateStatus]="
+                    controls['username'].invalid && controls['username'].touched ? 'error' : ''
+                  "
+                  class=" "
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="username"
+                    placeholder="Username"
+                    name="username"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item  nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="address">Address</nz-form-label>
+                <nz-form-control
+                  nzErrorTip="Address is required"
+                  [nzValidateStatus]="
+                    controls['addressId'].invalid && controls['addressId'].touched ? 'error' : ''
+                  "
+                  class=" "
+                >
+                  <nz-select
+                    nzShowSearch
+                    formControlName="addressId"
+                    nzAllowClear
+                    nzPlaceHolder="Select a Address"
+                  >
+                    <nz-option
+                      *ngFor="let address of addressList"
+                      [nzValue]="address.id"
+                      [nzLabel]="address.description"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+         
+          </form>
+      </div>
+      <div class="box">
+        <b><h2>Basic Info</h2></b>
+        <span>Basic info, such as user name and address
+        </span>
+        <form nz-form [nzLayout]="'horizontal'" [formGroup]="userForm" action="POST" class="register__form">
+           
+              <nz-form-item  [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="firstName">First Name</nz-form-label>
+                <nz-form-control
+                  [nzValidateStatus]="
+                    controls['firstName'].invalid && controls['firstName'].touched ? 'error' : ''
+                  "
+                  nzErrorTip="First Name is required"
+                  class=" "
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="firstName"
+                    name="firstName"
+                    placeholder="FirstName"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item class="" nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="lastName">lastName</nz-form-label>
+                <nz-form-control
+                  [nzValidateStatus]="
+                    controls['lastName'].invalid && controls['lastName'].touched ? 'error' : ''
+                  "
+                  nzErrorTip="Last Name is required"
+                  class=""
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="lastName"
+                    name="lastName"
+                    placeholder="lastName"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+         
+        
+         
+              <nz-form-item class=" " nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="username">Username</nz-form-label>
+                <nz-form-control
+                  nzErrorTip="Username is required"
+                  [nzValidateStatus]="
+                    controls['username'].invalid && controls['username'].touched ? 'error' : ''
+                  "
+                  class=" "
+                >
+                  <input
+                    type="text"
+                    nz-input
+                    formControlName="username"
+                    placeholder="Username"
+                    name="username"
+                  />
+                </nz-form-control>
+              </nz-form-item>
+              <nz-form-item  nz-row [nzSm]="24" [nzMd]="11">
+                <nz-form-label nzRequired [nzSpan]="4" nzFor="address">Address</nz-form-label>
+                <nz-form-control
+                  nzErrorTip="Address is required"
+                  [nzValidateStatus]="
+                    controls['addressId'].invalid && controls['addressId'].touched ? 'error' : ''
+                  "
+                  class=" "
+                >
+                  <nz-select
+                    nzShowSearch
+                    formControlName="addressId"
+                    nzAllowClear
+                    nzPlaceHolder="Select a Address"
+                  >
+                    <nz-option
+                      *ngFor="let address of addressList"
+                      [nzValue]="address.id"
+                      [nzLabel]="address.description"
+                    ></nz-option>
+                  </nz-select>
+                </nz-form-control>
+              </nz-form-item>
+         
+          </form>
+      </div>
+      <div class="box"></div>
+  </div>
+  
+</div>

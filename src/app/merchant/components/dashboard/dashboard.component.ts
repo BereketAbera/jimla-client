@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   report;
   lables: string[];
   chart;
+  orderStat: any;
+  orderValue: number[];
   constructor(
     private productService: ProductService,
     private aggregateService: AggregatorService,
@@ -33,8 +35,11 @@ export class DashboardComponent implements OnInit {
     this.aggregateService
       .getProducerDashboard(this.authenticationService.userValue.producerId)
       .subscribe(
-        (data) => {
+        (data: any) => {
+          // console.log(data);
           this.report = data;
+          this.orderStat = data.activeOrder.orderDate;
+          this.drawRevenuChart();
         },
         (error) => {
           console.log(error);
@@ -43,12 +48,9 @@ export class DashboardComponent implements OnInit {
   }
   getProducts() {
     this.productService
-      .getMerchantProduct(this.authenticationService.userValue.producerId, {
-        page: 0,
-        pageSize: 5
-      })
+      .getMerchantTopProduct(this.authenticationService.userValue.producerId)
       .subscribe((res) => {
-        // console.log(res);
+        console.log(res);
 
         this.products = res.rows;
         this.count = res.count;
@@ -56,32 +58,48 @@ export class DashboardComponent implements OnInit {
   }
 
   drawRevenuChart() {
-    (this.lables = ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']),
-      (this.chart = new Chart(this.chartRef.nativeElement, {
-        type: 'line',
-        data: {
-          labels: this.lables,
-          datasets: [
+    this.lables = this.orderStat.map((value) => {
+      return value.year + '|' + value.month + '|' + value.day;
+    });
+
+    this.orderValue = this.orderStat.map((value) => {
+      return +value.count;
+    });
+
+    this.chart = new Chart(this.chartRef.nativeElement, {
+      type: 'line',
+      data: {
+        labels: this.lables,
+        datasets: [
+          {
+            label: 'Order',
+            data: this.orderValue,
+            backgroundColor: ['rgba(255, 99, 132, 0.2)'],
+            borderColor: ['rgba(255, 255, 255)'],
+            borderWidth: 0.5
+          }
+        ]
+      },
+      options: {
+        scales: {
+          yAxes: [
             {
-              label: 'Order',
-              data: this.report?.order,
-              backgroundColor: ['rgba(255, 99, 132, 0.2)'],
-              borderColor: ['rgba(255, 255, 255)'],
-              borderWidth: 0.5
+              ticks: {
+                beginAtZero: true
+              }
             }
           ]
-        },
-        options: {
-          scales: {
-            yAxes: [
-              {
-                ticks: {
-                  beginAtZero: true
-                }
-              }
-            ]
-          }
         }
-      }));
+      }
+    });
+  }
+
+  onValueChange(value: Date): void {
+    console.log(`Current value: ${value}`);
+  }
+
+  onPanelChange(change: { date: Date; mode: string }): void {
+    console.log(`Current value: ${change.date}`);
+    console.log(`Current mode: ${change.mode}`);
   }
 }

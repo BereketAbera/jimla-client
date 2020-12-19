@@ -20,6 +20,7 @@ import { ProfilePasswordComponent } from './components/profile-password/profile-
 import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resolver.service';
 import { ProducerResolverService } from '@app/_resolvers/identity/producer-resolver.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { UploadImgComponent } from './components/upload-img/upload-img.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
           {
             path: 'password',
             component: ProfilePasswordComponent
+          },
+          {
+            path: 'upload',
+            component: UploadImgComponent
           }
         ]
       }

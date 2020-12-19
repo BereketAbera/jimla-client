@@ -38,6 +38,10 @@ export class ProductService {
     return this.http.get(`${productUrl}/products/merchant/${id}?${queryParams}`);
   }
 
+  getMerchantTopProduct(id): Observable<any> {
+    return this.http.get(`${productUrl}/products/merchant/${id}/top`);
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

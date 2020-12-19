@@ -8,9 +8,11 @@
     .navigation {
       border-radius: 2rem;
       box-shadow: 1px 1px 2px rgb(230, 235, 236);
-      font-size: 1.8rem;
+      // font-size: 18px;
+      width: 100%;
       li {
-        font-size: 1.5rem;
+        width: 100%;
+        font-size: 18px;
       }
     }
   }
@@ -34,3 +36,8 @@
     }
   }
 }
+::ng-deep .ant-menu-sub.ant-menu-inline{
+  width: 100%;
+  // color: saddlebrown;
+}
+

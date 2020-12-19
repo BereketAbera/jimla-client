@@ -4,9 +4,16 @@
 .box-container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  @media (min-width: 650px) {
+    flex-direction: row;// Desktop view
+  }
+  
   .box {
     display: flex;
     flex-direction: row;
+   
     align-items: center;
     justify-content: space-between;
     padding: 1rem 2rem;
@@ -48,20 +55,35 @@
 }
 .content {
   display: flex;
+  flex-direction: column;
+  // align-items: center;
+  @media (min-width: 800px) {
+    flex-direction: row;// Desktop view
+  }
   margin-top: 4rem;
 }
 
 .left-content {
-  width: 70%;
+  width: 50%;
   // background-color: white;
   // box-shadow: 1px 3px 12px rgb(188, 206, 218);
   margin: 2rem;
 }
 
 .right-content {
-  width: 30%;
+  width: 50%;
   // background-color: white;
   // box-shadow: 1px 2px 8px rgb(188, 206, 218);
-  height: 50px;
+  // height: 50px;
   margin: 2rem;
+
+  .chart{
+    width:100%;
+    margin:4rem 0rem;
+  }
+}
+
+::ng-deep .ant-table table{
+  box-shadow: 1px 2px 6px rgb(188, 206, 218)!important;
+  border-radius: 1rem;
 }

@@ -46,6 +46,10 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
 import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
+import { NzCalendarModule } from 'ng-zorro-antd/calendar';
+import { NzUploadModule } from 'ng-zorro-antd/upload';
+import { UploadImgComponent } from './components/upload-img/upload-img.component';
+
 @NgModule({
   declarations: [
     MerchantComponent,
@@ -62,7 +66,8 @@ import { EditProductModalComponent } from './components/edit-product-modal/edit-
     ProfilePasswordComponent,
     ProfilePersonalComponent,
     DashboardComponent,
-    EditProductModalComponent
+    EditProductModalComponent,
+    UploadImgComponent
   ],
   imports: [
     CommonModule,
@@ -95,7 +100,9 @@ import { EditProductModalComponent } from './components/edit-product-modal/edit-
     NzSpaceModule,
     NzMessageModule,
     NzSpinModule,
-    NzProgressModule
+    NzProgressModule,
+    NzCalendarModule,
+    NzUploadModule
   ]
 })
 export class MerchantModule {}

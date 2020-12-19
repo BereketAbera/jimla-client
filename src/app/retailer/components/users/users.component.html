@@ -1,0 +1,44 @@
+<retailer-navigation></retailer-navigation>
+<div class="main-container">
+  <div class="button">
+    <button style="float: right" nz-button nzType="primary" (click)="addUser()">Add User</button>
+  </div>
+
+  <div class="users">
+    <div *ngFor="let user of users" class="user">
+      <nz-avatar [nzShape]="'circle'" [nzSize]="60" nzIcon="user"></nz-avatar>
+      <div class="name">
+        <span style="font-weight: 700">{{ user.firstName + " " + user.lastName }}</span>
+        <span>
+          {{ user.phoneNumber }}
+        </span>
+
+        <span style="font-weight: 300"> {{ user.createdAt | date }}</span>
+      </div>
+      <div class="action">
+        <a nz-dropdown [nzDropdownMenu]="menu">
+          <i nz-icon nzType="more"></i>
+        </a>
+        <nz-dropdown-menu #menu="nzDropdownMenu">
+          <ul nz-menu nzSelectable>
+            <li (click)="editUser(user)" nz-menu-item>Edit</li>
+            <li (click)="createConfirmDelete(user)" nz-menu-item>Delete</li>
+            <li (click)="deactivateUser(user)" nz-menu-item>Deactivate</li>
+            <li nz-menu-item>Manage Priviledge</li>
+          </ul>
+        </nz-dropdown-menu>
+      </div>
+    </div>
+  </div>
+  <div class="pagination">
+    <nz-pagination
+      [nzTotal]="count"
+      (nzPageIndexChange)="pageChanged($event)"
+      (nzPageSizeChange)="pageSizeChanged($event)"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="page + 1"
+      [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+    ></nz-pagination>
+  </div>
+</div>
+

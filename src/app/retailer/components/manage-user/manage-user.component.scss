@@ -1,0 +1,30 @@
+.content {
+  margin: 2rem;
+//   display: flex;
+  position: relative;
+}
+
+aside {
+    position: absolute;
+}
+.box-container {
+  display: flex;
+  flex-direction: column;
+//   justify-content: flex-end;
+  margin: 1rem auto;
+// align-items: flex-end;
+  width: 100%;
+  max-width: 90rem;
+  .box {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0.5px 0.5px 3px rgb(196, 198, 199);
+    width: 100%;
+    padding: 2rem ;
+    margin: 2rem 0rem;
+    font-size: 2rem;
+    form{
+        margin:2rem;
+    }
+  }
+}

@@ -29,6 +29,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { NzTagModule } from 'ng-zorro-antd/tag';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
@@ -42,8 +43,11 @@ import { LocationsComponent } from './components/locations/locations.component';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
+import { UsersComponent } from './components/users/users.component';
+import { AddUserModalComponent } from './components/add-user-modal/add-user-modal.component';
 import { NzCollapseModule } from 'ng-zorro-antd/collapse';
 import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +65,10 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     LocationsComponent,
     AddLocationModalComponent,
     ProfilePasswordComponent,
-    OrderDetailModalComponent
+    OrderDetailModalComponent,
+    UsersComponent,
+    AddUserModalComponent,
+    ManageUserComponent
   ],
   imports: [
     CommonModule,
@@ -95,6 +102,7 @@ import { NzProgressModule } from 'ng-zorro-antd/progress';
     NzSpaceModule,
     NzSpinModule,
     NzMessageModule,
+    NzTagModule,
     NzCollapseModule,
     NzProgressModule
   ]

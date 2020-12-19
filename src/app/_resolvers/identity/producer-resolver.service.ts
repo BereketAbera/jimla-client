@@ -20,11 +20,10 @@ export class ProducerResolverService {
       id = currentUser.producerId;
     } else {
       let token = JSON.parse(localStorage.getItem('user'));
-      console.log(token, 'Token');
       id=token.producerId;
     }
 
-    return this.userService.getConsumerById(id).pipe(
+    return this.userService.getProducerById(id).pipe(
       mergeMap((data) => {
         if (data) {
           return of(data);

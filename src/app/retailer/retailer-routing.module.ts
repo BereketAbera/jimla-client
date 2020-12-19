@@ -16,6 +16,10 @@ import { ProfilePersonalComponent } from './components/profile-personal/profile-
 import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resolver.service';
 import { AddressResolverService } from '@app/_resolvers/identity/address-resolver.service';
 import { ProfilePasswordComponent } from './components/profile-password/profile-password.component';
+import { UsersComponent } from './components/users/users.component';
+import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-resolver.service';
+import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
+import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
 
 
@@ -43,6 +47,7 @@ const routes: Routes = [
         component: LocationsComponent,
         resolve: { data: GetConsumerAddressResolverService }
       },
+    
       {
         path: 'profile',
         component: ProfileComponent,
@@ -68,6 +73,16 @@ const routes: Routes = [
       {
         path: 'process_order',
         component: ProcessOrderComponent
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
+      },
+      {
+        path: 'users/edit',
+        component: ManageUserComponent,
+        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
       }
     ]
   }

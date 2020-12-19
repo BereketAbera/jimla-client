@@ -26,9 +26,9 @@ export class UserService {
   getConsumerById(id):Observable<any>{
     return this.http.get(`${this.apiUrl}/consumer/${id}`)
   }
-
+ 
   getProducerById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/producer/id/${id}`)
+    return this.http.get(`${this.apiUrl}/producers/${id}`)
   }
 
   getAddressByConsId(id):Observable<any>{
@@ -39,11 +39,42 @@ export class UserService {
     return this.http.put(`${this.apiUrl}/auth/user`,body)
   }
 
+
+  deleteUser(body):Observable<any>{
+    return this.http.delete(`${this.apiUrl}/consumer/user/${body.id}`,body)
+  }
+
   updateConsumer(body):Observable<any>{
     return this.http.put(`${this.apiUrl}/consumer`,body)
   }
 
+  updateProducer(body):Observable<any>{
+    return this.http.put(`${this.apiUrl}/producer`,body)
+  }
+
   addConsumer(user): Observable<any> {
     return this.http.post(`${this.apiUrl}/consumer/signup`, user);
+  }
+  addConsumerUser(user): Observable<any> {
+    return this.http.post(`${this.apiUrl}/consumer/user`, user);
+  }
+  getConsumerUser(data): Observable<any> {
+    let params = this.generateParams(data)
+    return this.http.get(`${this.apiUrl}/consumers/user?${params}`);
+  }
+  generateParams(params) {
+    let url = '';
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if ((key == 'status' && params[key] == '0') || params[key] == '1') {
+        url = url + `${key}=${params[key]}&`;
+        return;
+      }
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }

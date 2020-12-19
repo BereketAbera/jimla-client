@@ -4,7 +4,7 @@
     <div class="box">
       <div>
         <!-- <i nz-icon nzType="plus-circle" nzTheme="outline"></i> -->
-        <span  class="number">{{ report?.product }}</span>
+        <span class="number">{{ report?.product }}</span>
         <h3>Product</h3>
       </div>
       <nz-progress
@@ -39,16 +39,32 @@
       ></nz-progress>
     </div>
     <div class="box-2">
-        <div>
-          <span class="number">{{ report?.activeOrder.order }}</span>
-          <h3>Active Orders</h3>
-        </div>
-        <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+      <div>
+        <span class="number">{{ report?.activeOrder.order }}</span>
+        <h3>Active Orders</h3>
       </div>
+      <i class="icon" nz-icon nzType="shopping-cart" nzTheme="outline"></i>
+    </div>
   </div>
 
   <div class="content">
     <div class="left-content">
+      <h2>Weekly Order Statics</h2>
+      <div class="chart">
+        <canvas #lineChart>{{ chart }}</canvas>
+      </div>
+
+      <div [ngStyle]="{ width: '70%', border: '1px solid #d9d9d9', borderRadius: '15px' }">
+        <nz-calendar
+          [nzFullscreen]="false"
+          (nzSelectChange)="onValueChange($event)"
+          (nzPanelChange)="onPanelChange($event)"
+        ></nz-calendar>
+      </div>
+     
+    </div>
+
+    <div class="right-content">
       <div class="products">
         <h2>Top Selling Products</h2>
         <div
@@ -75,7 +91,6 @@
                         <td>
                           <span style="font-weight: bold; color: #555">{{ product.name }}</span>
                         </td>
-                       
 
                         <td>
                           <span nz-typography nzType="secondary">{{ product?.unitSold }}</span>
@@ -94,49 +109,18 @@
                             product?.createdAt | date
                           }}</span>
                         </td>
-                        <!-- <th>
-                        <button nz-button nz-dropdown [nzDropdownMenu]="actions">
-                          Actions
-                          <i nz-icon nzType="down"></i>
-                        </button>
-                        <nz-dropdown-menu #actions="nzDropdownMenu">
-                          <ul nz-menu>
-                            <li class="list_style" nz-menu-item>Process</li>
-                            <li class="list_style" nz-menu-item>Failed</li>
-                            <li class="list_style" nz-menu-item>Delete</li>
-                          </ul>
-                        </nz-dropdown-menu>
-                      </th> -->
                       </tr>
                     </tbody>
                   </nz-table>
                 </div>
               </div>
               <div nz-col nzSpan="24" class="gutter-row" style="text-align: right">
-                <div class="inner-box">
-                  <!-- <nz-pagination
-                    [nzTotal]="count"
-                    [nzSize]="'small'"
-                    [nzShowTotal]="totalTemplate"
-                    (nzPageIndexChange)="pageChanged($event)"
-                    (nzPageSizeChange)="pageSizeChanged($event)"
-                    [nzPageSize]="pageSize"
-                    [nzPageIndex]="page + 1"
-                    nzShowSizeChanger
-                    nzShowQuickJumper
-                    [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
-                  ></nz-pagination> -->
-                </div>
+                <div class="inner-box"></div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-
-    <div class="right-content">
-      <h2>Weekly Order Statics</h2>
-      <canvas class="dashboard__chart" #lineChart>{{ chart }}</canvas>
     </div>
   </div>
 </div>
