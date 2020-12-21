@@ -66,6 +66,7 @@ export class UsersComponent implements OnInit {
   }
 
   pageChanged(event) {
+    console.log(event)
     this.setUrlValues({ page: event - 1 });
   }
 
@@ -118,7 +119,7 @@ export class UsersComponent implements OnInit {
     );
   }
 
-  editUser(){
-   this.router.navigate(['edit'],{relativeTo:this.route})
+  editUser(data){
+   this.router.navigate([`edit/${data.id}`],{relativeTo:this.route})
   }
 }

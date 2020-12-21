@@ -2,9 +2,9 @@
 
 <div class="main_container main_content_container">
   <h2 class="main_content_title">Locations</h2>
-  <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]" style="padding: 1rem">
+  <div nz-row [nzGutter]="[{ xs: 8, sm: 16, md: 24, lg: 32 }, 24]" class="location">
     <div
-    (click)="editLocation(location)"
+      (click)="editLocation(location)"
       nz-col
       [nzXs]="24"
       [nzSm]="12"
@@ -13,7 +13,7 @@
       class="location__container"
       *ngFor="let location of locations"
     >
-     <i nz-icon class="icon" nzType="environment" nzTheme="outline"></i>
+      <i nz-icon class="icon" nzType="environment" nzTheme="outline"></i>
       <span>{{ location?.phoneNumber }}</span
       ><span>{{ location?.description }}</span>
     </div>
@@ -29,5 +29,15 @@
       <i nz-icon nzType="plus" nzTheme="outline" style="font-size: 8rem; color: #aaa"></i>
       <span>Add Other Location</span>
     </div>
+  </div>
+  <div class="pagination">
+    <nz-pagination
+      [nzTotal]="count"
+      (nzPageIndexChange)="pageChanged($event)"
+      (nzPageSizeChange)="pageSizeChanged($event)"
+      [nzPageSize]="pageSize"
+      [nzPageIndex]="page + 1"
+      [nzPageSizeOptions]="[5, 10, 20, 30, 40]"
+    ></nz-pagination>
   </div>
 </div>

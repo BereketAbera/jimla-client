@@ -13,16 +13,17 @@ export class UserResolverService {
   constructor(private userService: UserService, private authService: AuthenticationService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    let id;
+    let id = route.paramMap.get('id');;
     let currentUser = this.authService.userValue;
-    if (currentUser) {
-      id = currentUser.id;
-    } else {
-      let token = JSON.parse(localStorage.getItem('user'));
-      console.log(token, 'Token');
-      id=token.id;
+    if(!id){
+      if (currentUser) {
+        id = currentUser.id;
+      } else {
+        let token = JSON.parse(localStorage.getItem('user'));
+        id=token.id;
+      }
     }
-
+   
     return this.userService.getUserById(id).pipe(
       mergeMap((data) => {
         if (data) {

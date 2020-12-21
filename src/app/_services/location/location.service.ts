@@ -12,9 +12,10 @@ const identityUrl = environment.identityUrl;
 export class LocationService {
   constructor(private http: HttpClient, private authenticationService: AuthenticationService) {}
 
-  getConsumerLocation() {
+  getConsumerLocation(query) {
+    let params = this.generateParams(query);
     return this.http.get(
-      `${identityUrl}/consumer/${this.authenticationService.userValue.consumerId}/addresses`
+      `${identityUrl}/consumer/${this.authenticationService.userValue.consumerId}/addresses?${params}`
     );
   }
 
@@ -31,5 +32,21 @@ export class LocationService {
 
   deletePhone(id){
     return this.http.delete(`${identityUrl}/consumer/addresses/phone/${id}`)
+  }
+
+  generateParams(params) {
+    let url = '';
+    let keys = Object.keys(params);
+    keys.map((key) => {
+      if ((key == 'status' && params[key] == '0') || params[key] == '1') {
+        url = url + `${key}=${params[key]}&`;
+        return;
+      }
+      if (params[key]) {
+        url = url + `${key}=${params[key]}&`;
+      }
+    });
+
+    return url.slice(0, url.length - 1);
   }
 }

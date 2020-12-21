@@ -11,7 +11,7 @@ export class GetConsumerAddressResolverService {
   constructor(private locationService: LocationService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
-    return this.locationService.getConsumerLocation().pipe(
+    return this.locationService.getConsumerLocation({ page: 0, pageSize: 5 }).pipe(
       mergeMap((data) => {
         // console.log(data);
         if (data) {

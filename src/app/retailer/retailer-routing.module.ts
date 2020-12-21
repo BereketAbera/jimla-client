@@ -78,9 +78,9 @@ const routes: Routes = [
         resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
       },
       {
-        path: 'users/edit',
+        path: 'users/edit/:id',
         component: ManageUserComponent,
-        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
+        resolve: { addData: GetConsumerAddressResolverService,userData:UserResolverService }
       }
     ]
   }
