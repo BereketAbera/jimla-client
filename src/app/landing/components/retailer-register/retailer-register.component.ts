@@ -127,14 +127,19 @@ export class RetailerRegisterComponent implements OnInit {
       }
     }
     this.submitted = true;
-    this.userService.addConsumer(this.consumerForm.value).subscribe(
-      (data) => {
-        this.submitted = false;
-        this.error = '';
-        this.broadcastErrorService.error.next(false);
-        this.router.navigate(['/landing/login']);
-      },
-      (error) => console.log(error)
-    );
+    this.userService
+      .addConsumer({
+        ...this.consumerForm.value,
+        phoneNumber: `+251${this.controls['phoneNumber'].value}`
+      })
+      .subscribe(
+        (data) => {
+          this.submitted = false;
+          this.error = '';
+          this.broadcastErrorService.error.next(false);
+          this.router.navigate(['/landing/login']);
+        },
+        (error) => console.log(error)
+      );
   }
 }

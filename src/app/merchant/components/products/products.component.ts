@@ -1,10 +1,12 @@
+import { EditProductModalComponent } from './../edit-product-modal/edit-product-modal.component';
 import { AddProductModalComponent } from './../add-product-modal/add-product-modal.component';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { ProductService } from './../../../_services/product/product.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { NzModalService } from 'ng-zorro-antd/modal';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-products',
@@ -18,13 +20,15 @@ export class ProductsComponent implements OnInit {
   pageSize = 5;
   firstReload = true;
   productClose: EventEmitter<any> = new EventEmitter();
+  @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private productService: ProductService,
     private authenticationService: AuthenticationService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit(): void {
@@ -44,17 +48,24 @@ export class ProductsComponent implements OnInit {
     });
 
     this.productClose.subscribe((res) => {
-      if (res && res.success && res.product) {
-        // console.log(res);
-        this.firstReload = true;
-        this.router.navigate([], {
-          relativeTo: this.route,
-          queryParams: { page: 0 },
-          queryParamsHandling: 'merge'
-        });
-        this.getProducts();
-        this.firstReload = false;
-        // this.changeType(res.userId, 'PAID');
+      if (res && res.success) {
+        if (res.type == 'edit') {
+          this.products.map((product) => {
+            if (product.id == res.product.id) {
+              return res.product;
+            }
+            return product;
+          });
+        } else if (res && res.success && res.product) {
+          this.firstReload = true;
+          this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { page: 0 },
+            queryParamsHandling: 'merge'
+          });
+          this.getProducts();
+          this.firstReload = false;
+        }
       }
     });
   }
@@ -102,7 +113,31 @@ export class ProductsComponent implements OnInit {
     this.modal.create({
       nzTitle: 'Add Product',
       nzContent: AddProductModalComponent,
-      nzAfterClose: this.productClose
+      nzAfterClose: this.productClose,
+      nzMaskClosable: false
     });
+  }
+
+  editProduct(product) {
+    this.modal.create({
+      nzTitle: 'Edit Product',
+      nzComponentParams: { data: product },
+      nzContent: EditProductModalComponent,
+      nzAfterClose: this.productClose,
+      nzMaskClosable: false
+    });
+  }
+
+  confirmDelete(product) {
+    this.productService.deleteProduct(product.id).subscribe((res) => {
+      if (res) {
+        this.notificationService.template(this.template, {});
+        this.getProducts();
+      }
+    });
+  }
+
+  cancelDelete() {
+    console.log('canceled');
   }
 }
