@@ -27,17 +27,17 @@
             <nz-divider nzDashed nzText="Retailer"></nz-divider>
             <div class="retailer">
               <div>
-                <div class="retailer__name">{{ retailer.name }}</div>
+                <div class="retailer__name">{{ address?.company_name }}</div>
               </div>
               <div class="retailer__sub">
                 <div class="retailer__created">
                   Ordered: <i nz-icon nzType="clock-circle" class="margin_right"></i
                   ><span nz-typography nzType="secondary">{{ orderGroup.createdAt | date }}</span>
                 </div>
-                <div class="retailer__phonenumber">
+                <!-- <div class="retailer__phonenumber">
                   Phone: <i nz-icon nzType="phone" class="margin_right"></i
-                  ><span nz-typography nzType="secondary"> {{ retailer.phone_number }}</span>
-                </div>
+                  ><span nz-typography nzType="secondary"> {{ address?.phone_number }}</span>
+                </div> -->
               </div>
             </div>
             <nz-divider nzDashed nzText="Merchant"></nz-divider>

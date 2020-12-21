@@ -7,13 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  orderReport;
+  orderReport: any = {};
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.route.data.subscribe((res) => {
       this.orderReport = res.data.orderReport;
-      console.log(this.orderReport);
+      // console.log(this.orderReport);
     });
   }
 }

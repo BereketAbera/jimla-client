@@ -111,6 +111,12 @@
       class="btn btn--jimla"
       >Home</a
     >
+    <a
+      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'ADMIN'"
+      routerLink="/jm-admin"
+      class="btn btn--jimla"
+      >Home</a
+    >
   </div>
 </nav>
 <section class="main">

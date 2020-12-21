@@ -27,7 +27,6 @@ export class ActiveOrdersComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.data.subscribe((res: { data: any }) => {
-      console.log(res);
       this.order_groups = res.data.rows;
       this.count = res.data.count;
     });

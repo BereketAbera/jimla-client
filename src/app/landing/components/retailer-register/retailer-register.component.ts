@@ -4,6 +4,8 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BroadcastErrorService } from '@app/_services/broadcast-error.service';
 import { UserService } from '@app/_services/user.service';
+import { of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-retailer-register',
@@ -30,7 +32,7 @@ export class RetailerRegisterComponent implements OnInit {
     this.consumerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      phoneNumber: ['', Validators.required],
+      phoneNumber: ['', [Validators.required, Validators.pattern(/^[1-9]\d{8}$/)]],
       username: ['', Validators.required],
       email: ['', Validators.email],
       password: ['', Validators.required],
@@ -71,6 +73,32 @@ export class RetailerRegisterComponent implements OnInit {
         this.submitted = false;
       }
     });
+
+    this.controls['phoneNumber'].valueChanges
+      .pipe((debounceTime(200), switchMap((term) => of(term))))
+      .subscribe((res) => this.phoneNumberChange(res));
+  }
+
+  phoneNumberChange(res) {
+    let phoneNumber = this.controls['phoneNumber'];
+    let val = res;
+    val = val ? val.toString() : val;
+
+    if (val.length > 9 && val.slice(0, 4) != '+251' && val[0] != '0') {
+      phoneNumber.setValue(val.slice(0, val.length - 1));
+      return;
+    }
+    if (val && val.length >= 2) {
+      if (val[0] == '0') {
+        phoneNumber.setValue(val.slice(1));
+      }
+    }
+
+    if (val && val.length >= 5) {
+      if (val.slice(0, 4) == '+251') {
+        phoneNumber.setValue(val.slice(4));
+      }
+    }
   }
 
   get controls() {

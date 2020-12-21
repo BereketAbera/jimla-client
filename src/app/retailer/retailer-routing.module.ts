@@ -21,6 +21,8 @@ import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
 
+
+
 const routes: Routes = [
   {
     path: '',

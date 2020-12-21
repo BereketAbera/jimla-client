@@ -124,13 +124,13 @@
         <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
           <nz-form-label nzRequired [nzSpan]="24" nzFor="phoneNumber">Phone Number</nz-form-label>
           <nz-form-control
-            nzErrorTip="Phone number is required"
+            nzErrorTip="Phone number is not valid"
             [nzValidateStatus]="
               controls['phoneNumber'].invalid && controls['phoneNumber'].touched ? 'error' : ''
             "
             class="register__input"
           >
-            <nz-input-group>
+            <nz-input-group nzAddOnBefore="+251">
               <input
                 type="text"
                 nz-input

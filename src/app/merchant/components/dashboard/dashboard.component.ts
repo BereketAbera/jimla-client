@@ -18,7 +18,7 @@ export class DashboardComponent implements OnInit {
   lables: string[];
   chart;
   orderStat: any;
-  orderValue:number[];
+  orderValue: number[];
   constructor(
     private productService: ProductService,
     private aggregateService: AggregatorService,
@@ -28,6 +28,7 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getDashboard();
+    this.drawRevenuChart();
   }
 
   getDashboard() {
@@ -57,7 +58,6 @@ export class DashboardComponent implements OnInit {
   }
 
   drawRevenuChart() {
-
     this.lables = this.orderStat.map((value) => {
       return value.year + '|' + value.month + '|' + value.day;
     });
@@ -65,7 +65,6 @@ export class DashboardComponent implements OnInit {
     this.orderValue = this.orderStat.map((value) => {
       return +value.count;
     });
-
 
     this.chart = new Chart(this.chartRef.nativeElement, {
       type: 'line',

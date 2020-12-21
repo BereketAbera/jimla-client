@@ -49,7 +49,10 @@ const routes: Routes = [
         path: 'server_error',
         component: ServerErrorComponent
       },
-
+      {
+        path: 'not_found',
+        component: NotFoundComponent
+      },
       {
         path: 'company_page/:company_name',
         component: CompanyPageComponent,

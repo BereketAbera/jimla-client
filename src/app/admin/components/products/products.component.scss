@@ -1,0 +1,38 @@
+.main_container {
+  margin: 1rem;
+  overflow: hidden;
+}
+
+.list_style {
+  width: 100%;
+  text-align: center;
+}
+
+.header_container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__filter {
+  height: 0px;
+  width: 100%;
+  transition: height 0.3s;
+  display: flex;
+
+  &--active {
+    height: 15rem;
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: column;
+    margin: 0rem 2rem;
+  }
+
+  &__title {
+    font-size: 1.3rem;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+}
