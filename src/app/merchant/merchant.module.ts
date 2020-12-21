@@ -49,6 +49,7 @@ import { EditProductModalComponent } from './components/edit-product-modal/edit-
 import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { UploadImgComponent } from './components/upload-img/upload-img.component';
+import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { UploadImgComponent } from './components/upload-img/upload-img.component
     NzSpinModule,
     NzProgressModule,
     NzCalendarModule,
-    NzUploadModule
+    NzUploadModule,
+    NzPopconfirmModule
   ]
 })
 export class MerchantModule {}

@@ -126,14 +126,19 @@ export class RegisterComponent implements OnInit {
       }
     }
     this.submitted = true;
-    this.userService.addProducer(this.producerForm.value).subscribe(
-      (data) => {
-        this.submitted = false;
-        this.error = '';
-        this.broadcastErrorService.error.next(false);
-        this.router.navigate(['/landing/login']);
-      },
-      (error) => console.log(error)
-    );
+    this.userService
+      .addProducer({
+        ...this.producerForm.value,
+        phoneNumber: `+251${this.controls['phoneNumber'].value}`
+      })
+      .subscribe(
+        (data) => {
+          this.submitted = false;
+          this.error = '';
+          this.broadcastErrorService.error.next(false);
+          this.router.navigate(['/landing/login']);
+        },
+        (error) => console.log(error)
+      );
   }
 }

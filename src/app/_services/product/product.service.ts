@@ -15,6 +15,14 @@ export class ProductService {
     return this.http.post(`${productUrl}/product`, { ...product, merchantId });
   }
 
+  editProduct(merchantId, product) {
+    return this.http.put(`${productUrl}/product`, { ...product, merchantId });
+  }
+
+  deleteProduct(id) {
+    return this.http.delete(`${productUrl}/product/${id}`);
+  }
+
   getProduct(id): Observable<any> {
     return this.http.get(`${productUrl}/product/${id}`);
   }

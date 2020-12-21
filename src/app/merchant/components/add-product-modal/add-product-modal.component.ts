@@ -50,7 +50,7 @@ export class AddProductModalComponent implements OnInit {
   addProductSubmit(): void {
     if (this.productForm.invalid) {
       this.productForm.markAllAsTouched();
-      this.error = 'Some filed are not valid';
+      this.error = 'Some fields are not valid';
     } else {
       this.loading = true;
       this.error = '';
@@ -64,7 +64,7 @@ export class AddProductModalComponent implements OnInit {
   }
 
   addSuccess(product) {
-    this.modal.destroy({ success: true, product });
+    this.modal.destroy({ success: true, product, type: 'add' });
     this.modalService.success({
       nzTitle: 'Successfully created!!',
       nzStyle: { bottom: '20px' }

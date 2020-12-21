@@ -28,6 +28,7 @@
                   <th>Description</th>
                   <th>Status</th>
                   <th>Created</th>
+                  <th>Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -59,19 +60,31 @@
                   <td>
                     <span nz-typography nzType="secondary">{{ product?.createdAt | date }}</span>
                   </td>
-                  <!-- <th>
+                  <th>
                     <button nz-button nz-dropdown [nzDropdownMenu]="actions">
                       Actions
                       <i nz-icon nzType="down"></i>
                     </button>
                     <nz-dropdown-menu #actions="nzDropdownMenu">
                       <ul nz-menu>
-                        <li class="list_style" nz-menu-item>Process</li>
-                        <li class="list_style" nz-menu-item>Failed</li>
-                        <li class="list_style" nz-menu-item>Delete</li>
+                        <li (click)="editProduct(product)" class="list_style" nz-menu-item>Edit</li>
+                        <li
+                          class="list_style"
+                          nz-menu-item
+                          nz-popconfirm
+                          nzPopconfirmTitle="Are you sure you want to delete this product?"
+                          (nzOnConfirm)="confirmDelete(product)"
+                          (nzOnCancel)="cancelDelete()"
+                          nzPopconfirmPlacement="top"
+                          nzOkText="Yes"
+                          nzCancelText="No"
+                          nz-button
+                        >
+                          Delete
+                        </li>
                       </ul>
                     </nz-dropdown-menu>
-                  </th> -->
+                  </th>
                 </tr>
               </tbody>
             </nz-table>
@@ -98,3 +111,10 @@
     </div>
   </div>
 </div>
+<ng-template #successMessage>
+  <div style="color: green; font-size: 1.5rem">
+    Product Successfully Deleted
+    <i nz-icon nzType="check-circle" nzTheme="outline" class="margin_left"></i>
+  </div>
+  <!-- <button nz-button nzSize="small">Cut It!</button> -->
+</ng-template>

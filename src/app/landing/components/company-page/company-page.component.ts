@@ -106,7 +106,11 @@ export class CompanyPageComponent implements OnInit {
       if (this.merchant.id != this.cartMerchantId) {
         this.clearCart();
       }
-      let tempProduct = { id: event.product.id, name: event.product.name, amount: event.amount };
+      let tempProduct = {
+        id: event.product.id,
+        name: event.product.name,
+        amount: event.amount
+      };
 
       let index = -1;
       this.cartProducts = this.cartProducts.map((p, i) => {

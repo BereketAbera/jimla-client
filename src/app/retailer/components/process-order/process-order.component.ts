@@ -41,7 +41,9 @@ export class ProcessOrderComponent implements OnInit {
     if (this.cartProducts.length) {
       let orderData = {
         MerchantId: this.MerchantId,
-        orders: this.cartProducts
+        orders: this.cartProducts.map((cp) => {
+          return { productId: cp.id, quantity: cp.amount };
+        })
       };
 
       this.orderService.processCartOrders(orderData).subscribe((res) => {
