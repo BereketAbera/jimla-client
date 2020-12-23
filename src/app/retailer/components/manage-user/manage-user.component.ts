@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-user',
@@ -18,7 +20,7 @@ export class ManageUserComponent implements OnInit {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private userService: UserService,
-    private messageService:NzMessageService,
+    private messageService: NzMessageService
   ) {
     this.route.data.subscribe((res) => {
       console.log(res);
@@ -38,12 +40,40 @@ export class ManageUserComponent implements OnInit {
     });
 
     this.phoneForm = this.formBuilder.group({
-      phoneNumber: [this.user ? this.user.phoneNumber : '', Validators.required]
+      phoneNumber: [
+        this.user ? this.user.phoneNumber : '',
+        [Validators.required, Validators.pattern(/^[1-9]\d{8}$/)]
+      ]
     });
 
+    this.phonecontrols['phoneNumber'].valueChanges
+      .pipe((debounceTime(200), switchMap((term) => of(term))))
+      .subscribe((res) => this.phoneNumberChange(res));
   }
   get controls() {
     return this.userForm.controls;
+  }
+
+  phoneNumberChange(res) {
+    let phoneNumber = this.phonecontrols['phoneNumber'];
+    let val = res;
+    val = val ? val.toString() : val;
+
+    if (val.length > 9 && val.slice(0, 4) != '+251' && val[0] != '0') {
+      phoneNumber.setValue(val.slice(0, val.length - 1));
+      return;
+    }
+    if (val && val.length >= 2) {
+      if (val[0] == '0') {
+        phoneNumber.setValue(val.slice(1));
+      }
+    }
+
+    if (val && val.length >= 5) {
+      if (val.slice(0, 4) == '+251') {
+        phoneNumber.setValue(val.slice(4));
+      }
+    }
   }
 
   get phonecontrols() {
@@ -63,12 +93,12 @@ export class ManageUserComponent implements OnInit {
     this.userService.updateUser({ ...this.userForm.value, id: this.user.id }).subscribe(
       (data) => {
         console.log(data);
-        this.isLoading=false;
-        this.createMessage('success','Succesfully Editted')
+        this.isLoading = false;
+        this.createMessage('success', 'Succesfully Editted');
       },
       (error) => {
         console.log(error);
-        this.createMessage('error','Failed to Update')
+        this.createMessage('error', 'Failed to Update');
       }
     );
   }

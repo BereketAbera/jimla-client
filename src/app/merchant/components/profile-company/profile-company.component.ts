@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-company',
@@ -19,7 +20,8 @@ export class ProfileCompanyComponent implements OnInit {
   phoneNumber: boolean;
   tinNumber: boolean;
   loading = false;
-  avatarUrl?: string="";
+  avatarUrl?: string = '';
+  value = '';
 
   constructor(
     private message: NzMessageService,
@@ -34,13 +36,40 @@ export class ProfileCompanyComponent implements OnInit {
       // this.count = res.data.count;
     });
   }
-  uploadsImg(){
-    console.log("here");
-    
+  uploadsImg() {
+    console.log('here');
   }
+
+  get f() {
+    return this.companyForm.controls;
+  }
+
+  phoneNumberChange(res) {
+    let phoneNumber = this.f['phoneNumber'];
+    let val = res;
+    val = val ? val.toString() : val;
+
+    if (val.length > 9 && val.slice(0, 4) != '+251' && val[0] != '0') {
+      phoneNumber.setValue(val.slice(0, val.length - 1));
+      return;
+    }
+    if (val && val.length >= 2) {
+      if (val[0] == '0') {
+        phoneNumber.setValue(val.slice(1));
+      }
+    }
+
+    if (val && val.length >= 5) {
+      if (val.slice(0, 4) == '+251') {
+        phoneNumber.setValue(val.slice(4));
+      }
+    }
+  }
+
   editModeOpen(value) {
     this.editMode = true;
     this.resetField();
+    this.value = value;
 
     switch (value) {
       case 'name':
@@ -57,8 +86,14 @@ export class ProfileCompanyComponent implements OnInit {
         break;
       case 'phoneNumber':
         this.companyForm = this.formBuilder.group({
-          phoneNumber: [this.producer.phoneNumber, Validators.required]
+          phoneNumber: [
+            this.producer.phoneNumber.slice(4),
+            [Validators.required, Validators.pattern(/^[1-9]\d{8}$/)]
+          ]
         });
+        this.f['phoneNumber'].valueChanges
+          .pipe((debounceTime(200), switchMap((term) => of(term))))
+          .subscribe((res) => this.phoneNumberChange(res));
         this.phoneNumber = true;
         break;
       default:
@@ -67,7 +102,7 @@ export class ProfileCompanyComponent implements OnInit {
     }
   }
 
-  createMessage(type: string,data): void {
+  createMessage(type: string, data): void {
     this.message.create(type, data);
   }
 
@@ -82,15 +117,20 @@ export class ProfileCompanyComponent implements OnInit {
       return;
     }
 
-    this.userService.updateProducer({ ...this.companyForm.value, id: this.producer.id }).subscribe(
+    let value =
+      this.value == 'phoneNumber'
+        ? { phoneNumber: '+251' + this.companyForm.controls['phoneNumber'].value }
+        : this.companyForm.value;
+
+    this.userService.updateProducer({ ...value, id: this.producer.id }).subscribe(
       (data) => {
-        this.createMessage('success','Succesfully Updated');
+        this.createMessage('success', 'Successfully Updated');
         this.producer = data;
         this.editMode = false;
         this.resetField();
       },
       (error) => {
-        this.createMessage('error',error.error?.message || "Failed to change");
+        this.createMessage('error', error.error?.message || 'Failed to change');
       }
     );
   }
@@ -99,6 +139,4 @@ export class ProfileCompanyComponent implements OnInit {
     this.editMode = false;
     (this.name = false), (this.tinNumber = false), (this.phoneNumber = false);
   }
-
-
 }

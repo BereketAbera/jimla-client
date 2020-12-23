@@ -2,7 +2,7 @@
   <!-- <h2 style="font-size: 2.5rem" id="form_title">Add user</h2> -->
   <form nz-form [nzLayout]="'vertical'" [formGroup]="userForm" action="POST" class="register__form">
     <div nz-row class="rows-input">
-      <nz-form-item  nz-col [nzSm]="24" [nzMd]="11">
+      <nz-form-item nz-col [nzSm]="24" [nzMd]="11">
         <nz-form-label nzRequired [nzSpan]="24" nzFor="firstName">First Name</nz-form-label>
         <nz-form-control
           [nzValidateStatus]="
@@ -49,7 +49,7 @@
         "
         class=" "
       >
-        <nz-input-group>
+        <nz-input-group nzAddOnBefore="+251">
           <input
             type="text"
             nz-input
@@ -79,7 +79,7 @@
           />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item  nz-col [nzSm]="24" [nzMd]="11">
+      <nz-form-item nz-col [nzSm]="24" [nzMd]="11">
         <nz-form-label nzRequired [nzSpan]="24" nzFor="address">Address</nz-form-label>
         <nz-form-control
           nzErrorTip="Address is required"

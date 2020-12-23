@@ -1,6 +1,6 @@
 <retailer-navigation></retailer-navigation>
 <div class="content">
-    <h1 style="text-align:center">User Management | Edit</h1>
+  <h1 style="text-align: center">User Management | Edit</h1>
   <!-- <aside>
     <ul>
       <li>Change PhoneNumber</li>
@@ -9,103 +9,119 @@
   </aside> -->
   <div class="box-container">
     <div class="box">
-        <b><h3>Basic Info</h3></b>
-        <span>Basic info, such as user name and address
-        </span>
-        <form nz-form [nzLayout]="'horizontal'" [formGroup]="userForm" action="POST" class="register__form">
-           
-              <nz-form-item  >
-                <nz-form-label nzRequired [nzSpan]="4" nzFor="firstName">First Name</nz-form-label>
-                <nz-form-control
-                  [nzValidateStatus]="
-                    controls['firstName'].invalid && controls['firstName'].touched ? 'error' : ''
-                  "
-                  nzErrorTip="First Name is required"
-                  class=" "
-                >
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="firstName"
-                    name="firstName"
-                    placeholder="FirstName"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-              <nz-form-item class="" >
-                <nz-form-label nzRequired [nzSpan]="4" nzFor="lastName">LastName</nz-form-label>
-                <nz-form-control
-                  [nzValidateStatus]="
-                    controls['lastName'].invalid && controls['lastName'].touched ? 'error' : ''
-                  "
-                  nzErrorTip="Last Name is required"
-                  class=""
-                >
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="lastName"
-                    name="lastName"
-                    placeholder="lastName"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-         
-        
-         
-              <nz-form-item class=" " >
-                <nz-form-label nzRequired [nzSpan]="4" nzFor="email">Email</nz-form-label>
-                <nz-form-control
-                  nzErrorTip="email is required"
-                  [nzValidateStatus]="
-                    controls['email'].invalid && controls['email'].touched ? 'error' : ''
-                  "
-                  class=" "
-                >
-                  <input
-                    type="text"
-                    nz-input
-                    formControlName="email"
-                    placeholder="Email"
-                    name="email"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            
-                <button style="float: right;margin-top: 2rem;" nz-button nzType="primary" (click)="saveChanges()" [nzLoading]="isLoading"><i nz-icon nzType="save"></i>Save Changes</button>
-          </form>
-      </div>
-      <div class="box">
-        <b><h3>Phone Number</h3></b>
-        <span>If you change phone Number this will happen
-        </span>
-        <form nz-form [nzLayout]="'horizontal'" [formGroup]="phoneForm" action="POST" class="register__form">
-           
-              <nz-form-item class=" " >
-                <nz-form-label nzRequired [nzSpan]="4" nzFor="phoneNumber">PhoneNumber</nz-form-label>
-                <nz-form-control
-                  nzErrorTip="phoneNumber is required"
-                  [nzValidateStatus]="
-                    phonecontrols['phoneNumber'].invalid && phonecontrols['phoneNumber'].touched ? 'error' : ''
-                  "
-                  class=" "
-                >
-                  <input
-               
-                    type="text"
-                    nz-input
-                    formControlName="phoneNumber"
-                    placeholder="PhoneNumber"
-                    name="PhoneNumber"
-                  />
-                </nz-form-control>
-              </nz-form-item>
-            
-              <button style="float: right;margin-top: 2rem;" nz-button nzType="primary" (click)="saveChanges()" [nzLoading]="isLoading"><i nz-icon nzType="save"></i>Save Changes</button>
-              
-          </form>
-      </div>
-     
+      <b><h3>Basic Info</h3></b>
+      <span>Basic info, such as user name and address </span>
+      <form
+        nz-form
+        [nzLayout]="'horizontal'"
+        [formGroup]="userForm"
+        action="POST"
+        class="register__form"
+      >
+        <nz-form-item>
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="firstName">First Name</nz-form-label>
+          <nz-form-control
+            [nzValidateStatus]="
+              controls['firstName'].invalid && controls['firstName'].touched ? 'error' : ''
+            "
+            nzErrorTip="First Name is required"
+            class=" "
+          >
+            <input
+              type="text"
+              nz-input
+              formControlName="firstName"
+              name="firstName"
+              placeholder="FirstName"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="">
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="lastName">LastName</nz-form-label>
+          <nz-form-control
+            [nzValidateStatus]="
+              controls['lastName'].invalid && controls['lastName'].touched ? 'error' : ''
+            "
+            nzErrorTip="Last Name is required"
+            class=""
+          >
+            <input
+              type="text"
+              nz-input
+              formControlName="lastName"
+              name="lastName"
+              placeholder="lastName"
+            />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item class=" ">
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="email">Email</nz-form-label>
+          <nz-form-control
+            nzErrorTip="email is required"
+            [nzValidateStatus]="
+              controls['email'].invalid && controls['email'].touched ? 'error' : ''
+            "
+            class=" "
+          >
+            <input type="text" nz-input formControlName="email" placeholder="Email" name="email" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <button
+          style="float: right; margin-top: 2rem"
+          nz-button
+          nzType="primary"
+          (click)="saveChanges()"
+          [nzLoading]="isLoading"
+        >
+          <i nz-icon nzType="save"></i>Save Changes
+        </button>
+      </form>
+    </div>
+    <div class="box">
+      <b><h3>Phone Number</h3></b>
+      <span>If you change phone Number this will happen </span>
+      <form
+        nz-form
+        [nzLayout]="'horizontal'"
+        [formGroup]="phoneForm"
+        action="POST"
+        class="register__form"
+      >
+        <nz-form-item class=" ">
+          <nz-form-label nzRequired [nzSpan]="4" nzFor="phoneNumber">PhoneNumber</nz-form-label>
+          <nz-form-control
+            nzErrorTip="phoneNumber is required"
+            [nzValidateStatus]="
+              phonecontrols['phoneNumber'].invalid && phonecontrols['phoneNumber'].touched
+                ? 'error'
+                : ''
+            "
+            class=" "
+          >
+            <nz-input-group nzAddOnBefore="+251">
+              <input
+                type="text"
+                nz-input
+                formControlName="phoneNumber"
+                placeholder="PhoneNumber"
+                name="PhoneNumber"
+              />
+            </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+
+        <button
+          style="float: right; margin-top: 2rem"
+          nz-button
+          nzType="primary"
+          (click)="saveChanges()"
+          [nzLoading]="isLoading"
+        >
+          <i nz-icon nzType="save"></i>Save Changes
+        </button>
+      </form>
+    </div>
   </div>
-  
 </div>

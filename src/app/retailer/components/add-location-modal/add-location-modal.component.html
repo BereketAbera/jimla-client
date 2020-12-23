@@ -30,13 +30,18 @@
       </nz-form-item> -->
       <div *ngIf="editMode" class="tag">
         <h3>Phone Numbers</h3>
-        <nz-tag class="phone-tag" *ngFor="let tag of location.phones; let i = index" nzMode="closeable" (nzOnClose)="handleClose(tag)">
+        <nz-tag
+          class="phone-tag"
+          *ngFor="let tag of location.phones; let i = index"
+          nzMode="closeable"
+          (nzOnClose)="handleClose(tag)"
+        >
           {{ tag.phoneNumber }}
         </nz-tag>
       </div>
-     
-      <nz-form-item class="add-phone" >
-        <nz-form-control nz-row style="margin-top: 3rem;">
+
+      <nz-form-item class="add-phone">
+        <nz-form-control nz-row style="margin-top: 3rem">
           <button nz-button nzType="dashed" class="add-button" (click)="addField($event)">
             <i nz-icon nzType="plus"></i>
             Add Phone
@@ -44,25 +49,35 @@
         </nz-form-control>
       </nz-form-item>
     </div>
-    <nz-form-item nz-row  *ngFor="let control of listOfControl; let i = index">
-      <nz-form-label nzRequired [nzSpan]="24"  [nzFor]="control.controlInstance">PhoneNumber {{ i+1 }} </nz-form-label>
+    <nz-form-item nz-row *ngFor="let control of listOfControl; let i = index">
+      <nz-form-label nzRequired [nzSpan]="24" [nzFor]="control.controlInstance"
+        >PhoneNumber {{ i + 1 }}
+      </nz-form-label>
       <nz-form-control
         [nzXs]="24"
         [nzSm]="20"
         nzErrorTip="Please input phoneNumber or delete this field."
+        nzAddOnBefore="+251"
       >
-        <input
-          nzRequired
-          class="passenger-input"
-          nz-input
-          placeholder="PhoneNumber"
-          [attr.id]="control.id"
-          [formControlName]="control.controlInstance"
-        />
-        <i nz-icon nzType="minus-circle-o" class="dynamic-delete-button" (click)="removeField(control, $event)"></i>
+        <nz-input-group nzAddOnBefore="+251">
+          <input
+            nzRequired
+            class="passenger-input"
+            nz-input
+            placeholder="PhoneNumber"
+            [attr.id]="control.id"
+            [formControlName]="control.controlInstance"
+          />
+          <i
+            nz-icon
+            nzType="minus-circle-o"
+            class="dynamic-delete-button"
+            (click)="removeField(control, $event)"
+          ></i>
+        </nz-input-group>
       </nz-form-control>
     </nz-form-item>
-  
+
     <nz-form-item class="register__input">
       <nz-form-label nzRequired [nzSpan]="24" nzFor="description"
         >Address Description</nz-form-label
@@ -117,7 +132,22 @@
 </div>
 <div *nzModalFooter>
   <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
-  <button *ngIf="!editMode" nz-button nzType="primary" [nzLoading]="submitted" (click)="addLocation()">Add</button>
-  <button *ngIf="editMode" nz-button nzType="primary" [nzLoading]="submitted" (click)="editLocation()">Save Changes</button>
-
+  <button
+    *ngIf="!editMode"
+    nz-button
+    nzType="primary"
+    [nzLoading]="submitted"
+    (click)="addLocation()"
+  >
+    Add
+  </button>
+  <button
+    *ngIf="editMode"
+    nz-button
+    nzType="primary"
+    [nzLoading]="submitted"
+    (click)="editLocation()"
+  >
+    Save Changes
+  </button>
 </div>

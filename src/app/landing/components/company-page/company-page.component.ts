@@ -168,7 +168,7 @@ export class CompanyPageComponent implements OnInit {
           queryParams: { returnUrl: '/retailer/process_order' }
         });
       } else {
-        // console.log('processing order');
+        console.log('processing order');
         let orderData = {
           MerchantId: this.cartMerchantId,
           orders: this.cartProducts.map((cp) => {
