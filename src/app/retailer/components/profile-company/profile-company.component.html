@@ -79,12 +79,16 @@
         >
           <nz-form-item>
             <nz-form-label nzFor="phoneNumber">Phone Number</nz-form-label>
-            <input
-              class="form__input"
-              formControlName="phoneNumber"
-              nz-input
-              placeholder="09*******"
-            />
+            <nz-form-control
+              nzErrorTip="Phone number is not valid"
+              [nzValidateStatus]="
+                f['phoneNumber'].invalid && f['phoneNumber'].touched ? 'error' : ''
+              "
+            >
+              <nz-input-group nzAddOnBefore="+251">
+                <input formControlName="phoneNumber" nz-input placeholder="borderless" />
+              </nz-input-group>
+            </nz-form-control>
           </nz-form-item>
 
           <div class="form__action">

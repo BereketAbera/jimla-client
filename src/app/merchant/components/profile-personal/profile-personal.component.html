@@ -3,10 +3,10 @@
     <div class="avatar">
       <div class="avatar-action">
         <nz-avatar [nzShape]="'square'" [nzSize]="110" nzIcon="user"></nz-avatar>
-         <div class="actions">
-          <a routerLink="../upload" >Change</a>
+        <div class="actions">
+          <a routerLink="../upload">Change</a>
           <a href="">Delete</a>
-         </div>
+        </div>
       </div>
       <div class="name">
         {{ user.firstName }} <span> {{ user.lastName }}</span>
@@ -37,7 +37,7 @@
           </nz-form-item>
 
           <div class="form__action">
-            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
             <button nz-button nzType="primary">Save</button>
           </div>
         </form>
@@ -45,7 +45,7 @@
       <a *ngIf="!firstName" (click)="editModeOpen('firstName')">Edit</a>
     </div>
     <div class="content-section">
-      <span  class="title">Last Name</span>
+      <span class="title">Last Name</span>
       <span *ngIf="!lastName" class="value">{{ user.lastName }}</span>
       <div class="form-container" *ngIf="editMode && lastName">
         <form
@@ -67,7 +67,7 @@
           </nz-form-item>
 
           <div class="form__action">
-            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
             <button nz-button nzType="primary">Save</button>
           </div>
         </form>
@@ -75,7 +75,7 @@
       <a *ngIf="!lastName" (click)="editModeOpen('lastName')">Edit</a>
     </div>
     <div class="content-section">
-      <span  class="title">Email</span>
+      <span class="title">Email</span>
       <span *ngIf="!email" class="value">{{ user.email }}</span>
       <div class="form-container" *ngIf="editMode && email">
         <form
@@ -92,7 +92,7 @@
           </nz-form-item>
 
           <div class="form__action">
-            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
             <button nz-button nzType="primary">Save</button>
           </div>
         </form>
@@ -101,7 +101,7 @@
     </div>
     <div class="content-section">
       <span class="title">Username</span>
-      <span  *ngIf="!username"  class="value">{{ user.username }}</span>
+      <span *ngIf="!username" class="value">{{ user.username }}</span>
       <div class="form-container" *ngIf="editMode && username">
         <form
           action=""
@@ -122,7 +122,7 @@
           </nz-form-item>
 
           <div class="form__action">
-            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
             <button nz-button nzType="primary">Save</button>
           </div>
         </form>
@@ -143,16 +143,20 @@
         >
           <nz-form-item>
             <nz-form-label nzFor="phoneNumber">Phone Number</nz-form-label>
-            <input
-              class="form__input"
-              formControlName="phoneNumber"
-              nz-input
-              placeholder="borderless"
-            />
+            <nz-form-control
+              nzErrorTip="Phone number is not valid"
+              [nzValidateStatus]="
+                f['phoneNumber'].invalid && f['phoneNumber'].touched ? 'error' : ''
+              "
+            >
+              <nz-input-group nzAddOnBefore="+251">
+                <input formControlName="phoneNumber" nz-input placeholder="borderless" />
+              </nz-input-group>
+            </nz-form-control>
           </nz-form-item>
 
           <div class="form__action">
-            <button nz-button nzType="danger" (click)="onCancel()" >Cancel</button>
+            <button nz-button nzType="danger" (click)="onCancel()">Cancel</button>
             <button nz-button nzType="primary">Save</button>
           </div>
         </form>

@@ -3,6 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from '@app/_services/user.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile-personal',
@@ -19,6 +21,7 @@ export class ProfilePersonalComponent implements OnInit {
   email: Boolean;
   editMode: boolean;
   userForm: FormGroup;
+  value = '';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -33,6 +36,29 @@ export class ProfilePersonalComponent implements OnInit {
       // this.count = res.data.count;
     });
   }
+
+  phoneNumberChange(res) {
+    let phoneNumber = this.f['phoneNumber'];
+    let val = res;
+    val = val ? val.toString() : val;
+
+    if (val.length > 9 && val.slice(0, 4) != '+251' && val[0] != '0') {
+      phoneNumber.setValue(val.slice(0, val.length - 1));
+      return;
+    }
+    if (val && val.length >= 2) {
+      if (val[0] == '0') {
+        phoneNumber.setValue(val.slice(1));
+      }
+    }
+
+    if (val && val.length >= 5) {
+      if (val.slice(0, 4) == '+251') {
+        phoneNumber.setValue(val.slice(4));
+      }
+    }
+  }
+
   get f() {
     return this.userForm.controls;
   }
@@ -40,6 +66,7 @@ export class ProfilePersonalComponent implements OnInit {
   editModeOpen(value) {
     this.editMode = true;
     this.resetField();
+    this.value = value;
 
     switch (value) {
       case 'firstName':
@@ -62,8 +89,14 @@ export class ProfilePersonalComponent implements OnInit {
         break;
       case 'phoneNumber':
         this.userForm = this.formBuilder.group({
-          phoneNumber: [this.user.phoneNumber, Validators.required]
+          phoneNumber: [
+            this.user.phoneNumber.slice(4),
+            [Validators.required, Validators.pattern(/^[1-9]\d{8}$/)]
+          ]
         });
+        this.f['phoneNumber'].valueChanges
+          .pipe((debounceTime(200), switchMap((term) => of(term))))
+          .subscribe((res) => this.phoneNumberChange(res));
         this.phoneNumber = true;
         break;
       case 'username':
@@ -83,26 +116,35 @@ export class ProfilePersonalComponent implements OnInit {
       return;
     }
 
-    this.userService.updateUser(this.userForm.value).subscribe(
+    let value =
+      this.value == 'phoneNumber'
+        ? { phoneNumber: '+251' + this.userForm.controls['phoneNumber'].value }
+        : this.userForm.value;
+
+    this.userService.updateUser(value).subscribe(
       (data) => {
-        this.createMessage('success','Succesfully Updated');
+        this.createMessage('success', 'Succesfully Updated');
         this.user = data;
         this.resetField();
       },
       (error) => {
-        this.createMessage('error',error.error?.message || "Failed to change");
+        this.createMessage('error', error.error?.message || 'Failed to change');
         // this.resetField();
-         // console.log(error);
+        // console.log(error);
       }
     );
   }
 
-  onCancel(){
+  onCancel() {
     this.editMode = false;
-    this.firstName=false,this.lastName=false,this.email=false, this.phoneNumber=false, this.username=false;
+    (this.firstName = false),
+      (this.lastName = false),
+      (this.email = false),
+      (this.phoneNumber = false),
+      (this.username = false);
   }
 
-  createMessage(type: string,data): void {
+  createMessage(type: string, data): void {
     this.message.create(type, data);
   }
 

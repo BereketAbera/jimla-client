@@ -5,6 +5,8 @@ import { AuthenticationService } from '@app/_services/authentication.service';
 import { CategoryListService } from '@app/_services/product/category-list.service';
 import { NzModalRef } from 'ng-zorro-antd/modal';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { of } from 'rxjs';
+import { debounceTime, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-location-modal',
@@ -43,14 +45,35 @@ export class AddLocationModalComponent implements OnInit {
       lat: [this.location ? this.location.lat : 8.9],
       long: [this.location ? this.location.long : 38.7]
     });
-    if(!this.editMode){
+    if (!this.editMode) {
       this.addField();
     }
-    
   }
 
   get controls() {
     return this.locationForm.controls;
+  }
+
+  phoneNumberChange(res, controlName) {
+    let phoneNumber = this.controls[controlName];
+    let val = res;
+    val = val ? val.toString() : val;
+
+    if (val.length > 9 && val.slice(0, 4) != '+251' && val[0] != '0') {
+      phoneNumber.setValue(val.slice(0, val.length - 1));
+      return;
+    }
+    if (val && val.length >= 2) {
+      if (val[0] == '0') {
+        phoneNumber.setValue(val.slice(1));
+      }
+    }
+
+    if (val && val.length >= 5) {
+      if (val.slice(0, 4) == '+251') {
+        phoneNumber.setValue(val.slice(4));
+      }
+    }
   }
 
   destroyModal(): void {
@@ -66,7 +89,7 @@ export class AddLocationModalComponent implements OnInit {
       this.error = '';
       let numbers = [];
       for (let i = 0; i < this.listOfControl.length; i++) {
-        numbers.push({ phoneNumber: this.locationForm.get(`phoneNumber${i}`).value });
+        numbers.push({ phoneNumber: '+251' + this.locationForm.get(`phoneNumber${i}`).value });
       }
       // numbers.push({phoneNumber:this.locationForm.get(`phoneNumber`).value})
 
@@ -76,14 +99,17 @@ export class AddLocationModalComponent implements OnInit {
           phoneNumber: numbers[0].phoneNumber,
           phoneNumbers: numbers
         })
-        .subscribe((res) => {
-          this.loading = false;
-          this.addSuccess(res);
-          this.createMessage('success', 'Successfully Created');
-        },error=>{
-          console.log(error);
-          this.createMessage("error","PhoneNumber already exists. Failed to Create")
-        });
+        .subscribe(
+          (res) => {
+            this.loading = false;
+            this.addSuccess(res);
+            this.createMessage('success', 'Successfully Created');
+          },
+          (error) => {
+            console.log(error);
+            this.createMessage('error', 'PhoneNumber already exists. Failed to Create');
+          }
+        );
     }
   }
 
@@ -96,20 +122,23 @@ export class AddLocationModalComponent implements OnInit {
       this.error = '';
       let numbers = [];
       for (let i = 0; i < this.listOfControl.length; i++) {
-        numbers.push({ phoneNumber: this.locationForm.get(`phoneNumber${i}`).value });
+        numbers.push({ phoneNumber: '+251' + this.locationForm.get(`phoneNumber${i}`).value });
       }
       this.locationService
         .editConsumerLocation(
           { ...this.locationForm.value, phoneNumbers: numbers },
           this.location.id
         )
-        .subscribe((res) => {
-          this.loading = false;
-          this.addSuccess(res);
-          this.createMessage('success', 'Successfully Editted');
-        },error=>{
-          this.createMessage("error","PhoneNumber already exists. Failed to Edit")
-        });
+        .subscribe(
+          (res) => {
+            this.loading = false;
+            this.addSuccess(res);
+            this.createMessage('success', 'Successfully Edited');
+          },
+          (error) => {
+            this.createMessage('error', 'PhoneNumber already exists. Failed to Edit');
+          }
+        );
     }
   }
   createMessage(type: string, data): void {
@@ -132,10 +161,15 @@ export class AddLocationModalComponent implements OnInit {
       controlInstance: `phoneNumber${id}`
     };
     const index = this.listOfControl.push(control);
+    let controlName = this.listOfControl[index - 1].controlInstance;
     this.locationForm.addControl(
-      this.listOfControl[index - 1].controlInstance,
-      new FormControl(null, Validators.required)
+      controlName,
+      new FormControl(null, [Validators.required, Validators.pattern(/^[1-9]\d{8}$/)])
     );
+
+    this.controls[controlName].valueChanges
+      .pipe((debounceTime(200), switchMap((term) => of(term))))
+      .subscribe((res) => this.phoneNumberChange(res, controlName));
   }
   removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
     e.preventDefault();
@@ -149,12 +183,11 @@ export class AddLocationModalComponent implements OnInit {
   handleClose(phone) {
     this.locationService.deletePhone(phone.phoneNumber).subscribe(
       (data) => {
-        this.createMessage("success","Delete Successfully")
+        this.createMessage('success', 'Delete Successfully');
       },
       (error) => {
         console.log(error);
-        this.createMessage("error","Failed to delete")
-        
+        this.createMessage('error', 'Failed to delete');
       }
     );
   }
