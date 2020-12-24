@@ -19,7 +19,7 @@ const routes: Routes = [
   {
     path: 'retailer',
     canActivate: [AuthGuard],
-    data: { roles: ['CONSUMER'] },
+    data: { roles: ['CONSUMER','CONSSTAFF'] },
     loadChildren: () => import('./retailer/retailer.module').then((mod) => mod.RetailerModule)
   },
   {

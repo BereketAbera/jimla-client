@@ -13,7 +13,9 @@ export class LandingHomeComponent implements OnInit {
   searchField: FormControl;
   q = '';
   open = false;
-
+  guardP =   this.authenticationService.userValue && (this.authenticationService.userValue.role == 'PRODUCER' || this.authenticationService.userValue.role == 'PRODSTAFF') ;
+  guardC =   this.authenticationService.userValue && (this.authenticationService.userValue.role == 'CONSUMER' || this.authenticationService.userValue.role == 'CONSSTAFF') ;
+ 
   constructor(
     private router: Router,
     private producerService: ProducerService,

@@ -31,7 +31,7 @@ export class AddUserModalComponent implements OnInit {
       firstName: [this.user ? this.user.firstName : '', Validators.required],
       lastName: [this.user ? this.user.lastName : '', Validators.required],
       username: [this.user ? this.user.username : '', Validators.required],
-      addressId: ["", Validators.required]
+      AddressId: ["", Validators.required]
     });
   }
   get controls() {

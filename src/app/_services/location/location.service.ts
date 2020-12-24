@@ -19,6 +19,12 @@ export class LocationService {
     );
   }
 
+  getAllConsumerLocations(){
+    return this.http.get(
+      `${identityUrl}/consumer/${this.authenticationService.userValue.consumerId}/addresses`
+    );
+  }
+
   addConsumerLocation(location) {
     return this.http.post(
       `${identityUrl}/consumer/${this.authenticationService.userValue.consumerId}/addresses`,
