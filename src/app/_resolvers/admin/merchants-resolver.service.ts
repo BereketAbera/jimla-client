@@ -13,14 +13,22 @@ export class MerchantsResolverService {
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     let page = route.queryParamMap.get('page') || 0;
     let pageSize = route.queryParamMap.get('pageSize') || 5;
-    return this.adminService.getMerchants({ page, pageSize }).pipe(
-      mergeMap((data) => {
-        if (data) {
-          return of(data);
-        } else {
-          return EMPTY;
-        }
-      })
-    );
+    let company = route.queryParamMap.get('company') || '';
+    let code = route.queryParamMap.get('code') || '';
+    let type = route.queryParamMap.get('type') || '';
+    let status = route.queryParamMap.get('status') || '';
+    let startDate = route.queryParamMap.get('startDate') || '';
+    let endDate = route.queryParamMap.get('endDate') || '';
+    return this.adminService
+      .getMerchants({ page, pageSize, company, code, type, status, startDate, endDate })
+      .pipe(
+        mergeMap((data) => {
+          if (data) {
+            return of(data);
+          } else {
+            return EMPTY;
+          }
+        })
+      );
   }
 }

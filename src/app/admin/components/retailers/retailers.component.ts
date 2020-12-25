@@ -14,6 +14,14 @@ export class RetailersComponent implements OnInit {
   pageSize = 5;
   firstReload = true;
 
+  //filter values
+  filterActive = false;
+  date;
+  startDate;
+  endDate;
+  status = '';
+  company = '';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -29,6 +37,17 @@ export class RetailersComponent implements OnInit {
     this.route.queryParams.subscribe((res) => {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
+      this.company = res['company'] || '';
+      this.status = res['status'] || '';
+      this.startDate = res['startDate'] || '';
+      this.endDate = res['endDate'] || '';
+
+      if (this.startDate && this.endDate) {
+        this.date = [new Date(this.startDate), new Date(this.endDate)];
+      } else {
+        this.date = [];
+      }
+
       if (!this.firstReload) {
         this.getRetailers();
       } else {
@@ -39,7 +58,14 @@ export class RetailersComponent implements OnInit {
 
   getRetailers() {
     this.adminService
-      .getRetailers({ page: this.page, pageSize: this.pageSize })
+      .getRetailers({
+        page: this.page,
+        pageSize: this.pageSize,
+        status: this.status,
+        company: this.company,
+        startDate: this.startDate,
+        endDate: this.endDate
+      })
       .subscribe((res) => {
         this.retailers = res.rows;
         this.count = res.count;
@@ -71,5 +97,34 @@ export class RetailersComponent implements OnInit {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     });
+  }
+
+  clearFilter() {
+    this.setUrlValues({
+      status: '',
+      company: '',
+      startDate: '',
+      endDate: ''
+    });
+    this.filter();
+  }
+
+  applyFilter() {
+    this.setUrlValues({
+      status: this.status,
+      company: this.company,
+      startDate: this.startDate,
+      endDate: this.endDate
+    });
+    this.filter();
+  }
+
+  onDateChange(event: Array<Date>) {
+    this.startDate = event[0].toISOString().split('T')[0];
+    this.endDate = event[1].toISOString().split('T')[0];
+  }
+
+  filter() {
+    this.filterActive = !this.filterActive;
   }
 }

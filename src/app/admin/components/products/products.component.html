@@ -28,8 +28,6 @@
           [nzValue]="category.id + ''"
           [nzLabel]="category.name"
         ></nz-option>
-        <!-- <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-        <nz-option nzValue="disabled" nzLabel="Disabled"></nz-option> -->
       </nz-select>
     </div>
     <div class="header__filter__item">
@@ -45,10 +43,15 @@
     <div class="header__filter__item">
       <h3 class="header__filter__title">Apply Filter</h3>
       <nz-divider></nz-divider>
-      <button (click)="applyFilter()" nz-button nzType="primary" nzShape="round">
-        APPLY FILTER
-        <i nz-icon nzType="filter" nzTheme="outline"></i>
-      </button>
+      <div style="display: flex">
+        <button (click)="applyFilter()" nz-button nzType="primary" nzShape="round">
+          APPLY FILTER
+          <i nz-icon nzType="filter" nzTheme="outline"></i>
+        </button>
+        <button (click)="clearFilter()" nz-button nzType="link" nzShape="round">
+          <i nz-icon nzType="clear" nzTheme="outline"></i>
+        </button>
+      </div>
     </div>
   </div>
   <div

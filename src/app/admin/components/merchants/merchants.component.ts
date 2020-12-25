@@ -17,6 +17,16 @@ export class MerchantsComponent implements OnInit {
   firstReload = true;
   addressesClose: EventEmitter<any> = new EventEmitter();
 
+  //filter values
+  filterActive = false;
+  date;
+  startDate;
+  endDate;
+  status = '';
+  company = '';
+  type = '';
+  code = '';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -33,6 +43,19 @@ export class MerchantsComponent implements OnInit {
     this.route.queryParams.subscribe((res) => {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
+      this.company = res['company'] || '';
+      this.code = res['code'] || '';
+      this.type = res['type'] || '';
+      this.status = res['status'] || '';
+      this.startDate = res['startDate'] || '';
+      this.endDate = res['endDate'] || '';
+
+      if (this.startDate && this.endDate) {
+        this.date = [new Date(this.startDate), new Date(this.endDate)];
+      } else {
+        this.date = [];
+      }
+
       if (!this.firstReload) {
         this.getMerchants();
       } else {
@@ -43,7 +66,16 @@ export class MerchantsComponent implements OnInit {
 
   getMerchants() {
     this.adminService
-      .getMerchants({ page: this.page, pageSize: this.pageSize })
+      .getMerchants({
+        page: this.page,
+        pageSize: this.pageSize,
+        status: this.status,
+        type: this.type,
+        company: this.company,
+        code: this.code,
+        startDate: this.startDate,
+        endDate: this.endDate
+      })
       .subscribe((res) => {
         this.merchants = res.rows;
         this.count = res.count;
@@ -77,14 +109,65 @@ export class MerchantsComponent implements OnInit {
     });
   }
 
-  getMerchantProducts(name) {
-    this.router.navigate(['/jm-admin/products'], { queryParams: { company: name } });
-    // console.log(name);
+  clearFilter() {
+    this.setUrlValues({
+      status: '',
+      type: '',
+      company: '',
+      code: '',
+      startDate: '',
+      endDate: ''
+    });
+    this.filter();
   }
 
-  updateMerchant(merchant) {
+  applyFilter() {
+    this.setUrlValues({
+      status: this.status,
+      type: this.type,
+      company: this.company,
+      code: this.code,
+      startDate: this.startDate,
+      endDate: this.endDate
+    });
+    this.filter();
+  }
+
+  onDateChange(event: Array<Date>) {
+    this.startDate = event[0].toISOString().split('T')[0];
+    this.endDate = event[1].toISOString().split('T')[0];
+  }
+
+  getMerchantProducts(name) {
+    this.router.navigate(['/jm-admin/products'], { queryParams: { company: name } });
+  }
+
+  getMerchantOrders(code) {
+    this.router.navigate(['/jm-admin/orders'], { queryParams: { code } });
+  }
+
+  filter() {
+    this.filterActive = !this.filterActive;
+  }
+
+  updateMerchantStatus(merchant) {
     this.adminService
       .updateMerchant(merchant.id, { verified: !merchant.verified })
+      .subscribe((res) => {
+        this.merchants = this.merchants.map((merchant) => {
+          if (merchant.id == res.id) {
+            return { ...merchant, ...res };
+          }
+          return merchant;
+        });
+      });
+  }
+
+  updateMerchantCompanyType(merchant) {
+    this.adminService
+      .updateMerchant(merchant.id, {
+        compType: merchant.compType == 'NORMAL' ? 'FEATURED' : 'NORMAL'
+      })
       .subscribe((res) => {
         this.merchants = this.merchants.map((merchant) => {
           if (merchant.id == res.id) {
