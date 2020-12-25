@@ -20,6 +20,7 @@ import { UsersComponent } from './components/users/users.component';
 import { StaffUsersResolverService } from '@app/_resolvers/identity/staff-users-resolver.service';
 import { AddLocationModalComponent } from './components/add-location-modal/add-location-modal.component';
 import { ManageUserComponent } from './components/manage-user/manage-user.component';
+import { GetConsumerAddressAllResolverService } from '@app/_resolvers/location/get-consumer-address-all-resolver.service';
 
 
 
@@ -77,12 +78,12 @@ const routes: Routes = [
       {
         path: 'users',
         component: UsersComponent,
-        resolve: { data: GetConsumerAddressResolverService,resData:StaffUsersResolverService }
+        resolve: { data: GetConsumerAddressAllResolverService,resData:StaffUsersResolverService }
       },
       {
         path: 'users/edit/:id',
         component: ManageUserComponent,
-        resolve: { addData: GetConsumerAddressResolverService,userData:UserResolverService }
+        resolve: { addData: GetConsumerAddressAllResolverService,userData:UserResolverService }
       }
     ]
   }

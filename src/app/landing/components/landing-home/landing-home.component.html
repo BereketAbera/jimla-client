@@ -60,7 +60,7 @@
     <a
       style="width: 90%; align-self: center"
       (click)="mobileDropdownOpen()"
-      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'"
+      *ngIf="guardC"
       routerLink="/retailer"
       class="btn btn--jimla"
       >Home</a
@@ -99,14 +99,14 @@
     >
 
     <a
-      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'PRODUCER'"
+      *ngIf="guardP"
       routerLink="/merchant"
       class="btn btn--jimla"
       >Home</a
     >
 
     <a
-      *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'CONSUMER'"
+      *ngIf="guardC"
       routerLink="/retailer"
       class="btn btn--jimla"
       >Home</a

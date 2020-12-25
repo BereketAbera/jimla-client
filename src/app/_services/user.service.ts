@@ -60,7 +60,7 @@ export class UserService {
   }
   getConsumerUser(data): Observable<any> {
     let params = this.generateParams(data)
-    return this.http.get(`${this.apiUrl}/consumers/user?${params}`);
+    return this.http.get(`${this.apiUrl}/consumer/user?${params}`);
   }
   generateParams(params) {
     let url = '';

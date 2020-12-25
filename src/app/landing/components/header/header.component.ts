@@ -8,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   open = false;
+  guardP =   this.authenticationService.userValue && (this.authenticationService.userValue.role == 'PRODUCER' || this.authenticationService.userValue.role == 'PRODSTAFF') ;
+  guardC =   this.authenticationService.userValue && (this.authenticationService.userValue.role == 'CONSUMER' || this.authenticationService.userValue.role == 'CONSSTAFF') ;
   constructor(public authenticationService: AuthenticationService) {}
 
   ngOnInit(): void {
     this.authenticationService.userValue;
+    console.log(this.guardC,this,this.guardP,"sdf")
   }
 
   mobileDropdownOpen() {

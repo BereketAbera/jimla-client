@@ -125,6 +125,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
     }
+    console.log(this.controls,"here")
     this.submitted = true;
     this.userService
       .addProducer({

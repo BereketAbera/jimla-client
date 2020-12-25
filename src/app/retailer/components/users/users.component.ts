@@ -25,7 +25,8 @@ export class UsersComponent implements OnInit {
     private userSerive: UserService
   ) {
     this.route.data.subscribe((res) => {
-      this.address = { data: res.data };
+      // console.log(res)
+      this.address = { data: res.data.rows };
       this.users = res.resData.rows;
       this.count = res.resData.count;
       // this.count = res.data.count;

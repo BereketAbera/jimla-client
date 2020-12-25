@@ -49,22 +49,6 @@
 
   <div class="content">
     <div class="left-content">
-      <h2>Weekly Order Statics</h2>
-      <div class="chart">
-        <canvas #lineChart>{{ chart }}</canvas>
-      </div>
-
-      <div [ngStyle]="{ width: '70%', border: '1px solid #d9d9d9', borderRadius: '15px' }">
-        <nz-calendar
-          [nzFullscreen]="false"
-          (nzSelectChange)="onValueChange($event)"
-          (nzPanelChange)="onPanelChange($event)"
-        ></nz-calendar>
-      </div>
-     
-    </div>
-
-    <div class="right-content">
       <div class="products">
         <h2>Top Selling Products</h2>
         <div
@@ -120,6 +104,21 @@
             </div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="right-content">
+      <h2>Weekly Order Statics</h2>
+      <div class="chart">
+        <canvas #lineChart>{{ chart }}</canvas>
+      </div>
+
+      <div [ngStyle]="{ width: '70%', border: '1px solid #d9d9d9', borderRadius: '15px' }">
+        <nz-calendar
+          [nzFullscreen]="false"
+          (nzSelectChange)="onValueChange($event)"
+          (nzPanelChange)="onPanelChange($event)"
+        ></nz-calendar>
       </div>
     </div>
   </div>
