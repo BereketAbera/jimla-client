@@ -2,10 +2,45 @@
 <div class="main_container main_content_container">
   <div class="header_container">
     <h2 class="main_content_title">Retailers</h2>
-    <!-- <button (click)="addProduct()" nz-button nzType="primary" nzShape="round">
-        Add New
-        <i nz-icon nzType="plus"></i>
-      </button> -->
+    <button (click)="filter()" nz-button nzType="primary" nzShape="round">
+      FILTER
+      <i nz-icon nzType="filter" nzTheme="outline"></i>
+    </button>
+  </div>
+  <div class="header__filter" [class.header__filter--active]="filterActive">
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Upload Date</h3>
+      <nz-divider></nz-divider>
+      <nz-range-picker [(ngModel)]="date" (ngModelChange)="onDateChange($event)"></nz-range-picker>
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Company Name</h3>
+      <nz-divider></nz-divider>
+      <input nz-input placeholder="Company name" [(ngModel)]="company" />
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Status</h3>
+      <nz-divider></nz-divider>
+      <nz-select style="min-width: 10rem" [(ngModel)]="status">
+        <nz-option nzValue="" nzLabel="All"></nz-option>
+        <nz-option nzValue="PENDING" nzLabel="Pending"></nz-option>
+        <nz-option nzValue="ACTIVE" nzLabel="Active"></nz-option>
+        <nz-option nzValue="DISABLED" nzLabel="Disabled"></nz-option>
+      </nz-select>
+    </div>
+    <div class="header__filter__item">
+      <h3 class="header__filter__title">Apply Filter</h3>
+      <nz-divider></nz-divider>
+      <div style="display: flex">
+        <button (click)="applyFilter()" nz-button nzType="primary" nzShape="round">
+          APPLY FILTER
+          <i nz-icon nzType="filter" nzTheme="outline"></i>
+        </button>
+        <button (click)="clearFilter()" nz-button nzType="link" nzShape="round">
+          <i nz-icon nzType="clear" nzTheme="outline"></i>
+        </button>
+      </div>
+    </div>
   </div>
   <div
     nz-row

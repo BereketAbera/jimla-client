@@ -19,6 +19,16 @@ export class OrdersComponent implements OnInit {
   detailClose: EventEmitter<any> = new EventEmitter();
   @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
 
+  //filter values
+  filterActive = false;
+  date;
+  startDate;
+  endDate;
+  phoneNumber = '';
+  type = '';
+  status = '';
+  code = '';
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -35,6 +45,13 @@ export class OrdersComponent implements OnInit {
     this.route.queryParams.subscribe((res) => {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
+      this.code = res['code'] || '';
+      this.type = res['type'] || '';
+      this.status = res['status'] || '';
+      this.phoneNumber = res['phoneNumber'] || '';
+      this.startDate = res['startDate'] || '';
+      this.endDate = res['endDate'] || '';
+
       if (!this.firstReload) {
         this.getOrderGroups();
       } else {
@@ -47,7 +64,16 @@ export class OrdersComponent implements OnInit {
 
   getOrderGroups() {
     this.adminService
-      .getOrders({ page: this.page, pageSize: this.pageSize })
+      .getOrders({
+        page: this.page,
+        pageSize: this.pageSize,
+        phoneNumber: this.phoneNumber,
+        type: this.type,
+        status: this.status,
+        code: this.code,
+        startDate: this.startDate,
+        endDate: this.endDate
+      })
       .subscribe((res: { orders: any }) => {
         this.orders = res.orders.rows;
         this.count = res.orders.count;
@@ -79,6 +105,39 @@ export class OrdersComponent implements OnInit {
       queryParams: queryParams,
       queryParamsHandling: 'merge'
     });
+  }
+
+  clearFilter() {
+    this.setUrlValues({
+      phoneNumber: '',
+      type: '',
+      status: '',
+      code: '',
+      startDate: '',
+      endDate: ''
+    });
+    this.filter();
+  }
+
+  applyFilter() {
+    this.setUrlValues({
+      phoneNumber: this.phoneNumber,
+      type: this.type,
+      status: this.status,
+      code: this.code,
+      startDate: this.startDate,
+      endDate: this.endDate
+    });
+    this.filter();
+  }
+
+  filter() {
+    this.filterActive = !this.filterActive;
+  }
+
+  onDateChange(event: Array<Date>) {
+    this.startDate = event[0].toISOString().split('T')[0];
+    this.endDate = event[1].toISOString().split('T')[0];
   }
 
   process(order_group) {

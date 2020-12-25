@@ -48,6 +48,8 @@ export class ProductsComponent implements OnInit {
 
       if (this.startDate && this.endDate) {
         this.date = [new Date(this.startDate), new Date(this.endDate)];
+      } else {
+        this.date = [];
       }
 
       if (!this.firstReload) {
@@ -117,12 +119,19 @@ export class ProductsComponent implements OnInit {
     this.filter();
   }
 
+  clearFilter() {
+    this.setUrlValues({
+      status: '',
+      category: '',
+      company: '',
+      startDate: '',
+      endDate: ''
+    });
+    this.filter();
+  }
+
   onDateChange(event: Array<Date>) {
     this.startDate = event[0].toISOString().split('T')[0];
     this.endDate = event[1].toISOString().split('T')[0];
-    console.log(this.startDate, this.endDate);
-    // console.log(event);
   }
-
-  // onValueChange(event, type) {}
 }
