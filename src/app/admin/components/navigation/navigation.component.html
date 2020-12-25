@@ -154,12 +154,26 @@
       nz-tooltip
       routerLinkActive
       nzTooltipPlacement="right"
-      [routerLink]="['/jm-admin/profile']"
+      [routerLink]="['/jm-admin/categories']"
       nzIcon="appstore"
       (click)="collapse()"
     >
       <i nz-icon nzType="user" nzTheme="outline"></i>
-      <span>Profile</span>
+      <span>Categories</span>
     </li>
+    <li
+    [routerLinkActiveOptions]="{ exact: false }"
+    [routerLinkActive]="['ant-menu-item-selected']"
+    nz-menu-item
+    nz-tooltip
+    routerLinkActive
+    nzTooltipPlacement="right"
+    [routerLink]="['/jm-admin/profile']"
+    nzIcon="appstore"
+    (click)="collapse()"
+  >
+    <i nz-icon nzType="user" nzTheme="outline"></i>
+    <span>Profile</span>
+  </li>
   </ul>
 </div>

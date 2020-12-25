@@ -50,6 +50,18 @@ export class AdminService {
     return this.http.get(`${orderUrl}/admin/orders/${id}/orders`);
   }
 
+  addCategory(body):Observable<any>{
+    return this.http.post(`${productUrl}/admin/products/category`,body)
+  }
+
+  addBussinesType(body):Observable<any>{
+    return this.http.post(`${identityUrl}/admin/consumers/category`,body)
+  }
+
+  deleteCategory(id):Observable<any>{
+    return this.http.delete(`${identityUrl}/admin/consumers/category/${id}`)
+  }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

@@ -20,6 +20,7 @@ export class RetailerRegisterComponent implements OnInit {
   confirmPasswordErrorText = 'Confirm password is required';
   error = '';
   submitted = false;
+  categories: any=[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,6 +39,7 @@ export class RetailerRegisterComponent implements OnInit {
       password: ['', Validators.required],
       confirmPassword: ['', Validators.required],
       companyName: ['', Validators.required],
+      CategoryId: ['', Validators.required],
       tinNumber: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]],
       city: ['Addis Ababa', Validators.required],
       subCity: ['Arada'],
@@ -45,6 +47,9 @@ export class RetailerRegisterComponent implements OnInit {
       description: [''],
       lat: [null, Validators.required],
       long: [null, Validators.required]
+    });
+    this.route.data.subscribe((res: { data: any }) => {
+      this.categories = res.data;
     });
   }
 

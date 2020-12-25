@@ -13,6 +13,7 @@ import { LandingHomeComponent } from './components/landing-home/landing-home.com
 import { AuthGuard } from '@app/_helpers/auth.guard';
 import { CompanyPageComponent } from './components/company-page/company-page.component';
 import { CompanyProductResolverService } from '@app/_resolvers/product/company-product-resolver.service';
+import { GetConsumerCategoriesResolverService } from '@app/_resolvers/identity/get-consumer-categories-resolver.service';
 
 const routes: Routes = [
   {
@@ -43,7 +44,8 @@ const routes: Routes = [
       {
         path: 'retailer_register',
         // canActivate: [AuthGuard],
-        component: RetailerRegisterComponent
+        component: RetailerRegisterComponent,
+        resolve: { data: GetConsumerCategoriesResolverService }
       },
       {
         path: 'server_error',

@@ -34,6 +34,7 @@ import { NzSelectModule } from 'ng-zorro-antd/select';
 import { NzSpaceModule } from 'ng-zorro-antd/space';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { MerchantsComponent } from './components/merchants/merchants.component';
 import { RetailersComponent } from './components/retailers/retailers.component';
@@ -42,6 +43,8 @@ import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
 import { MerchantAddressesModalComponent } from './components/merchant-addresses-modal/merchant-addresses-modal.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { AddCategoryComponent } from './components/add-category/add-category.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,9 @@ import { OrderDetailModalComponent } from './components/order-detail-modal/order
     ProductsComponent,
     MerchantAddressesModalComponent,
     OrdersComponent,
-    OrderDetailModalComponent
+    OrderDetailModalComponent,
+    CategoriesComponent,
+    AddCategoryComponent
   ],
   imports: [
     CommonModule,
@@ -87,7 +92,8 @@ import { OrderDetailModalComponent } from './components/order-detail-modal/order
     NzMessageModule,
     NzSpinModule,
     NzProgressModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzTabsModule
   ]
 })
 export class AdminModule {}

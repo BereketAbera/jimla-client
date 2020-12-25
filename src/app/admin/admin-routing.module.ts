@@ -11,6 +11,8 @@ import { AdminComponent } from './admin.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ProductsComponent } from './components/products/products.component';
+import { CategoriesComponent } from './components/categories/categories.component';
+import { GetConsumerCategoriesResolverService } from '@app/_resolvers/identity/get-consumer-categories-resolver.service';
 
 const routes: Routes = [
   {
@@ -40,6 +42,10 @@ const routes: Routes = [
         path: 'orders',
         component: OrdersComponent,
         resolve: { data: OrdersResolverService }
+      },{
+        path: 'categories',
+        component: CategoriesComponent,
+        resolve: { data: CategoriesResolverService, consData:GetConsumerCategoriesResolverService}
       }
     ]
   }
