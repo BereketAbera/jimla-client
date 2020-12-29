@@ -26,8 +26,11 @@
   </div>
   <div *nzModalFooter>
     <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
-    <button nz-button nzType="primary" [nzLoading]="submitted" (click)="addCategory()">
+    <button *ngIf="!category" nz-button nzType="primary" [nzLoading]="submitted" (click)="addCategory()">
       Add
+    </button>
+    <button *ngIf="category" nz-button nzType="primary" [nzLoading]="submitted" (click)="editCategory()">
+      Save Changes
     </button>
   </div>
   

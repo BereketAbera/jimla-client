@@ -58,8 +58,16 @@ export class AdminService {
     return this.http.post(`${identityUrl}/admin/consumers/category`,body)
   }
 
+  editBussinesType(id,body):Observable<any>{
+    return this.http.put(`${identityUrl}/admin/consumers/category/${id}`,body)
+  }
+
   deleteCategory(id):Observable<any>{
     return this.http.delete(`${identityUrl}/admin/consumers/category/${id}`)
+  }
+
+  getDashboards():Observable<any>{
+    return this.http.get(`${aggregateUrl}/admin/dashboard`)
   }
 
   generateParams(params) {

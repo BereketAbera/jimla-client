@@ -13,6 +13,7 @@ export class AddCategoryComponent implements OnInit {
   formG: FormGroup;
   error: string;
   loading: boolean;
+  category:any;
   constructor(
     private formBuilder: FormBuilder,
     private modal: NzModalRef,
@@ -22,8 +23,11 @@ export class AddCategoryComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.modal.getContentComponent());
+    if(this.modal.getContentComponent().data){
+      this.category = this.modal.getContentComponent().data;
+    }
     this.formG = this.formBuilder.group({
-      name: ['', Validators.required]
+      name: [this.category?this.category.name:'', Validators.required]
     });
   }
 
@@ -61,6 +65,21 @@ export class AddCategoryComponent implements OnInit {
       }
     }
   }
+  editCategory():void{
+    if (this.formG.invalid) {
+      this.formG.markAllAsTouched();
+      this.error = 'Some field are not valid';
+    }else{
+      //Call Servicess
+      this.adminService.editBussinesType(this.category.id,this.formG.value).subscribe(data=>{
+        this.createMessage('success',"Editted succesfully")
+      },error=>{
+        this.createMessage('error',error)
+      })
+      
+      this.destroyModal()
+    }
+  }
   createMessage(type: string, data): void {
     this.message.create(type, data);
     this.destroyModal();
@@ -69,4 +88,6 @@ export class AddCategoryComponent implements OnInit {
   destroyModal(): void {
     this.modal.destroy('success');
   }
+
+
 }

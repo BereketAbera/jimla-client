@@ -83,6 +83,15 @@ export class CategoriesComponent implements OnInit {
       (error) => {}
     );
   }
+
+  editBusinessType(data) {
+    this.modal.create({
+      nzTitle: 'Edit Business Type',
+      nzContent: AddCategoryComponent,
+      nzAfterClose: this.categoryClose,
+      nzComponentParams: {...this.businessType,data:data}
+    });
+  }
   createMessage(type: string, data): void {
     this.message.create(type, data);
   }
