@@ -1,0 +1,36 @@
+<div class="form__container">
+    <!-- <h2 style="font-size: 2.5rem" id="form_title">Add user</h2> -->
+    <form nz-form [nzLayout]="'horizontal'" [formGroup]="formG" action="POST" class="register__form">
+      <div nz-row class="rows-input">
+        <nz-form-item nz-row >
+          <nz-form-label nzRequired  nzFor="firstName">Name</nz-form-label>
+          <nz-form-control
+            [nzValidateStatus]="
+              controls['name'].invalid && controls['name'].touched ? 'error' : ''
+            "
+            nzErrorTip="Name is required"
+            class=" "
+          >
+            <input
+              type="text"
+              nz-input
+              formControlName="name"
+              name="name"
+              placeholder="Category name"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        
+      </div>
+    </form>
+  </div>
+  <div *nzModalFooter>
+    <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
+    <button *ngIf="!category" nz-button nzType="primary" [nzLoading]="submitted" (click)="addCategory()">
+      Add
+    </button>
+    <button *ngIf="category" nz-button nzType="primary" [nzLoading]="submitted" (click)="editCategory()">
+      Save Changes
+    </button>
+  </div>
+  

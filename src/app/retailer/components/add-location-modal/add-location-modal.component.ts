@@ -173,7 +173,7 @@ export class AddLocationModalComponent implements OnInit {
   }
   removeField(i: { id: number; controlInstance: string }, e: MouseEvent): void {
     e.preventDefault();
-    if (this.listOfControl.length > 0) {
+    if (this.listOfControl.length > 1) {
       const index = this.listOfControl.indexOf(i);
       this.listOfControl.splice(index, 1);
       this.locationForm.removeControl(i.controlInstance);

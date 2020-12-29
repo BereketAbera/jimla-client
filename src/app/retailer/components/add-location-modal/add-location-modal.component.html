@@ -56,6 +56,9 @@
       <nz-form-control
         [nzXs]="24"
         [nzSm]="20"
+        [nzValidateStatus]="
+        controls[control.controlInstance].invalid && controls[control.controlInstance].touched ? 'error' : ''
+      "
         nzErrorTip="Please input phoneNumber or delete this field."
         nzAddOnBefore="+251"
       >

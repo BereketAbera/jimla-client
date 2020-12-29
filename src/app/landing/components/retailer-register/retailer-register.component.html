@@ -108,7 +108,8 @@
           />
         </nz-form-control>
       </nz-form-item>
-      <nz-form-item class="register__input">
+      <div nz-row class="register__input-wrapper">
+      <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
         <nz-form-label nzRequired [nzSpan]="24" nzFor="email">Email</nz-form-label>
         <nz-form-control
           nzErrorTip="Please enter a valid email"
@@ -120,27 +121,29 @@
           </nz-input-group>
         </nz-form-control>
       </nz-form-item>
+      <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
+        <nz-form-label nzRequired [nzSpan]="24" nzFor="phoneNumber">Phone Number</nz-form-label>
+        <nz-form-control
+          nzErrorTip="Phone number is not valid"
+          [nzValidateStatus]="
+            controls['phoneNumber'].invalid && controls['phoneNumber'].touched ? 'error' : ''
+          "
+          class="register__input"
+        >
+          <nz-input-group nzAddOnBefore="+251">
+            <input
+              type="text"
+              nz-input
+              formControlName="phoneNumber"
+              placeholder="Phone Number"
+              name="phoneNumber"
+            />
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      </div>
       <div nz-row class="register__input-wrapper">
-        <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
-          <nz-form-label nzRequired [nzSpan]="24" nzFor="phoneNumber">Phone Number</nz-form-label>
-          <nz-form-control
-            nzErrorTip="Phone number is not valid"
-            [nzValidateStatus]="
-              controls['phoneNumber'].invalid && controls['phoneNumber'].touched ? 'error' : ''
-            "
-            class="register__input"
-          >
-            <nz-input-group nzAddOnBefore="+251">
-              <input
-                type="text"
-                nz-input
-                formControlName="phoneNumber"
-                placeholder="Phone Number"
-                name="phoneNumber"
-              />
-            </nz-input-group>
-          </nz-form-control>
-        </nz-form-item>
+
         <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
           <nz-form-label nzRequired [nzSpan]="12" nzFor="tinNumber">Tin Number</nz-form-label>
           <nz-form-control
@@ -159,6 +162,29 @@
                 name="tinNumber"
               />
             </nz-input-group>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item class="register__input" nz-col [nzSm]="24" [nzMd]="11">
+          <nz-form-label nzRequired [nzSpan]="12" nzFor="CategoryId">Business Type</nz-form-label>
+          <nz-form-control
+            nzErrorTip="Business Type is required"
+            [nzValidateStatus]="
+              controls['CategoryId'].invalid && controls['CategoryId'].touched ? 'error' : ''
+            "
+            class="register__input"
+          >
+          <nz-select
+          nzShowSearch
+          formControlName="CategoryId"
+          nzAllowClear
+          nzPlaceHolder="Select Business Type"
+        >
+          <nz-option
+            *ngFor="let category of categories"
+            [nzValue]="category.id"
+            [nzLabel]="category.name"
+          ></nz-option>
+        </nz-select>
           </nz-form-control>
         </nz-form-item>
       </div>

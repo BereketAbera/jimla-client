@@ -1,0 +1,59 @@
+<admin-navigation></admin-navigation>
+
+<div class="main-container">
+  <nz-tabset>
+    <nz-tab nzTitle="Consumer Business Type">
+      <div class="add">
+        <button nz-button nzType="primary" (click)="addBusinessType()">Add Business Type</button>
+      </div>
+      <div class="users">
+        <h2 *ngIf="consumer_categories.length == 0" style="color: rgb(101, 121, 134)">
+          No Categories add yet!
+        </h2>
+        <div *ngFor="let category of consumer_categories" class="user">
+          <div class="name">
+            <span style="font-weight: 700">{{ category.name }}</span>
+          </div>
+          <div class="action">
+            <a nz-dropdown [nzDropdownMenu]="menu">
+              <i nz-icon nzType="more"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li (click)="editBusinessType(category)" nz-menu-item>Edit</li>
+                <li (click)="deleteBusinessType(category.id)" nz-menu-item>Delete</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+      </div>
+    </nz-tab>
+    <nz-tab nzTitle="Product Category">
+      <div class="add">
+        <button nz-button nzType="primary" (click)="addCategory()">Add Category</button>
+      </div>
+      <div class="users">
+        <h2 *ngIf="categories.length == 0" style="color: rgb(101, 121, 134)">
+          No Categories add yet!
+        </h2>
+        <div *ngFor="let category of categories" class="user">
+          <div class="name">
+            <span style="font-weight: 700">{{ category.name }}</span>
+          </div>
+          <div class="action">
+            <a nz-dropdown [nzDropdownMenu]="menu">
+              <i nz-icon nzType="more"></i>
+            </a>
+            <nz-dropdown-menu #menu="nzDropdownMenu">
+              <ul nz-menu nzSelectable>
+                <li (click)="editUser(user)" nz-menu-item>Edit</li>
+                <li (click)="createConfirmDelete(user)" nz-menu-item>Delete</li>
+              </ul>
+            </nz-dropdown-menu>
+          </div>
+        </div>
+      </div>
+    </nz-tab>
+  
+  </nz-tabset>
+</div>

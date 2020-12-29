@@ -14,7 +14,6 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.authenticationService.userValue;
-    console.log(this.guardC,this,this.guardP,"sdf")
   }
 
   mobileDropdownOpen() {

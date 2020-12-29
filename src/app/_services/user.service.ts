@@ -28,7 +28,7 @@ export class UserService {
   }
  
   getProducerById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/producers/${id}`)
+    return this.http.get(`${this.apiUrl}/producer?id=${id}`)
   }
 
   getAddressByConsId(id):Observable<any>{
@@ -61,6 +61,10 @@ export class UserService {
   getConsumerUser(data): Observable<any> {
     let params = this.generateParams(data)
     return this.http.get(`${this.apiUrl}/consumer/user?${params}`);
+  }
+
+  getConsumerCategories():Observable<any>{
+    return this.http.get(`${this.apiUrl}/consumer/categories`)
   }
   generateParams(params) {
     let url = '';
