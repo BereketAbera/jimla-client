@@ -10,3 +10,36 @@
 @import "assets/scss/abstracts/animations";
 @import "assets/scss/layouts/footer";
 
+.main_container {
+  position: absolute;
+  z-index: 100;
+  width: 100vw;
+  margin: 0rem;
+  top: 8rem;
+  overflow-x: hidden;
+  overflow-y: auto;
+  min-height: 100vh;
+
+  @media screen and (min-width: 600px) {
+    padding: 1rem;
+    left: 1rem;
+    width: 97vw;
+    // top: 6rem;
+  }
+}
+
+.main_content_title {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #333;
+  margin-left: 1rem;
+}
+
+* {
+  -moz-user-select: -moz-none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+
+  -ms-user-select: none;
+  user-select: none;
+}

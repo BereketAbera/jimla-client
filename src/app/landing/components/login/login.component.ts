@@ -54,15 +54,15 @@ export class LoginComponent implements OnInit {
     this.submitted = true;
     this.authService.login(username, password, this.returnUrl).subscribe(
       (data) => {
-        console.log(data);
-        
+        // console.log(data);
+
         this.error = '';
         this.broadCastErrorService.error.next(false);
         // console.log(data);
       },
       (error) => {
-        console.log(error);
-        
+        // console.log(error);
+
         this.error = error;
       }
     );

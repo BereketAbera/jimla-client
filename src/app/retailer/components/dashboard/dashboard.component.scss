@@ -4,6 +4,14 @@
 .box-container {
   display: flex;
   justify-content: space-between;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+
+  @media screen and (min-width: 500px) {
+    flex-direction: row;
+    align-items: stretch;
+  }
   .box {
     display: flex;
     flex-direction: row;
@@ -12,9 +20,17 @@
     padding: 1rem 2rem;
     margin: 1rem;
     background-color: white;
-    width: 25rem;
+    width: 95%;
     border-radius: 20px;
     box-shadow: 1px 3px 12px rgb(188, 206, 218);
+
+    @media screen and (min-width: 500px) {
+      width: 40vw;
+    }
+
+    @media screen and (min-width: 700px) {
+      width: 20vw;
+    }
   }
   .box-2 {
     display: flex;
@@ -24,10 +40,17 @@
     padding: 1rem 2rem;
     margin: 1rem;
     background-color: rgb(16, 36, 48);
-    width: 25rem;
+    width: 95%;
     border-radius: 20px;
     box-shadow: 1px 3px 12px rgb(188, 206, 218);
     color: white;
+
+    @media screen and (min-width: 500px) {
+      width: 40vw;
+    }
+    @media screen and (min-width: 700px) {
+      width: 20vw;
+    }
 
     h3 {
       color: white;

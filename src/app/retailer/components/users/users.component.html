@@ -1,11 +1,11 @@
-<retailer-navigation></retailer-navigation>
-<div class="main-container">
+<!-- <retailer-navigation></retailer-navigation> -->
+<div class="main_container">
   <div class="button">
     <button style="float: right" nz-button nzType="primary" (click)="addUser()">Add User</button>
   </div>
 
   <div class="users">
-    <h2 *ngIf="count ==0" style="color:rgb(101, 121, 134)"> No staff user add yet!</h2>
+    <h2 *ngIf="count == 0" style="color: rgb(101, 121, 134)">No staff user add yet!</h2>
     <div *ngFor="let user of users" class="user">
       <nz-avatar [nzShape]="'circle'" [nzSize]="60" nzIcon="user"></nz-avatar>
       <div class="name">
@@ -42,4 +42,3 @@
     ></nz-pagination>
   </div>
 </div>
-

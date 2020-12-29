@@ -1,20 +1,21 @@
-<retailer-navigation></retailer-navigation>
+<!-- <retailer-navigation></retailer-navigation> -->
+<div class="main_container">
+  <div class="profile">
+    <div class="profile-nav">
+      <ul nz-menu nzMode="inline" class="navigation">
+        <li nz-submenu nzTitle="General" nzIcon="profile" nzOpen>
+          <ul>
+            <li routerLink="./" nz-menu-item>Personal</li>
+            <li routerLink="./company" nz-menu-item>Company Information</li>
+            <li routerLink="./password" nz-menu-item>Security and Password</li>
+            <li routerLink="./company" nz-menu-item>Settings</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
 
-<div class="profile">
-  <div class="profile-nav">
-    <ul nz-menu nzMode="inline" class="navigation">
-      <li nz-submenu nzTitle="General" nzIcon="profile" nzOpen>
-        <ul>
-          <li routerLink="./" nz-menu-item>Personal</li>
-          <li routerLink="./company" nz-menu-item>Company Information</li>
-          <li routerLink="./password" nz-menu-item>Security and Password</li>
-          <li routerLink="./company" nz-menu-item>Settings</li>
-        </ul>
-      </li>
-    </ul>
-  </div>
-
-  <div class="profile-content">
-    <router-outlet></router-outlet>
+    <div class="profile-content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </div>

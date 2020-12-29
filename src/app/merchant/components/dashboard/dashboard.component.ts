@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     this.productService
       .getMerchantTopProduct(this.authenticationService.userValue.producerId)
       .subscribe((res) => {
-        console.log(res);
+        // console.log(res);
 
         this.products = res.rows;
         this.count = res.count;
@@ -95,11 +95,11 @@ export class DashboardComponent implements OnInit {
   }
 
   onValueChange(value: Date): void {
-    console.log(`Current value: ${value}`);
+    // console.log(`Current value: ${value}`);
   }
 
   onPanelChange(change: { date: Date; mode: string }): void {
-    console.log(`Current value: ${change.date}`);
-    console.log(`Current mode: ${change.mode}`);
+    // console.log(`Current value: ${change.date}`);
+    // console.log(`Current mode: ${change.mode}`);
   }
 }

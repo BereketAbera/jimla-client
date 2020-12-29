@@ -1,10 +1,14 @@
 .wrapper {
   // width: 80px;
   height: 100vh;
-  margin-top: -66px;
+  top: 7.6rem;
   position: fixed;
   z-index: 200;
 
+  @media screen and (min-width: 800px) {
+    top: 5.6rem;
+  }
+  // box-shadow: 3px 0px 10px #c2d1da;
   &__logo {
     height: 40px;
   }
@@ -16,16 +20,13 @@
   }
 
   &__button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: unset;
-    border-top-right-radius: 2rem;
-    border-bottom-right-radius: 2rem;
-    padding: 0.1rem;
-    padding-right: 0.5rem;
-    height: 5rem;
-    width: auto;
-    position: absolute;
-    right: -22px;
-    top: 40%;
+    border-radius: 0.3rem;
+    height: 3rem;
+    width: 3rem;
   }
 
   &__button-open {
@@ -33,7 +34,7 @@
   }
 
   &__button-icon {
-    font-size: 1.5rem;
+    font-size: 2rem;
   }
 }
 
@@ -79,8 +80,9 @@ button {
   box-shadow: 0 2px 4px rgb(212, 212, 212);
 
   @media (min-width: 800px) {
-    padding: 0.1rem 2rem; // Desktop view
+    padding: 0rem 2rem; // Desktop view
   }
+
   // background-color: #d98e46;
   &__logo {
     height: 5rem;
@@ -97,18 +99,15 @@ button {
   }
 }
 .profile {
-  position: absolute;
-  margin: 2rem;
-  padding: 0.5rem;
-  top: 50px;
-  right: 1rem;
-  width: 20rem;
-  max-width: 40rem;
   border-radius: 10px;
-  box-shadow: 1px 3px 8px rgb(214, 220, 224);
+  border: none;
   font-size: 1.6rem;
   z-index: 100;
   .item {
     border-bottom: 1px solid #ddd;
   }
+}
+
+::ng-deep .ant-popover-inner {
+  border-radius: 1rem;
 }

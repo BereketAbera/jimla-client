@@ -51,6 +51,8 @@ export class AuthenticationService {
         ? 'merchant'
         : this.userValue.role == 'CONSUMER'
         ? 'retailer'
+        : this.userValue.role == 'ADMIN'
+        ? 'jm-admin'
         : 'landing';
     this.router.navigate([`/${role}`]);
   }

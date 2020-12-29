@@ -1,31 +1,31 @@
-.main-container {
-  margin: 1rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-}
+// .main-container {
+//   margin: 1rem;
+//   overflow: hidden;
+//   display: flex;
+//   flex-direction: column;
+// }
 
 .button {
   padding: 1rem;
 }
 
-.pagination{
+.pagination {
   display: flex;
   justify-content: center;
   margin-top: 2rem;
 }
 
-.users{
+.users {
   display: flex;
-  margin:1rem;
+  margin: 1rem;
   flex-wrap: wrap;
   justify-content: flex-start;
-  // width: 100%;
+  width: 100%;
   justify-content: center;
-  .user{
+  .user {
     background-color: white;
-    padding:2rem;
-    margin:1rem;
+    padding: 2rem;
+    margin: 1rem;
     display: flex;
     align-items: center;
     border-radius: 10px;
@@ -33,18 +33,18 @@
     width: 100%;
     max-width: 28rem;
     position: relative;
-    .name{
-      padding-left:1rem;
+    .name {
+      padding-left: 1rem;
 
-      span{
+      span {
         display: block;
-        color:#003241;
+        color: #003241;
       }
     }
 
-    .action{
+    .action {
       position: absolute;
-      top:1rem;
+      top: 1rem;
       right: 1rem;
     }
   }
