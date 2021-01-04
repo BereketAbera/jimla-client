@@ -1,3 +1,6 @@
+import { TotalMessagesResolverService } from './../_resolvers/message/total-messages-resolver.service';
+import { TotalMessagesComponent } from './components/total-messages/total-messages.component';
+import { MessagesComponent } from './components/messages/messages.component';
 import { VoiceOrderListComponent } from './components/voice-order-list/voice-order-list.component';
 import { ActiveOrderListComponent } from './components/active-order-list/active-order-list.component';
 import { ProductsComponent } from './components/products/products.component';
@@ -21,6 +24,7 @@ import { ConsumerResolverService } from '@app/_resolvers/identity/consumer-resol
 import { ProducerResolverService } from '@app/_resolvers/identity/producer-resolver.service';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { UploadImgComponent } from './components/upload-img/upload-img.component';
+import { BatchMessageResolverService } from '@app/_resolvers/message/batch-message-resolver.service';
 
 const routes: Routes = [
   {
@@ -51,6 +55,16 @@ const routes: Routes = [
         path: 'products',
         component: ProductsComponent,
         resolve: { data: CompanyProductsResolverService }
+      },
+      {
+        path: 'batch_messages/messages',
+        component: TotalMessagesComponent,
+        resolve: { data: TotalMessagesResolverService }
+      },
+      {
+        path: 'batch_messages',
+        component: MessagesComponent,
+        resolve: { data: BatchMessageResolverService }
       },
       {
         path: 'profile',

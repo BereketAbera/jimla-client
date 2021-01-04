@@ -1,0 +1,61 @@
+<div>
+  <form
+    nz-form
+    [nzLayout]="'vertical'"
+    [formGroup]="messageForm"
+    action="POST"
+    class="message__form"
+  >
+    <div *ngIf="error" style="text-align: center; margin-bottom: 1rem">
+      <nz-space nzDiration="vertical">
+        <nz-space-item>
+          <span nz-typography nzType="danger">{{ error }}</span>
+        </nz-space-item>
+      </nz-space>
+    </div>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="24" nzFor="message">Message Content</nz-form-label>
+      <nz-form-control
+        [nzValidateStatus]="
+          messageForm.controls['message'].invalid && messageForm.controls['message'].touched
+            ? 'error'
+            : ''
+        "
+        nzErrorTip="Message content is required"
+        class="message__input"
+      >
+        <input
+          type="text"
+          nz-input
+          formControlName="message"
+          name="message"
+          placeholder="Message Content*"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzRequired [nzSpan]="5">Category</nz-form-label>
+      <nz-form-control
+        [nzSpan]="24"
+        nzValidateStatus="messageForm.controls['categoryId'].invalid && messageForm.controls['categoryId'].touched
+          ? 'error'
+          : ''"
+        nzHasFeedback
+      >
+        <nz-select name="category" formControlName="categoryId" [nzPlaceHolder]="'Select Category'">
+          <nz-option
+            *ngFor="let category of categories"
+            [nzValue]="category.id"
+            [nzLabel]="category.name"
+          ></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+<div *nzModalFooter>
+  <button nz-button nzType="default" (click)="destroyModal()">Cancel</button>
+  <button nz-button nzType="primary" [nzLoading]="submitted" (click)="addBulkMessageSubmit()">
+    Send Message
+  </button>
+</div>

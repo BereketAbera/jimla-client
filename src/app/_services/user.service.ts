@@ -15,41 +15,40 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/producer/signup`, user);
   }
 
-  getUserById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/auth/user/${id}`)
+  getUserById(id): Observable<any> {
+    return this.http.get(`${this.apiUrl}/auth/user/${id}`);
   }
 
-  changePassword(body):Observable<any>{
-    return this.http.put(`${this.apiUrl}/auth/user/password`,body)
+  changePassword(body): Observable<any> {
+    return this.http.put(`${this.apiUrl}/auth/user/password`, body);
   }
 
-  getConsumerById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/consumer/${id}`)
-  }
- 
-  getProducerById(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/producer?id=${id}`)
+  getConsumerById(id): Observable<any> {
+    return this.http.get(`${this.apiUrl}/consumer/${id}`);
   }
 
-  getAddressByConsId(id):Observable<any>{
-    return this.http.get(`${this.apiUrl}/consumer/${id}/addresses`)
+  getProducerById(id): Observable<any> {
+    return this.http.get(`${this.apiUrl}/producer?id=${id}`);
   }
 
-  updateUser(body):Observable<any>{
-    return this.http.put(`${this.apiUrl}/auth/user`,body)
+  getAddressByConsId(id): Observable<any> {
+    return this.http.get(`${this.apiUrl}/consumer/${id}/addresses`);
   }
 
-
-  deleteUser(body):Observable<any>{
-    return this.http.delete(`${this.apiUrl}/consumer/user/${body.id}`,body)
+  updateUser(body): Observable<any> {
+    return this.http.put(`${this.apiUrl}/auth/user`, body);
   }
 
-  updateConsumer(body):Observable<any>{
-    return this.http.put(`${this.apiUrl}/consumer`,body)
+  deleteUser(body): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/consumer/user/${body.id}`, body);
   }
 
-  updateProducer(body):Observable<any>{
-    return this.http.put(`${this.apiUrl}/producer`,body)
+  updateConsumer(body): Observable<any> {
+    return this.http.put(`${this.apiUrl}/consumer`, body);
+  }
+
+  updateProducer(body): Observable<any> {
+    return this.http.put(`${this.apiUrl}/producer`, body);
   }
 
   addConsumer(user): Observable<any> {
@@ -59,13 +58,14 @@ export class UserService {
     return this.http.post(`${this.apiUrl}/consumer/user`, user);
   }
   getConsumerUser(data): Observable<any> {
-    let params = this.generateParams(data)
+    let params = this.generateParams(data);
     return this.http.get(`${this.apiUrl}/consumer/user?${params}`);
   }
 
-  getConsumerCategories():Observable<any>{
-    return this.http.get(`${this.apiUrl}/consumer/categories`)
+  getConsumerCategories(): Observable<any> {
+    return this.http.get(`${this.apiUrl}/consumer/categories`);
   }
+
   generateParams(params) {
     let url = '';
     let keys = Object.keys(params);

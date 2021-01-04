@@ -1,3 +1,4 @@
+import { MessagesComponent } from './components/messages/messages.component';
 import { SharedModule } from './../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -50,6 +51,8 @@ import { NzCalendarModule } from 'ng-zorro-antd/calendar';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { UploadImgComponent } from './components/upload-img/upload-img.component';
 import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
+import { BulkMessageModalComponent } from './components/bulk-message-modal/bulk-message-modal.component';
+import { TotalMessagesComponent } from './components/total-messages/total-messages.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +71,10 @@ import { NzPopconfirmModule } from 'ng-zorro-antd/popconfirm';
     ProfilePersonalComponent,
     DashboardComponent,
     EditProductModalComponent,
-    UploadImgComponent
+    UploadImgComponent,
+    MessagesComponent,
+    BulkMessageModalComponent,
+    TotalMessagesComponent
   ],
   imports: [
     CommonModule,

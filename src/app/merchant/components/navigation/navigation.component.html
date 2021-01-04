@@ -116,6 +116,20 @@
       nz-tooltip
       routerLinkActive
       nzTooltipPlacement="right"
+      [routerLink]="['/merchant/batch_messages']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="message" nzTheme="outline"></i>
+      <span>Messages</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
       [routerLink]="['/merchant/profile']"
       nzIcon="appstore"
       (click)="collapse()"

@@ -1,19 +1,26 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '@environments/environment';
-import { Observable } from 'rxjs';
 
-const identity = environment.identityUrl;
-
+const identityUrl = environment.identityUrl;
 @Injectable({
   providedIn: 'root'
 })
-export class ProducerService {
+export class MessageService {
   constructor(private http: HttpClient) {}
 
-  searchProducer(obj): Observable<any> {
-    let queryParams = this.generateParams(obj);
-    return this.http.get(`${identity}/search/producer?${queryParams}`);
+  sendBulkMessage(obj) {
+    return this.http.post(`${identityUrl}/messages`, { ...obj });
+  }
+
+  getCompanyBatchMessage(query) {
+    let queryParams = this.generateParams(query);
+    return this.http.get(`${identityUrl}/messages/batches?${queryParams}`);
+  }
+
+  getMessage(query) {
+    let queryParams = this.generateParams(query);
+    return this.http.get(`${identityUrl}/messages?${queryParams}`);
   }
 
   generateParams(params) {
