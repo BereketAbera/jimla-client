@@ -74,6 +74,7 @@
                   <th>Phone Number</th>
                   <th>Verified</th>
                   <th>Status</th>
+                  <th>Balance</th>
                   <th>Type</th>
                   <th>Created</th>
                   <th>Options</th>
@@ -100,6 +101,9 @@
                   </td>
                   <td>
                     <span nz-typography nzType="secondary">{{ merchant?.status }}</span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">{{ merchant?.Balance?.value }}</span>
                   </td>
                   <td>
                     <span nz-typography nzType="secondary">{{ merchant?.compType }}</span>
@@ -130,6 +134,27 @@
                           nz-menu-item
                         >
                           Orders
+                        </li>
+                        <li
+                          (click)="getMerchantMessages(merchant.Code?.code)"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Messages
+                        </li>
+                        <li
+                          (click)="getMerchantDeposits(merchant.id)"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Deposits
+                        </li>
+                        <li
+                          (click)="addMerchantDeposit(merchant.id)"
+                          class="list_style"
+                          nz-menu-item
+                        >
+                          Add Deposit
                         </li>
                         <li
                           class="list_style"

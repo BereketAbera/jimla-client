@@ -21,6 +21,10 @@ export class AuthenticationService {
     return this.userSubject.value;
   }
 
+  setUserValue(user) {
+    this.userSubject.next(user);
+  }
+
   login(username: string, password: string, returnUrl: string = '') {
     // console.log(username, password);
     return this.http

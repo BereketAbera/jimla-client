@@ -1,3 +1,4 @@
+import { OrderService } from '@app/_services/order/order.service';
 import { AuthenticationService } from '@app/_services/authentication.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,9 +11,22 @@ export class NavigationComponent implements OnInit {
   isCollapsed = true;
   profile: any;
 
-  constructor(private authenticationService: AuthenticationService) {}
+  badgeStyle = {
+    backgroundColor: '#102430',
+    marginRight: '1rem'
+  };
+  notifications: any = {};
 
-  ngOnInit(): void {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private orderService: OrderService
+  ) {}
+
+  ngOnInit(): void {
+    this.orderService.getMerchantNotifications().subscribe((res) => {
+      this.notifications = res;
+    });
+  }
 
   toggleCollapsed(): void {
     this.isCollapsed = !this.isCollapsed;
@@ -22,11 +36,12 @@ export class NavigationComponent implements OnInit {
     this.isCollapsed = true;
   }
 
-  profileOpen():void{
+  profileOpen(): void {
     this.profile = !this.profile;
   }
 
   logout() {
     this.authenticationService.logout();
+    this.profile = false;
   }
 }

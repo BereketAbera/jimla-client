@@ -16,7 +16,7 @@ export class RetailerDashboardResolverService {
 
   resolve(route: ActivatedRouteSnapshot): Observable<any> {
     return this.aggregatorService
-      .getConsumerDashboard(this.authenticationService.userValue.id)
+      .getConsumerDashboard(this.authenticationService.userValue.consumerId)
       .pipe(
         mergeMap((data: any) => {
           if (data) {

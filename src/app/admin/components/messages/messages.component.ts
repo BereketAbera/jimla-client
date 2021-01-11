@@ -1,10 +1,7 @@
-import { UserService } from '@app/_services/user.service';
-import { MessageService } from './../../../_services/message/message.service';
-import { BulkMessageModalComponent } from './../bulk-message-modal/bulk-message-modal.component';
+import { AdminService } from '@app/_services/admin/admin.service';
 import { Component, EventEmitter, OnInit } from '@angular/core';
-import { NzModalService } from 'ng-zorro-antd/modal';
-import { ActivatedRoute, Params, Router } from '@angular/router';
-
+import { ActivatedRoute, Router, Params } from '@angular/router';
+import { UserService } from '@app/_services/user.service';
 @Component({
   selector: 'app-messages',
   templateUrl: './messages.component.html',
@@ -17,13 +14,13 @@ export class MessagesComponent implements OnInit {
   page = 0;
   pageSize = 5;
   firstReload = true;
+  code = null;
   categories = [];
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private modal: NzModalService,
-    private messageService: MessageService,
+    private adminService: AdminService,
     private userService: UserService
   ) {}
 
@@ -39,38 +36,26 @@ export class MessagesComponent implements OnInit {
     this.route.queryParams.subscribe((res) => {
       this.page = parseInt(res['page']) || 0;
       this.pageSize = parseInt(res['pageSize']) || 5;
+      this.code = parseInt(res['code']) || null;
       if (!this.firstReload) {
         this.getBatches();
       } else {
         this.firstReload = false;
       }
     });
-
-    this.bulkMessageClose.subscribe((res) => {
-      console.log(res);
-      this.setUrlValues({ page: 0, rnd: Math.random().toString(36).substring(2) });
-    });
   }
 
   getBatches() {
-    this.messageService
-      .getCompanyBatchMessage({
+    this.adminService
+      .getBatchMessage({
         page: this.page,
-        pageSize: this.pageSize
+        pageSize: this.pageSize,
+        code: this.code
       })
       .subscribe((res: any) => {
         this.batches = res.rows;
         this.count = res.count;
       });
-  }
-
-  addBulkMessage() {
-    this.modal.create({
-      nzTitle: 'Send Messages',
-      nzContent: BulkMessageModalComponent,
-      nzAfterClose: this.bulkMessageClose,
-      nzMaskClosable: false
-    });
   }
 
   pageChanged(event) {
@@ -100,15 +85,15 @@ export class MessagesComponent implements OnInit {
     });
   }
 
-  showMessages(batch) {
-    this.router.navigate(['/merchant/batch_messages/messages'], {
-      queryParams: { batchId: batch.id }
-    });
-  }
+  // showMessages(batch) {
+  //   this.router.navigate(['/merchant/batch_messages/messages'], {
+  //     queryParams: { batchId: batch.id }
+  //   });
+  // }
 
-  showDetail(batch) {
-    console.log(batch);
-  }
+  // showDetail(batch) {
+  //   console.log(batch);
+  // }
 
   getCategoryName(id) {
     for (let i = 0; i < this.categories.length; i++) {

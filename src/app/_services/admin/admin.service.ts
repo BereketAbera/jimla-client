@@ -46,28 +46,42 @@ export class AdminService {
     return this.http.get(`${orderUrl}/admin/orders?${params}`);
   }
 
+  getDeposits(query): Observable<any> {
+    let params = this.generateParams(query);
+    return this.http.get(`${identityUrl}/admin/deposits?${params}`);
+  }
+
+  addDeposit(deposit): Observable<any> {
+    return this.http.post(`${identityUrl}/admin/deposits`, deposit);
+  }
+
   getOrderGroupOrders(id): Observable<any> {
     return this.http.get(`${orderUrl}/admin/orders/${id}/orders`);
   }
 
-  addCategory(body):Observable<any>{
-    return this.http.post(`${productUrl}/admin/products/category`,body)
+  addCategory(body): Observable<any> {
+    return this.http.post(`${productUrl}/admin/products/category`, body);
   }
 
-  addBussinesType(body):Observable<any>{
-    return this.http.post(`${identityUrl}/admin/consumers/category`,body)
+  addBussinesType(body): Observable<any> {
+    return this.http.post(`${identityUrl}/admin/consumers/category`, body);
   }
 
-  editBussinesType(id,body):Observable<any>{
-    return this.http.put(`${identityUrl}/admin/consumers/category/${id}`,body)
+  editBussinesType(id, body): Observable<any> {
+    return this.http.put(`${identityUrl}/admin/consumers/category/${id}`, body);
   }
 
-  deleteCategory(id):Observable<any>{
-    return this.http.delete(`${identityUrl}/admin/consumers/category/${id}`)
+  deleteCategory(id): Observable<any> {
+    return this.http.delete(`${identityUrl}/admin/consumers/category/${id}`);
   }
 
-  getDashboards():Observable<any>{
-    return this.http.get(`${aggregateUrl}/admin/dashboard`)
+  getDashboards(): Observable<any> {
+    return this.http.get(`${aggregateUrl}/admin/dashboard`);
+  }
+
+  getBatchMessage(query) {
+    let queryParams = this.generateParams(query);
+    return this.http.get(`${identityUrl}/admin/messages?${queryParams}`);
   }
 
   generateParams(params) {

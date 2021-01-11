@@ -1,7 +1,7 @@
 <admin-navigation></admin-navigation>
 <div class="main_container main_content_container">
   <div class="header_container">
-    <h2 class="main_content_title">All Orders</h2>
+    <h2 class="main_content_title">{{ code ? "Merchant" : "All" }} Orders</h2>
     <button (click)="filter()" nz-button nzType="primary" nzShape="round">
       FILTER
       <i nz-icon nzType="filter" nzTheme="outline"></i>

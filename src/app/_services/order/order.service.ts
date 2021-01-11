@@ -48,6 +48,11 @@ export class OrderService {
     );
   }
 
+  getMerchantNotifications(): Observable<any> {
+    let params = this.generateParams({ time: this.authenticationService.userValue.prevLoggedIn });
+    return this.http.get(`${orderUrl}/notification/merchant?${params}`);
+  }
+
   getRetailerOrderGroups(query): Observable<any> {
     let params = this.generateParams(query);
     return this.http.get(

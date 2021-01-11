@@ -17,25 +17,79 @@
       >Jimla</span
     >
   </div>
-  <div class="navigation__actions">
+  <div
+    class="navigation__actions"
+    style="display: flex; justify-content: center; align-items: center; cursor: pointer"
+  >
+    <div style="margin-right: 1rem">
+      <button
+        nzType="link"
+        nz-button
+        nz-dropdown
+        [nzDropdownMenu]="notification_content"
+        nzPlacement="bottomCenter"
+        style="margin-bottom: 0rem"
+      >
+        <nz-badge
+          style="font-size: 2rem"
+          [nzCount]="notifications?.new_orders?.length + notifications?.pending_orders?.length"
+          ><i nz-icon nzType="bell" nzTheme="outline"></i
+        ></nz-badge>
+      </button>
+    </div>
+    <nz-dropdown-menu #notification_content="nzDropdownMenu">
+      <ul nz-menu>
+        <li
+          *ngIf="notifications?.new_orders?.length"
+          routerLink="/merchant/active_orders"
+          nz-menu-item
+        >
+          <nz-badge
+            nzStandalone
+            [nzCount]="notifications?.new_orders?.length"
+            [nzStyle]="badgeStyle"
+          ></nz-badge>
+          new order{{ notifications?.new_orders?.length == 1 ? "" : "s" }}
+        </li>
+        <li
+          *ngIf="notifications?.pending_orders?.length"
+          routerLink="/merchant/pending_orders"
+          nz-menu-item
+        >
+          <nz-badge
+            nzStandalone
+            [nzCount]="notifications?.pending_orders?.length"
+            [nzStyle]="badgeStyle"
+          ></nz-badge>
+          pending order{{ notifications?.pending_orders?.length == 1 ? "" : "s" }}
+        </li>
+        <li
+          *ngIf="!notifications?.new_orders?.length && !notifications?.pending_orders?.length"
+          nz-menu-item
+        >
+          no notifications
+        </li>
+      </ul>
+    </nz-dropdown-menu>
     <nz-avatar
       nz-popover
       nzPopoverPlacement="bottomRight"
       [nzPopoverContent]="contentTemplate"
       nzPopoverTrigger="click"
       [nzSize]="45"
-      (click)="profileOpen()"
       nzIcon="user"
+      [nzPopoverVisible]="profile"
+      (click)="profileOpen()"
     ></nz-avatar>
     <ng-template class="profile-container" #contentTemplate>
-      <ul class="profile" nz-menu>
+      <ul (click)="profileOpen()" class="profile" nz-menu>
         <li routerLink="/merchant/profile" nz-menu-item nz-tooltip nzTooltipPlacement="right">
           <i nz-icon nzType="user"></i>
           <span>Profile</span>
         </li>
         <li
           class="item"
-          routerLink="/retailer/profile/company"
+          routerLink="/merchant/profile/company"
           nz-menu-item
           nz-tooltip
           nzTooltipPlacement="right"
@@ -78,7 +132,7 @@
       nzIcon="insert-row-right"
       (click)="collapse()"
     >
-      <i nz-icon nzType="insert-row-right"></i>
+      <i nz-icon nzType="vertical-align-bottom" nzTheme="outline"></i>
       <span>Pending Voice Orders</span>
     </li>
     <li
@@ -92,7 +146,7 @@
       nzIcon="user"
       (click)="collapse()"
     >
-      <i nz-icon nzType="ordered-list"></i>
+      <i nz-icon nzType="interaction" nzTheme="outline"></i>
       <span>Active Orders</span>
     </li>
     <li
@@ -106,7 +160,7 @@
       nzIcon="appstore"
       (click)="collapse()"
     >
-      <i nz-icon nzType="shop" nzTheme="outline"></i>
+      <i nz-icon nzType="pic-center" nzTheme="outline"></i>
       <span>Products</span>
     </li>
     <li

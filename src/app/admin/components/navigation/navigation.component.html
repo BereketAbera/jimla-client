@@ -78,7 +78,8 @@
       nzIcon="user"
       (click)="collapse()"
     >
-      <i nz-icon nzType="ordered-list"></i>
+      <i nz-icon nzType="shop" nzTheme="outline"></i>
+
       <span>Retailers</span>
     </li>
     <li
@@ -92,7 +93,7 @@
       nzIcon="appstore"
       (click)="collapse()"
     >
-      <i nz-icon nzType="shop" nzTheme="outline"></i>
+      <i nz-icon nzType="pic-center" nzTheme="outline"></i>
       <span>Products</span>
     </li>
     <li
@@ -106,8 +107,36 @@
       nzIcon="appstore"
       (click)="collapse()"
     >
-      <i nz-icon nzType="shop" nzTheme="outline"></i>
+      <i nz-icon nzType="ordered-list"></i>
       <span>Orders</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/jm-admin/deposits']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="money-collect" nzTheme="outline"></i>
+      <span>Deposits</span>
+    </li>
+    <li
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/jm-admin/batch_messages']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="message" nzTheme="outline"></i>
+      <span>Messages</span>
     </li>
     <li
       [routerLinkActiveOptions]="{ exact: false }"
@@ -120,22 +149,22 @@
       nzIcon="appstore"
       (click)="collapse()"
     >
-      <i nz-icon nzType="user" nzTheme="outline"></i>
+      <i nz-icon nzType="border-outer" nzTheme="outline"></i>
       <span>Categories</span>
     </li>
     <li
-    [routerLinkActiveOptions]="{ exact: false }"
-    [routerLinkActive]="['ant-menu-item-selected']"
-    nz-menu-item
-    nz-tooltip
-    routerLinkActive
-    nzTooltipPlacement="right"
-    [routerLink]="['/jm-admin/profile']"
-    nzIcon="appstore"
-    (click)="collapse()"
-  >
-    <i nz-icon nzType="user" nzTheme="outline"></i>
-    <span>Profile</span>
-  </li>
+      [routerLinkActiveOptions]="{ exact: false }"
+      [routerLinkActive]="['ant-menu-item-selected']"
+      nz-menu-item
+      nz-tooltip
+      routerLinkActive
+      nzTooltipPlacement="right"
+      [routerLink]="['/jm-admin/profile']"
+      nzIcon="appstore"
+      (click)="collapse()"
+    >
+      <i nz-icon nzType="user" nzTheme="outline"></i>
+      <span>Profile</span>
+    </li>
   </ul>
 </div>

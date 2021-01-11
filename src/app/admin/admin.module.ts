@@ -45,6 +45,9 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { OrderDetailModalComponent } from './components/order-detail-modal/order-detail-modal.component';
 import { CategoriesComponent } from './components/categories/categories.component';
 import { AddCategoryComponent } from './components/add-category/add-category.component';
+import { DepositsComponent } from './components/deposits/deposits.component';
+import { AddDepositModalComponent } from './components/add-deposit-modal/add-deposit-modal.component';
+import { MessagesComponent } from './components/messages/messages.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +61,10 @@ import { AddCategoryComponent } from './components/add-category/add-category.com
     OrdersComponent,
     OrderDetailModalComponent,
     CategoriesComponent,
-    AddCategoryComponent
+    AddCategoryComponent,
+    DepositsComponent,
+    AddDepositModalComponent,
+    MessagesComponent
   ],
   imports: [
     CommonModule,

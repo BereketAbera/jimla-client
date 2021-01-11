@@ -24,12 +24,13 @@
       [nzPopoverContent]="contentTemplate"
       nzPopoverTrigger="click"
       [nzSize]="45"
-      (click)="profileOpen()"
       nzIcon="user"
+      [nzPopoverVisible]="profile"
+      (click)="profileOpen()"
     ></nz-avatar>
     <ng-template class="profile-container" #contentTemplate>
-      <ul class="profile" nz-menu>
-        <li routerLink="/merchant/profile" nz-menu-item nz-tooltip nzTooltipPlacement="right">
+      <ul (click)="profileOpen()" class="profile" nz-menu>
+        <li routerLink="/retailer/profile" nz-menu-item nz-tooltip nzTooltipPlacement="right">
           <i nz-icon nzType="user"></i>
           <span>Profile</span>
         </li>
@@ -107,7 +108,7 @@
       (click)="collapse()"
     >
       <i nz-icon nzType="user" nzTheme="outline"></i>
-      <span>Users</span>
+      <span>Staffs</span>
     </li>
     <li
       [routerLinkActiveOptions]="{ exact: false }"
@@ -120,7 +121,7 @@
       nzIcon="appstore"
       (click)="collapse()"
     >
-      <i nz-icon nzType="user" nzTheme="outline"></i>
+      <i nz-icon nzType="profile" nzTheme="outline"></i>
       <span>Profile</span>
     </li>
   </ul>

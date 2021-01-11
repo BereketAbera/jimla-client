@@ -1,11 +1,7 @@
-<merchant-navigation></merchant-navigation>
+<admin-navigation></admin-navigation>
 <div class="main_container main_content_container">
   <div class="header_container">
-    <h2 class="main_content_title">Batch Messages</h2>
-    <button (click)="addBulkMessage()" nz-button nzType="primary" nzShape="round">
-      New Bulk Message
-      <i nz-icon nzType="plus"></i>
-    </button>
+    <h2 class="main_content_title">{{ code ? "Merchant Batch" : "All Batch" }} Messages</h2>
   </div>
   <div
     nz-row
@@ -24,7 +20,6 @@
                   <th>Message Count</th>
                   <th>Category</th>
                   <th>Created</th>
-                  <th>Options</th>
                 </tr>
               </thead>
               <tbody>
@@ -47,20 +42,6 @@
                   <td>
                     <span nz-typography nzType="secondary">{{ batch?.createdAt | date }}</span>
                   </td>
-                  <th>
-                    <button nz-button nz-dropdown [nzDropdownMenu]="actions">
-                      Options
-                      <i nz-icon nzType="down"></i>
-                    </button>
-                    <nz-dropdown-menu #actions="nzDropdownMenu">
-                      <ul nz-menu>
-                        <li (click)="showMessages(batch)" class="list_style" nz-menu-item>
-                          Messages
-                        </li>
-                        <!-- <li (click)="showDetail(batch)" class="list_style" nz-menu-item>Detail</li> -->
-                      </ul>
-                    </nz-dropdown-menu>
-                  </th>
                 </tr>
               </tbody>
             </nz-table>

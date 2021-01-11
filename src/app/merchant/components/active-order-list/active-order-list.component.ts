@@ -1,3 +1,4 @@
+import { AuthenticationService } from '@app/_services/authentication.service';
 import { Component, EventEmitter, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
 import { OrderService } from '@app/_services/order/order.service';
@@ -24,7 +25,8 @@ export class ActiveOrderListComponent implements OnInit {
     private router: Router,
     private orderService: OrderService,
     private modal: NzModalService,
-    private notificationService: NzNotificationService
+    private notificationService: NzNotificationService,
+    private authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {
@@ -41,6 +43,12 @@ export class ActiveOrderListComponent implements OnInit {
         this.firstReload = false;
       }
     });
+    let newUser = {
+      ...this.authenticationService.userValue,
+      prevLoggedIn: new Date()
+    };
+    localStorage.setItem('user', JSON.stringify(newUser));
+    this.authenticationService.setUserValue(newUser);
 
     this.detailClose.subscribe((res) => {});
   }

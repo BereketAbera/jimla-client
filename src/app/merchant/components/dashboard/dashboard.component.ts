@@ -15,10 +15,10 @@ export class DashboardComponent implements OnInit {
   products: any = [];
   count: any;
   report;
-  lables: string[];
+  lables: string[] = [];
   chart;
-  orderStat: any;
-  orderValue: number[];
+  orderStat: any = [];
+  orderValue: number[] = [];
   constructor(
     private productService: ProductService,
     private aggregateService: AggregatorService,
@@ -36,7 +36,7 @@ export class DashboardComponent implements OnInit {
       .getProducerDashboard(this.authenticationService.userValue.producerId)
       .subscribe(
         (data: any) => {
-          console.log(data);
+          // console.log(data);
           this.report = data;
           this.orderStat = data.activeOrder.orderDate;
           this.drawRevenuChart();

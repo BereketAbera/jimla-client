@@ -1,3 +1,4 @@
+import { AddDepositModalComponent } from './../add-deposit-modal/add-deposit-modal.component';
 import { MerchantAddressesModalComponent } from './../merchant-addresses-modal/merchant-addresses-modal.component';
 import { AdminService } from '@app/_services/admin/admin.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
@@ -16,6 +17,7 @@ export class MerchantsComponent implements OnInit {
   pageSize = 5;
   firstReload = true;
   addressesClose: EventEmitter<any> = new EventEmitter();
+  depositClose: EventEmitter<any> = new EventEmitter();
 
   //filter values
   filterActive = false;
@@ -61,6 +63,10 @@ export class MerchantsComponent implements OnInit {
       } else {
         this.firstReload = false;
       }
+    });
+
+    this.depositClose.subscribe((res) => {
+      // console.log(res);
     });
   }
 
@@ -144,6 +150,23 @@ export class MerchantsComponent implements OnInit {
 
   getMerchantOrders(code) {
     this.router.navigate(['/jm-admin/orders'], { queryParams: { code } });
+  }
+
+  getMerchantDeposits(id) {
+    this.router.navigate(['/jm-admin/deposits'], { queryParams: { producerId: id } });
+  }
+
+  getMerchantMessages(code) {
+    this.router.navigate(['/jm-admin/batch_messages'], { queryParams: { code } });
+  }
+
+  addMerchantDeposit(id) {
+    this.modal.create({
+      nzComponentParams: { data: { id } },
+      nzTitle: `Add Deposit`,
+      nzContent: AddDepositModalComponent,
+      nzAfterClose: this.depositClose
+    });
   }
 
   filter() {
