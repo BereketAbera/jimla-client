@@ -2,7 +2,18 @@
 <div class="main_container main_content_container">
   <div class="header_container">
     <h2 class="main_content_title">Batch Messages</h2>
-    <button (click)="addBulkMessage()" nz-button nzType="primary" nzShape="round">
+    <button
+      [disabled]="!authenticationService.userValue.sendBulk"
+      (click)="addBulkMessage()"
+      nz-button
+      nzType="primary"
+      nzShape="round"
+      [title]="
+        authenticationService.userValue.sendBulk
+          ? 'Send Bulk Message'
+          : 'Your account is not allowed to send bulk messages'
+      "
+    >
       New Bulk Message
       <i nz-icon nzType="plus"></i>
     </button>

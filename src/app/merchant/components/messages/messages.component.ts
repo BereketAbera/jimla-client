@@ -1,3 +1,4 @@
+import { AuthenticationService } from './../../../_services/authentication.service';
 import { UserService } from '@app/_services/user.service';
 import { MessageService } from './../../../_services/message/message.service';
 import { BulkMessageModalComponent } from './../bulk-message-modal/bulk-message-modal.component';
@@ -24,7 +25,8 @@ export class MessagesComponent implements OnInit {
     private router: Router,
     private modal: NzModalService,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    public authenticationService: AuthenticationService
   ) {}
 
   ngOnInit(): void {

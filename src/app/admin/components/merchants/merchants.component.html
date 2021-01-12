@@ -73,6 +73,7 @@
                   <th>TIN Number</th>
                   <th>Phone Number</th>
                   <th>Verified</th>
+                  <th>Send Bulk</th>
                   <th>Status</th>
                   <th>Balance</th>
                   <th>Type</th>
@@ -97,6 +98,11 @@
                   <td>
                     <span nz-typography nzType="secondary">
                       <label nz-checkbox [ngModel]="merchant?.verified" [nzDisabled]="true"></label
+                    ></span>
+                  </td>
+                  <td>
+                    <span nz-typography nzType="secondary">
+                      <label nz-checkbox [ngModel]="merchant?.sendBulk" [nzDisabled]="true"></label
                     ></span>
                   </td>
                   <td>
@@ -158,10 +164,17 @@
                         </li>
                         <li
                           class="list_style"
-                          (click)="updateMerchantStatus(merchant)"
+                          (click)="updateMerchant(merchant, 'verified')"
                           nz-menu-item
                         >
                           {{ merchant.verified ? "Refute" : "Verify" }}
+                        </li>
+                        <li
+                          class="list_style"
+                          (click)="updateMerchant(merchant, 'sendBulk')"
+                          nz-menu-item
+                        >
+                          {{ merchant.sendBulk ? "Disable Msg" : "Enable Msg" }}
                         </li>
                         <li
                           class="list_style"

@@ -173,17 +173,15 @@ export class MerchantsComponent implements OnInit {
     this.filterActive = !this.filterActive;
   }
 
-  updateMerchantStatus(merchant) {
-    this.adminService
-      .updateMerchant(merchant.id, { verified: !merchant.verified })
-      .subscribe((res) => {
-        this.merchants = this.merchants.map((merchant) => {
-          if (merchant.id == res.id) {
-            return { ...merchant, ...res };
-          }
-          return merchant;
-        });
+  updateMerchant(merchant, attr) {
+    this.adminService.updateMerchant(merchant.id, { [attr]: !merchant[attr] }).subscribe((res) => {
+      this.merchants = this.merchants.map((merchant) => {
+        if (merchant.id == res.id) {
+          return { ...merchant, ...res };
+        }
+        return merchant;
       });
+    });
   }
 
   updateMerchantCompanyType(merchant) {

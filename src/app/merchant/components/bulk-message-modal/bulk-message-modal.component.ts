@@ -6,6 +6,7 @@ import { AuthenticationService } from '@app/_services/authentication.service';
 import { CategoryListService } from '@app/_services/product/category-list.service';
 import { ProductService } from '@app/_services/product/product.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { BroadcastErrorService } from '@app/_services/broadcast-error.service';
 
 @Component({
   selector: 'app-bulk-message-modal',
@@ -25,7 +26,8 @@ export class BulkMessageModalComponent implements OnInit {
     private modalService: NzModalService,
     private formBuilder: FormBuilder,
     private messageService: MessageService,
-    private userService: UserService
+    private userService: UserService,
+    private broadCastErrorService: BroadcastErrorService
   ) {}
 
   ngOnInit(): void {
@@ -49,10 +51,20 @@ export class BulkMessageModalComponent implements OnInit {
     } else {
       this.loading = true;
       this.error = '';
-      this.messageService.sendBulkMessage(this.messageForm.value).subscribe((res) => {
-        this.loading = false;
-        this.addSuccess(res);
-      });
+      this.messageService.sendBulkMessage(this.messageForm.value).subscribe(
+        (res: any) => {
+          this.loading = false;
+          this.addSuccess(res);
+          this.broadCastErrorService.error.next(false);
+        },
+        (err) => {
+          if (err == 'NOT_ALLOWED') {
+            this.error = 'Your Account Is Not Allowed To Send Bulk Messages';
+          } else {
+            this.error = err;
+          }
+        }
+      );
     }
   }
 

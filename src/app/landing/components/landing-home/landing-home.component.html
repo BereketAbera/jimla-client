@@ -98,19 +98,9 @@
       ለገዢ ተመዝገብ</a
     >
 
-    <a
-      *ngIf="guardP"
-      routerLink="/merchant"
-      class="btn btn--jimla"
-      >Home</a
-    >
+    <a *ngIf="guardP" routerLink="/merchant" class="btn btn--jimla">Home</a>
 
-    <a
-      *ngIf="guardC"
-      routerLink="/retailer"
-      class="btn btn--jimla"
-      >Home</a
-    >
+    <a *ngIf="guardC" routerLink="/retailer" class="btn btn--jimla">Home</a>
     <a
       *ngIf="authenticationService.userValue && authenticationService.userValue.role == 'ADMIN'"
       routerLink="/jm-admin"
@@ -154,7 +144,7 @@
     </div>
   </div>
   <div class="img__container">
-    <img src="../../../../assets/img/undraw_Marketing_re_7f1g.svg" class="img" alt="" srcset="" />
+    <img src="../../../../assets/img/homeimg4.png" class="img" alt="" srcset="" />
   </div>
   <div class="custom-shape-divider-bottom-1604910778">
     <svg
