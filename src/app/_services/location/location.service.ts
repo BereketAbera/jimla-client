@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { environment } from '@environments/environment';
+import { Observable } from 'rxjs';
 
 const identityUrl = environment.identityUrl;
 
@@ -19,7 +20,7 @@ export class LocationService {
     );
   }
 
-  getAllConsumerLocations(){
+  getAllConsumerLocations() {
     return this.http.get(
       `${identityUrl}/consumer/${this.authenticationService.userValue.consumerId}/addresses`
     );
@@ -32,12 +33,12 @@ export class LocationService {
     );
   }
 
-  editConsumerLocation(location,id) {
+  editConsumerLocation(location, id) {
     return this.http.put(`${identityUrl}/consumer/addresses/${id}`, location);
   }
 
-  deletePhone(id){
-    return this.http.delete(`${identityUrl}/consumer/addresses/phone/${id}`)
+  deletePhone(id) {
+    return this.http.delete(`${identityUrl}/consumer/addresses/phone/${id}`);
   }
 
   generateParams(params) {
@@ -54,5 +55,21 @@ export class LocationService {
     });
 
     return url.slice(0, url.length - 1);
+  }
+
+  getLocation(): Observable<any> {
+    return Observable.create((observer) => {
+      if (window.navigator && window.navigator.geolocation) {
+        window.navigator.geolocation.getCurrentPosition(
+          (position) => {
+            observer.next(position);
+            observer.complete();
+          },
+          (error) => observer.error(error)
+        );
+      } else {
+        observer.error('Unsupported Browser');
+      }
+    });
   }
 }

@@ -1,3 +1,4 @@
+import { LocationService } from '@app/_services/location/location.service';
 import { BroadcastErrorService } from './../../../_services/broadcast-error.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -7,6 +8,7 @@ import { ViewportScroller } from '@angular/common';
 import { of } from 'rxjs';
 import { debounceTime, switchMap } from 'rxjs/operators';
 import { valueFunctionProp } from 'ng-zorro-antd/core/util';
+import { NzModalService } from 'ng-zorro-antd/modal';
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
@@ -27,7 +29,9 @@ export class RegisterComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private broadcastErrorService: BroadcastErrorService,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private modalService: NzModalService,
+    private locationService: LocationService
   ) {
     this.producerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -49,16 +53,15 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (navigator.geolocation) {
-      // console.log('getting current location');
-      navigator.geolocation.getCurrentPosition((position) => {
-        // console.log(position);
+    this.locationService.getLocation().subscribe(
+      (position) => {
         this.controls['lat'].setValue(position.coords.longitude);
         this.controls['long'].setValue(position.coords.latitude);
-      });
-    } else {
-      console.log('No support for geolocation');
-    }
+      },
+      (err) => {
+        this.error = 'You need to enable you location and reload the page to Sign Up!';
+      }
+    );
     this.broadcastErrorService.error.subscribe((res) => {
       if (res) {
         let errStr = '';
@@ -108,6 +111,7 @@ export class RegisterComponent implements OnInit {
   registerForm() {
     this.error = '';
     if (this.producerForm.invalid) {
+      if (this.controls['lat'].invalid) this.error = 'You need to enable you location to Sign Up!';
       this.producerForm.markAllAsTouched();
       return;
     } else {
@@ -125,7 +129,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
     }
-    console.log(this.controls,"here")
+    console.log(this.controls, 'here');
     this.submitted = true;
     this.userService
       .addProducer({
@@ -134,12 +138,25 @@ export class RegisterComponent implements OnInit {
       })
       .subscribe(
         (data) => {
+          this.addSuccess();
           this.submitted = false;
           this.error = '';
           this.broadcastErrorService.error.next(false);
           this.router.navigate(['/landing/login']);
         },
-        (error) => console.log(error)
+        (error) => {
+          this.error = error;
+        }
       );
+  }
+
+  addSuccess() {
+    this.modalService.success({
+      nzTitle: 'Successfully created!!'
+    });
+
+    setTimeout(() => {
+      this.modalService.closeAll();
+    }, 2000);
   }
 }

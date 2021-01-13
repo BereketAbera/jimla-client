@@ -1,3 +1,4 @@
+import { LocationService } from '@app/_services/location/location.service';
 import { ViewportScroller } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -20,7 +21,7 @@ export class RetailerRegisterComponent implements OnInit {
   confirmPasswordErrorText = 'Confirm password is required';
   error = '';
   submitted = false;
-  categories: any=[];
+  categories: any = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -28,7 +29,8 @@ export class RetailerRegisterComponent implements OnInit {
     private router: Router,
     private userService: UserService,
     private broadcastErrorService: BroadcastErrorService,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private locationService: LocationService
   ) {
     this.consumerForm = this.formBuilder.group({
       firstName: ['', Validators.required],
@@ -54,16 +56,15 @@ export class RetailerRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if (navigator.geolocation) {
-      // console.log('getting current location');
-      navigator.geolocation.getCurrentPosition((position) => {
-        // console.log(position);
+    this.locationService.getLocation().subscribe(
+      (position) => {
         this.controls['lat'].setValue(position.coords.longitude);
         this.controls['long'].setValue(position.coords.latitude);
-      });
-    } else {
-      console.log('No support for geolocation');
-    }
+      },
+      (err) => {
+        this.error = 'You need to enable you location to Sign Up!';
+      }
+    );
     this.broadcastErrorService.error.subscribe((res) => {
       if (res) {
         let errStr = '';
@@ -113,6 +114,8 @@ export class RetailerRegisterComponent implements OnInit {
   registerForm() {
     this.error = '';
     if (this.consumerForm.invalid) {
+      if (this.controls['lat'].invalid)
+        this.error = 'You need to enable you location and reload the page to Sign Up!';
       this.consumerForm.markAllAsTouched();
       return;
     } else {
