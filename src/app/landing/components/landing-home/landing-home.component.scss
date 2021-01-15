@@ -77,11 +77,21 @@
   margin: 1rem;
 
   .head {
-    color: white;
+    // color: white;
     font-size: 4.5rem;
     letter-spacing: 0.07rem;
     font-family: "Big Shoulders Stencil Text", cursive;
     font-weight: 700;
+    color: #fff;
+    position: relative;
+    &:hover {
+      background: linear-gradient(270deg, #419ec0, #419ec0, #fddbcf, #fddbcf, #419ec0, #419ec0);
+      background-size: 350% 100%;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-position: 0% 50%;
+      animation: gradient-text-bg 1.6s linear infinite reverse;
+    }
   }
 
   .search {
@@ -323,14 +333,28 @@ Wave Divider
   }
 }
 
-// @media screen and (min-width: 600px) {
-//   .navigation {
-//     &__actions {
-//       display: flex;
-//     }
+.head:hover {
+  &::after {
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #42b4ac;
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    transition: background 0.2s ease-in;
+    background: linear-gradient(270deg, #419ec0, #419ec0, #fddbcf, #fddbcf, #419ec0, #419ec0);
+    background-size: 350% 100%;
+    background-position: 0% 50%;
+    animation: gradient-text-bg 1.6s linear infinite reverse;
+  }
+}
 
-//     &__actions--mobile {
-//       display: none;
-//     }
-//   }
-// }
+@keyframes gradient-text-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}

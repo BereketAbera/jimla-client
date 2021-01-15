@@ -50,12 +50,13 @@ export class ProductsComponent implements OnInit {
     this.productClose.subscribe((res) => {
       if (res && res.success) {
         if (res.type == 'edit') {
-          this.products.map((product) => {
-            if (product.id == res.product.id) {
-              return res.product;
-            }
-            return product;
-          });
+          this.getProducts();
+          // this.products.map((product) => {
+          //   if (product.id == res.product.id) {
+          //     return res.product;
+          //   }
+          //   return product;
+          // });
         } else if (res && res.success && res.product) {
           this.firstReload = true;
           this.router.navigate([], {
@@ -125,6 +126,17 @@ export class ProductsComponent implements OnInit {
       nzContent: EditProductModalComponent,
       nzAfterClose: this.productClose,
       nzMaskClosable: false
+    });
+  }
+
+  deleteProduct(product) {
+    this.modal.confirm({
+      nzTitle: 'Are You Sure You Want To Delete This Product?',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOnOk: () => this.confirmDelete(product),
+      nzCancelText: 'No',
+      nzOnCancel: () => this.cancelDelete()
     });
   }
 

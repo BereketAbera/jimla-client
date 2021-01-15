@@ -24,6 +24,8 @@ export class CreateOrderVoiceComponent implements OnInit {
   merchant = null;
   orderGroup = null;
   @ViewChild('successMessage', { static: false }) template?: TemplateRef<{}>;
+  @ViewChild('audio1', { static: false }) audio1;
+  @ViewChild('audio2', { static: false }) audio2;
 
   constructor(
     private route: ActivatedRoute,
@@ -97,6 +99,7 @@ export class CreateOrderVoiceComponent implements OnInit {
     if (this.selectedProducts.length <= 0) return;
     this.leftDisabled = true;
     this.selectedProductsOrders = this.selectedProducts;
+    this.audio1.nativeElement.pause();
     // console.log('scrolling to anchor');
     this.viewportScroller.scrollToAnchor('order_produts');
   }
@@ -104,6 +107,7 @@ export class CreateOrderVoiceComponent implements OnInit {
   back() {
     this.leftDisabled = false;
     this.viewportScroller.scrollToAnchor('process_orders');
+    this.audio2.nativeElement.pause();
   }
 
   submitOrder() {

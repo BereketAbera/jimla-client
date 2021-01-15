@@ -68,18 +68,7 @@
                     <nz-dropdown-menu #actions="nzDropdownMenu">
                       <ul nz-menu>
                         <li (click)="editProduct(product)" class="list_style" nz-menu-item>Edit</li>
-                        <li
-                          class="list_style"
-                          nz-menu-item
-                          nz-popconfirm
-                          nzPopconfirmTitle="Are you sure you want to delete this product?"
-                          (nzOnConfirm)="confirmDelete(product)"
-                          (nzOnCancel)="cancelDelete()"
-                          nzPopconfirmPlacement="top"
-                          nzOkText="Yes"
-                          nzCancelText="No"
-                          nz-button
-                        >
+                        <li class="list_style" nz-menu-item (click)="deleteProduct(product)">
                           Delete
                         </li>
                       </ul>

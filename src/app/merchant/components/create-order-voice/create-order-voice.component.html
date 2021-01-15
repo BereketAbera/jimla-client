@@ -49,7 +49,7 @@
             </div>
             <nz-divider nzDashed nzText="Audio File"></nz-divider>
             <div class="audio">
-              <audio controls class="audio__player">
+              <audio #audio1 controls class="audio__player">
                 <source [src]="orderGroup.audioLink" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </audio>
@@ -230,7 +230,7 @@
       </div>
       <nz-divider nzDashed nzText="Audio File"></nz-divider>
       <div class="audio">
-        <audio controls class="audio__player">
+        <audio #audio2 controls class="audio__player">
           <source [src]="orderGroup.audioLink" type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
