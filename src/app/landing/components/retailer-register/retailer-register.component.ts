@@ -56,6 +56,7 @@ export class RetailerRegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.broadcastErrorService.error.next(false);
     this.locationService.getLocation().subscribe(
       (position) => {
         this.controls['lat'].setValue(position.coords.longitude);
@@ -73,6 +74,9 @@ export class RetailerRegisterComponent implements OnInit {
           values.map((value) => {
             errStr += `${value},`;
           });
+          this.viewportScroller.scrollToAnchor('form_title');
+        } else if (typeof res.error.message === 'string') {
+          errStr = res.error.message;
           this.viewportScroller.scrollToAnchor('form_title');
         }
         this.error = errStr ? 'Validation Error: ' + errStr : '';

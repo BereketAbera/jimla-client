@@ -12,7 +12,11 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 export class ProfilePasswordComponent implements OnInit {
   passForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder,private message: NzMessageService, private userService: UserService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private message: NzMessageService,
+    private userService: UserService
+  ) {}
 
   ngOnInit(): void {
     this.passForm = this.formBuilder.group(
@@ -38,31 +42,29 @@ export class ProfilePasswordComponent implements OnInit {
     return this.passForm.controls;
   }
   onSubmit() {
-    console.log(this.passForm.controls)
-   
+    // console.log(this.passForm.controls)
 
     for (const i in this.passForm.controls) {
       this.passForm.controls[i].markAsDirty();
       this.passForm.controls[i].updateValueAndValidity();
     }
 
-     if (!this.passForm.valid) {
+    if (!this.passForm.valid) {
       return;
     }
 
     this.userService.changePassword(this.passForm.value).subscribe(
       (data) => {
-        this.createMessage('success',"Changed Succesfully!")
+        this.passForm.reset();
+        this.createMessage('success', 'Changed Succesfully!');
       },
       (error) => {
-        this.createMessage('error',"Failed To Change!")
+        this.createMessage('error', 'Failed To Change!');
       }
     );
   }
 
-  createMessage(type: string,data): void {
+  createMessage(type: string, data): void {
     this.message.create(type, data);
   }
-
- 
 }

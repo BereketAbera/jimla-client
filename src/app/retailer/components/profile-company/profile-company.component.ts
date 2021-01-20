@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BroadcastErrorService } from '@app/_services/broadcast-error.service';
 import { UserService } from '@app/_services/user.service';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { of } from 'rxjs';
@@ -18,12 +19,14 @@ export class ProfileCompanyComponent implements OnInit {
   phoneNumber: boolean;
   tinNumber: boolean;
   value = '';
+  error = '';
 
   constructor(
     private message: NzMessageService,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private userService: UserService
+    private userService: UserService,
+    private broadcastErrorService: BroadcastErrorService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +35,23 @@ export class ProfileCompanyComponent implements OnInit {
 
       this.consumer = res.data;
       // this.count = res.data.count;
+    });
+
+    this.broadcastErrorService.error.subscribe((res) => {
+      // console.log(res.error);
+      if (res) {
+        let errStr = '';
+        if (typeof res.error.data === 'object') {
+          let values = Object.values(res.error.data);
+          values.map((value) => {
+            errStr += `${value},`;
+          });
+        } else if (typeof res.error.message === 'string') {
+          errStr = res.error.message;
+        }
+
+        this.error = errStr ? 'Validation Error: ' + errStr : '';
+      }
     });
   }
 
@@ -62,6 +82,7 @@ export class ProfileCompanyComponent implements OnInit {
   }
 
   editModeOpen(value) {
+    this.error = '';
     this.editMode = true;
     this.resetField();
     this.value = value;
@@ -108,6 +129,7 @@ export class ProfileCompanyComponent implements OnInit {
   }
 
   onSubmit() {
+    this.error = '';
     if (!this.companyForm.valid) {
       return;
     }

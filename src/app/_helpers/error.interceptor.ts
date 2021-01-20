@@ -33,6 +33,7 @@ export class ErrorInterceptor implements HttpInterceptor {
           //   this.authenticationService.routeToNotFound();
           //   break;
           case 422 || 405:
+            // console.log(err);
             this.broadCastErrorService.error.next(err);
             break;
           default:

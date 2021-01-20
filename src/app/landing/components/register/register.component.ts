@@ -53,6 +53,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.broadcastErrorService.error.next(false);
     this.locationService.getLocation().subscribe(
       (position) => {
         this.controls['lat'].setValue(position.coords.longitude);
@@ -63,6 +64,7 @@ export class RegisterComponent implements OnInit {
       }
     );
     this.broadcastErrorService.error.subscribe((res) => {
+      // console.log(res.error);
       if (res) {
         let errStr = '';
         if (typeof res.error.data === 'object') {
@@ -71,7 +73,11 @@ export class RegisterComponent implements OnInit {
             errStr += `${value},`;
           });
           this.viewportScroller.scrollToAnchor('form_title');
+        } else if (typeof res.error.message === 'string') {
+          errStr = res.error.message;
+          this.viewportScroller.scrollToAnchor('form_title');
         }
+
         this.error = errStr ? 'Validation Error: ' + errStr : '';
         this.submitted = false;
       }
@@ -129,7 +135,7 @@ export class RegisterComponent implements OnInit {
         return;
       }
     }
-    console.log(this.controls, 'here');
+    // console.log(this.controls, 'here');
     this.submitted = true;
     this.userService
       .addProducer({
